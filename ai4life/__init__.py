@@ -13,8 +13,10 @@ from your_module import your_function as training
 import logging
 from pathlib import Path
 from ai4life import config
+from bioimageio.spec import load_description
 import json
 from bioimageio.spec.model import v0_5
+import os
 
 logger = logging.getLogger(__name__)
 logger.setLevel(config.LOG_LEVEL)
@@ -94,7 +96,7 @@ def warm(**kwargs):
     """Main/public method to start up the model
     """
     # if necessary, start the model
-    filter_and_load_models(os.path.join(config.MODELS_PATH,'all_versions.json'))
+    filter_and_load_models((config.MODELS_PATH))
 
    
 
