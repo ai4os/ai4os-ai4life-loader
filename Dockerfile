@@ -10,7 +10,7 @@
 # Be Aware! For the Jenkins CI/CD pipeline, 
 # input args are defined inside the JenkinsConstants.groovy, not here!
 
-ARG tag=1.13.1-cuda11.6-cudnn8-runtime
+ARG tag=2.3.1-cuda11.8-cudnn8-devel
 
 # Base image, e.g. tensorflow/tensorflow:2.x.x-gpu
 FROM pytorch/pytorch:${tag}
@@ -69,7 +69,7 @@ ENV RCLONE_CONFIG=/srv/.rclone/rclone.conf
 
 RUN curl -o all_versions.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/all_versions.json
 # Install user app
-RUN git clone -b $branch --depth 1 https://github.com/ai4os-hub/ai4life && \
+RUN git clone -b $branch --depth 1 https://github.com/falibabaei/ai4life.git && \
     cd ai4life && \
     pip3 install --no-cache-dir -e . && \
     curl -o ./models/all_versions.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/all_versions.json
