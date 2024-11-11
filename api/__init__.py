@@ -8,7 +8,7 @@ docs [1] and at a canonical exemplar module [2].
 """
 import logging
 
-import ai4life as aimodel, filter_and_load_models, get_model_io_info
+import ai4life as aimodel 
 
 from . import config, responses, schemas, utils
 
