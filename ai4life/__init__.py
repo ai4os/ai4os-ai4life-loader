@@ -13,18 +13,90 @@ from your_module import your_function as training
 import logging
 from pathlib import Path
 from ai4life import config
+import json
+from bioimageio.spec.model import v0_5
 
 logger = logging.getLogger(__name__)
 logger.setLevel(config.LOG_LEVEL)
 
 
-# TODO: warm (Start Up)
-# = HAVE TO MODIFY FOR YOUR NEEDS =
+# TODO: Is there any way to filter v0_5 model before loading them?
+
+def filter_and_load_models(input_json='all_versions.json', output_json='filtered_models.json'):
+    # Load the JSON file
+    with open(input_json, 'r') as file:
+        data = json.load(file)
+        
+    # Filter entries where "type" is "model"
+    models = [entry for entry in data['entries'] if entry['type'] == 'model']
+
+    models_v0_5 = {}
+
+    for model_entry in models:
+        model_id = None
+        model = None
+        
+        if model_entry.get('concept'):
+            model_id = model_entry['concept']
+        elif model_entry.get('concept_doi'):
+            model_id = model_entry['concept_doi']
+        elif model_entry.get('source'):
+            model_id = model_entry['source']
+
+        if model_id:
+            model = load_description(model_id)
+            if isinstance(model, v0_5.ModelDescr):
+                print(f"\nThe model '{model.name}' with ID '{model_id}' has been correctly loaded.")
+                # Store model information in a dictionary
+                models_v0_5[model_id] = get_model_io_info(model)
+
+    # Define output path
+    names_output_json = os.path.join(config.MODELS_PATH, 'models_v0_5.json')        
+    
+    # Write all model info to a JSON file
+    with open(names_output_json, 'w') as names_file:
+        json.dump(models_v0_5, names_file, indent=4)        
+
+    return models_v0_5
+
+def get_model_io_info(model):
+    model_info = {
+        'mode name': model.name,
+        'inputs_shape': [],
+        'outputs_shape': []
+    }
+
+    # Collect input information
+    for ipt in model.inputs:
+        input_info = {
+            'id': getattr(ipt, 'id', None) or getattr(ipt, 'name', None),
+            'axes': ipt.axes,
+            'data_description': getattr(ipt, 'data', None),
+            'test_tensor': getattr(ipt, 'test_tensor', None).source.absolute() if getattr(ipt, 'test_tensor', None) else None,
+            'preprocessing': [p for p in ipt.preprocessing] if len(ipt.preprocessing) > 1 else None
+        }
+        model_info['inputs'].append(input_info)
+
+    # Collect output information
+    for out in model.outputs:
+        output_info = {
+            'id': getattr(out, 'id', None) or getattr(out, 'name', None),
+            'axes': out.axes,
+            'data_description': getattr(out, 'data', None),
+            'test_tensor': getattr(out, 'test_tensor', None).source.absolute() if getattr(out, 'test_tensor', None) else None,
+            'postprocessing': [p for p in out.postprocessing] if getattr(out, 'postprocessing', None) and len(out.postprocessing) > 1 else None
+        }
+        model_info['outputs'].append(output_info)
+
+    return model_info
+
 def warm(**kwargs):
     """Main/public method to start up the model
     """
     # if necessary, start the model
-    pass
+    filter_and_load_models(os.path.join(config.MODELS_PATH,'all_versions.json'))
+
+   
 
 
 # TODO: predict

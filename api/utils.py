@@ -27,8 +27,14 @@ def ls_dirs(path):
         A list of strings for found subdirectories.
     """
     logger.debug("Scanning directories at: %s", path)
-    dirscan = (x.name for x in path.iterdir() if x.is_dir())
-    return sorted(dirscan)
+    #dirscan = (x.name for x in path.iterdir() if x.is_dir())
+    def print_model_info_from_json(json_file='models_v0_5.json'):
+    # Load model information from JSON file
+    with open(json_file, 'r') as file:
+        models_data = json.load(file)
+
+    
+    return sorted(models_data)
 
 
 def ls_files(path, pattern):

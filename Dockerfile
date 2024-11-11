@@ -67,9 +67,12 @@ RUN curl -O https://downloads.rclone.org/rclone-current-linux-amd64.deb && \
     rm -rf /var/lib/apt/lists/*
 ENV RCLONE_CONFIG=/srv/.rclone/rclone.conf
 
+RUN curl -o all_versions.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/all_versions.json
 # Install user app
 RUN git clone -b $branch --depth 1 https://github.com/ai4os-hub/ai4life && \
-    pip3 install --no-cache-dir -e ./ai4life
+    cd ai4life && \
+    pip3 install --no-cache-dir -e . && \
+    curl -o ./models/all_versions.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/all_versions.json
 
 # Open ports: DEEPaaS (5000), Monitoring (6006), Jupyter (8888)
 EXPOSE 5000 6006 8888
