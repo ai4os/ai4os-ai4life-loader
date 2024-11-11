@@ -8,7 +8,7 @@ docs [1] and at a canonical exemplar module [2].
 """
 import logging
 
-import ai4life as aimodel
+import ai4life as aimodel, filter_and_load_models, get_model_io_info
 
 from . import config, responses, schemas, utils
 
@@ -34,7 +34,7 @@ def get_metadata():
             "license": config.API_METADATA.get("license"),
             "version": config.API_METADATA.get("version"),
             "datasets": utils.ls_files(config.DATA_PATH, '[A-Za-z0-9]*'),
-            "models": utils.ls_dirs(config.MODELS_PATH),
+            "models": utils.ls_dirs(config.MODELS_PATH, 'models_v0_5.json'),
         }
         logger.debug("Package model metadata: %s", metadata)
         return metadata
