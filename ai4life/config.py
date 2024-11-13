@@ -20,7 +20,7 @@ from pathlib import Path
 BASE_PATH = Path(__file__).resolve(strict=True).parents[1]
 
 # Path definition for the pre-trained models
-MODELS_PATH = os.getenv("AI4LIFE_MODELS_PATH", default=BASE_PATH / "models/all_versions.json")
+MODELS_PATH = os.getenv("AI4LIFE_MODELS_PATH", default=BASE_PATH / "models")
 MODELS_PATH = Path(MODELS_PATH)
 # Path definition for data folder
 DATA_PATH = os.getenv("AI4LIFE_DATA_PATH", default=BASE_PATH / "data")

@@ -9,6 +9,8 @@ need to modify them for your needs.
 import logging
 import subprocess
 import sys
+import json
+
 from subprocess import TimeoutExpired
 
 from . import config
@@ -28,11 +30,12 @@ def ls_dirs(path):
     """
     logger.debug("Scanning directories at: %s", path)
     #dirscan = (x.name for x in path.iterdir() if x.is_dir())
-    with open(json_file, 'r') as file:
+    with open(path, 'r') as file:
         models_data = json.load(file)
+     #   print(models_data)
 
     
-    return sorted(models_data)
+    return models_data
 
 
 def ls_files(path, pattern):
