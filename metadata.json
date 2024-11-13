@@ -1,0 +1,37 @@
+{
+    "title": "ai4life",
+    "summary": "Support for inference of the AI4LIFE model on the marketplace.",
+    "description": [
+        "ai4life is an application using the DEEPaaS API.\n",
+        "Support for inference of the AI4LIFE model on the marketplace."
+    ],
+    "keywords": [
+        "docker",
+        "api-v2"
+    ],
+    "license": "MIT",
+    "date_creation": "2024-11-11",
+    "sources": {
+        "dockerfile_repo": "https://github.com/ai4os-hub/ai4life",
+        "docker_registry_repo": "ai4oshub/ai4life",
+        "code": "https://github.com/ai4os-hub/ai4life",
+        "ai4_template": "ai4-template-adv/2.0.1"
+    },
+    "continuous_integration": {
+        "build_status_badge": "https://jenkins.services.ai4os.eu/buildStatus/icon?job=AI4OS-hub/ai4life/main",
+        "build_status_url": "https://jenkins.services.ai4os.eu/job/AI4OS-hub/job/ai4life/job/main/"
+    },
+    "tosca": [
+        {
+            "title": "Mesos (CPU)",
+            "url": "https://raw.githubusercontent.com/indigo-dc/tosca-templates/master/deep-oc/deep-oc-marathon-webdav.yml",
+            "inputs": [
+                "rclone_conf",
+                "rclone_url",
+                "rclone_vendor",
+                "rclone_user",
+                "rclone_pass"
+            ]
+        }
+    ]
+}

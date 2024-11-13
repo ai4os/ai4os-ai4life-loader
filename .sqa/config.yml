@@ -1,0 +1,33 @@
+# .sqa/config.yml - jenkins-pipeline-library configuration file
+sqa_criteria:
+  qc_style:
+    repos:
+      ai4life:
+        container: testing
+        tox:
+          tox_file: tox.ini
+          testenv:
+            - qc.sty
+  qc_coverage:
+    repos:
+      ai4life:
+        container: testing
+        tox:
+          tox_file: tox.ini
+          testenv:
+            - qc.cov
+  qc_security:
+    repos:
+      ai4life:
+        container: testing
+        tox:
+          tox_file: tox.ini
+          testenv:
+            - qc.sec
+
+environment:
+  GIT_COMMITTER_NAME: "Fahimeh Alibabaei "
+  GIT_COMMITTER_EMAIL: "khadijeh.alibabaei@kit.edu"
+  LANG: C.UTF-8
+
+timeout: 600

@@ -1,0 +1,62 @@
+metadata_version: 2.0.0
+title: ai4life
+summary: "Support for inference of the AI4LIFE model on the marketplace."
+description: |-
+  ai4life is an application using the DEEPaaS API.
+  Support for inference of the AI4LIFE model on the marketplace.
+# doi: http://add-some-DOI-url.com
+dates:
+  created: 2024-11-11
+  updated: 2024-11-11
+links:
+  ai4_template: ai4-template-adv/2.0.1
+  source_code: https://github.com/ai4os-hub/ai4life
+  docker_image: ai4oshub/ai4life
+  # documentation: http://add-some-documentation.com
+  # dataset: http://add-some-url-pointing-to-your-dataset.com
+  # weights: http://add-some-weights-url.com
+  # citation: http://add-some-DOI-url.com
+  # base_model: http://add-some-link-to-another-model.com
+#tags:        # required property, add user-defined tags that you consider relevant
+  # - deep learning
+#tasks:       # required property, uncomment together with relevant items
+  # - Computer Vision
+  # - Natural Language Processing
+  # - Time Series
+  # - Recommender Systems
+  # - Anomaly Detection
+  # - Regression
+  # - Classification
+  # - Clustering
+  # - Dimensionality Reduction
+  # - Generative Models
+  # - Graph Neural Networks
+  # - Optimization
+  # - Reinforcement Learning
+  # - Transfer Learning
+  # - Uncertainty Estimation
+  # - Other
+#categories:  # required property, uncomment together with relevant items
+  # - AI4 trainable
+  # - AI4 pre trained
+  # - AI4 inference
+  # - AI4 tools
+#libraries:   # required property, uncomment together with relevant items
+  # - TensorFlow
+  # - PyTorch
+  # - Keras
+  # - Scikit-learn
+  # - XGBoost
+  # - LightGBM
+  # - CatBoost
+  # - Other
+#data-type:   # optional, uncomment together with relevant items
+  # - Image
+  # - Text
+  # - Time Series
+  # - Tabular
+  # - Graph
+  # - Audio
+  # - Video
+  # - Other
+  
