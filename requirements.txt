@@ -4,6 +4,9 @@ webargs~=5.5.2
 flaat~=1.1.1
 bioimageio-core==0.6.9
 matplotlib==3.9.0
+segment-anything
+torchvision
+git+https://github.com/ChaoningZhang/MobileSAM.git
 
 # External requirements for the model and API
 fPDF2~=2.7.5

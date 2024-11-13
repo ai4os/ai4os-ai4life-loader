@@ -9,7 +9,8 @@ import io
 import logging
 
 from fpdf import FPDF
-
+import numpy as np
+import xarray as xr
 from . import config
 
 logger = logging.getLogger(__name__)
@@ -18,7 +19,7 @@ logger.setLevel(config.LOG_LEVEL)
 
 # EXAMPLE of json_response parser function
 # = HAVE TO MODIFY FOR YOUR NEEDS =
-def json_response(result, **options):
+def json_response(result,output_ids, **options):
     """Converts the prediction results into json return format.
 
     Arguments:
@@ -35,12 +36,26 @@ def json_response(result, **options):
     logger.debug("Response result type: %d", type(result))
     logger.debug("Response result: %d", result)
     logger.debug("Response options: %d", options)
+
     try:
-        if isinstance(result, (dict, list, str)):
-            return result
-        # if isinstance(result, np.ndarray):
-        #     return result.tolist()
-        return dict(result)
+        output_={}
+        for id in output_ids: 
+            #print(f'the id is {id}')
+            if id=='embeddings':
+                pass
+            else:
+                output_array = result.members[id].data
+                #print(f'the output_array is {output_array}')
+                if isinstance(output_array, xr.DataArray):
+                    #print('the output is xr array')
+                    output_array = output_array.values   # Add directly if not numpy type
+                #print(f'the size of the output array is {output_array.shape}')
+                output_[id] = np.squeeze(output_array).tolist()
+            
+        print(f'Final output_: {output_.keys()}')
+        return output_
+
+ 
     except Exception as err:  # TODO: Fix to specific exception
         logger.warning("Error converting result to json: %s", err)
         raise RuntimeError("Unsupported response type") from err
