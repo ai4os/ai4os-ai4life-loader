@@ -11,7 +11,7 @@ import logging
 from fpdf import FPDF
 import numpy as np
 import xarray as xr
-from . import config
+from . import config, utils
 
 logger = logging.getLogger(__name__)
 logger.setLevel(config.LOG_LEVEL)
@@ -19,7 +19,7 @@ logger.setLevel(config.LOG_LEVEL)
 
 # EXAMPLE of json_response parser function
 # = HAVE TO MODIFY FOR YOUR NEEDS =
-def json_response(result,output_ids, **options):
+def json_response(result, output_ids,sample, **options):
     """Converts the prediction results into json return format.
 
     Arguments:
@@ -60,7 +60,13 @@ def json_response(result,output_ids, **options):
         logger.warning("Error converting result to json: %s", err)
         raise RuntimeError("Unsupported response type") from err
 
-
+def png_response(result, output_ids, sample,**options):
+    logger.debug("Response result type: %d", type(result))
+    logger.debug("Response result: %d",output_ids)
+    output_= json_response(result, output_ids, sample, **options)
+     
+    
+    return utils.output_png(sample, output_) 
 # EXAMPLE of pdf_response parser function
 # = HAVE TO MODIFY FOR YOUR NEEDS =
 def pdf_response(result, **options):
@@ -106,5 +112,5 @@ def pdf_response(result, **options):
 
 content_types = {
     "application/json": json_response,
-    "application/pdf": pdf_response,
+    "image/png": png_response,
 }
