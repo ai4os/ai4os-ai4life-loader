@@ -7,6 +7,7 @@ All functions here are optional and you can add or remove them as you need.
 """
 import logging
 from pathlib import Path
+import numpy as np
 from ai4life import config
 from bioimageio.core.digest_spec import get_member_ids
 import json
@@ -15,6 +16,9 @@ from bioimageio.core import   load_description
 import os
 from typing import List, Tuple
 import shutil
+from PIL import Image
+from typing_extensions import  assert_never
+
 
 logger = logging.getLogger(__name__)
 logger.setLevel(config.LOG_LEVEL)
@@ -144,8 +148,65 @@ def mkdata(input_filepath, output_filepath):
 # create model
 # = HAVE TO MODIFY FOR YOUR NEEDS =
  
+def _copy_file_to_tmpdir(file, tmpdir, input_output_info):
+    """Helper function to copy a file to a temporary directory and return the file path or image array."""
+    # Copy file to temporary directory
+    file_path = Path(tmpdir) / file.original_filename
+    shutil.copy(file.filename, file_path)
 
-def _copy_file_to_tmpdir(file, tmpdir):
-    """Helper function to copy a file to a temporary directory and return the file path."""
-    shutil.copy(file.filename, os.path.join(tmpdir, file.original_filename))
-    return Path(tmpdir) / file.original_filename
+    # Check if file is an image type
+    image_type = check_image_type(file_path)
+    if image_type:
+        # Determine expected axes and check for supported shape
+        axes = input_output_info['inputs'][0]['axis']
+        if len(axes) not in (3, 4):
+            raise ValueError('This model does not support images with unsupported dimensions.')
+
+        # Open image and convert based on axes length
+        with Image.open(file_path) as img:
+            image_array = np.array(img.convert('RGB') if len(axes) == 4 else img)
+
+        # Check channel position and adjust if necessary
+        info, position = check_channel_position(input_output_info['inputs'])
+        if info:
+            image_array = np.moveaxis(image_array, -1, position - 1)
+            print(f'Image array shape is {image_array.shape}')
+        
+        return image_array
+
+    # Return file path if not an image
+    return file_path
+import imghdr
+def check_image_type(filename):
+    image_type = imghdr.what(filename)
+    if image_type in ['jpeg', 'jpg','png']:
+        return True
+
+    else:
+      return False
+def check_channel_position(input_info):
+    """
+    Check if 'channels' exists in axes and determine its position
+    
+    Args:
+        input_info: Dictionary containing model input information
+        
+    Returns:
+        tuple: (bool, str) - (whether channels exists, position description)
+    """
+    #print(input_info)
+    axes = input_info[0]['axis']
+    
+    # Check if any axis has 'channels' name
+    has_channels = any('channel' in str(axis).lower() for axis in axes)
+    
+    if not has_channels:
+        return False, "No channels dimension found"
+    
+    # Find position of channels
+    for idx, axis in enumerate(axes):
+        if 'channel' in str(axis).lower():
+            print(f'the channel pisition is {idx}')
+            return True, idx
+    
+    return False, "channels not found"    

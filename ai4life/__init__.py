@@ -21,8 +21,9 @@ from bioimageio.core import load_description
 import tempfile
 import shutil
 from . import utils 
-from bioimageio.core.digest_spec import get_member_ids
-
+ 
+from bioimageio.core.digest_spec import get_member_ids,  create_sample_for_model
+ 
 logger = logging.getLogger(__name__)
 logger.setLevel(config.LOG_LEVEL)
 
@@ -37,14 +38,19 @@ def predict(model_name, **options):
     """Main/public method to perform prediction
     """
     model= load_description(model_name)
+    input_output_info= utils.get_model_io_info(model)
     input_ids = list(get_member_ids(model.inputs))
     output_ids = set(get_member_ids(model.outputs))
     input_data = {}
     if len(input_ids)==1:
         with tempfile.TemporaryDirectory() as tmpdir:
             id=input_ids[0]
-            input_data[id] = utils._copy_file_to_tmpdir(options['input_file'], tmpdir)
-            return predict_(model=model, inputs=input_data, blocksize_parameter=1), output_ids 
+            input_data[id] = utils._copy_file_to_tmpdir(options['input_file'], tmpdir, input_output_info)
+            sample = create_sample_for_model(
+            model, inputs=input_data, sample_id='sample_'
+        )  
+            input_data = sample.members[input_ids[0]].data
+            return predict_(model=model, inputs=sample, blocksize_parameter=1), output_ids ,input_data
     else:
         
         options_input = ['input_file', 'box_prompts', 'point_prompts', 'point_labels', 'mask_prompts', 'embeddings']
@@ -52,38 +58,19 @@ def predict(model_name, **options):
             for id, option in zip(input_ids, options_input):
                 
                     if id in ['image', 'mask_prompts'] and options.get(option):
-                        input_data[id] = utils._copy_file_to_tmpdir(options[option], tmpdir)
-                    else:
-                        if options.get(option) is not None:
+                        input_data[id] = utils._copy_file_to_tmpdir(options[option], tmpdir,input_output_info)
+                        
+                             
+                    elif options.get(option) is not None:
                             input_data[id] = np.array(options[option])
-                            
-                        #else:    
-                         #   input_data[id] = None 
-                         #TODO
-                          
-
-            # blocksize_parameter=1
-            return  predict_(model=model, inputs=input_data), output_ids
+            sample = create_sample_for_model(
+            model, inputs=input_data, sample_id='sample_'
+        )  
+            input_data = sample.members[input_ids[0]].data
+            # blocksize_parameter is not working with sam model
+            return  predict_(model=model, inputs=sample), output_ids, input_data
     logger.debug(f"[predict()]: {predict_result}")
 
-    #return predict_result
 
-# TODO: train
-# = HAVE TO MODIFY FOR YOUR NEEDS =
-def train(model_name, input_file, **options):
-    """Main/public method to perform training
-    """
-    # prepare the dataset, e.g.
-    # dtst.mkdata()
-    
-    # create model, e.g.
-    # create_model()
-    
-    # train model
-    # describe training steps
 
-    # return training results
-    train_result = {'result': 'not implemented'}
-    logger.debug(f"[train()]: {train_result}")
-    
-    return train_result
+ 
