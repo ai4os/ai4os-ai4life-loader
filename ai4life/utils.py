@@ -16,9 +16,10 @@ from bioimageio.core import   load_description
 import os
 from typing import List, Tuple
 import shutil
-from PIL import Image
+import imghdr
 from typing_extensions import  assert_never
-
+from bioimageio.core.io import load_image
+from bioimageio.core import Tensor
 
 logger = logging.getLogger(__name__)
 logger.setLevel(config.LOG_LEVEL)
@@ -30,14 +31,14 @@ class CustomEncoder(json.JSONEncoder):
         # Handle the case if the object type is unknown or non-serializable
         return str(obj) 
 
-def filter_and_load_models(input_json='all_versions.json', output_json='filtered_models.json'):
+def filter_and_load_models(input_json='collection.json', output_json='filtered_models.json'):
     # Load the JSON file
     with open(input_json, 'r') as file:
         data = json.load(file)
         
     # Filter entries where "type" is "model"
-    models = [entry for entry in data['entries'] if entry['type'] == 'model']
-
+    models = [entry for entry in data['collection'] if entry['type'] == 'model']
+    
     models_v0_5 = {}
 
     for model_entry in models:
@@ -58,7 +59,12 @@ def filter_and_load_models(input_json='all_versions.json', output_json='filtered
             if isinstance(model, v0_5.ModelDescr):
                 print(f"\nThe model '{model.name}' with ID '{model_id}' has been correctly loaded.")
                 # Store model information in a dictionary
-                models_v0_5[model_id] = get_model_io_info(model)
+                model_io_info  = get_model_io_info(model)
+                combined_entry = {**model_entry, **model_io_info}
+            
+                # Store the combined entry in the models_v0_5 dictionary
+                models_v0_5[model_id] = combined_entry
+
 
     # Define output path
     names_output_json = os.path.join(config.MODELS_PATH, 'models_v0_5.json')        
@@ -132,51 +138,53 @@ def get_model_io_info(model):
 
     return model_info
 
-# make data
-# = HAVE TO MODIFY FOR YOUR NEEDS =
-def mkdata(input_filepath, output_filepath):
-    """ Main/public function to run data processing to turn raw data
-        from (data/raw) into cleaned data ready to be analyzed.
-    """
-
-    logger.info('Making final data set from raw data')
-
-    # EXAMPLE for finding various files
-    project_dir = Path(__file__).resolve().parents[2]
-
-
-# create model
-# = HAVE TO MODIFY FOR YOUR NEEDS =
+ 
  
 def _copy_file_to_tmpdir(file, tmpdir, input_output_info):
     """Helper function to copy a file to a temporary directory and return the file path or image array."""
     # Copy file to temporary directory
     file_path = Path(tmpdir) / file.original_filename
     shutil.copy(file.filename, file_path)
-
-    # Check if file is an image type
+    
+    array= load_image(file_path)
+    print(f'the shape of the array is {array.shape}')
     image_type = check_image_type(file_path)
+    tensor_array= Tensor._interprete_array_wo_known_axes(array)
+    print(f'the tensor_array is {tensor_array.shape_tuple}')
+    
+    array_dim= _interprete_array_wo_known_axes(  array )      
+    print(f'the array_dim is {array_dim}')  
+    axes_dim= input_output_info['inputs'][0]['axis']
+    axes_ids = (axis.id for axis in axes_dim)
+    missing_axes= tuple(a for a in axes_ids if a not in array_dim)
+    print (f'the missing axes are {missing_axes}')
     if image_type:
-        # Determine expected axes and check for supported shape
-        axes = input_output_info['inputs'][0]['axis']
-        if len(axes) not in (3, 4):
-            raise ValueError('This model does not support images with unsupported dimensions.')
-
-        # Open image and convert based on axes length
-        with Image.open(file_path) as img:
-            image_array = np.array(img.convert('RGB') if len(axes) == 4 else img)
-
-        # Check channel position and adjust if necessary
         info, position = check_channel_position(input_output_info['inputs'])
         if info:
-            image_array = np.moveaxis(image_array, -1, position - 1)
-            print(f'Image array shape is {image_array.shape}')
-        
-        return image_array
+            array = np.moveaxis(array, -1, position - 1)
+            print(f'input array has shape {array.shape}')
 
-    # Return file path if not an image
-    return file_path
-import imghdr
+    # Check if file is an image type
+   # image_type = check_image_type(file_path)
+   # if image_type:
+        # Determine expected axes and check for supported shape
+    #    axes = input_output_info['inputs'][0]['axis']
+      
+        # Open image and convert based on axes length
+     ##   with Image.open(file_path) as img:
+        
+     #       image_array = np.array(img.convert('RGB') if len(axes) == 4 else img)
+        #if len(axes)-1!= image_array.shape:
+         #   raise ValueError(f'This model support images with dimensions {len(axes)-1}.')
+        # Check channel position and adjust if necessary
+      #  info, position = check_channel_position(input_output_info['inputs'])
+     #   if info:
+        #    image_array = np.moveaxis(image_array, -1, position - 1)
+     #       print(f'Image array shape is {image_array.shape}')
+        
+    return array, missing_axes
+ 
+
 def check_image_type(filename):
     image_type = imghdr.what(filename)
     if image_type in ['jpeg', 'jpg','png']:
@@ -209,4 +217,60 @@ def check_channel_position(input_info):
             print(f'the channel pisition is {idx}')
             return True, idx
     
-    return False, "channels not found"    
+    return False, "channels not found"  
+from bioimageio.core.axis import  AxisId
+
+def _interprete_array_wo_known_axes(array):
+        ndim = array.ndim
+        if ndim == 2:
+            current_axes = (
+                v0_5.SpaceInputAxis(id=AxisId("y"), size=array.shape[0]),
+                v0_5.SpaceInputAxis(id=AxisId("x"), size=array.shape[1]),
+            )
+        elif ndim == 3 and any(s <= 3 for s in array.shape):
+            current_axes = (
+                v0_5.ChannelAxis(
+                    channel_names=[
+                        v0_5.Identifier(f"channel{i}") for i in range(array.shape[0])
+                    ]
+                ),
+                v0_5.SpaceInputAxis(id=AxisId("y"), size=array.shape[1]),
+                v0_5.SpaceInputAxis(id=AxisId("x"), size=array.shape[2]),
+            )
+        elif ndim == 3:
+            current_axes = (
+                v0_5.SpaceInputAxis(id=AxisId("z"), size=array.shape[0]),
+                v0_5.SpaceInputAxis(id=AxisId("y"), size=array.shape[1]),
+                v0_5.SpaceInputAxis(id=AxisId("x"), size=array.shape[2]),
+            )
+        elif ndim == 4:
+            current_axes = (
+                v0_5.ChannelAxis(
+                    channel_names=[
+                        v0_5.Identifier(f"channel{i}") for i in range(array.shape[0])
+                    ]
+                ),
+                v0_5.SpaceInputAxis(id=AxisId("z"), size=array.shape[1]),
+                v0_5.SpaceInputAxis(id=AxisId("y"), size=array.shape[2]),
+                v0_5.SpaceInputAxis(id=AxisId("x"), size=array.shape[3]),
+            )
+        elif ndim == 5:
+            current_axes = (
+                v0_5.BatchAxis(),
+                v0_5.ChannelAxis(
+                    channel_names=[
+                        v0_5.Identifier(f"channel{i}") for i in range(array.shape[1])
+                    ]
+                ),
+                v0_5.SpaceInputAxis(id=AxisId("z"), size=array.shape[2]),
+                v0_5.SpaceInputAxis(id=AxisId("y"), size=array.shape[3]),
+                v0_5.SpaceInputAxis(id=AxisId("x"), size=array.shape[4]),
+            )
+        else:
+            raise ValueError(f"Could not guess an axis mapping for {array.shape}")
+
+        return tuple(a.id for a in current_axes)
+    
+if __name__ == "__main__":
+ 
+  pass

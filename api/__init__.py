@@ -10,7 +10,7 @@ import logging
 
 import ai4life as aimodel 
 import os
-
+from aiohttp.web import HTTPException
 from . import config, responses, schemas, utils
 
 logger = logging.getLogger(__name__)
@@ -77,11 +77,11 @@ def predict(model_name, accept='application/json', **options):
         logger.info("Using model %s for predictions", model_name)
         #logger.debug("Loading data from input_file: %s", input_file.filename)
         logger.debug("Predict with options: %s", options)
-        result, output_ids, sample = aimodel.predict(model_name,  **options)
+        result, output_ids, input_data = aimodel.predict(model_name,  **options)
         logger.debug("Predict result: %s", result)
         logger.info("Returning content_type for: %s", accept)
 
-        return responses.content_types[accept](result, output_ids,sample, **options)
+        return responses.content_types[accept](result, output_ids, input_data, **options)
     except Exception as err:
         logger.error("Error calculating predictions: %s", err, exc_info=True)
         raise  # Reraise the exception after log
