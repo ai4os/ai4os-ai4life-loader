@@ -12,52 +12,96 @@ from your_module import your_function as training
 # TODO: add your imports here
 import logging
 from pathlib import Path
+ 
 from ai4life import config
-
+import numpy as np
+import os
+from bioimageio.core import predict as predict_ 
+from bioimageio.core import load_description
+import tempfile
+from bioimageio.core import Tensor
+from . import utils 
+from bioimageio.spec.model import v0_5
+ 
+from bioimageio.core.digest_spec import get_member_ids,  create_sample_for_model
+ 
 logger = logging.getLogger(__name__)
 logger.setLevel(config.LOG_LEVEL)
 
 
-# TODO: warm (Start Up)
-# = HAVE TO MODIFY FOR YOUR NEEDS =
 def warm(**kwargs):
     """Main/public method to start up the model
     """
     # if necessary, start the model
-    pass
+    utils.filter_and_load_models(os.path.join(config.MODELS_PATH, 'collection.json'))
 
-
-# TODO: predict
-# = HAVE TO MODIFY FOR YOUR NEEDS =
-def predict(model_name, input_file, **options):
+def predict(model_name, **options):
     """Main/public method to perform prediction
     """
-    # if necessary, preprocess data
-    
-    # choose AI model, load weights
-    
-    # return results of prediction
-    predict_result = {'result': 'not implemented'}
+    model= load_description(model_name)
+    input_output_info= utils.get_model_io_info(model)
+    input_ids = list(get_member_ids(model.inputs))
+    output_ids = set(get_member_ids(model.outputs))
+    input_data = {}   
+
+    if len(input_ids)==1:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            id=input_ids[0]
+            array, missing_axes = utils._copy_file_to_tmpdir(options['input_file'], tmpdir, input_output_info)
+            blocksize_parameter=10
+            input_block_shape = model.get_tensor_sizes(
+            get_ns(blocksize_parameter,model), batch_size=1
+        ).inputs
+            print(f'the target_tensor is {input_block_shape}')
+            if 'z' in missing_axes:
+                raise ValueError("This model needs a 3D image as input, but a 2D image is given.")
+            input_tensor =Tensor.from_numpy(array, dims=model.inputs[0].axes)
+            print(f'the input_tensor is {input_tensor.shape_tuple}')
+
+            padded_input = input_tensor.pad_to(input_block_shape[id] )
+            print(f'the pad input is {padded_input.shape_tuple}')
+            input_data[id]= padded_input
+            sample = create_sample_for_model(
+            model, inputs=input_data , sample_id='sample_'
+        )  
+            #input_data = sample.members[input_ids[0]].data
+            
+           # print(f'input shape is { input_block_shape}')
+            return predict_(model=model, inputs=sample, blocksize_parameter=blocksize_parameter), output_ids ,input_data
+    else:
+        
+        options_input = ['input_file', 'box_prompts', 'point_prompts', 'point_labels', 'mask_prompts', 'embeddings']
+        with tempfile.TemporaryDirectory() as tmpdir:
+            for id, option in zip(input_ids, options_input):
+                
+                    if id in ['image', 'mask_prompts', 'embeddings'] and options.get(option):
+                        input_data[id],_ = utils._copy_file_to_tmpdir(options[option], tmpdir,input_output_info)
+                            
+                    elif options.get(option) is not None:
+                            input_data[id] = np.array(options[option])
+            sample = create_sample_for_model(
+            model, inputs=input_data, sample_id='sample_'
+        )  
+            input_data = sample.members[input_ids[0]].data
+            print('input shape is',input_data.shape)
+            
+            axes = input_output_info['inputs'][0]['axis']
+            if len(axes) != len(input_data.shape):
+                 raise ValueError(
+        f'This model supports input image with dimensions {len(axes)}, but you input an image with dimensions {len(input_data.shape)}.'
+    )
+
+
+            # blocksize_parameter is not working with sam model
+            return  predict_(model=model, inputs=sample), output_ids, input_data
     logger.debug(f"[predict()]: {predict_result}")
 
-    return predict_result
+    
 
-# TODO: train
-# = HAVE TO MODIFY FOR YOUR NEEDS =
-def train(model_name, input_file, **options):
-    """Main/public method to perform training
-    """
-    # prepare the dataset, e.g.
-    # dtst.mkdata()
-    
-    # create model, e.g.
-    # create_model()
-    
-    # train model
-    # describe training steps
-
-    # return training results
-    train_result = {'result': 'not implemented'}
-    logger.debug(f"[train()]: {train_result}")
-    
-    return train_result
+def get_ns(n: int, model):
+            return {
+                (t.id, a.id): n
+                for t in model.inputs
+                for a in t.axes
+                if isinstance(a.size, v0_5.ParameterizedSize)
+            }

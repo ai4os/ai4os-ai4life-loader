@@ -8,8 +8,9 @@ docs [1] and at a canonical exemplar module [2].
 """
 import logging
 
-import ai4life as aimodel
-
+import ai4life as aimodel 
+import os
+from aiohttp.web import HTTPException
 from . import config, responses, schemas, utils
 
 logger = logging.getLogger(__name__)
@@ -34,7 +35,7 @@ def get_metadata():
             "license": config.API_METADATA.get("license"),
             "version": config.API_METADATA.get("version"),
             "datasets": utils.ls_files(config.DATA_PATH, '[A-Za-z0-9]*'),
-            "models": utils.ls_dirs(config.MODELS_PATH),
+            "models": utils.ls_dirs(os.path.join(config.MODELS_PATH, 'models_v0_5.json')),
         }
         logger.debug("Package model metadata: %s", metadata)
         return metadata
@@ -58,12 +59,11 @@ def warm():
 
 
 @utils.predict_arguments(schema=schemas.PredArgsSchema)
-def predict(model_name, input_file, accept='application/json', **options):
+def predict(model_name, accept='application/json', **options):
     """Performs model prediction from given input data and parameters.
 
     Arguments:
         model_name -- Model name from registry to use for prediction values.
-        input_file -- File with data to perform predictions from model.
         accept -- Response parser type, default is json.
         **options -- Arbitrary keyword arguments from PredArgsSchema.
 
@@ -75,40 +75,17 @@ def predict(model_name, input_file, accept='application/json', **options):
     """
     try:  # Call your AI model predict() method
         logger.info("Using model %s for predictions", model_name)
-        logger.debug("Loading data from input_file: %s", input_file.filename)
+        #logger.debug("Loading data from input_file: %s", input_file.filename)
         logger.debug("Predict with options: %s", options)
-        result = aimodel.predict(model_name, input_file.filename, **options)
+        result, output_ids, input_data = aimodel.predict(model_name,  **options)
         logger.debug("Predict result: %s", result)
         logger.info("Returning content_type for: %s", accept)
-        return responses.content_types[accept](result, **options)
+
+        return responses.content_types[accept](result, output_ids, input_data, **options)
     except Exception as err:
         logger.error("Error calculating predictions: %s", err, exc_info=True)
         raise  # Reraise the exception after log
 
 
-@utils.train_arguments(schema=schemas.TrainArgsSchema)
-def train(model_name, input_file, **options):
-    """Performs model training from given input data and parameters.
 
-    Arguments:
-        model_name -- Model name from registry to use for training values.
-        input_file -- File with data and labels to use for training.
-        **options -- Arbitrary keyword arguments from TrainArgsSchema.
-
-    Raises:
-        HTTPException: Unexpected errors aim to return 50X
-
-    Returns:
-        Parsed history/summary of the training process.
-    """
-    try:  # Call your AI model train() method
-        logger.info("Using model %s for training", model_name)
-        logger.debug("Loading data from input_file: %s", input_file)
-        logger.debug("Training with options: %s", options)
-        result = aimodel.train(model_name, input_file, **options)
-        logger.debug("Training result: %s", result)
-        return result
-    except Exception as err:
-        logger.error("Error while training: %s", err, exc_info=True)
-        raise  # Reraise the exception after log
 

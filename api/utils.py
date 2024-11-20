@@ -9,7 +9,11 @@ need to modify them for your needs.
 import logging
 import subprocess
 import sys
+import json
+import matplotlib.pyplot as plt
+import io
 from subprocess import TimeoutExpired
+import numpy as np
 
 from . import config
 
@@ -27,8 +31,13 @@ def ls_dirs(path):
         A list of strings for found subdirectories.
     """
     logger.debug("Scanning directories at: %s", path)
-    dirscan = (x.name for x in path.iterdir() if x.is_dir())
-    return sorted(dirscan)
+    #dirscan = (x.name for x in path.iterdir() if x.is_dir())
+    with open(path, 'r') as file:
+        models_data = json.load(file)
+     #   print(models_data)
+
+    
+    return models_data
 
 
 def ls_files(path, pattern):
@@ -104,3 +113,55 @@ def train_arguments(schema):
         sys.modules[func.__module__].get_train_args = get_args
         return func  # Decorator that returns same function
     return inject_function_schema
+
+
+# Function to display input and prediction output images
+def show_images(input_array, output_):
+
+    buffer = io.BytesIO()
+    # Check for the number of channels to enable display
+    input_array = np.squeeze(input_array)
+    if len(input_array.shape) > 2:
+        input_array = input_array[0]
+ 
+
+
+    output_array = next(iter(output_.values()))
+
+    # Check for the number of channels to enable display
+    output_array = np.squeeze(output_array)
+    if len(output_array.shape) > 2:
+        output_array = output_array[0]
+
+    fig = plt.figure()
+    ax1 = plt.subplot(1, 2, 1)
+    ax1.set_title("Input")
+    ax1.axis("off")
+    plt.imshow(np.asarray(input_array))
+    ax2 = plt.subplot(1, 2, 2)
+    ax2.set_title("Prediction")
+    ax2.axis("off")
+    ax2.imshow(output_array)
+    fig.savefig(buffer, format="png")
+    buffer.seek(0)
+    plt.close(fig)
+    return buffer 
+
+def output_png(sample, output_):
+    
+    input_array = sample
+
+   # if len(output_) == 1:
+    output__={}
+    if len(output_) > 1:
+         output__['masks'] = np.array(output_.get('masks'))
+    else:
+        output__=  output_   
+    return show_images(input_array, output__)
+    #else:
+       # masks = output_.get('masks')
+       # scores = output_.get('scores')
+      #  return show_masks_on_image(
+      #      input_array, masks, scores, boxes=None, show_boxs=False
+      #  )
+
