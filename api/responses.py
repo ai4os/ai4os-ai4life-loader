@@ -9,8 +9,9 @@ import io
 import logging
 
 from fpdf import FPDF
-
-from . import config
+import numpy as np
+import xarray as xr
+from . import config, utils
 
 logger = logging.getLogger(__name__)
 logger.setLevel(config.LOG_LEVEL)
@@ -18,7 +19,7 @@ logger.setLevel(config.LOG_LEVEL)
 
 # EXAMPLE of json_response parser function
 # = HAVE TO MODIFY FOR YOUR NEEDS =
-def json_response(result, **options):
+def json_response(result, output_ids,input_data, **options):
     """Converts the prediction results into json return format.
 
     Arguments:
@@ -35,17 +36,37 @@ def json_response(result, **options):
     logger.debug("Response result type: %d", type(result))
     logger.debug("Response result: %d", result)
     logger.debug("Response options: %d", options)
+
     try:
-        if isinstance(result, (dict, list, str)):
-            return result
-        # if isinstance(result, np.ndarray):
-        #     return result.tolist()
-        return dict(result)
+        output_={}
+        for id in output_ids: 
+            #print(f'the id is {id}')
+            if id=='embeddings':
+                pass
+            else:
+                output_array = result.members[id].data
+                #print(f'the output_array is {output_array}')
+                if isinstance(output_array, xr.DataArray):
+                    #print('the output is xr array')
+                    output_array = output_array.values   # Add directly if not numpy type
+                #print(f'the size of the output array is {output_array.shape}')
+                output_[id] = np.squeeze(output_array).tolist()
+            
+        print(f'Final output_: {output_.keys()}')
+        return output_
+
+ 
     except Exception as err:  # TODO: Fix to specific exception
         logger.warning("Error converting result to json: %s", err)
         raise RuntimeError("Unsupported response type") from err
 
-
+def png_response(result, output_ids, input_data,**options):
+    logger.debug("Response result type: %d", type(result))
+    logger.debug("Response result: %d",output_ids)
+    output_= json_response(result, output_ids, input_data, **options)
+     
+    
+    return utils.output_png(input_data, output_) 
 # EXAMPLE of pdf_response parser function
 # = HAVE TO MODIFY FOR YOUR NEEDS =
 def pdf_response(result, **options):
@@ -91,5 +112,5 @@ def pdf_response(result, **options):
 
 content_types = {
     "application/json": json_response,
-    "application/pdf": pdf_response,
+    "image/png": png_response,
 }
