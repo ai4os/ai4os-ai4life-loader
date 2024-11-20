@@ -19,7 +19,7 @@ logger.setLevel(config.LOG_LEVEL)
 
 # EXAMPLE of json_response parser function
 # = HAVE TO MODIFY FOR YOUR NEEDS =
-def json_response(result, output_ids,sample, **options):
+def json_response(result, output_ids,input_data, **options):
     """Converts the prediction results into json return format.
 
     Arguments:
@@ -60,13 +60,13 @@ def json_response(result, output_ids,sample, **options):
         logger.warning("Error converting result to json: %s", err)
         raise RuntimeError("Unsupported response type") from err
 
-def png_response(result, output_ids, sample,**options):
+def png_response(result, output_ids, input_data,**options):
     logger.debug("Response result type: %d", type(result))
     logger.debug("Response result: %d",output_ids)
-    output_= json_response(result, output_ids, sample, **options)
+    output_= json_response(result, output_ids, input_data, **options)
      
     
-    return utils.output_png(sample, output_) 
+    return utils.output_png(input_data, output_) 
 # EXAMPLE of pdf_response parser function
 # = HAVE TO MODIFY FOR YOUR NEEDS =
 def pdf_response(result, **options):

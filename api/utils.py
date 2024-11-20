@@ -123,6 +123,8 @@ def show_images(input_array, output_):
     input_array = np.squeeze(input_array)
     if len(input_array.shape) > 2:
         input_array = input_array[0]
+ 
+
 
     output_array = next(iter(output_.values()))
 
@@ -135,7 +137,7 @@ def show_images(input_array, output_):
     ax1 = plt.subplot(1, 2, 1)
     ax1.set_title("Input")
     ax1.axis("off")
-    plt.imshow(input_array)
+    plt.imshow(np.asarray(input_array))
     ax2 = plt.subplot(1, 2, 2)
     ax2.set_title("Prediction")
     ax2.axis("off")
