@@ -12,10 +12,13 @@ import os
 import json
 
 from . import config, responses, utils
-models_data = utils.ls_dirs(os.path.join(config.MODELS_PATH, 'models_v0_5.json'))
-models_name= list(models_data[key]['id']+' '+models_data[key]['nickname_icon'] for key in models_data.keys())
+#models_data = utils.ls_dirs(os.path.join(config.MODELS_PATH, ''))
+#models_name= list(models_data[key]['id']+' '+models_data[key]['nickname_icon'] for key in models_data.keys())
 
-
+def get_models_name(file_name):
+  models_data = utils.ls_dirs(os.path.join(config.MODELS_PATH, file_name))
+  models_name= list(models_data[key]['id']+' '+models_data[key]['nickname_icon'] for key in models_data.keys())
+  return models_name
 class EmbeddingField(fields.Field):
     """
     Custom field for embeddings to specify details like data type, expected shape, and test tensor URL.
@@ -147,7 +150,7 @@ class ModelName(fields.String):
     """
 
     def _deserialize(self, value, attr, data, **kwargs):
-        if value not in models_name:
+        if value not in get_models_name(''):
             raise ValidationError(f"Checkpoint `{value}` not found.")
         return str(config.MODELS_PATH / value)
 
@@ -175,7 +178,7 @@ class PredArgsSchema(marshmallow.Schema):
         metadata={
             "description": "String/Path identification for models.",
         },
-        validate=validate.OneOf(models_name),
+        validate=validate.OneOf('models_v0_5.json'),
         required=True,
     )
 
