@@ -150,7 +150,7 @@ class ModelName(fields.String):
     """
 
     def _deserialize(self, value, attr, data, **kwargs):
-        if value not in get_models_name(''):
+        if value not in get_models_name('models_v0_5.json'):
             raise ValidationError(f"Checkpoint `{value}` not found.")
         return str(config.MODELS_PATH / value)
 
@@ -178,7 +178,7 @@ class PredArgsSchema(marshmallow.Schema):
         metadata={
             "description": "String/Path identification for models.",
         },
-        validate=validate.OneOf('models_v0_5.json'),
+        validate=validate.OneOf(get_models_name('models_v0_5.json')),
         required=True,
     )
 
