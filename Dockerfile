@@ -71,7 +71,7 @@ ENV MODEL_NAME="model_name"
 #RUN curl -o all_versions.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/all_versions.json
  
 # Install user app
-RUN git clone -b $branch --depth 1 https://github.com/falibabaei/ai4life.git && \
+RUN git clone -b $branch --depth 1 https://codebase.helmholtz.cloud/m-team/ai/ai4life.git && \
     cd ai4life && \
     pip3 install --no-cache-dir -e . && \
     curl -o ./models/all_versions.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/all_versions.json && \
