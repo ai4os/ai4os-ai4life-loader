@@ -10,7 +10,7 @@ torchvision
 careamics
 cellpose
 timm
-perun @ git+https://github.com/ChaoningZhang/MobileSAM.git#egg=mobilesam
+git+https://github.com/ChaoningZhang/MobileSAM.git
 
  
 
