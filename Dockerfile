@@ -75,7 +75,8 @@ RUN git clone -b $branch --depth 1 https://github.com/falibabaei/ai4life.git && 
     cd ai4life && \
     pip3 install --no-cache-dir -e . && \
     curl -o ./models/all_versions.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/all_versions.json && \
-    curl -o ./models/collection.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/collection.json
+    curl -o ./models/collection.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/collection.json && \
+    pip3 install git+https://github.com/ChaoningZhang/MobileSAM.git
 # Open ports: DEEPaaS (5000), Monitoring (6006), Jupyter (8888)
 EXPOSE 5000 6006 8888
 
