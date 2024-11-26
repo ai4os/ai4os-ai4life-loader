@@ -2,7 +2,7 @@
 deepaas~=2.1.0
 webargs~=5.5.2
 flaat~=1.1.1
-bioimageio-core==0.6.9
+bioimageio-core==0.7.0
 matplotlib==3.9.0
 segment-anything
 torchvision
@@ -10,7 +10,8 @@ torchvision
 careamics
 cellpose
 timm
-git+https://github.com/ChaoningZhang/MobileSAM.git
+perun @ git+https://github.com/ChaoningZhang/MobileSAM.git#egg=mobilesam
+
  
 
 
