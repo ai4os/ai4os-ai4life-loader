@@ -39,8 +39,9 @@ def filter_and_load_models(input_json='collection.json',
         data = json.load(file)
         
     # Filter entries where "type" is "model"
+  
     models = [entry for entry in data['collection'] if entry['type'] == 'model']
-    
+  
     models_v0_5 = {}
 
     for model_entry in models:
@@ -76,6 +77,24 @@ def filter_and_load_models(input_json='collection.json',
     with open(names_output_json, 'w') as names_file:
         json.dump(models_v0_5, names_file, indent=4, cls=CustomEncoder)        
     return models_v0_5
+
+def load_models_v0_5(input_json= 'models_v0_5.json', 
+                           perform_io_checks= True):
+     
+    with open(input_json, 'r') as file:
+        models_data = json.load(file)
+    models_name= list(models_data[key]['id']  for key in models_data.keys())    
+    for id in models_name:
+        model = load_description(id, 
+                                     perform_io_checks=perform_io_checks)
+
+        
+        print(f"\nThe model '{model.name}' with ID '{id}' has been correctly loaded.")
+                # Store model information in a dictionary
+ 
+                 
+            
+
 def _process_v0_5_input(input_descr) -> Tuple[List[int], List[int]]:
     """
     Process v0.5 input descriptor to extract shape information.
@@ -276,4 +295,4 @@ def _interprete_array_wo_known_axes(array):
     
 if __name__ == "__main__":
  
-  filter_and_load_models(os.path.join(config.MODELS_PATH, 'collection.json'))
+  filter_and_load_models(os.path.join(config.MODELS_PATH, 'models_v0_5.json'))
