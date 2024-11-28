@@ -7,7 +7,6 @@ bioimageio.spec
 matplotlib==3.9.0
 segment-anything
 torchvision
-perun @ git+https://github.com/ChaoningZhang/MobileSAM.git#egg=mobilesam
 careamics
 cellpose
 timm

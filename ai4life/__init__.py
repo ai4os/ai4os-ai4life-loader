@@ -33,11 +33,13 @@ def warm(**kwargs):
     """Main/public method to start up the model
     """
     # if necessary, start the model
-    utils.filter_and_load_models(os.path.join(config.MODELS_PATH, 'collection.json'))
-
+    utils.filter_and_load_models(os.path.join(config.MODELS_PATH, 'models_v0_5.json'),
+                                 perform_io_checks= True)
+     
 def predict(model_name, **options):
     """Main/public method to perform prediction
     """
+    model_name, icon =  model_name.split(' ', 1)
     model= load_description(model_name)
     input_output_info= utils.get_model_io_info(model)
     input_ids = list(get_member_ids(model.inputs))
