@@ -20,7 +20,7 @@ LABEL version='0.0.1'
 # Support for inference of the AI4LIFE model on the marketplace.
 
 # What user branch to clone [!]
-ARG branch=main
+ARG branch=dev
 
 # Install Ubuntu packages
 # - gcc is needed in Pytorch images because deepaas installation might break otherwise (see docs)
@@ -70,10 +70,10 @@ ENV RCLONE_CONFIG=/srv/.rclone/rclone.conf
 ENV MODEL_NAME="model_name"
 #RUN curl -o all_versions.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/all_versions.json
  
-# Install user app
+# Install user app #--no-cache-dir
 RUN git clone -b $branch --depth 1 https://codebase.helmholtz.cloud/m-team/ai/ai4life.git && \
     cd ai4life && \
-    pip3 install --no-cache-dir -e . && \
+    pip3 install  -e . && \
     curl -o ./models/all_versions.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/all_versions.json && \
     curl -o ./models/collection.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/collection.json && \
     pip3 install git+https://github.com/ChaoningZhang/MobileSAM.git && \
