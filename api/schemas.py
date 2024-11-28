@@ -10,6 +10,7 @@ import marshmallow
 from webargs import ValidationError, fields, validate
 import os
 import json
+import ai4life as aimodel 
 
 from . import config, responses, utils
 #models_data = utils.ls_dirs(os.path.join(config.MODELS_PATH, ''))
@@ -150,7 +151,7 @@ class ModelName(fields.String):
     """
 
     def _deserialize(self, value, attr, data, **kwargs):
-        if value not in get_models_name(''):
+        if value not in get_models_name('models_v0_5.json'):
             raise ValidationError(f"Checkpoint `{value}` not found.")
         return str(config.MODELS_PATH / value)
 
@@ -177,8 +178,9 @@ class PredArgsSchema(marshmallow.Schema):
     model_name = fields.String(
         metadata={
             "description": "String/Path identification for models.",
+           # "enum": get_models_name('collection.json')
         },
-        validate=validate.OneOf('models_v0_5.json'),
+        validate= validate.OneOf(get_models_name('models_v0_5.json')),
         required=True,
     )
 

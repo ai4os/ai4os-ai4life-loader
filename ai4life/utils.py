@@ -31,7 +31,9 @@ class CustomEncoder(json.JSONEncoder):
         # Handle the case if the object type is unknown or non-serializable
         return str(obj) 
 
-def filter_and_load_models(input_json='collection.json', output_json='filtered_models.json'):
+def filter_and_load_models(input_json='collection.json', 
+                           output_json='filtered_models.json',
+                           perform_io_checks= False):
     # Load the JSON file
     with open(input_json, 'r') as file:
         data = json.load(file)
@@ -54,7 +56,8 @@ def filter_and_load_models(input_json='collection.json', output_json='filtered_m
 
         if model_id:
              
-            model = load_description(model_id)
+            model = load_description(model_id, 
+                                     perform_io_checks=perform_io_checks)
 
             if isinstance(model, v0_5.ModelDescr):
                 print(f"\nThe model '{model.name}' with ID '{model_id}' has been correctly loaded.")
@@ -72,7 +75,7 @@ def filter_and_load_models(input_json='collection.json', output_json='filtered_m
     # Write all model info to a JSON file
     with open(names_output_json, 'w') as names_file:
         json.dump(models_v0_5, names_file, indent=4, cls=CustomEncoder)        
-
+    return models_v0_5
 def _process_v0_5_input(input_descr) -> Tuple[List[int], List[int]]:
     """
     Process v0.5 input descriptor to extract shape information.
@@ -273,4 +276,4 @@ def _interprete_array_wo_known_axes(array):
     
 if __name__ == "__main__":
  
-  pass
+  filter_and_load_models(os.path.join(config.MODELS_PATH, 'collection.json'))
