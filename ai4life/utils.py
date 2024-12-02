@@ -25,59 +25,10 @@ logger = logging.getLogger(__name__)
 logger.setLevel(config.LOG_LEVEL)
 
 
-# TODO: Is there any way to filter v0_5 model before loading them?
 class CustomEncoder(json.JSONEncoder):
     def default(self, obj):
         # Handle the case if the object type is unknown or non-serializable
         return str(obj) 
-
-def filter_and_load_models(input_json='collection.json', 
-                           output_json='filtered_models.json',
-                           perform_io_checks= False):
-    # Load the JSON file
-    with open(input_json, 'r') as file:
-        data = json.load(file)
-        
-    # Filter entries where "type" is "model"
-  
-    models = [entry for entry in data['collection'] if entry['type'] == 'model']
-  
-    models_v0_5 = {}
-
-    for model_entry in models:
-        model_id = None
-        model = None
-        
-        if model_entry.get('concept'):
-            model_id = model_entry['concept']
-        elif model_entry.get('concept_doi'):
-            model_id = model_entry['concept_doi']
-        elif model_entry.get('source'):
-            model_id = model_entry['source']
-
-        if model_id:
-             
-            model = load_description(model_id, 
-                                     perform_io_checks=perform_io_checks)
-
-            if isinstance(model, v0_5.ModelDescr):
-                print(f"\nThe model '{model.name}' with ID '{model_id}' has been correctly loaded.")
-                # Store model information in a dictionary
-                model_io_info  = get_model_io_info(model)
-                combined_entry = {**model_entry, **model_io_info}
-            
-                # Store the combined entry in the models_v0_5 dictionary
-                models_v0_5[model_id] = combined_entry
-
-
-    # Define output path
-    names_output_json = os.path.join(config.MODELS_PATH, 'models_v0_5.json')        
-    
-    # Write all model info to a JSON file
-    with open(names_output_json, 'w') as names_file:
-        json.dump(models_v0_5, names_file, indent=4, cls=CustomEncoder)        
-    return models_v0_5
-
  
 def load_models(models_name, path, perform_io_checks=False):
      
@@ -118,25 +69,7 @@ def load_models(models_name, path, perform_io_checks=False):
            
             return len(model_io_info["inputs"]) == 1
     
- 
-def format_combined_entry(combined_entry):
-    # Check if 'model_info' exists and is a serialized JSON string
-    try:
-            # Deserialize the 'model_info' string into a Python dictionary
-            combined_entry['model_info'] = json.loads(combined_entry['model_info'])
-            return json.dumps(
-            combined_entry, 
-            indent=4,  # Adds line breaks and indentation
-            separators=(',', ': '), 
-            ensure_ascii=False,
-            cls=CustomEncoder
-        )
-
-    except json.JSONDecodeError as e:
-            print(f"Error decoding model_info: {e}")
-            # Optionally handle errors (e.g., leave 'model_info' as is or remove it)
-
-    # Serialize the full entry with proper formatting
+  
     
  
 
@@ -340,4 +273,4 @@ def _interprete_array_wo_known_axes(array):
     
 if __name__ == "__main__":
  
-  filter_and_load_models(os.path.join(config.MODELS_PATH, 'models_v0_5.json'))
+  pass
