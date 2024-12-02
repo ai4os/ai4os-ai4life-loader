@@ -3,7 +3,6 @@ deepaas~=2.1.0
 webargs~=5.5.2
 flaat~=1.1.1
 bioimageio-core==0.7.0
-bioimageio.spec
 matplotlib==3.9.0
 segment-anything
 torchvision

@@ -78,22 +78,67 @@ def filter_and_load_models(input_json='collection.json',
         json.dump(models_v0_5, names_file, indent=4, cls=CustomEncoder)        
     return models_v0_5
 
-def load_models_v0_5(input_json= 'models_v0_5.json', 
-                           perform_io_checks= True):
-     
-    with open(input_json, 'r') as file:
-        models_data = json.load(file)
-    models_name= list(models_data[key]['id']  for key in models_data.keys())    
-    for id in models_name:
-        model = load_description(id, 
-                                     perform_io_checks=perform_io_checks)
-
-        
-        print(f"\nThe model '{model.name}' with ID '{id}' has been correctly loaded.")
-                # Store model information in a dictionary
  
-                 
+def load_models(models_name, path, perform_io_checks=False):
+     
+    with open(path, 'r') as file:
+        models_data = json.load(file)
+    model_entry = next(
+            (entry for entry in models_data.get('collection', [])
+             if entry.get('type') == 'model' and entry.get('id') == models_name),
+            None  
+        )
+    
+    model_id = next(
+        (model_entry.get(key) for key in ['concept', 'concept_doi', 'source']
+        if model_entry.get(key)),
+        None
+    )
+       
+    if model_id:
+        model = load_description(model_id, perform_io_checks=perform_io_checks)
+        if isinstance(model, v0_5.ModelDescr):
+            model_io_info = get_model_io_info(model)
+
             
+            # Convert non-serializable fields to serializable format
+            serializable_io_info = {
+                        key: value.__dict__ if hasattr(value, '__dict__') else value
+                        for key, value in model_io_info.items()
+                    }
+
+            combined_entry = {**model_entry, **serializable_io_info}
+            print(f"The model '{model.name}' with ID '{model_id}' has been correctly loaded.")
+
+                    # Directly return JSON string with proper formatting
+            names_output_json = os.path.join(config.MODELS_PATH, f'model_meta.json')
+            with open(names_output_json, 'w') as names_file:
+                json.dump(combined_entry, names_file, indent=4, cls=CustomEncoder) 
+            #get the length of the input_model:
+           
+            return len(model_io_info["inputs"]) == 1
+    
+ 
+def format_combined_entry(combined_entry):
+    # Check if 'model_info' exists and is a serialized JSON string
+    try:
+            # Deserialize the 'model_info' string into a Python dictionary
+            combined_entry['model_info'] = json.loads(combined_entry['model_info'])
+            return json.dumps(
+            combined_entry, 
+            indent=4,  # Adds line breaks and indentation
+            separators=(',', ': '), 
+            ensure_ascii=False,
+            cls=CustomEncoder
+        )
+
+    except json.JSONDecodeError as e:
+            print(f"Error decoding model_info: {e}")
+            # Optionally handle errors (e.g., leave 'model_info' as is or remove it)
+
+    # Serialize the full entry with proper formatting
+    
+ 
 
 def _process_v0_5_input(input_descr) -> Tuple[List[int], List[int]]:
     """

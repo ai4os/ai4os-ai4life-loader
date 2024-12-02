@@ -7,6 +7,7 @@ The module shows simple but efficient example utilities. However, you may
 need to modify them for your needs.
 """
 import logging
+import os
 import subprocess
 import sys
 import json
@@ -14,6 +15,7 @@ import matplotlib.pyplot as plt
 import io
 from subprocess import TimeoutExpired
 import numpy as np
+import ai4life as aimodel 
 
 from . import config
 
@@ -33,10 +35,7 @@ def ls_dirs(path):
     logger.debug("Scanning directories at: %s", path)
     #dirscan = (x.name for x in path.iterdir() if x.is_dir())
     with open(path, 'r') as file:
-        models_data = json.load(file)
-     #   print(models_data)
-
-    
+        models_data = json.load(file)   
     return models_data
 
 
@@ -158,10 +157,29 @@ def output_png(sample, output_):
     else:
         output__=  output_   
     return show_images(input_array, output__)
-    #else:
-       # masks = output_.get('masks')
-       # scores = output_.get('scores')
-      #  return show_masks_on_image(
-      #      input_array, masks, scores, boxes=None, show_boxs=False
-      #  )
 
+def get_models_name():
+    models_data = ls_dirs(os.path.join(config.MODELS_PATH, 'collection.json'))
+    # Filter models from collection
+    models_list = [entry for entry in models_data['collection'] if entry['type'] == 'model']
+    model_name = aimodel.config.MODEL_NAME
+    
+    try:
+        # Use next() with the filtered list directly
+        model_nickname = next(
+            (model['nickname_icon'] for model in models_list 
+             if model['id'] == model_name),
+            None
+        )
+        if model_nickname:
+            model_name = f"{model_name} {model_nickname}"
+     
+        return [model_name]
+    except (KeyError, TypeError, ValueError) as e:
+        print(f"Error processing models_data: {e}")
+        return [model_name]  # Return original model_name if error occurs
+
+def hide_input():
+    path= os.path.join(config.MODELS_PATH, 'collection.json')
+    model_name= aimodel.config.MODEL_NAME
+    return aimodel.utils.load_models(model_name, path, perform_io_checks=False)

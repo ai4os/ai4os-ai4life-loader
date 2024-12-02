@@ -10,7 +10,7 @@
 # Be Aware! For the Jenkins CI/CD pipeline, 
 # input args are defined inside the JenkinsConstants.groovy, not here!
 
-ARG tag=2.3.1-cuda11.8-cudnn8-devel
+ARG tag=2.3.1-cuda11.8-cudnn8-runtime
 
 # Base image, e.g. tensorflow/tensorflow:2.x.x-gpu
 FROM pytorch/pytorch:${tag}
@@ -66,18 +66,18 @@ RUN curl -O https://downloads.rclone.org/rclone-current-linux-amd64.deb && \
     rm rclone-current-linux-amd64.deb && \
     rm -rf /var/lib/apt/lists/*
 ENV RCLONE_CONFIG=/srv/.rclone/rclone.conf
+
 #TODO: use this variable to load the model in warm
-ENV MODEL_NAME="model_name"
-#RUN curl -o all_versions.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/all_versions.json
+ENV MODEL_NAME="Hagen_N2V"
  
 # Install user app #--no-cache-dir
 RUN git clone -b $branch --depth 1 https://codebase.helmholtz.cloud/m-team/ai/ai4life.git && \
     cd ai4life && \
-    pip3 install  -e . && \
-    curl -o ./models/all_versions.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/all_versions.json && \
+    pip3 install --no-cache-dir  -e . && \
+   #curl -o ./models/all_versions.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/all_versions.json && \
     curl -o ./models/collection.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/collection.json && \
     pip3 install git+https://github.com/ChaoningZhang/MobileSAM.git && \
-    python3  ai4life/filter_v0_5_models.py
+    #python3  ai4life/filter_v0_5_models.py
 # Open ports: DEEPaaS (5000), Monitoring (6006), Jupyter (8888)
 EXPOSE 5000 6006 8888
 

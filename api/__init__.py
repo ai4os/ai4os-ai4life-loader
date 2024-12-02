@@ -35,7 +35,11 @@ def get_metadata():
             "license": config.API_METADATA.get("license"),
             "version": config.API_METADATA.get("version"),
             "datasets": utils.ls_files(config.DATA_PATH, '[A-Za-z0-9]*'),
-            "models": utils.ls_dirs(os.path.join(config.MODELS_PATH, 'models_v0_5.json')),
+            "model_info": utils.ls_dirs(os.path.join(config.MODELS_PATH, 'model_meta.json'))
+            # aimodel.utils.load_models(aimodel.config.MODEL_NAME,
+                          #                      os.path.join(config.MODELS_PATH, 'collection.json')
+                           #                     , perform_io_checks=False)
+ 
         }
         logger.debug("Package model metadata: %s", metadata)
         return metadata

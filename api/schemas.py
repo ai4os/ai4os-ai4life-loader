@@ -8,45 +8,12 @@ need to modify them for your needs.
 """
 import marshmallow
 from webargs import ValidationError, fields, validate
-import os
 import json
-import ai4life as aimodel 
 
 from . import config, responses, utils
-#models_data = utils.ls_dirs(os.path.join(config.MODELS_PATH, ''))
-#models_name= list(models_data[key]['id']+' '+models_data[key]['nickname_icon'] for key in models_data.keys())
+ 
 
-def get_models_name(file_name):
-  models_data = utils.ls_dirs(os.path.join(config.MODELS_PATH, file_name))
-  models_name= list(models_data[key]['id']+' '+models_data[key]['nickname_icon'] for key in models_data.keys())
-  return models_name
-class EmbeddingField(fields.Field):
-    """
-    Custom field for embeddings to specify details like data type, expected shape, and test tensor URL.
-    """
-
-    def _serialize(self, value, attr, obj, **kwargs):
-        # You may serialize additional details if needed
-        return {
-            "type": "float32",
-            "shape": [1, 256, 64, 64],  # Minimum shape required
-            "description": "Embedding features as a 64x64 grid with 256 channels",
-            "data_description": {
-                "range": [None, None],
-                "unit": "arbitrary unit",
-                "scale": 1.0,
-                "offset": None
-            },
-            "test_tensor": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/faithful-chicken/1/files/embeddings.npy"
-        }
-
-    def _deserialize(self, value, attr, data, **kwargs):
-        # Define deserialization for incoming values if required
-        if not isinstance(value, list) or len(value) != 4:
-            raise fields.ValidationError("Embeddings must be a list with [batch, channels, y, x] dimensions.")
-        if value != [1, 256, 64, 64]:
-            raise fields.ValidationError("Embedding shape must be exactly [1, 256, 64, 64].")
-        return value 
+hide_input=utils.hide_input()
 
 class BoxPromptField(fields.Field):
     def __init__(self, *args, **kwargs):
@@ -151,21 +118,12 @@ class ModelName(fields.String):
     """
 
     def _deserialize(self, value, attr, data, **kwargs):
-        if value not in get_models_name('models_v0_5.json'):
+        if value not in utils.get_models_name():
             raise ValidationError(f"Checkpoint `{value}` not found.")
         return str(config.MODELS_PATH / value)
 
 
-class Dataset(fields.String):
-    """Field that takes a string and validates against current available
-    data files at config.DATA_PATH.
-    """
-
-    def _deserialize(self, value, attr, data, **kwargs):
-        if value not in utils.ls_dirs(config.DATA_PATH):
-            raise ValidationError(f"Dataset `{value}` not found.")
-        return str(config.DATA_PATH / value)
-
+ 
 
 # EXAMPLE of Prediction Args description
 # = HAVE TO MODIFY FOR YOUR NEEDS =
@@ -177,10 +135,11 @@ class PredArgsSchema(marshmallow.Schema):
 
     model_name = fields.String(
         metadata={
-            "description": "String/Path identification for models.",
-           # "enum": get_models_name('collection.json')
-        },
-        validate= validate.OneOf(get_models_name('models_v0_5.json')),
+        "description": f"\nThe model '**{utils.get_models_name()[0]}**' has been loaded for inference. "
+                       f"For more information about the input and output of the model, please check the "
+                       f"**Metadata method**.",
+    },
+        validate= validate.OneOf(utils.get_models_name()),
         required=True,
     )
 
@@ -195,6 +154,7 @@ class PredArgsSchema(marshmallow.Schema):
             "location": "form",
         },
         required=True,
+     
     )
     
     box_prompts= BoxPromptField(
@@ -206,6 +166,7 @@ class PredArgsSchema(marshmallow.Schema):
           
         },
         load_default=None,
+        dump_only=hide_input,
          )
     mask_prompts =  fields.Field(
         metadata={
@@ -214,6 +175,7 @@ class PredArgsSchema(marshmallow.Schema):
             "location": "form",
         },
         required=False,
+        dump_only=hide_input,
     )
     
     embeddings = fields.Field(
@@ -222,6 +184,7 @@ class PredArgsSchema(marshmallow.Schema):
         "type": "file",
         "location": "form"       
     },
+    dump_only=hide_input,
     required=False
 )
 
@@ -247,14 +210,16 @@ class PredArgsSchema(marshmallow.Schema):
             "    ]\n"
             "]"
         )
-    },)
+    },
+    dump_only=hide_input)
 
 #fields.List(fields.List(fields.List(fields.Int())))
     point_labels = PointLabelsField(
         metadata={
             "description": "Point labels input with shape [1, 1, 1] and int64 type.",
         },
-        required=False
+        required=False,
+        dump_only=hide_input,
     )
     accept = fields.String(
         metadata={
@@ -263,6 +228,7 @@ class PredArgsSchema(marshmallow.Schema):
         },
         required=True,
         validate=validate.OneOf(list(responses.content_types)),
+  
     )
 
 
