@@ -20,11 +20,12 @@ LABEL version='0.0.1'
 # Support for inference of the AI4LIFE model on the marketplace.
 
 # What user branch to clone [!]
-ARG branch=dev
+ARG branch=dev1
 
 # Install Ubuntu packages
 # - gcc is needed in Pytorch images because deepaas installation might break otherwise (see docs)
 #   (it is already installed in tensorflow images)
+# Install packages
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     apt-get install -y --no-install-recommends \
     gcc \
@@ -68,7 +69,7 @@ RUN curl -O https://downloads.rclone.org/rclone-current-linux-amd64.deb && \
 ENV RCLONE_CONFIG=/srv/.rclone/rclone.conf
 
 #TODO: use this variable to load the model in warm
-ENV MODEL_NAME="Hagen_N2V"
+ENV MODEL_NAME="emotional-cricket"
  
 # Install user app #--no-cache-dir
 RUN git clone -b $branch --depth 1 https://codebase.helmholtz.cloud/m-team/ai/ai4life.git && \
@@ -76,7 +77,7 @@ RUN git clone -b $branch --depth 1 https://codebase.helmholtz.cloud/m-team/ai/ai
     pip3 install --no-cache-dir  -e . && \
    #curl -o ./models/all_versions.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/all_versions.json && \
     curl -o ./models/collection.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/collection.json && \
-    pip3 install git+https://github.com/ChaoningZhang/MobileSAM.git && \
+    pip3 install git+https://github.com/ChaoningZhang/MobileSAM.git 
     #python3  ai4life/filter_v0_5_models.py
 # Open ports: DEEPaaS (5000), Monitoring (6006), Jupyter (8888)
 EXPOSE 5000 6006 8888

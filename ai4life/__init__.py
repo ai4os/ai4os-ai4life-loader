@@ -50,7 +50,7 @@ def predict(model_name, **options):
     if len(input_ids)==1:
         with tempfile.TemporaryDirectory() as tmpdir:
             id=input_ids[0]
-            array, missing_axes = utils._copy_file_to_tmpdir(options['input_file'], tmpdir, input_output_info)
+            input_data[id], missing_axes = utils._copy_file_to_tmpdir(options['input_file'], tmpdir, input_output_info)
             blocksize_parameter=10
             input_block_shape = model.get_tensor_sizes(
             get_ns(blocksize_parameter,model), batch_size=1
@@ -58,17 +58,18 @@ def predict(model_name, **options):
             print(f'the target_tensor is {input_block_shape}')
             if 'z' in missing_axes:
                 raise ValueError("This model needs a 3D image as input, but a 2D image is given.")
-            input_tensor =Tensor.from_numpy(array, dims=model.inputs[0].axes)
+            input_tensor =Tensor.from_numpy(input_data[id], dims=model.inputs[0].axes)
             print(f'the input_tensor is {input_tensor.shape_tuple}')
 
             padded_input = input_tensor.pad_to(input_block_shape[id] )
             print(f'the pad input is {padded_input.shape_tuple}')
-            input_data[id]= padded_input
+            input_data_pad={}
+            input_data_pad[id]= padded_input
             sample = create_sample_for_model(
-            model, inputs=input_data , sample_id='sample_'
+            model, inputs=input_data_pad , sample_id='sample_'
         )  
-        
-            return predict_(model=model, inputs=sample, blocksize_parameter=blocksize_parameter), output_ids ,input_data
+          
+            return predict_(model=model, inputs=sample, blocksize_parameter=blocksize_parameter), output_ids ,input_data[id]
     else:
         
         options_input = ['input_file', 'box_prompts', 'point_prompts', 'point_labels', 'mask_prompts', 'embeddings']
