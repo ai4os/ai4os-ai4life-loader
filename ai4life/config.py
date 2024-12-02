@@ -34,3 +34,4 @@ LOG_LEVEL = getattr(logging, ENV_LOG_LEVEL.upper())
 
 # EXAMPLE on how to load environment variables
 PARAMETER_INT = int(os.getenv("AI4LIFE_PARAMETER_INT", default="10"))
+MODEL_NAME=   os.getenv('MODEL_NAME', default='emotional-cricket')

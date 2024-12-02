@@ -32,8 +32,10 @@ logger.setLevel(config.LOG_LEVEL)
 def warm(**kwargs):
     """Main/public method to start up the model
     """
-    # if necessary, start the model
-    utils.load_models_v0_5(os.path.join(config.MODELS_PATH, 'models_v0_5.json'))
+    path= os.path.join(config.MODELS_PATH, 'collection.json')
+    model_name= config.MODEL_NAME
+    utils.load_models(model_name, path, perform_io_checks=True)
+ 
      
 def predict(model_name, **options):
     """Main/public method to perform prediction
@@ -65,9 +67,7 @@ def predict(model_name, **options):
             sample = create_sample_for_model(
             model, inputs=input_data , sample_id='sample_'
         )  
-            #input_data = sample.members[input_ids[0]].data
-            
-           # print(f'input shape is { input_block_shape}')
+        
             return predict_(model=model, inputs=sample, blocksize_parameter=blocksize_parameter), output_ids ,input_data
     else:
         
