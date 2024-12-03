@@ -32,7 +32,7 @@ jobs:
 
     - name: Run Filter Script
       run: |
-        python filter_models.py --input collection.json --output filtered_models.json
+        python ai4life/filter_v0_5_models.py --input collection.json --output filtered_models.json
 
     - name: Commit and Push Changes
       uses: stefanzweifel/git-auto-commit-action@v4
