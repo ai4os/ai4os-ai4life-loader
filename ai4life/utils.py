@@ -20,6 +20,9 @@ import imghdr
 from typing_extensions import  assert_never
 from bioimageio.core.io import load_image
 from bioimageio.core import Tensor
+from bioimageio.core.axis import  AxisId
+from imageio.v3 import imread 
+
 
 logger = logging.getLogger(__name__)
 logger.setLevel(config.LOG_LEVEL)
@@ -149,8 +152,7 @@ def _copy_file_to_tmpdir(file, tmpdir, input_output_info):
     array= load_image(file_path)
     print(f'the shape of the array is {array.shape}')
     image_type = check_image_type(file_path)
-    tensor_array= Tensor._interprete_array_wo_known_axes(array)
-    print(f'the tensor_array is {tensor_array.shape_tuple}')
+ 
     
     array_dim= _interprete_array_wo_known_axes(  array )      
     print(f'the array_dim is {array_dim}')  
@@ -159,29 +161,14 @@ def _copy_file_to_tmpdir(file, tmpdir, input_output_info):
     missing_axes= tuple(a for a in axes_ids if a not in array_dim)
     print (f'the missing axes are {missing_axes}')
     if image_type:
-        info, position = check_channel_position(input_output_info['inputs'])
-        if info:
+        
+        info, position, num_ch = check_channel_position(input_output_info['inputs'])
+        if num_ch==1:
+            array= imread(file_path, mode="L")
+        elif info:
             array = np.moveaxis(array, -1, position - 1)
             print(f'input array has shape {array.shape}')
 
-    # Check if file is an image type
-   # image_type = check_image_type(file_path)
-   # if image_type:
-        # Determine expected axes and check for supported shape
-    #    axes = input_output_info['inputs'][0]['axis']
-      
-        # Open image and convert based on axes length
-     ##   with Image.open(file_path) as img:
-        
-     #       image_array = np.array(img.convert('RGB') if len(axes) == 4 else img)
-        #if len(axes)-1!= image_array.shape:
-         #   raise ValueError(f'This model support images with dimensions {len(axes)-1}.')
-        # Check channel position and adjust if necessary
-      #  info, position = check_channel_position(input_output_info['inputs'])
-     #   if info:
-        #    image_array = np.moveaxis(image_array, -1, position - 1)
-     #       print(f'Image array shape is {image_array.shape}')
-        
     return array, missing_axes
  
 
@@ -207,6 +194,7 @@ def check_channel_position(input_info):
     
     # Check if any axis has 'channels' name
     has_channels = any('channel' in str(axis).lower() for axis in axes)
+
     
     if not has_channels:
         return False, "No channels dimension found"
@@ -215,10 +203,13 @@ def check_channel_position(input_info):
     for idx, axis in enumerate(axes):
         if 'channel' in str(axis).lower():
             print(f'the channel pisition is {idx}')
-            return True, idx
+            if hasattr(axis, 'channel_names'):
+                channel_names = axis.channel_names 
+                num_channels = len(channel_names)
+            return True, idx, num_channels
     
     return False, "channels not found"  
-from bioimageio.core.axis import  AxisId
+
 
 def _interprete_array_wo_known_axes(array):
         ndim = array.ndim
@@ -273,4 +264,10 @@ def _interprete_array_wo_known_axes(array):
     
 if __name__ == "__main__":
  
-  pass
+  model_name= '10.5281/zenodo.13219987'
+  model= load_description(model_name)
+  input_output_info= get_model_io_info(model)
+  check_channel_position(input_output_info['inputs'])
+  image_path= '/home/se1131/cat1.jpg'
+  array= imread(image_path ,mode='L')
+  print(array.shape)

@@ -177,7 +177,7 @@ def get_models_name():
         return [model_name]
     except (KeyError, TypeError, ValueError) as e:
         print(f"Error processing models_data: {e}")
-        return [model_name]  # Return original model_name if error occurs
+        return [model_name]
 
 def hide_input():
     path= os.path.join(config.MODELS_PATH, 'collection.json')
