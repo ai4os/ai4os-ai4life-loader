@@ -24,18 +24,19 @@ jobs:
     - name: Install Dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install bioimageio.core
+        pip install bioimageio.core[onnx,pytorch]
 
     - name: Download collection.json
       run: |
-        curl -o collection.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/collection.json
+        curl -o models/collection.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/collection.json
 
     - name: Run Filter Script
       run: |
-        python ai4life/filter_v0_5_models.py --input collection.json --output filtered_models.json
+        python ai4life/filter_v0_5_models.py --input models/collection.json --output models/filtered_models.json
+        
 
     - name: Commit and Push Changes
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
         commit_message: "Update filtered_models.json"
-        file_pattern: "filtered_models.json"
+        file_pattern: "models/filtered_models.json"
