@@ -46,9 +46,14 @@ def filter_and_load_models(input_json='collection.json',
                 # Store the combined entry in the models_v0_5 dictionary
                 models_v0_5[model_id] = combined_entry
 
+                for weight in model.weights:
+                    weight_format, weight_info = weight
+                    #We support pytorch weights
+                    #for now 
+                    if (weight_format == 'torchscript' or weight_format == 'pytorch_state_dict') and weight_info is not None:
 
-    # Define output path
-    names_output_json = os.path.join(config.MODELS_PATH, 'models_v0_5.json')        
+                             # Define output path
+                         names_output_json = os.path.join(config.MODELS_PATH, 'models_v0_5.json')        
     
     # Write all model info to a JSON file
     with open(names_output_json, 'w') as names_file:
@@ -56,4 +61,10 @@ def filter_and_load_models(input_json='collection.json',
     return models_v0_5
 
 if __name__=='__main__':
-    filter_and_load_models(os.path.join(config.MODELS_PATH, 'collection.json'))
+    import argparse
+    parser = argparse.ArgumentParser(description="Filter models from a JSON collection.")
+    parser.add_argument('--input', required=True, help="Path to the input collection.json")
+    parser.add_argument('--output', required=True, help="Path to save the filtered models.json")
+    args = parser.parse_args()
+
+    filter_and_load_models(args.input, args.output)
