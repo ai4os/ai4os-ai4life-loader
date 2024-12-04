@@ -27,12 +27,11 @@ def filter_and_load_models(
     ]
 
     models_v0_5 = {}
-    
 
     for model_entry in models:
         model_id = None
         model = None
-        
+
         if model_entry.get("concept"):
             model_id = model_entry["concept"]
         elif model_entry.get("concept_doi"):
@@ -49,20 +48,20 @@ def filter_and_load_models(
             if isinstance(model, v0_5.ModelDescr):
                 # Store model information in a dictionary
                 # model_io_info  = get_model_io_info(model)
-                
 
                 for weight in model.weights:
                     weight_format, weight_info = weight
                     # We support pytorch weights
                     # for now
-                    if (weight_format == 'torchscript'
-                         or weight_format == 'pytorch_state_dict') and weight_info is not None:
-                         
+                    if (
+                        weight_format == "torchscript"
+                        or weight_format == "pytorch_state_dict"
+                    ) and weight_info is not None:
+
                         model_nickname = model_entry["nickname_icon"]
-                
-                        key= model_entry["id"]+' '+ model_nickname
+
+                        key = model_entry["id"] + " " + model_nickname
                         models_v0_5[key] = model_entry
-                
 
     # Write all model info to a JSON file
     with open(output_json, "w") as names_file:

@@ -11,7 +11,7 @@ By convention, the CONSTANTS defined in this module are in UPPER_CASE.
 import logging
 import os
 from importlib import metadata
-
+from ai4life.config import DATA_PATH, MODELS_PATH
 
 # Get AI model metadata
 API_NAME = "ai4life"
