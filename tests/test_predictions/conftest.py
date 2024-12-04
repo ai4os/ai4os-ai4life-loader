@@ -37,23 +37,69 @@ be generated:
 Be careful when using multiple fixtures with multiple parameters, as the
 number of tests generated can grow exponentially.
 """
+
 # pylint: disable=redefined-outer-name
+import os
+import numpy as np
 import pytest
 from deepaas.model.v2.wrapper import UploadedFile
 
+from bioimageio.core import load_description
+from bioimageio.spec._internal.io import download
+
 import api
+import ai4life as aimodel
 
 
-@pytest.fixture(scope="module", params=["t100-images.npy"])
-def input_file(request):
-    """Fixture to provide the input_file argument to api.predict."""
-    filepath = f"{api.config.DATA_PATH}"
-    return UploadedFile("", filename=f"{filepath}/{request.param}")
+@pytest.fixture(scope="module")
+def input_files(request):
+    """Fixture to provide options dictionary for the model."""
+    # Load the model
+    model = load_description(
+        aimodel.config.MODEL_NAME, perform_io_checks=False
+    )
+
+    # Initialize inputs
+    inputs = [d.test_tensor for d in model.inputs]
+    options = {}
+
+    for input_item in inputs:
+        path = download(input_item).path
+        content_type = "application/octet-stream"
+        file_extension = os.path.splitext(path)[1]
+        filename = os.path.basename(path).split("-")[-1]
+
+        if input_item == inputs[0]:
+            options["input_file"] = UploadedFile(
+                filename,
+                path,
+                content_type,
+                f"files{file_extension}",
+            )
+        else:
+            filename_without_extension = filename.split(".")[0]
+            if filename_without_extension in [
+                "mask_prompts",
+                "embeddings",
+            ]:
+                options[filename_without_extension] = UploadedFile(
+                    filename,
+                    path,
+                    content_type,
+                    f"files{file_extension}",
+                )
+            else:
+                options[filename_without_extension] = np.load(path)
+
+    return options
 
 
-@pytest.fixture(scope="module", params=["test_simplemodel"])
+@pytest.fixture(
+    scope="module", params=[api.utils.get_models_name()[0]]
+)
 def model_name(request):
     """Fixture to provide the model_name argument to api.predict."""
+
     return request.param
 
 
@@ -63,15 +109,24 @@ def accept(request):
     return request.param
 
 
-# Example of fixture for a batch_size parametrization
-# @pytest.fixture(scope="module", params=[None, 20])
-# def batch_size(request):
-#     """Fixture to provide the batch_size option to api.predict."""
-#     return request.param
+@pytest.fixture(scope="module")
+def pred_kwds(input_files, model_name, accept):
+    """Fixture to return arbitrary keyword arguments for predictions."""
+    pred_kwds = {
+        "options": input_files,
+        "model_name": model_name,
+        "accept": accept,
+    }
+    print(f"the args for detections are {pred_kwds}")
+    return {k: v for k, v in pred_kwds.items()}
 
 
-# Example of fixture for a steps parametrization
-# @pytest.fixture(scope="module", params=[None, 2])
-# def steps(request):
-#     """Fixture to provide the steps option to api.predict."""
-#     return request.param
+@pytest.fixture(scope="module")
+def test_predict(pred_kwds):
+    """Test the predict function."""
+    options = pred_kwds["options"]
+    model_name = pred_kwds["model_name"]
+    accept = pred_kwds["accept"]
+
+    result = api.predict(model_name, accept, **options)
+    return result, pred_kwds["accept"]

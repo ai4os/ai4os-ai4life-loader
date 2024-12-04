@@ -6,11 +6,12 @@ docs [1] and at a canonical exemplar module [2].
 [1]: https://docs.ai4eosc.eu/
 [2]: https://github.com/ai4os-hub/demo-advanced
 """
+
 import logging
 
-import ai4life as aimodel 
+import ai4life as aimodel
 import os
-from aiohttp.web import HTTPException
+
 from . import config, responses, schemas, utils
 
 logger = logging.getLogger(__name__)
@@ -34,17 +35,16 @@ def get_metadata():
             "description": config.API_METADATA.get("summary"),
             "license": config.API_METADATA.get("license"),
             "version": config.API_METADATA.get("version"),
-            "datasets": utils.ls_files(config.DATA_PATH, '[A-Za-z0-9]*'),
-            "model_info": utils.ls_dirs(os.path.join(config.MODELS_PATH, 'model_meta.json'))
-            # aimodel.utils.load_models(aimodel.config.MODEL_NAME,
-                          #                      os.path.join(config.MODELS_PATH, 'collection.json')
-                           #                     , perform_io_checks=False)
- 
+            "model_info": utils.ls_dirs(
+                os.path.join(config.MODELS_PATH, "model_meta.json")
+            ),
         }
         logger.debug("Package model metadata: %s", metadata)
         return metadata
     except Exception as err:
-        logger.error("Error collecting metadata: %s", err, exc_info=True)
+        logger.error(
+            "Error collecting metadata: %s", err, exc_info=True
+        )
         raise  # Reraise the exception after log
 
 
@@ -63,7 +63,7 @@ def warm():
 
 
 @utils.predict_arguments(schema=schemas.PredArgsSchema)
-def predict(model_name, accept='application/json', **options):
+def predict(model_name, accept="application/json", **options):
     """Performs model prediction from given input data and parameters.
 
     Arguments:
@@ -79,17 +79,19 @@ def predict(model_name, accept='application/json', **options):
     """
     try:  # Call your AI model predict() method
         logger.info("Using model %s for predictions", model_name)
-        #logger.debug("Loading data from input_file: %s", input_file.filename)
+        # logger.debug("Loading data from input_file: %s", input_file.filename)
         logger.debug("Predict with options: %s", options)
-        result, output_ids, input_data = aimodel.predict(model_name,  **options)
+        result, output_ids, input_data = aimodel.predict(
+            model_name, **options
+        )
         logger.debug("Predict result: %s", result)
         logger.info("Returning content_type for: %s", accept)
 
-        return responses.content_types[accept](result, output_ids, input_data, **options)
+        return responses.content_types[accept](
+            result, output_ids, input_data, **options
+        )
     except Exception as err:
-        logger.error("Error calculating predictions: %s", err, exc_info=True)
+        logger.error(
+            "Error calculating predictions: %s", err, exc_info=True
+        )
         raise  # Reraise the exception after log
-
-
-
-
