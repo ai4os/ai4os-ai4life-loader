@@ -59,12 +59,13 @@ with open(path, "r") as file:
     model_names = list(models_data.keys())
 
 
-@pytest.fixture(scope="module")
-def input_files(request):
+#@pytest.fixture(scope="module")
+def input_files(model_name):
     """Fixture to provide options dictionary for the model."""
     # Load the model
+    model_name, icon = model_name.split(" ", 1)
     model = load_description(
-        aimodel.config.MODEL_NAME, perform_io_checks=False
+        model_name, perform_io_checks=False
     )
 
     # Initialize inputs
@@ -116,10 +117,10 @@ def accept(request):
 
 
 @pytest.fixture(scope="module")
-def pred_kwds(input_files, model_name, accept):
+def pred_kwds( model_name, accept):
     """Fixture to return arbitrary keyword arguments for predictions."""
     pred_kwds = {
-        "options": input_files,
+        #"options": input_files,
         "model_name": model_name,
         "accept": accept,
     }
@@ -130,8 +131,9 @@ def pred_kwds(input_files, model_name, accept):
 @pytest.fixture(scope="module")
 def test_predict(pred_kwds):
     """Test the predict function."""
-    options = pred_kwds["options"]
+    
     model_name = pred_kwds["model_name"]
+    options = input_files(model_name)
     accept = pred_kwds["accept"]
 
     result = api.predict(model_name, accept, **options)
