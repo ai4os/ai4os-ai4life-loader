@@ -6,14 +6,16 @@ to add new inputs to your API.
 The module shows simple but efficient example schemas. However, you may
 need to modify them for your needs.
 """
+
 import marshmallow
 from webargs import ValidationError, fields, validate
 import json
 
 from . import config, responses, utils
- 
 
-hide_input=utils.hide_input()
+
+hide_input = utils.hide_input()
+
 
 class BoxPromptField(fields.Field):
     def __init__(self, *args, **kwargs):
@@ -40,13 +42,16 @@ class BoxPromptField(fields.Field):
             if len(item) != 4:
                 raise ValidationError(
                     "Each item in the list should be a list of"
-                    " coordinate of the bounding box with [x_min, y_min, x_max, y_max]."
+                    " coordinate of the bounding box with "
+                    "[x_min, y_min, x_max, y_max]."
                 )
             for val in item:
                 if not isinstance(val, int):
                     raise ValidationError(
-                        f"Value of bounding box coordinate must be an integer."
+                        "Value of bounding box coordinate must be an integer."
                     )
+
+
 class PointPromptsField(fields.Field):
     def __init__(self, *args, **kwargs):
         self.metadata = kwargs.get("metadata", {})
@@ -61,32 +66,42 @@ class PointPromptsField(fields.Field):
     def _validate(self, value):
         # Ensure value is a list
         if not isinstance(value, list):
-            raise ValidationError("`point_prompts` must be a list of lists.")
+            raise ValidationError(
+                "`point_prompts` must be a list of lists."
+            )
 
         for batch in value:
             # Check each batch dimension entry is a list
             if not isinstance(batch, list):
-                raise ValidationError("Each item in `point_prompts` must be a list.")
+                raise ValidationError(
+                    "Each item in `point_prompts` must be a list."
+                )
             for obj in batch:
                 # Check each object entry in batch is a list
                 if not isinstance(obj, list):
-                    raise ValidationError("Each object entry must be a list of points.")
+                    raise ValidationError(
+                        "Each object entry must be a list of points."
+                    )
                 for point in obj:
-                    # Check each point entry in object is a list with exactly 2 coordinates
+                    # Check each point entry in object is a list
+                    #  with exactly 2 coordinates
                     if not isinstance(point, list) or len(point) != 2:
                         raise ValidationError(
-                            "Each point must be a list with exactly two coordinates [x, y]."
+                            "Each point must be a list with exactly two"
+                            " coordinates [x, y]."
                         )
                     # Check each coordinate is an integer
                     for coord in point:
                         if not isinstance(coord, int):
-                            raise ValidationError("Each coordinate must be an integer.")
+                            raise ValidationError(
+                                "Each coordinate must be an integer."
+                            )
 
-   
- 
+
 class PointLabelsField(fields.Field):
     """
-    Custom field for point labels input, specifying details like data type, shape, and test tensor URL.
+    Custom field for point labels input, specifying details
+    like data type, shape, and test tensor URL.
     """
 
     def _serialize(self, value, attr, obj, **kwargs):
@@ -94,23 +109,29 @@ class PointLabelsField(fields.Field):
         return {
             "type": "int64",
             "shape": [1, 1, 1],  # Minimum shape required
-            "description": "Point labels with [batch, object, point] dimensions",
+            "description": "Point labels with [batch, object, point]"
+            " dimensions",
             "data_description": {
                 "range": [None, None],
                 "unit": "arbitrary unit",
                 "scale": 1.0,
-                "offset": None
+                "offset": None,
             },
-            "test_tensor": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/greedy-whale/1/files/point_labels.npy"
         }
 
     def _deserialize(self, value, attr, data, **kwargs):
         # Enforce the expected shape and type during deserialization
         if not isinstance(value, list) or len(value) != 3:
-            raise ValidationError("Point labels must be a list with [batch, object, point] dimensions.")
+            raise ValidationError(
+                "Point labels must be a list with [batch, object, point]"
+                " dimensions."
+            )
         if value != [1, 1, 1]:
-            raise ValidationError("Point labels shape must be exactly [1, 1, 1].")
+            raise ValidationError(
+                "Point labels shape must be exactly [1, 1, 1]."
+            )
         return value
+
 
 class ModelName(fields.String):
     """Field that takes a string and validates against current available
@@ -123,8 +144,6 @@ class ModelName(fields.String):
         return str(config.MODELS_PATH / value)
 
 
- 
-
 # EXAMPLE of Prediction Args description
 # = HAVE TO MODIFY FOR YOUR NEEDS =
 class PredArgsSchema(marshmallow.Schema):
@@ -135,18 +154,21 @@ class PredArgsSchema(marshmallow.Schema):
 
     model_name = fields.String(
         metadata={
-        "description": f"\nThe model '**{utils.get_models_name()[0]}**' has been loaded for inference. "
-                       f"For more information about the input and output of the model, please check the "
-                       f"**Metadata method**.",
-    },
-        validate= validate.OneOf(utils.get_models_name()),
+            "description": f"\nThe model '**{utils.get_models_name()[0]}**' "
+            "has been loaded for inference. "
+            f"For more information about the input and output "
+            "of the model, please check the "
+            f"**Metadata method**.",
+        },
+        validate=validate.OneOf(utils.get_models_name()),
         required=True,
     )
 
     input_file = fields.Field(
         metadata={
             "description": (
-                "Image file predictions are either saved as .npy files or other "
+                "Image file predictions are either saved as "
+                ".npy files or other "
                 "image formats. Please refer to each model's metadata to "
                 "determine the required dimensions for the input image."
             ),
@@ -154,69 +176,81 @@ class PredArgsSchema(marshmallow.Schema):
             "location": "form",
         },
         required=True,
-     
     )
-    
-    box_prompts= BoxPromptField(
+
+    box_prompts = BoxPromptField(
         required=False,
         metadata={
-            "description": "Bounding box prompt. Should be a list. Each item in the list"
-            " should be a list of coordinates of the bounding box with \n [x_min, y_min, x_max, y_max]. \n"
+            "description": "Bounding box prompt. Should be a list."
+            " Each item in the list"
+            " should be a list of coordinates of the bounding box "
+            "with \n [x_min, y_min, x_max, y_max]. \n"
             "Example:[[0, 0, 100, 100], [255, 350, 400, 550]]\n"
-          
         },
         load_default=None,
         dump_only=hide_input,
-         )
-    mask_prompts =  fields.Field(
+    )
+    mask_prompts = fields.Field(
         metadata={
-            "description": "npy or an image file. SAM will take this binary input mask as a hint or starting point and try to refine the segmentation around the provided mask area.",
+            "description": "npy or an image file. SAM will take"
+            " this binary input mask as a hint or starting point"
+            " and try to refine the segmentation around the "
+            "provided mask area.",
             "type": "file",
             "location": "form",
         },
         required=False,
         dump_only=hide_input,
     )
-    
+
     embeddings = fields.Field(
-    metadata={
-        "description": "The embeddings represent the image features that SAM uses for segmentation. It can vbe generated by the Generated by the image encoder part of SAM. Embedding input, with a fixed shape of [1, 256, 64, 64] and float32 type.",
-        "type": "file",
-        "location": "form"       
-    },
-    dump_only=hide_input,
-    required=False
-)
+        metadata={
+            "description": "The embeddings represent the image features"
+            " that SAM uses for segmentation. It can vbe generated by"
+            " the Generated by the image encoder part of SAM. "
+            "Embedding input, with a fixed shape of [1, 256, 64, 64] "
+            "and float32 type.",
+            "type": "file",
+            "location": "form",
+        },
+        dump_only=hide_input,
+        required=False,
+    )
 
-#fields.List(fields.List(fields.List(fields.List(fields.Int()))))
- 
-    point_prompts = PointPromptsField(   metadata={
-        "description": (
-            "Point prompts input with shape [1, num_object, num_point, (x, y)] and int64 type, representing "
-            "coordinates in 'x' and 'y' channels.\n\n"
-            "Example:\n"
-            "[\n"
-            "    [  # Batch dimension\n"
-            "        [  # First object\n"
-            "            [10, 20],  # Point 1 (x=10, y=20)\n"
-            "            [15, 25],  # Point 2 (x=15, y=25)\n"
-            "            [20, 30]   # Point 3 (x=20, y=30)\n"
-            "        ],\n"
-            "        [  # Second object\n"
-            "            [50, 60],  # Point 1 (x=50, y=60)\n"
-            "            [55, 65],  # Point 2 (x=55, y=65)\n"
-            "            [60, 70]   # Point 3 (x=60, y=70)\n"
-            "        ]\n"
-            "    ]\n"
-            "]"
-        )
-    },
-    dump_only=hide_input)
+    # fields.List(fields.List(fields.List(fields.List(fields.Int()))))
 
-#fields.List(fields.List(fields.List(fields.Int())))
+    point_prompts = PointPromptsField(
+        metadata={
+            "description": (
+                "Point prompts input with shape "
+                "[1, num_object, num_point, (x, y)]"
+                " and int64 type, representing "
+                "coordinates in 'x' and 'y' channels.\n\n"
+                "Example:\n"
+                "[\n"
+                "    [  # Batch dimension\n"
+                "        [  # First object\n"
+                "            [10, 20],  # Point 1 (x=10, y=20)\n"
+                "            [15, 25],  # Point 2 (x=15, y=25)\n"
+                "            [20, 30]   # Point 3 (x=20, y=30)\n"
+                "        ],\n"
+                "        [  # Second object\n"
+                "            [50, 60],  # Point 1 (x=50, y=60)\n"
+                "            [55, 65],  # Point 2 (x=55, y=65)\n"
+                "            [60, 70]   # Point 3 (x=60, y=70)\n"
+                "        ]\n"
+                "    ]\n"
+                "]"
+            )
+        },
+        dump_only=hide_input,
+    )
+
+    # fields.List(fields.List(fields.List(fields.Int())))
     point_labels = PointLabelsField(
         metadata={
-            "description": "Point labels input with shape [1, 1, 1] and int64 type.",
+            "description": "Point labels input with shape [1, 1, 1]"
+            " and int64 type.",
         },
         required=False,
         dump_only=hide_input,
@@ -228,7 +262,6 @@ class PredArgsSchema(marshmallow.Schema):
         },
         required=True,
         validate=validate.OneOf(list(responses.content_types)),
-  
     )
 
 
@@ -241,4 +274,5 @@ class TrainArgsSchema(marshmallow.Schema):
         # pylint: disable=missing-class-docstring
         # pylint: disable=too-few-public-methods
         ordered = True
+
     pass

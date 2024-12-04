@@ -6,6 +6,7 @@ your API.
 The module shows simple but efficient example utilities. However, you may
 need to modify them for your needs.
 """
+
 import logging
 import os
 import subprocess
@@ -15,7 +16,7 @@ import matplotlib.pyplot as plt
 import io
 from subprocess import TimeoutExpired
 import numpy as np
-import ai4life as aimodel 
+import ai4life as aimodel
 
 from . import config
 
@@ -33,9 +34,9 @@ def ls_dirs(path):
         A list of strings for found subdirectories.
     """
     logger.debug("Scanning directories at: %s", path)
-    #dirscan = (x.name for x in path.iterdir() if x.is_dir())
-    with open(path, 'r') as file:
-        models_data = json.load(file)   
+    # dirscan = (x.name for x in path.iterdir() if x.is_dir())
+    with open(path, "r") as file:
+        models_data = json.load(file)
     return models_data
 
 
@@ -78,11 +79,15 @@ def copy_remote(frompath, topath, timeout=600):
             if errs:
                 raise RuntimeError(errs)
         except TimeoutExpired:
-            logger.error("Timeout when copying from/to remote directory.")
+            logger.error(
+                "Timeout when copying from/to remote directory."
+            )
             process.kill()
             outs, errs = process.communicate()
         except Exception as exc:  # pylint: disable=broad-except
-            logger.error("Error copying from/to remote directory\n %s", exc)
+            logger.error(
+                "Error copying from/to remote directory\n %s", exc
+            )
             process.kill()
             outs, errs = process.communicate()
     return outs, errs
@@ -122,8 +127,6 @@ def show_images(input_array, output_):
     input_array = np.squeeze(input_array)
     if len(input_array.shape) > 2:
         input_array = input_array[0]
- 
-
 
     output_array = next(iter(output_.values()))
 
@@ -144,42 +147,56 @@ def show_images(input_array, output_):
     fig.savefig(buffer, format="png")
     buffer.seek(0)
     plt.close(fig)
-    return buffer 
+    return buffer
+
 
 def output_png(sample, output_):
-    
+
     input_array = sample
 
-   # if len(output_) == 1:
-    output__={}
+    # if len(output_) == 1:
+    output__ = {}
     if len(output_) > 1:
-         output__['masks'] = np.array(output_.get('masks'))
+        output__["masks"] = np.array(output_.get("masks"))
     else:
-        output__=  output_   
+        output__ = output_
     return show_images(input_array, output__)
 
+
 def get_models_name():
-    models_data = ls_dirs(os.path.join(config.MODELS_PATH, 'collection.json'))
+    models_data = ls_dirs(
+        os.path.join(config.MODELS_PATH, "collection.json")
+    )
     # Filter models from collection
-    models_list = [entry for entry in models_data['collection'] if entry['type'] == 'model']
+    models_list = [
+        entry
+        for entry in models_data["collection"]
+        if entry["type"] == "model"
+    ]
     model_name = aimodel.config.MODEL_NAME
-    
+
     try:
         # Use next() with the filtered list directly
         model_nickname = next(
-            (model['nickname_icon'] for model in models_list 
-             if model['id'] == model_name),
-            None
+            (
+                model["nickname_icon"]
+                for model in models_list
+                if model["id"] == model_name
+            ),
+            None,
         )
         if model_nickname:
             model_name = f"{model_name} {model_nickname}"
-     
+
         return [model_name]
     except (KeyError, TypeError, ValueError) as e:
         print(f"Error processing models_data: {e}")
         return [model_name]
 
+
 def hide_input():
-    path= os.path.join(config.MODELS_PATH, 'collection.json')
-    model_name= aimodel.config.MODEL_NAME
-    return aimodel.utils.load_models(model_name, path, perform_io_checks=False)
+    path = os.path.join(config.MODELS_PATH, "collection.json")
+    model_name = aimodel.config.MODEL_NAME
+    return aimodel.utils.load_models(
+        model_name, path, perform_io_checks=False
+    )

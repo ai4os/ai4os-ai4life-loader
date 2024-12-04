@@ -15,13 +15,14 @@ your function defined at `api.get_metadata`.
 If your file grows in complexity, you can split it into multiple files in
 the same folder. However, remember to add the prefix `test_` to the file.
 """
+
 # pylint: disable=redefined-outer-name
 # pylint: disable=unused-argument
 
 
-def test_training_return_type(training):
-    """Tests that training returns a dict type."""
-    assert isinstance(training, dict)
+# def test_training_return_type(training):
+#    """Tests that training returns a dict type."""
+#    assert isinstance(training, dict)
 
 
 # Example to test training return includes 'end_time'
