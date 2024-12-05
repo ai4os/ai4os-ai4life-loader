@@ -44,11 +44,11 @@ import os
 import numpy as np
 import pytest
 from deepaas.model.v2.wrapper import UploadedFile
-
+import api
 from bioimageio.core import load_description
 from bioimageio.spec._internal.io import download
 
-import api
+#import api
 import ai4life as aimodel
 
 path = os.path.join(
@@ -77,6 +77,7 @@ def input_files(model_name):
         content_type = "application/octet-stream"
         file_extension = os.path.splitext(path)[1]
         filename = os.path.basename(path).split("-")[-1]
+        print(filename)
 
         if input_item == inputs[0]:
             options["input_file"] = UploadedFile(
@@ -103,7 +104,7 @@ def input_files(model_name):
     return options
 
 
-@pytest.fixture(scope="module", params=['humorous-crab \ud83d\udc1b'])
+@pytest.fixture(scope="module", params=['diplomatic-bug \ud83d\udc1b'])
 def model_name(request):
     """Fixture to provide the model_name argument to api.predict."""
 
@@ -138,3 +139,11 @@ def test_predict(pred_kwds):
 
     result = api.predict(model_name, accept, **options)
     return result, pred_kwds["accept"]
+
+if __name__=='__main__':
+    model_name= 'diplomatic-bug \ud83d\udc1b'
+     
+    options=input_files(model_name)
+    print(options)
+    accept = 'application/json'
+    result = predict(model_name , **options)
