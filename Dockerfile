@@ -74,9 +74,9 @@ ENV MODEL_NAME="emotional-cricket"
 # Install user app #--no-cache-dir
 RUN git clone -b $branch --depth 1 https://codebase.helmholtz.cloud/m-team/ai/ai4life.git && \
     cd ai4life && \
-    pip3 install --no-cache-dir  -e . && \
+    pip3 install    -e . && \
    #curl -o ./models/all_versions.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/all_versions.json && \
-    curl -o ./models/collection.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/collection.json && \
+    curl -o ./models/collection.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/collection.json 
     #pip3 install git+https://github.com/ChaoningZhang/MobileSAM.git 
     #python3  ai4life/filter_v0_5_models.py
 # Open ports: DEEPaaS (5000), Monitoring (6006), Jupyter (8888)

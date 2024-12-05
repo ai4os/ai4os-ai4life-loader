@@ -107,9 +107,9 @@ def predict(model_name, **options):
                     input_data[id], _ = utils._copy_file_to_tmpdir(
                         options[option], tmpdir, input_output_info
                     )
-                    input_data[id] = Tensor.from_numpy(
-                input_data[id], dims=model.inputs[0].axes
-            )
+                 #   input_data[id] = Tensor.from_numpy(
+             #   input_data[id], dims=model.inputs[0].axes
+          #  )
 
                 elif options.get(option) is not None:
                     input_data[id] = np.array(options[option])

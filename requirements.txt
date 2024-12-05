@@ -6,11 +6,11 @@ bioimageio.core==0.7.0
 matplotlib==3.9.0
 segment-anything
 Mobile-SAM @ git+https://github.com/ChaoningZhang/MobileSAM.git
-torchvision~=0.18.1
+torchvision
 careamics
 cellpose
 timm
-torch~=2.3.1
+torch
 # External requirements for the model and API
 fPDF2~=2.7.5
 # pytorch~=
