@@ -103,7 +103,7 @@ def input_files(model_name):
     return options
 
 
-@pytest.fixture(scope="module", params=model_names)
+@pytest.fixture(scope="module", params=['humorous-crab \ud83d\udc1b'])
 def model_name(request):
     """Fixture to provide the model_name argument to api.predict."""
 

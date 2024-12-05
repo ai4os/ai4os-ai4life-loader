@@ -77,7 +77,7 @@ RUN git clone -b $branch --depth 1 https://codebase.helmholtz.cloud/m-team/ai/ai
     pip3 install --no-cache-dir  -e . && \
    #curl -o ./models/all_versions.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/all_versions.json && \
     curl -o ./models/collection.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/collection.json && \
-    pip3 install git+https://github.com/ChaoningZhang/MobileSAM.git 
+    #pip3 install git+https://github.com/ChaoningZhang/MobileSAM.git 
     #python3  ai4life/filter_v0_5_models.py
 # Open ports: DEEPaaS (5000), Monitoring (6006), Jupyter (8888)
 EXPOSE 5000 6006 8888
