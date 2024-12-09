@@ -2,15 +2,16 @@
 deepaas~=2.1.0
 webargs~=5.5.2
 flaat~=1.1.1
-bioimageio.core==0.7.0
+bioimageio.core[pytorch]==0.7.0
 matplotlib==3.9.0
 segment-anything
 Mobile-SAM @ git+https://github.com/ChaoningZhang/MobileSAM.git
 torchvision
 careamics
-cellpose
+cellpose==3.0.11
 timm
-torch
+ml-collections
+usplit @ git+https://github.com/juglab/uSplit.git@bioimage_io
 # External requirements for the model and API
 fPDF2~=2.7.5
 # pytorch~=
