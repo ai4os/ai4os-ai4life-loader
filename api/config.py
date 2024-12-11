@@ -32,3 +32,7 @@ API_METADATA["Authors"] = sorted(_AUTHORS)
 # options: DEBUG, INFO(default), WARNING, ERROR, CRITICAL
 ENV_LOG_LEVEL = os.getenv("API_LOG_LEVEL", default="INFO")
 LOG_LEVEL = getattr(logging, ENV_LOG_LEVEL.upper())
+
+if __name__ == "__main__":
+    print(DATA_PATH)
+    print(MODELS_PATH)

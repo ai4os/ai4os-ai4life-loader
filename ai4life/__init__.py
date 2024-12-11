@@ -19,7 +19,7 @@ from bioimageio.core import predict as predict_
 from bioimageio.core import load_description
 import tempfile
 from bioimageio.core import Tensor
-from . import utils
+from ai4life import utils
 from bioimageio.spec.model import v0_5
 from bioimageio.core.digest_spec import (
     get_member_ids,
@@ -81,7 +81,7 @@ def predict(model_name, **options):
                 predict_(
                     model=model,
                     inputs=sample,
-                   # blocksize_parameter=blocksize_parameter,
+                    blocksize_parameter=blocksize_parameter,
                 ),
                 output_ids,
                 input_data[id],
@@ -108,7 +108,6 @@ def predict(model_name, **options):
                         options[option], tmpdir, input_output_info
                     )
                     input_data[id] = input_data[id].astype(np.float32)
-      
 
                 elif options.get(option) is not None:
                     input_data[id] = np.array(options[option])
@@ -142,3 +141,19 @@ def get_ns(n: int, model):
         for a in t.axes
         if isinstance(a.size, v0_5.ParameterizedSize)
     }
+
+
+if __name__ == "__main__":
+    from deepaas.model.v2.wrapper import UploadedFile
+
+    model_name = "affectionate-cow \ud83d\udc04"
+    options = {}
+    path = "/home/se1131/ai4life_project/ai4life/data/affectionate-cow.npy"
+    file_extension = os.path.splitext(path)[1]
+    options["input_file"] = UploadedFile(
+        "files",
+        path,
+        "application/octet-stream",
+        f"files{file_extension}",
+    )
+    predict(model_name, **options)
