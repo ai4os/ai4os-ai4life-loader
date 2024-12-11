@@ -9,12 +9,10 @@ need to modify them for your needs.
 
 import logging
 import os
-import subprocess
 import sys
 import json
 import matplotlib.pyplot as plt
 import io
-from subprocess import TimeoutExpired
 import numpy as np
 import ai4life as aimodel
 
@@ -53,44 +51,6 @@ def ls_files(path, pattern):
     logger.debug("Scanning for %s files at: %s", pattern, path)
     dirscan = (x.name for x in path.glob(pattern))
     return sorted(dirscan)
-
-
-def copy_remote(frompath, topath, timeout=600):
-    """Copies remote (e.g. NextCloud) folder in your local deployment or
-    vice versa for example:
-        - `copy_remote('rshare:/data/images', '/srv/myapp/data/images')`
-
-    Arguments:
-        frompath -- Source folder to be copied.
-        topath -- Destination folder.
-        timeout -- Timeout in seconds for the copy command.
-
-    Returns:
-        A tuple with stdout and stderr from the command.
-    """
-    with subprocess.Popen(
-        args=["rclone", "copy", f"{frompath}", f"{topath}"],
-        stdout=subprocess.PIPE,  # Capture stdout
-        stderr=subprocess.PIPE,  # Capture stderr
-        text=True,  # Return strings rather than bytes
-    ) as process:
-        try:
-            outs, errs = process.communicate(None, timeout)
-            if errs:
-                raise RuntimeError(errs)
-        except TimeoutExpired:
-            logger.error(
-                "Timeout when copying from/to remote directory."
-            )
-            process.kill()
-            outs, errs = process.communicate()
-        except Exception as exc:  # pylint: disable=broad-except
-            logger.error(
-                "Error copying from/to remote directory\n %s", exc
-            )
-            process.kill()
-            outs, errs = process.communicate()
-    return outs, errs
 
 
 def generate_arguments(schema):

@@ -44,7 +44,8 @@ import os
 import numpy as np
 import pytest
 from deepaas.model.v2.wrapper import UploadedFile
-#import api
+
+# import api
 from bioimageio.core import load_description
 from bioimageio.spec._internal.io import download
 
@@ -59,14 +60,12 @@ with open(path, "r") as file:
     model_names = list(models_data.keys())
 
 
-#@pytest.fixture(scope="module")
+# @pytest.fixture(scope="module")
 def input_files(model_name):
     """Fixture to provide options dictionary for the model."""
     # Load the model
     model_name, icon = model_name.split(" ", 1)
-    model = load_description(
-        model_name, perform_io_checks=False
-    )
+    model = load_description(model_name, perform_io_checks=False)
 
     # Initialize inputs
     inputs = [d.test_tensor for d in model.inputs]
@@ -104,7 +103,9 @@ def input_files(model_name):
     return options
 
 
-@pytest.fixture(scope="module", params=['famous-fish \ud83d\udc1b'])
+@pytest.fixture(
+    scope="module", params=["affectionate-cow \ud83d\udc1b"]
+)
 def model_name(request):
     """Fixture to provide the model_name argument to api.predict."""
 
@@ -118,10 +119,10 @@ def accept(request):
 
 
 @pytest.fixture(scope="module")
-def pred_kwds( model_name, accept):
+def pred_kwds(model_name, accept):
     """Fixture to return arbitrary keyword arguments for predictions."""
     pred_kwds = {
-        #"options": input_files,
+        # "options": input_files,
         "model_name": model_name,
         "accept": accept,
     }
@@ -132,7 +133,7 @@ def pred_kwds( model_name, accept):
 @pytest.fixture(scope="module")
 def test_predict(pred_kwds):
     """Test the predict function."""
-    
+
     model_name = pred_kwds["model_name"]
     options = input_files(model_name)
     accept = pred_kwds["accept"]
@@ -140,11 +141,7 @@ def test_predict(pred_kwds):
     result = api.predict(model_name, accept, **options)
     return result, pred_kwds["accept"]
 
-if __name__=='__main__':
-    model_name= 'diplomatic-bug \ud83d\udc1b'
-     
-    options=input_files(model_name)
-    print(options)
-    accept = 'application/json'
-    import ai4life as aimodel
-    result = aimodel.predict(model_name , **options)
+
+if __name__ == "__main__":
+
+    options = input_files(model_name)

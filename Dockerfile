@@ -39,13 +39,13 @@ RUN python3 --version && \
     pip3 install --no-cache-dir --upgrade pip setuptools wheel
 
 # Set LANG environment
-ENV LANG C.UTF-8
+ENV LANG=C.UTF-8
 
 # Set the working directory
 WORKDIR /srv
 
 # Disable FLAAT authentication by default
-ENV DISABLE_AUTHENTICATION_AND_ASSUME_AUTHENTICATED_USER yes
+ENV DISABLE_AUTHENTICATION_AND_ASSUME_AUTHENTICATED_USER=yes
 
 # Initialization scripts
 # deep-start can install JupyterLab or VSCode if requested
@@ -53,7 +53,7 @@ RUN git clone https://github.com/ai4os/deep-start /srv/.deep-start && \
     ln -s /srv/.deep-start/deep-start.sh /usr/local/bin/deep-start
 
 # Necessary for the Jupyter Lab terminal
-ENV SHELL /bin/bash
+ENV SHELL=/bin/bash
 
 # Install Data Version Control
 RUN pip3 install --no-cache-dir dvc dvc-webdav
@@ -69,7 +69,7 @@ RUN curl -O https://downloads.rclone.org/rclone-current-linux-amd64.deb && \
 ENV RCLONE_CONFIG=/srv/.rclone/rclone.conf
 
 #TODO: use this variable to load the model in warm
-ENV MODEL_NAME="emotional-cricket"
+ENV MODEL_NAME="affectionate-cow"
  
 # Install user app #--no-cache-dir
 RUN git clone -b $branch --depth 1 https://codebase.helmholtz.cloud/m-team/ai/ai4life.git && \
@@ -77,9 +77,11 @@ RUN git clone -b $branch --depth 1 https://codebase.helmholtz.cloud/m-team/ai/ai
     pip3 install --no-cache-dir  -e . && \
    #curl -o ./models/all_versions.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/all_versions.json && \
     curl -o ./models/collection.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/collection.json  
-    #pip3 install git+https://github.com/ChaoningZhang/MobileSAM.git 
-    #python3  ai4life/filter_v0_5_models.py
-# Open ports: DEEPaaS (5000), Monitoring (6006), Jupyter (8888)
+
+    # Conditional cloning using shell commands
+RUN if [ "$MODEL_NAME" = "affectionate-cow" ]; then \
+    pip3 install git+https://github.com/BorjaEst/uSplit.git@main
+; fi
 EXPOSE 5000 6006 8888
 
 # Launch deepaas
