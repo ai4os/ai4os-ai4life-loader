@@ -80,7 +80,7 @@ RUN git clone -b $branch --depth 1 https://codebase.helmholtz.cloud/m-team/ai/ai
 
     # Conditional cloning using shell commands
 RUN if [ "$MODEL_NAME" = "affectionate-cow" ]; then \
-    pip3 install git+https://github.com/BorjaEst/uSplit.git@main
+    pip3 install git+https://github.com/m-team-kit/uSplit.git@main
 ; fi
 EXPOSE 5000 6006 8888
 
