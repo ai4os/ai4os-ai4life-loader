@@ -21,7 +21,6 @@ use, you can run `lsof -i :{PORT}` and to check which process is occupying
 the port. Then, you can kill the process with `kill -9 {PID}`.
 """
 
-'''
 # pylint: disable=redefined-outer-name
 import subprocess
 from subprocess import TimeoutExpired
@@ -59,4 +58,4 @@ def test_stdout_errors(deepaas_process):
 def test_stderr_errors(deepaas_process):
     """Assert there are no errors in process stderr."""
     assert "ERROR" not in deepaas_process["stderr"]
-'''
+
