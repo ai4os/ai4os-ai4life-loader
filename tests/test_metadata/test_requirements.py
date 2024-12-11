@@ -18,7 +18,7 @@ the same folder. However, remember to add the prefix `test_` to the file.
 
 # pylint: disable=redefined-outer-name
 # pylint: disable=unused-argument
-'''
+
 def test_authors(metadata):
     """Tests that metadata provides authors information."""
     assert "author" in metadata
@@ -66,4 +66,4 @@ def test_version(metadata):
 #     """Tests that metadata provides datasets information."""
 #     assert "datasets" in metadata
 #     assert metadata["datasets"] == ["t100-dataset.npz"]
-'''
+
