@@ -58,4 +58,3 @@ def test_stdout_errors(deepaas_process):
 def test_stderr_errors(deepaas_process):
     """Assert there are no errors in process stderr."""
     assert "ERROR" not in deepaas_process["stderr"]
-
