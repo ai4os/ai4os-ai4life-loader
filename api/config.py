@@ -7,12 +7,10 @@ file on your model package to define CONSTANTS related to your model.
 
 By convention, the CONSTANTS defined in this module are in UPPER_CASE.
 """
+
 import logging
 import os
 from importlib import metadata
-
-# Ensure that your model package has a config.py file with the following
-# pylint: disable=unused-import
 from ai4life.config import DATA_PATH, MODELS_PATH
 
 # Get AI model metadata
@@ -34,3 +32,7 @@ API_METADATA["Authors"] = sorted(_AUTHORS)
 # options: DEBUG, INFO(default), WARNING, ERROR, CRITICAL
 ENV_LOG_LEVEL = os.getenv("API_LOG_LEVEL", default="INFO")
 LOG_LEVEL = getattr(logging, ENV_LOG_LEVEL.upper())
+
+if __name__ == "__main__":
+    print(DATA_PATH)
+    print(MODELS_PATH)

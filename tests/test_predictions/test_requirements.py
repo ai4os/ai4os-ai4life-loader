@@ -15,32 +15,10 @@ your function defined at `api.get_metadata`.
 If your file grows in complexity, you can split it into multiple files in
 the same folder. However, remember to add the prefix `test_` to the file.
 """
-# pylint: disable=redefined-outer-name
-# pylint: disable=unused-argument
 
 
-def test_predictions_type(predictions):
+def test_predictions_type(test_predict):
     """Tests that predictions is dict type."""
-    assert isinstance(predictions, dict)
-
-
-# Example to test predictions probabilities output shapes
-# def test_predictions_len(predictions):
-#     """Tests that predictions have length of 10."""
-#     for prediction in predictions[0:10]:
-#         assert isinstance(prediction, list)
-#         assert len(prediction) == 10
-
-
-# Example to test predictions probabilities range 0.0 and 1.1
-# def test_predictions_range(predictions):
-#     """Tests that predictions are between 0 and 1."""
-#     for prediction in predictions[0:10]:
-#         assert all(0.0 <= x <= 1.1 for x in prediction)
-
-
-# Example to test predictions probabilities total =~ 1.0
-# def test_predictions_sum(predictions):
-#     """Tests that sum of ind predictions totals ~1.0."""
-#     for prediction in predictions[0:10]:
-#         assert 0.99 < sum(prediction) < 1.01
+    results, accept = test_predict
+    print("the type of the results is", type(results))
+    assert isinstance(results, dict)

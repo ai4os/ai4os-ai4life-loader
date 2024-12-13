@@ -15,6 +15,7 @@ your function defined at `api.get_metadata`.
 If your file grows in complexity, you can split it into multiple files in
 the same folder. However, remember to add the prefix `test_` to the file.
 """
+
 # pylint: disable=redefined-outer-name
 # pylint: disable=unused-argument
 
@@ -22,21 +23,24 @@ the same folder. However, remember to add the prefix `test_` to the file.
 def test_authors(metadata):
     """Tests that metadata provides authors information."""
     assert "author" in metadata
-    assert metadata["author"] == ["Fahimeh Alibabaei "]
+    assert metadata["author"] == ["Fahimeh Alibabaei"]
 
 
 def test_emails(metadata):
     """Tests that metadata provides authors information."""
     assert "author-email" in metadata
     assert metadata["author-email"] == {
-        "Fahimeh Alibabaei ": "khadijeh.alibabaei@kit.edu"
+        "Fahimeh Alibabaei": "khadijeh.alibabaei@kit.edu"
     }
 
 
 def test_description(metadata):
     """Tests that metadata provides description information."""
     assert "description" in metadata
-    assert metadata["description"] == "Support for inference of the AI4LIFE model on the marketplace."
+    assert (
+        metadata["description"]
+        == "Support for inference of the AI4LIFE model on the marketplace."
+    )
 
 
 def test_license(metadata):

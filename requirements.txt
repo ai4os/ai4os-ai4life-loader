@@ -2,25 +2,27 @@
 deepaas~=2.1.0
 webargs~=5.5.2
 flaat~=1.1.1
-bioimageio-core==0.7.0
-matplotlib==3.9.0
+bioimageio.core[pytorch]==0.7.0
+matplotlib~=3.9.0
 segment-anything
+Mobile-SAM @ git+https://github.com/ChaoningZhang/MobileSAM.git
 torchvision
- 
 careamics
-cellpose
+cellpose~=3.0.11
 timm
+albumentations~=1.4.8
+ml-collections~=0.1.1
+networkx~=3.2.1
+opencv-python-headless~=4.10.0.82
+pillow~=10.3.0
+scikit-image~=0.22.0
+scikit-learn~=1.5.0
+tifffile~=2024.5.22
+wandb
  
  
-
-
-
+ 
 # External requirements for the model and API
 fPDF2~=2.7.5
-# pytorch~=
-# tensorflow~=
-# keras~=
-# scikit-learn~=
 
-# Optional tools, you can use for quality of life
-# mlflow~=
+ 
