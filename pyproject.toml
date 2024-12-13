@@ -26,8 +26,8 @@ dynamic = ["version", "dependencies"]
 [tool.pytest.ini_options]
 pythonpath = ["."]
 env = [
-    "AI4LIFE_DATA_PATH=tests/data",
-    "AI4LIFE_MODELS_PATH=tests/models",
+    "AI4LIFE_DATA_PATH=data",
+    "AI4LIFE_MODELS_PATH=models",
 ]
 # Allow test files to share names
 # https://docs.pytest.org/en/7.1.x/explanation/goodpractices.html

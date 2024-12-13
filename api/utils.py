@@ -6,14 +6,15 @@ your API.
 The module shows simple but efficient example utilities. However, you may
 need to modify them for your needs.
 """
+
 import logging
-import subprocess
+import os
 import sys
 import json
 import matplotlib.pyplot as plt
 import io
-from subprocess import TimeoutExpired
 import numpy as np
+import ai4life as aimodel
 
 from . import config
 
@@ -31,12 +32,9 @@ def ls_dirs(path):
         A list of strings for found subdirectories.
     """
     logger.debug("Scanning directories at: %s", path)
-    #dirscan = (x.name for x in path.iterdir() if x.is_dir())
-    with open(path, 'r') as file:
+    # dirscan = (x.name for x in path.iterdir() if x.is_dir())
+    with open(path, "r") as file:
         models_data = json.load(file)
-     #   print(models_data)
-
-    
     return models_data
 
 
@@ -53,40 +51,6 @@ def ls_files(path, pattern):
     logger.debug("Scanning for %s files at: %s", pattern, path)
     dirscan = (x.name for x in path.glob(pattern))
     return sorted(dirscan)
-
-
-def copy_remote(frompath, topath, timeout=600):
-    """Copies remote (e.g. NextCloud) folder in your local deployment or
-    vice versa for example:
-        - `copy_remote('rshare:/data/images', '/srv/myapp/data/images')`
-
-    Arguments:
-        frompath -- Source folder to be copied.
-        topath -- Destination folder.
-        timeout -- Timeout in seconds for the copy command.
-
-    Returns:
-        A tuple with stdout and stderr from the command.
-    """
-    with subprocess.Popen(
-        args=["rclone", "copy", f"{frompath}", f"{topath}"],
-        stdout=subprocess.PIPE,  # Capture stdout
-        stderr=subprocess.PIPE,  # Capture stderr
-        text=True,  # Return strings rather than bytes
-    ) as process:
-        try:
-            outs, errs = process.communicate(None, timeout)
-            if errs:
-                raise RuntimeError(errs)
-        except TimeoutExpired:
-            logger.error("Timeout when copying from/to remote directory.")
-            process.kill()
-            outs, errs = process.communicate()
-        except Exception as exc:  # pylint: disable=broad-except
-            logger.error("Error copying from/to remote directory\n %s", exc)
-            process.kill()
-            outs, errs = process.communicate()
-    return outs, errs
 
 
 def generate_arguments(schema):
@@ -123,8 +87,6 @@ def show_images(input_array, output_):
     input_array = np.squeeze(input_array)
     if len(input_array.shape) > 2:
         input_array = input_array[0]
- 
-
 
     output_array = next(iter(output_.values()))
 
@@ -145,23 +107,56 @@ def show_images(input_array, output_):
     fig.savefig(buffer, format="png")
     buffer.seek(0)
     plt.close(fig)
-    return buffer 
+    return buffer
+
 
 def output_png(sample, output_):
-    
+
     input_array = sample
 
-   # if len(output_) == 1:
-    output__={}
+    # if len(output_) == 1:
+    output__ = {}
     if len(output_) > 1:
-         output__['masks'] = np.array(output_.get('masks'))
+        output__["masks"] = np.array(output_.get("masks"))
     else:
-        output__=  output_   
+        output__ = output_
     return show_images(input_array, output__)
-    #else:
-       # masks = output_.get('masks')
-       # scores = output_.get('scores')
-      #  return show_masks_on_image(
-      #      input_array, masks, scores, boxes=None, show_boxs=False
-      #  )
 
+
+def get_models_name():
+    models_data = ls_dirs(
+        os.path.join(config.MODELS_PATH, "collection.json")
+    )
+    # Filter models from collection
+    models_list = [
+        entry
+        for entry in models_data["collection"]
+        if entry["type"] == "model"
+    ]
+    model_name = aimodel.config.MODEL_NAME
+
+    try:
+        # Use next() with the filtered list directly
+        model_nickname = next(
+            (
+                model["nickname_icon"]
+                for model in models_list
+                if model["id"] == model_name
+            ),
+            None,
+        )
+        if model_nickname:
+            model_name = f"{model_name} {model_nickname}"
+
+        return [model_name]
+    except (KeyError, TypeError, ValueError) as e:
+        print(f"Error processing models_data: {e}")
+        return [model_name]
+
+
+def hide_input():
+    path = os.path.join(config.MODELS_PATH, "collection.json")
+    model_name = aimodel.config.MODEL_NAME
+    return aimodel.utils.load_models(
+        model_name, path, perform_io_checks=False
+    )

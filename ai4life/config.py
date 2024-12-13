@@ -7,6 +7,7 @@ inside `api` to define exclusive CONSTANTS related to your interface.
 
 By convention, the CONSTANTS defined in this module are in UPPER_CASE.
 """
+
 # Do NOT import anything from `api` or `ai4life` packages here.
 # That might create circular dependencies.
 import logging
@@ -20,7 +21,9 @@ from pathlib import Path
 BASE_PATH = Path(__file__).resolve(strict=True).parents[1]
 
 # Path definition for the pre-trained models
-MODELS_PATH = os.getenv("AI4LIFE_MODELS_PATH", default=BASE_PATH / "models")
+MODELS_PATH = os.getenv(
+    "AI4LIFE_MODELS_PATH", default=BASE_PATH / "models"
+)
 MODELS_PATH = Path(MODELS_PATH)
 # Path definition for data folder
 DATA_PATH = os.getenv("AI4LIFE_DATA_PATH", default=BASE_PATH / "data")
@@ -34,3 +37,4 @@ LOG_LEVEL = getattr(logging, ENV_LOG_LEVEL.upper())
 
 # EXAMPLE on how to load environment variables
 PARAMETER_INT = int(os.getenv("AI4LIFE_PARAMETER_INT", default="10"))
+MODEL_NAME = os.getenv("MODEL_NAME", default="affectionate-cow")
