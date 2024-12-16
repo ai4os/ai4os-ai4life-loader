@@ -149,6 +149,8 @@ GTAGS
 !models/0/*/*
 !models/models/*/*
 !models/models/*/*/*
+!models/filtered_models.json
+
 mlruns/
 deepaas.conf
 whiteboard.py
