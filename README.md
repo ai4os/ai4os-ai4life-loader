@@ -1,6 +1,6 @@
 # ai4life
 
-[![Build Status](https://jenkins.services.ai4os.eu/buildStatus/icon?job=AI4OS-hub/ai4life/dev)](https://jenkins.services.ai4os.eu/job/AI4OS-hub/job/ai4life/job/dev)
+[![Build Status](https://jenkins.services.ai4os.eu/buildStatus/icon?job=AI4OS%2Fai4os-ai4life-loader%2Fmain)](https://jenkins.services.ai4os.eu/job/AI4OS/job/ai4os-ai4life-loader/job/main/)
 
 Support for inference of the AI4LIFE model on the marketplace.
 
