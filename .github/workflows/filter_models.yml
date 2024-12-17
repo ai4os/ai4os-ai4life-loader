@@ -38,11 +38,20 @@ jobs:
         python ai4life/filter_v0_5_models.py --input models/collection.json --output models/filtered_models.json
         
 
-    - name: Commit and Push Changes
+    - name: Configure Git
+      run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+    - name: Commit Changes
+      run: |
+        git add models/filtered_models.json
+        git commit -m "Update filtered_models.json" || echo "No changes to commit"
+
+    - name: Push Changes
       uses: ad-m/github-push-action@master
       with:
-        github_token: ${{ secrets.MY_ACTION_TOKEN }} 
+        github_token: ${{ secrets.MY_ACTION_TOKEN }}
         branch: main
-      
     
       
