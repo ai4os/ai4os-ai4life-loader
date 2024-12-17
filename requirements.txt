@@ -20,7 +20,7 @@ scikit-learn~=1.5.0
 tifffile~=2024.5.22
 wandb
  
- 
+uSplit @ git+https://github.com/m-team-kit/uSplit.git@main
  
 # External requirements for the model and API
 fPDF2~=2.7.5
