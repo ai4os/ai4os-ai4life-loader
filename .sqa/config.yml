@@ -28,6 +28,7 @@ sqa_criteria:
 environment:
   GIT_COMMITTER_NAME: "Fahimeh Alibabaei "
   GIT_COMMITTER_EMAIL: "khadijeh.alibabaei@kit.edu"
+  JPL_DOCKERFORCEBUILD: "True"
   LANG: C.UTF-8
 
 timeout: 600
