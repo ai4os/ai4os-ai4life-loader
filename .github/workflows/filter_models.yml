@@ -38,7 +38,11 @@ jobs:
     - name: Commit and Push Changes
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
+        github_token: ${{ secrets.MY_ACTION_TOKEN }} 
+        branch: main
         commit_message: "Update filtered_models.json"
         file_pattern: "models/filtered_models.json"
         skip_dirty_check: true    # Skip the working tree check
         add_options: '-f'         # Force add the files
+        
+      
