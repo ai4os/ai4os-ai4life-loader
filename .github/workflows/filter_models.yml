@@ -3,7 +3,7 @@ name: Filter v0_5 Models Workflow
 on:
   push:
     branches:
-      - dev
+      - main
   workflow_dispatch:
   schedule:
     - cron: "0 0 * * 0"  # Runs every Sunday at midnight UTC
