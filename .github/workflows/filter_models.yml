@@ -40,18 +40,15 @@ jobs:
 
     - name: Configure Git
       run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
 
     - name: Commit Changes
       run: |
         git add -f models/filtered_models.json
         git commit -m "Update filtered_models.json" || echo "No changes to commit"
+        git push
 
-    - name: Push Changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.MY_ACTION_TOKEN }}
-        branch: main
+    
     
       
