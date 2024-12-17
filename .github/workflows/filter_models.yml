@@ -8,12 +8,12 @@ on:
   schedule:
     - cron: "0 0 * * 0"  # Runs every Sunday at midnight UTC
 
+permissions:
+  contents: write
+
 jobs:
   filter_models:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
 
     steps:
     - name: Checkout Repository
@@ -52,7 +52,3 @@ jobs:
       with:
         github_token: ${{ secrets.MY_RELEASE_PLEASE_TOKEN }}
         branch: ${{ github.head_ref }}
-
-    
-    
-      
