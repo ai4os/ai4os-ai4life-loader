@@ -62,7 +62,10 @@ def filter_and_load_models(
 
                         key = model_entry["id"] + " " + model_nickname
                         models_v0_5[key] = model_entry
-                        print(f'The model named {key} from AI4Life is supported on the AI4EOSC platform.')
+                        print(
+                            f"The model named {key} from AI4Life is supported"
+                            " on the AI4EOSC platform."
+                        )
 
     # Write all model info to a JSON file
     with open(output_json, "w") as names_file:
