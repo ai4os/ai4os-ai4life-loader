@@ -31,4 +31,4 @@ environment:
   JPL_DOCKERFORCEBUILD: "True"
   LANG: C.UTF-8
 
-timeout: 900
+timeout: 1800
