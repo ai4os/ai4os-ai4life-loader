@@ -45,7 +45,7 @@ jobs:
 
     - name: Commit Changes
       run: |
-        git add models/filtered_models.json
+        git add -f models/filtered_models.json
         git commit -m "Update filtered_models.json" || echo "No changes to commit"
 
     - name: Push Changes
