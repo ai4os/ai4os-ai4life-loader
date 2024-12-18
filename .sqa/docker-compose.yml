@@ -2,13 +2,14 @@ version: "3.6"
 
 services:
   testing:
-    image: "ai4oshub/ai4os-ai4life-loader:cicd"
+    #image: "ai4oshub/ai4os-ai4life-loader:cicd"
     container_name: "${BUILD_TAG}"
     hostname: "${BUILD_TAG}"
     working_dir: /srv/app
-    command: >
-      sh -c "pip3 install --no-cache-dir -e . &&
-             sleep infinity"
+    build:
+      context: ./.sqa
+      args:
+        branch: ${GIT_BRANCH}
     volumes:
       - type: bind
         source: ./
