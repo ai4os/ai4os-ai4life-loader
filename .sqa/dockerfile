@@ -1,8 +1,12 @@
 # Docker image for CI testing of the DEEPaaS API
 # Note there is probably no gpu in the CI server
-#ARG tag=1.13.1-cuda11.6-cudnn8-runtime
-ARG tag=2.3.1-cuda11.8-cudnn8-runtime
-FROM pytorch/pytorch:${tag}
-RUN pip3 install --no-cache-dir --upgrade pip setuptools wheel
-RUN pip3 install --no-cache-dir 'tox<4.0.0'
+FROM ai4oshub/ai4os-ai4life-loader:cicd
+# What user branch to clone [!]
+ARG branch=main
+# install user app
+RUN cd /tmp && \
+    git clone -b $branch --depth 1 https://github.com/ai4os/ai4os-ai4life-loader.git app/ && \
+    cd app/ && \
+    pip3 install --no-cache-dir  -e . &&  \
+    cd .. && rm -rf app/
 CMD ["sleep", "infinity"]
