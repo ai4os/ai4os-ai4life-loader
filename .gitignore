@@ -150,6 +150,7 @@ GTAGS
 !models/models/*/*
 !models/models/*/*/*
 !models/filtered_models.json
+!models/collection.json
 
 mlruns/
 deepaas.conf
