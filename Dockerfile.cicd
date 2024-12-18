@@ -1,0 +1,55 @@
+# Dockerfile for CI/CD testing
+# tag - tag for the Base image, (e.g. 2.9.1 for tensorflow)
+#
+# To build the image:
+# $ docker build -t <dockerhub_user>/<dockerhub_repo> --build-arg arg=value .
+# or using default args:
+# $ docker build -t <dockerhub_user>/<dockerhub_repo> .
+#
+# Be Aware! For the Jenkins CI/CD pipeline, 
+# input args are defined inside the JenkinsConstants.groovy, not here!
+
+ARG tag=2.3.1-cuda11.8-cudnn8-runtime
+
+# Base image, e.g. tensorflow/tensorflow:2.x.x-gpu
+FROM pytorch/pytorch:${tag}
+
+LABEL maintainer='Fahimeh Alibabaei '
+LABEL version='0.0.1'
+
+# Install Ubuntu packages
+# - gcc is needed in Pytorch images because deepaas installation might break otherwise (see docs)
+#   (it is already installed in tensorflow images)
+# Install packages
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
+    apt-get install -y --no-install-recommends \
+    gcc \
+    git \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Update python packages
+# [!] Remember: DEEP API V2 only works with python>=3.6
+RUN python3 --version && \
+    pip3 install --no-cache-dir --upgrade pip setuptools wheel
+
+# Set LANG environment
+ENV LANG=C.UTF-8
+
+# Set the working directory
+WORKDIR /srv
+
+# Disable FLAAT authentication by default
+ENV DISABLE_AUTHENTICATION_AND_ASSUME_AUTHENTICATED_USER=yes
+
+# Necessary for the Jupyter Lab terminal
+ENV SHELL=/bin/bash
+
+# Install user app dependencies for testing
+RUN curl -O https://raw.githubusercontent.com/ai4os/ai4os-ai4life-loader/refs/heads/main/requirements.txt && \
+    curl -O https://raw.githubusercontent.com/ai4os/ai4os-ai4life-loader/refs/heads/main/requirements-test.txt && \
+    pip3 install --no-cache-dir -r requirements.txt && \
+    pip3 install --no-cache-dir -r requirements-test.txt
+
+CMD ["sleep", "infinity"]
+
