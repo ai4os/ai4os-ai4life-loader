@@ -19,7 +19,7 @@ sqa_criteria:
       ai4life:
         container: testing
         commands:
-        - mkdir -p /srv/app/bandit
+        - mkdir -p ./bandit
         - bandit -r ai4life api -x tests -o ./bandit/index.html
 
 environment:
