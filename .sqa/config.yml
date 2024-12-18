@@ -5,14 +5,14 @@ sqa_criteria:
       ai4life:
         container: testing
         commands:
-        - flake8 --statistics --tee --output-file=/srv/app/flake8.log --format=pylint ai4life api tests
+        - flake8 --statistics --tee --output-file=./flake8.log --format=pylint ai4life api tests
 
   qc_coverage:
     repos:
       ai4life:
         container: testing
         commands:
-        - pytest --cov=api --cov=ai4life --cov-report=html:/srv/app/htmlcov --cov-report=term-missing tests
+        - pytest --cov=api --cov=ai4life --cov-report=html:./htmlcov --cov-report=term-missing tests
 
   qc_security:
     repos:
@@ -20,7 +20,7 @@ sqa_criteria:
         container: testing
         commands:
         - mkdir -p /srv/app/bandit
-        - bandit -r ai4life api -x tests -o /srv/app/bandit/index.html
+        - bandit -r ai4life api -x tests -o ./bandit/index.html
 
 environment:
   GIT_COMMITTER_NAME: "Fahimeh Alibabaei "
