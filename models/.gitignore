@@ -3,3 +3,4 @@
 # Except this file
 !.gitignore
 !filtered_models.json
+!collection.json
