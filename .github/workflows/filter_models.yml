@@ -42,8 +42,8 @@ jobs:
 
     - name: Commit Changes
       run: |
-        git add -f models/filtered_models.json
-        git commit -m "Update filtered_models.json" || echo "No changes to commit"
+         git add -f models/filtered_models.json models/collection.json
+         git commit -m "Update filtered_models.json models/collection.json" || echo "No changes to commit"
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
