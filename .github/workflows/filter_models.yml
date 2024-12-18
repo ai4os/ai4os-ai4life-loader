@@ -34,6 +34,9 @@ jobs:
       run: |
         python ai4life/filter_v0_5_models.py --input models/collection.json --output models/filtered_models.json
         
+    - name: Pull Latest Changes
+      run: |
+        git pull origin ${{ github.ref_name }} --rebase || echo "No changes to pull"
 
     - name: Configure Git
       run: |
