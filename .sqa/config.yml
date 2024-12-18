@@ -5,6 +5,7 @@ sqa_criteria:
       ai4life:
         container: testing
         commands:
+        - pip3 install --no-cache-dir -e .
         - flake8 --statistics --tee --output-file=/srv/app/flake8.log --format=pylint ai4life api tests
 
   qc_coverage:
@@ -12,6 +13,7 @@ sqa_criteria:
       ai4life:
         container: testing
         commands:
+        - pip3 install --no-cache-dir -e .
         - pytest --cov=api --cov=ai4life --cov-report=html:/srv/app/htmlcov --cov-report=term-missing tests
 
   qc_security:
@@ -19,7 +21,8 @@ sqa_criteria:
       ai4life:
         container: testing
         commands:
-        - mkdir -p {toxinidir}/bandit
+        - pip3 install --no-cache-dir -e .
+        - mkdir -p /srv/app/bandit
         - bandit -r ai4life api -x tests -o /srv/app/bandit/index.html
 
 environment:
