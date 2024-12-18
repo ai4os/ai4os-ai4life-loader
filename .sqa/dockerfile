@@ -3,10 +3,8 @@
 FROM ai4oshub/ai4os-ai4life-loader:cicd
 # What user branch to clone [!]
 ARG branch=main
-# install user app
-RUN cd /tmp && \
-    git clone -b $branch --depth 1 https://github.com/ai4os/ai4os-ai4life-loader.git app/ && \
-    cd app/ && \
-    pip3 install --no-cache-dir  -e . &&  \
-    cd .. && rm -rf app/
+# install user app as python package
+RUN git clone -b $branch --depth 1 https://github.com/ai4os/ai4os-ai4life-loader.git app/ && \
+    cd app/ && pip3 install --no-cache-dir -e . &&  \
+    cd ..
 CMD ["sleep", "infinity"]
