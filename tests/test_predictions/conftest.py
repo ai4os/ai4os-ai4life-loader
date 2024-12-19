@@ -50,15 +50,10 @@ from bioimageio.core import load_description
 from bioimageio.spec._internal.io import download
 
 import api
-import ai4life as aimodel
+from . import selected_models
 
-path = os.path.join(
-    aimodel.config.MODELS_PATH, "filtered_models.json"
-)
-with open(path, "r") as file:
-    models_data = json.load(file)
-    model_names = list(models_data.keys())
-
+ 
+model_names= selected_models.main()
 
 # @pytest.fixture(scope="module")
 def input_files(model_name):
@@ -104,7 +99,7 @@ def input_files(model_name):
 
 
 @pytest.fixture(
-    scope="module", params=["affectionate-cow \ud83d\udc1b"]
+    scope="module", params= model_names
 )
 def model_name(request):
     """Fixture to provide the model_name argument to api.predict."""
