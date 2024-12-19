@@ -39,7 +39,6 @@ number of tests generated can grow exponentially.
 """
 
 # pylint: disable=redefined-outer-name
-import json
 import os
 import numpy as np
 import pytest
@@ -52,8 +51,9 @@ from bioimageio.spec._internal.io import download
 import api
 from . import selected_models
 
- 
-model_names= selected_models.main()
+
+model_names = selected_models.main()
+
 
 # @pytest.fixture(scope="module")
 def input_files(model_name):
@@ -98,9 +98,7 @@ def input_files(model_name):
     return options
 
 
-@pytest.fixture(
-    scope="module", params= model_names
-)
+@pytest.fixture(scope="module", params=model_names)
 def model_name(request):
     """Fixture to provide the model_name argument to api.predict."""
 

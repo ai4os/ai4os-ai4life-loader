@@ -15,7 +15,7 @@ def select_models(data):
 
     for model_id, model in data.items():
         model["model_id"] = model_id
- 
+
         # Determine model category based on tags and description
         tags = set(model.get("tags", []))
 
@@ -98,5 +98,4 @@ def main():
 
 
 if __name__ == "__main__":
-    selected=main()
-
+    selected = main()
