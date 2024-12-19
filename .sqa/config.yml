@@ -20,7 +20,7 @@ sqa_criteria:
         container: testing
         commands:
         - mkdir -p ./bandit
-        - bandit -r ai4life api -x tests -o ./bandit/index.html
+        - bandit -r ai4life api -x tests -f html -o ./bandit/index.html
 
 environment:
   GIT_COMMITTER_NAME: "Fahimeh Alibabaei "

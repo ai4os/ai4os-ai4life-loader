@@ -21,6 +21,9 @@ pipeline {
     agent any
 
     environment {
+        // Remove .git from the GIT_URL link and extract REPO_NAME from GIT_URL
+        REPO_URL = "${env.GIT_URL.endsWith(".git") ? env.GIT_URL[0..-5] : env.GIT_URL}"
+        REPO_NAME = "${REPO_URL.tokenize('/')[-1]}"
         AI4OS_REGISTRY_CREDENTIALS = credentials('AIOS-registry-credentials')
         APP_DOCKERFILE = "Dockerfile"
     }
@@ -35,12 +38,10 @@ pipeline {
                         env.DOCKER_REGISTRY_ORG = env.AI4OS_REGISTRY_REPOSITORY
                         env.DOCKER_REGISTRY_CREDENTIALS = env.AI4OS_REGISTRY_CREDENTIALS
                     }
-                    // get docker image name from metadata.json
-                    meta = readJSON file: "metadata.json"
-                    image_name = meta["sources"]["docker_registry_repo"].split("/")[1]
                     // define tag based on branch
-                    image_tag = "${env.BRANCH_NAME == 'main' ? 'latest' : env.BRANCH_NAME}" 
-                    env.DOCKER_REPO = env.DOCKER_REGISTRY_ORG + "/" + image_name + ":" + image_tag
+                    image_tag = "${env.BRANCH_NAME == 'main' ? 'latest' : env.BRANCH_NAME}"
+                    // use REPO_NAME as Docker image name 
+                    env.DOCKER_REPO = env.DOCKER_REGISTRY_ORG + "/" + env.REPO_NAME + ":" + image_tag
                     env.DOCKER_REPO = env.DOCKER_REPO.toLowerCase()
                     println ("[DEBUG] Config for the Docker image build: $env.DOCKER_REPO, push to $env.DOCKER_REGISTRY")
                 }
@@ -51,11 +52,6 @@ pipeline {
                 script {
                     projectConfig = pipelineConfig()
                     buildStages(projectConfig)
-                }
-            }
-            post {
-                cleanup {
-                    cleanWs()
                 }
             }
         }
