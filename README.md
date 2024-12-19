@@ -1,4 +1,5 @@
 # ai4life
+[![Build Status](https://jenkins.services.ai4os.eu/buildStatus/icon?job=AI4OS%2Fai4os-ai4life-loader%2Fmain)](https://jenkins.services.ai4os.eu/job/AI4OS/job/ai4os-ai4life-loader/job/main/)
 
 This tool is used to support the inference of the  [AI4LIFE](https://github.com/bioimage-io/core-bioimage-io-python/tree/main/bioimageio/core) model on the marketplace. This packege contains 
 To launch it, first install the package then run [deepaas](https://github.com/ai4os/DEEPaaS):
