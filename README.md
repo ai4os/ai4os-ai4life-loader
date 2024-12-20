@@ -41,10 +41,12 @@ https://hub.docker.com/r/ai4oshub/ai4os-ai4life-loader/tags
 **Deployment Steps**
 - Navigate to the [AI4EOSC dashboard](https://dashboard.cloud.ai4eosc.eu/marketplace) marketplace
 - Locate and select the ai4os-ai4life-loader tool
-- Click on the "Deploy" button to start the deployment process
+- Click on the "Deploy" button to start the deployment proces
+
 **Configuration Form**
 - Select your desired model from the dropdown menu
 - Complete all required fields in the deployment form
+
 **Post-Deployment**
 - The system will initialize your selected model
 - Wait for the deployment process to complete and the status change to running 
