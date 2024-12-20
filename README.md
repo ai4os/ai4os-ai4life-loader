@@ -42,9 +42,11 @@ https://hub.docker.com/r/ai4oshub/ai4os-ai4life-loader/tags
 - Navigate to the [AI4EOSC dashboard](https://dashboard.cloud.ai4eosc.eu/marketplace) marketplace
 - Locate and select the ai4os-ai4life-loader tool
 - Click on the "Deploy" button to start the deployment process
+  
 **Configuration Form**
 - Select your desired model from the dropdown menu
 - Complete all required fields in the deployment form
+  
 **Post-Deployment**
 - The system will initialize your selected model
 - Wait for the deployment process to complete and the status change to running 
@@ -108,9 +110,9 @@ https://hub.docker.com/r/ai4oshub/ai4os-ai4life-loader/tags
 ```
 
 
+  **References**:
+  - BioImage.Io github repository: https://github.com/bioimage-io/core-bioimage-io-python
+  - Documentation: https://bioimage-io.github.io/core-bioimage-io-python/bioimageio/core 
 
-## Documentation
-
-TODO: Add instructions on how to build documentation
 
  
