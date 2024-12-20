@@ -1,23 +1,56 @@
 # ai4life
 [![Build Status](https://jenkins.services.ai4os.eu/buildStatus/icon?job=AI4OS%2Fai4os-ai4life-loader%2Fmain)](https://jenkins.services.ai4os.eu/job/AI4OS/job/ai4os-ai4life-loader/job/main/)
 
-This tool is used to support the inference of the  [AI4LIFE](https://github.com/bioimage-io/core-bioimage-io-python/tree/main/bioimageio/core) model on the marketplace. This packege contains 
-To launch it, first install the package then run [deepaas](https://github.com/ai4os/DEEPaaS):
+The [BioImage Model Zoo](https://bioimage.io/#/) is a community-driven platform that 
+  provides standardized deep learning models for bioimage analysis.
+  
+  This module integrates models from the **BioImage.IO** package into the **AI4EOSC** Marketplace
+  dashboard, specifically those using PyTorch weights and following the v0.5 format.
+  The module allows users to seamlessly explore, deploy, and utilize these models within 
+  the AI4EOSC ecosystem, providing a user-friendly interface for advanced bioimage analysis.
+  
+**Key Features** 
+  - Model Discovery: Automatically fetch and list models available in BioImage.IO that meet the criteria (PyTorch weights, v0.5 format).
 
- 
+  - Metadata Visualization: Display essential information about each model,
+   such as input/output specifications, authors, license details, and documentation.
+
+  - Seamless Deployment: Enable one-click deployment of models to AI4EOSC compute resources.
+
+  - Model Preview: Provide an interactive preview to test models on sample data directly in the dashboard.
+
+**Supported Models**
+- PyTorch Models: Only models with PyTorch weights are supported to ensure compatibility with our deployment backend.
+- BioImage.IO v0.5 Specification: Models must adhere to the v0.5 specification, ensuring a standardized format for inputs, outputs, and metadata.
+
 
 To launch it, first install the package then run [deepaas](https://github.com/ai4os/DEEPaaS):
 
 > ![warning](https://img.shields.io/badge/Warning-red.svg) **Warning**: If you are using a virtual environment, make sure you are working with the last version of pip before installing the package. Use `pip install --upgrade pip` to upgrade pip.
 
 ```bash
-git clone https://github.com/ai4os-hub/ai4life
+git clone https://github.com/ai4os/ai4os-ai4life-loader
 cd ai4life
 pip install -e .
 deepaas-run --listen-ip 0.0.0.0
 ```
+The associated Docker image(s) for this module can be found in:
+https://hub.docker.com/r/ai4oshub/ai4os-ai4life-loader/tags 
 
-## Project structure
+##  AI4OS-AI4Life-Loader Deployment Guide
+**Deployment Steps**
+- Navigate to the [AI4EOSC dashboard](https://dashboard.cloud.ai4eosc.eu/marketplace) marketplace
+- Locate and select the ai4os-ai4life-loader tool
+- Click on the "Deploy" button to start the deployment process
+**Configuration Form**
+- Select your desired model from the dropdown menu
+- Complete all required fields in the deployment form
+**Post-Deployment**
+- The system will initialize your selected model
+- Wait for the deployment process to complete and the status change to running 
+- Access your deployed model through the provided endpoint 
+
+ ## Project structure
 
 ```
 ├── Jenkinsfile             <- Describes basic Jenkins CI/CD pipeline
@@ -74,76 +107,10 @@ deepaas-run --listen-ip 0.0.0.0
 └── tox.ini                 <- tox file with settings for running tox; see tox.testrun.org
 ```
 
-## Integrating your model with DEEPaaS
 
-After executing the cookiecutter template, you will have a folder structure
-ready to be integrated with DEEPaaS. The you can decide between starting the
-project from scratch or integrating your existing model with DEEPaaS.
-
-The folder `ai4life` is designed to contain the source
-code of your model. You can add your model files there or replace it by another
-repository by using [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
-The only requirement is that the folder `ai4life` contains
-an `__init__.py` file conserving the already defined methods. You can edit the
-template functions already defined inside or import your own functions from
-another file. See the [README.md](./ai4life/README.md)
-in the `ai4life` folder for more information.
-
-Those methods, are used by the subpackage `api` to define the API interface.
-See the project structure section for more information about the `api` folder.
-You are allowed to customize your model API and CLI arguments and responses by
-editing `api.schemas` and`api.responses` modules. See documentation inside those
-files for more information.
-
-Sometimes you only need to add an interface to an existing model. In case that
-the model is already published in a public repository, you can add it as a
-requirement into the `requirements.txt` file. If the model is not published
-yet, you can add it as a submodule inside or outside the project and install
-it by using `pip install -e <path-to-model>`. In both cases, you will need to
-interface the model with the `api` subpackage with the required methods. See
-the [README.md](./ai4life/README.md)
 
 ## Documentation
 
 TODO: Add instructions on how to build documentation
 
-## Testing
-
-Testing process is automated by tox library. You can check the environments
-configured to be tested by running `tox --listenvs`. If you are missing one
-of the python environments configured to be tested (e.g. py310, py39) and
-you are using `conda` for managing your virtual environments, consider using
-`tox-conda` to automatically manage all python installation on your testing
-virtual environment.
-
-Tests are implemented following [pytest](https://docs.pytest.org) framework.
-Fixtures and parametrization are placed inside `conftest.py` files meanwhile
-assertion tests are located on `test_*.py` files. As developer, you can edit
-any of the existing files or add new ones as needed. However, the project is
-designed so you only have to edit the files inside:
-
-    - tests/data: To add your testing data (small datasets, etc.).
-    - tests/models: To add your testing models (small models, etc.).
-    - tests/test_metadata: To fix and test your metadata requirements.
-    - tests/test_predictions: To fix and test your predictions requirements.
-    - tests/test_training: To fix and test your training requirements.
-
-The folder `tests/data` should contain minimalistic but representative
-datasets to be used for testing. In a similar way, `tests/models` should
-contain simple models for testing that can fit on your code repository. This
-is important to avoid large files on your repository and to speed up the
-testing process.
-
-Running the tests with tox:
-
-```bash
-$ pip install -r requirements-dev.txt
-$ tox
-```
-
-Running the tests with pytest:
-
-```bash
-$ pip install -r requirements-test.txt
-$ python -m pytest --numprocesses=auto --dist=loadscope tests
-```
+ 
