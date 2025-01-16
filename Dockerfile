@@ -20,7 +20,7 @@ LABEL version='0.0.1'
 # Support for inference of the AI4LIFE model on the marketplace.
 
 # What user branch to clone [!]
-ARG branch=main
+ARG branch=dev
 
 # Install Ubuntu packages
 # - gcc is needed in Pytorch images because deepaas installation might break otherwise (see docs)
@@ -72,7 +72,8 @@ ENV RCLONE_CONFIG=/srv/.rclone/rclone.conf
 ENV MODEL_NAME="affectionate-cow"
  
 # Install user app #--no-cache-dir
-RUN git clone -b $branch --depth 1 https://github.com/ai4os/ai4os-ai4life-loader.git && \
+RUN git clone -b $branch --depth 1 https://codebase.helmholtz.cloud/m-team/ai/ai4-ai4life.git && \
+ #https://github.com/ai4os/ai4os-ai4life-loader.git && \
     cd ai4os-ai4life-loader && \
     pip3 install --no-cache-dir  -e . && \
    #curl -o ./models/all_versions.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/all_versions.json && \
@@ -82,8 +83,9 @@ RUN git clone -b $branch --depth 1 https://github.com/ai4os/ai4os-ai4life-loader
 RUN if [ "$MODEL_NAME" = "affectionate-cow" ]; then \
     pip3 install git+https://github.com/m-team-kit/uSplit.git@main \
     ; fi
-EXPOSE 5000 6006 8888
+EXPOSE 5000 6006 8888 80 
 
 # Launch deepaas
 ENTRYPOINT [ "deep-start" ]
 CMD ["--deepaas"]
+ENTRYPOINT ["python3", "./UI/launch.py", "--ui_port", "80"]

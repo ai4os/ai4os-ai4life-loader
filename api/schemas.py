@@ -18,37 +18,52 @@ hide_input = utils.hide_input()
 
 
 class BoxPromptField(fields.Field):
-    def __init__(self, *args, **kwargs):
+    """
+    Custom field for validating box prompts with shape (1, number_of_boxes, 4).
+    Each box should be a list of 4 integers representing
+      [x_min, y_min, x_max, y_max].
+    """
 
+    def __init__(self, *args, **kwargs):
         self.metadata = kwargs.get("metadata", {})
         super().__init__(*args, **kwargs)
 
     def _deserialize(self, value, attr, data, **kwargs):
         try:
-            return json.loads(value)
+            # Convert JSON string to a Python list
+            value = (
+                json.loads(value) if isinstance(value, str) else value
+            )
         except json.JSONDecodeError as err:
             raise ValidationError(f"Invalid JSON: `{err}`")
 
+        self._validate(value)  # Validate the structure
+        return value
+
     def _validate(self, value):
-        if not isinstance(value, list):
+        # Check that the input is a list with one batch dimension
+        if not isinstance(value, list) or len(value) != 1:
             raise ValidationError(
-                "`prompt` must be a list of dictionaries."
+                "The input must be a list with one batch dimension."
             )
-        for item in value:
-            if not isinstance(item, list):
+
+        # Validate the inner list of boxes
+        boxes = value[0]
+        if not isinstance(boxes, list):
+            raise ValidationError(
+                "The inner element must be a list of boxes."
+            )
+
+        for box in boxes:
+            if not isinstance(box, list) or len(box) != 4:
                 raise ValidationError(
-                    "Each item in the list must be a list."
+                    "Each box must be a list of 4 integers representing"
+                    " [x_min, y_min, x_max, y_max]."
                 )
-            if len(item) != 4:
-                raise ValidationError(
-                    "Each item in the list should be a list of"
-                    " coordinate of the bounding box with "
-                    "[x_min, y_min, x_max, y_max]."
-                )
-            for val in item:
-                if not isinstance(val, int):
+            for coordinate in box:
+                if not isinstance(coordinate, int):
                     raise ValidationError(
-                        "Value of bounding box coordinate must be an integer."
+                        "Each coordinate must be an integer."
                     )
 
 
@@ -105,10 +120,9 @@ class PointLabelsField(fields.Field):
     """
 
     def _serialize(self, value, attr, obj, **kwargs):
-        # Serialize field details
         return {
             "type": "int64",
-            "shape": [1, 1, 1],  # Minimum shape required
+            "shape": [1, 1, None],  # Allow variable number of points
             "description": "Point labels with [batch, object, point]"
             " dimensions",
             "data_description": {
@@ -119,17 +133,43 @@ class PointLabelsField(fields.Field):
             },
         }
 
-    def _deserialize(self, value, attr, data, **kwargs):
-        # Enforce the expected shape and type during deserialization
-        if not isinstance(value, list) or len(value) != 3:
+    def _deserialize(self, value, attr=None, data=None, **kwargs):
+        # Step 1: Convert string input to a list if needed
+        if isinstance(value, str):
+            try:
+                value = json.loads(
+                    value
+                )  # Convert from string to list
+            except json.JSONDecodeError:
+                raise ValidationError(
+                    "Point labels must be a valid JSON list."
+                )
+
+        # Step 2: Ensure it's a list
+        if not isinstance(value, list):
             raise ValidationError(
                 "Point labels must be a list with [batch, object, point]"
                 " dimensions."
             )
-        if value != [1, 1, 1]:
-            raise ValidationError(
-                "Point labels shape must be exactly [1, 1, 1]."
-            )
+
+        # Step 3: Validate shape [1, num_box, Num_points]
+        # Step 3: Validate each batch, object, and point
+        for batch in value:
+            if not isinstance(batch, list):
+                raise ValidationError(
+                    "Each batch must be a list of objects."
+                )
+            for obj in batch:
+                if not isinstance(obj, list):
+                    raise ValidationError(
+                        "Each object must be a list of points."
+                    )
+                for point in obj:
+                    if not isinstance(point, (int, float)):
+                        raise ValidationError(
+                            "Each point label must be an integer or float."
+                        )
+
         return value
 
 
