@@ -10,7 +10,6 @@ from io import BytesIO
 import gradio_image_prompter as gr_ext
 
 
-
 gr.close_all()
 GRADIO_SERVER = "0.0.0.0"
 
@@ -21,9 +20,7 @@ GRADIO_SERVER = "0.0.0.0"
     default="http://0.0.0.0:5000/",
     help="URL of the DEEPaaS API",
 )
-@click.option(
-    "--ui_port", default=80, help="URL of the deployed UI"
-)
+@click.option("--ui_port", default=80, help="URL of the deployed UI")
 def main(api_url, ui_port):
     """
     This module contains several functions that make calls to the deep API.
@@ -32,7 +29,7 @@ def main(api_url, ui_port):
         ui_port: port for GUI
 
     """
-    interfaces=[]
+    interfaces = []
     sess = requests.Session()
     r = sess.get(urljoin(api_url, "swagger.json"))
     specs = r.json()
@@ -51,7 +48,7 @@ def main(api_url, ui_port):
 
     api_inp = specs["paths"][p]["post"]["parameters"]
     api_out = specs["paths"][p]["post"]["produces"]
-    mimes = specs['paths'][p]['post']['produces']
+    mimes = specs["paths"][p]["post"]["produces"]
     model_name = next(
         (
             (
@@ -65,8 +62,6 @@ def main(api_url, ui_port):
         ),
         None,
     )
-
-
 
     r = sess.get(urljoin(api_url, f"{Path(p).parent}"))
     print(
@@ -134,17 +129,16 @@ def main(api_url, ui_port):
           rc: A JSON file containing a list of predictions for each input file.
         """
 
-        
         buffer = make_request(args, mime)
-        if mime.startswith('image/'):
+        if mime.startswith("image/"):
             image = Image.open(BytesIO(buffer))
             return image
         else:
-             return buffer
-    
+            return buffer
+
     for mime in mimes:
-        if mime == '*/*':
-                 continue
+        if mime == "*/*":
+            continue
         print(f"Processing MIME: {mime}")
         with gr.Blocks() as interface:
             gr_inp = []
@@ -193,7 +187,12 @@ def main(api_url, ui_port):
                 )
 
                 gr_inp.extend(
-                    [npy_upload, input_image, mask_prompts, embeddings]
+                    [
+                        npy_upload,
+                        input_image,
+                        mask_prompts,
+                        embeddings,
+                    ]
                 )
 
                 # Move the event binding here
@@ -202,12 +201,14 @@ def main(api_url, ui_port):
                     inputs=npy_upload,
                     outputs=input_image,
                 )
-            
-            if mime == 'application/json':
-                    output = gr.JSON()
-            elif mime.startswith('image/'):
-                #gr_out = gr.Image(type='filepath')    
-                    output = gr.Image(type='filepath', label="Image with segmentation")
+
+            if mime == "application/json":
+                output = gr.JSON()
+            elif mime.startswith("image/"):
+                # gr_out = gr.Image(type='filepath')
+                output = gr.Image(
+                    type="filepath", label="Image with segmentation"
+                )
             examples = utils.get_examples(model_name, api_inp)
 
             project_description = meta.get("model_info", {}).get(
@@ -216,29 +217,32 @@ def main(api_url, ui_port):
 
             # Define the Gradio interface
             gr.Interface(
-                fn=lambda *args, mime=mime: api_call(*args, mime=mime),
+                fn=lambda *args, mime=mime: api_call(
+                    *args, mime=mime
+                ),
                 inputs=gr_inp,
                 outputs=output,
                 title=model_name,
                 description=project_description,
                 examples=[examples],
-                article= utils.generate_footer(meta),
+                article=utils.generate_footer(meta),
                 theme=gr.themes.Default(
-                primary_hue=gr.themes.colors.cyan,
-                    ),
+                    primary_hue=gr.themes.colors.cyan,
+                ),
             )
             interfaces.append(interface)
     if len(interfaces) > 1:
         demo = gr.TabbedInterface(
             interface_list=interfaces,
-            tab_names=[mime for mime in mimes if mime != '*/*']
+            tab_names=[mime for mime in mimes if mime != "*/*"],
         )
     demo.launch(
-            share=False,
-            show_error=True,
-            server_name=GRADIO_SERVER,
-            server_port=ui_port,
-        )
+        share=False,
+        show_error=True,
+        server_name=GRADIO_SERVER,
+        server_port=ui_port,
+    )
+
 
 if __name__ == "__main__":
 
