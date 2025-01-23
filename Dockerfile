@@ -73,8 +73,7 @@ ENV MODEL_NAME="affectionate-cow"
  
 # Install user app #--no-cache-dir
 RUN git clone -b $branch --depth 1 https://codebase.helmholtz.cloud/m-team/ai/ai4-ai4life.git && \
- #https://github.com/ai4os/ai4os-ai4life-loader.git && \
-    cd ai4os-ai4life-loader && \
+    cd ai4-ai4life && \
     pip3 install --no-cache-dir  -e . && \
    #curl -o ./models/all_versions.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/all_versions.json && \
     curl -o ./models/collection.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/collection.json  
@@ -83,9 +82,7 @@ RUN git clone -b $branch --depth 1 https://codebase.helmholtz.cloud/m-team/ai/ai
 RUN if [ "$MODEL_NAME" = "affectionate-cow" ]; then \
     pip3 install git+https://github.com/m-team-kit/uSplit.git@main \
     ; fi
-EXPOSE 5000 6006 8888 80 
-
+EXPOSE 5000 6006 8888 80
+RUN chmod +x ai4-ai4life/UI/entrypoint.sh
 # Launch deepaas
-ENTRYPOINT [ "deep-start" ]
-CMD ["--deepaas"]
-ENTRYPOINT ["python3", "./UI/launch.py", "--ui_port", "80"]
+ENTRYPOINT ["ai4-ai4life/UI/entrypoint.sh"]
