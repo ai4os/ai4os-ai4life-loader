@@ -60,6 +60,7 @@ pipeline {
                 anyOf {
                     branch 'main'
                     branch 'release/*'
+                    branch 'dev'
                     buildingTag()
                 }
             }
