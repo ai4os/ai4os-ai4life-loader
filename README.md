@@ -26,6 +26,7 @@ The [BioImage Model Zoo](https://bioimage.io/#/) is a community-driven platform 
 
 To launch it, first install the package then run [deepaas](https://github.com/ai4os/DEEPaaS):
 
+
 > ![warning](https://img.shields.io/badge/Warning-red.svg) **Warning**: If you are using a virtual environment, make sure you are working with the last version of pip before installing the package. Use `pip install --upgrade pip` to upgrade pip.
 
 ```bash
