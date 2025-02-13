@@ -9,7 +9,9 @@ until curl --output /dev/null --silent --head --fail http://0.0.0.0:5000; do
     sleep 2
 done
 # Get the absolute script directory
-SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
+SCRIPT_DIR=$(readlink -f "$(dirname "$0")")
+# Remove the trailing /UI if present
+SCRIPT_DIR=${SCRIPT_DIR%/UI}
 echo "Script directory is: $SCRIPT_DIR"
 
 
