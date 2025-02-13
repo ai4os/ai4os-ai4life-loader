@@ -73,7 +73,7 @@ ENV MODEL_NAME="affectionate-cow"
  
 # Install user app #--no-cache-dir
 RUN git clone -b $branch --depth 1 https://github.com/ai4os/ai4os-ai4life-loader.git && \
-    cd ai4-ai4life && \
+    cd ai4os-ai4life-loader && \
     pip3 install --no-cache-dir  -e . && \
    #curl -o ./models/all_versions.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/all_versions.json && \
     curl -o ./models/collection.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/collection.json  
