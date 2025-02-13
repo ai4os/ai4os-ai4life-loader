@@ -83,6 +83,6 @@ RUN if [ "$MODEL_NAME" = "affectionate-cow" ]; then \
     pip3 install git+https://github.com/m-team-kit/uSplit.git@main \
     ; fi
 EXPOSE 5000 6006 8888 80
-RUN chmod +x ai4-ai4life/UI/entrypoint.sh
+RUN chmod +x ai4os-ai4life-loader/UI/entrypoint.sh
 # Launch deepaas
-ENTRYPOINT ["ai4-ai4life/UI/entrypoint.sh"]
+ENTRYPOINT ["ai4os-ai4life-loader/UI/entrypoint.sh"]
