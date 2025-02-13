@@ -2,8 +2,7 @@
 # Start DeepAAS in background
 deepaas-run --listen-ip 0.0.0.0 --listen-port 5000 &
 
-# Wait until DeepAAS is ready
-deepaas-run --listen-ip 0.0.0.0 --listen-port 5000 &
+ 
 # Wait for DeepAAS to start
 sleep 40
 # Launch Gradio UI
