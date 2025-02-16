@@ -2,6 +2,8 @@
 deepaas~=2.1.0
 webargs~=5.5.2
 flaat~=1.1.1
+
+#Module requirements
 bioimageio.core[pytorch]==0.7.0
 matplotlib~=3.9.0
 segment-anything
@@ -19,9 +21,15 @@ scikit-image~=0.22.0
 scikit-learn~=1.5.0
 tifffile~=2024.5.22
 wandb
- 
 uSplit @ git+https://github.com/m-team-kit/uSplit.git@main
- 
+
+#UI requirements
+click>=7.1.2
+requests>=2.25.1
+gradio>= 3.23.0
+pathlib
+gradio_image_prompter
+
 # External requirements for the model and API
 fPDF2~=2.7.5
 
