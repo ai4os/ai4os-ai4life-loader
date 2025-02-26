@@ -193,11 +193,11 @@ def _copy_file_to_tmpdir(file, tmpdir, input_output_info):
     axes_ids = (axis.id for axis in axes_dim)
     missing_axes = tuple(a for a in axes_ids if a not in array_dim)
     print(f"the missing axes are {missing_axes}")
+    info, position, num_ch = check_channel_position(
+        input_output_info["inputs"]
+    )
     if image_type:
 
-        info, position, num_ch = check_channel_position(
-            input_output_info["inputs"]
-        )
         if num_ch == 1:
             array = imread(file_path, mode="L")
         elif info:
