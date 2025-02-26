@@ -20,7 +20,7 @@ LABEL version='0.0.1'
 # Support for inference of the AI4LIFE model on the marketplace.
 
 # What user branch to clone [!]
-ARG branch=main
+ARG branch=dev
 
 # Install Ubuntu packages
 # - gcc is needed in Pytorch images because deepaas installation might break otherwise (see docs)
@@ -82,8 +82,7 @@ RUN git clone -b $branch --depth 1 https://github.com/ai4os/ai4os-ai4life-loader
 RUN if [ "$MODEL_NAME" = "affectionate-cow" ]; then \
     pip3 install git+https://github.com/m-team-kit/uSplit.git@main \
     ; fi
-EXPOSE 5000 6006 8888
-
+EXPOSE 5000 6006 8888 80
+RUN chmod +x ai4os-ai4life-loader/UI/entrypoint.sh
 # Launch deepaas
-ENTRYPOINT [ "deep-start" ]
-CMD ["--deepaas"]
+ENTRYPOINT ["ai4os-ai4life-loader/UI/entrypoint.sh"]

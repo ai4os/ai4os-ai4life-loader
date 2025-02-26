@@ -104,6 +104,7 @@ def predict(model_name, **options):
                     "mask_prompts",
                     "embeddings",
                 ] and options.get(option):
+
                     input_data[id], _ = utils._copy_file_to_tmpdir(
                         options[option], tmpdir, input_output_info
                     )
@@ -111,7 +112,51 @@ def predict(model_name, **options):
 
                 elif options.get(option) is not None:
                     input_data[id] = np.array(options[option])
+                    print(
+                        f"the shape of array {id} is {input_data[id].shape}"
+                    )
 
+                if (
+                    "box_prompts" in input_data
+                    and "mask_prompts" in input_data
+                ):
+                    # Example input shapes
+                    box_prompts = input_data[
+                        "box_prompts"
+                    ]  # Shape: (1, num_boxes, 4)
+                    mask_prompts = input_data[
+                        "mask_prompts"
+                    ]  # Shape: (1, num_masks, height, width)
+
+                    # Check if padding is needed
+                    if mask_prompts.shape[1] < box_prompts.shape[1]:
+                        num_boxes = box_prompts.shape[1]
+                        num_masks = mask_prompts.shape[1]
+
+                        # Calculate how many masks to pad
+                        pad_size = num_boxes - num_masks
+
+                        # Create a zero array to pad with
+                        padding = np.zeros(
+                            (
+                                mask_prompts.shape[0],
+                                pad_size,
+                                mask_prompts.shape[2],
+                                mask_prompts.shape[3],
+                                mask_prompts.shape[4],
+                            )
+                        )
+                        print("the pading shape is ", padding.shape)
+                        # Concatenate the zero array to mask_prompts
+                        print(
+                            "the mask shape is ", mask_prompts.shape
+                        )
+                        mask_prompts = np.concatenate(
+                            (mask_prompts, padding), axis=1
+                        )
+
+                    # Update the input data
+                    input_data["mask_prompts"] = mask_prompts
             sample = create_sample_for_model(
                 model, inputs=input_data, sample_id="sample_"
             )
