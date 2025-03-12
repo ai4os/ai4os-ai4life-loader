@@ -241,6 +241,7 @@ def main(api_url, ui_port):
         show_error=True,
         server_name=GRADIO_SERVER,
         server_port=ui_port,
+         favicon_path='./favicon.ico'
     )
 
 
