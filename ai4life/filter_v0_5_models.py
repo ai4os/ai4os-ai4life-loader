@@ -60,7 +60,7 @@ def filter_and_load_models(
 
                         model_nickname = model_entry["nickname_icon"]
 
-                        key = model_entry["name"] + " " + model_nickname
+                        key = model_entry["id"] + " " + model_nickname
                         models_v0_5[key] = model_entry
                         print(
                             f"The model named {key} from AI4Life is supported"
