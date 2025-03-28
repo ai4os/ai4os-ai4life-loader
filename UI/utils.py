@@ -451,7 +451,7 @@ def generate_footer(metadata):
     logo = f"""
         <a href="{homepages[namespace]}">
           <div align="center">
-            <img src="https://raw.githubusercontent.com/ai4os/deepaas_ui/refs/heads/master/_static/images/favicon.ico" width="200" />
+            <img src="https://raw.githubusercontent.com/ai4os/deepaas_ui/refs/heads/master/_static/images/logo-ai4eosc.png" width="200" />
           </div>
         </a>
     """
