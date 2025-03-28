@@ -440,18 +440,16 @@ def generate_footer(metadata):
         description = metadata.get("summary", "")
 
     # Get the appropriate logo (default is "ai4eosc")
-    namespace = os.getenv("NOMAD_NAMESPACE", "ai4eosc")
-    namespace = (
-        namespace if namespace in ["imagine"] else "ai4eosc"
-    )  # other namespace don't have logo
+    namespace = os.getenv('NOMAD_NAMESPACE', 'ai4eosc')
+    namespace = namespace if namespace in ['imagine'] else 'ai4eosc'  # other namespace don't have logo
     homepages = {
-        "ai4eosc": "https://ai4eosc.eu/",
-        "imagine": "https://www.imagine-ai.eu/",
+        'ai4eosc': 'https://ai4eosc.eu/',
+        'imagine': 'https://www.imagine-ai.eu/',
     }
     logo = f"""
         <a href="{homepages[namespace]}">
           <div align="center">
-            <img src="https://raw.githubusercontent.com/ai4os/deepaas_ui/refs/heads/master/_static/images/logo-ai4eosc.png" width="200" />
+            <img src="https://raw.githubusercontent.com/ai4os/deepaas_ui/master/_static/images/logo-{namespace}.png" width="200" />
           </div>
         </a>
     """
