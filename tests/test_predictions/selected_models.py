@@ -84,8 +84,7 @@ def select_models(data):
 
     return selected_models
 
-
-# Example usage:
+ 
 def main():
     path = os.path.join(
         aimodel.config.MODELS_PATH, "filtered_models.json"
