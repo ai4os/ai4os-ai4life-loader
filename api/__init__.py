@@ -81,8 +81,9 @@ def predict(model_name, accept="application/json", **options):
         logger.info("Using model %s for predictions", model_name)
         # logger.debug("Loading data from input_file: %s", input_file.filename)
         logger.debug("Predict with options: %s", options)
+        model_id=utils.get_model_id_by_name(model_name)
         result, output_ids, input_data = aimodel.predict(
-            model_name, **options
+            model_id, **options
         )
         logger.debug("Predict result: %s", result)
         logger.info("Returning content_type for: %s", accept)
