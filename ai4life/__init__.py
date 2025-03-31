@@ -41,7 +41,7 @@ def warm(**kwargs):
 
 def predict(model_name, **options):
     """Main/public method to perform prediction"""
-    #model_name, icon = model_name.split(" ", 1)
+    # model_name, icon = model_name.split(" ", 1)
     model = load_description(model_name)
     input_output_info = utils.get_model_io_info(model)
     input_ids = list(get_member_ids(model.inputs))
