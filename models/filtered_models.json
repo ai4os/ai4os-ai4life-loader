@@ -21,10 +21,11 @@
         "id": "10.5281/zenodo.5764892",
         "license": "CC-BY-4.0",
         "links": [
+            "deepimagej/deepimagej",
+            "biapy/biapy",
             "imjoy/BioImageIO-Packager",
             "ilastik/ilastik",
-            "ilastik/stardist_dsb_training_data",
-            "deepimagej/deepimagej"
+            "ilastik/stardist_dsb_training_data"
         ],
         "name": "NucleiSegmentationBoundaryModel",
         "nickname_icon": "\ud83e\udd88",
@@ -32,13 +33,15 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/affable-shark/1.2/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/affable-shark/1.2/files",
         "tags": [
-            "bioimageio.core-compatible",
-            "bioimageio.core_0.8.0-compatible",
             "fluorescence-light-microscopy",
-            "unet",
+            "biapy_3.5.13-compatible",
             "2d",
+            "nuclei",
             "instance-segmentation",
-            "nuclei"
+            "unet",
+            "biapy-compatible",
+            "bioimageio.core-compatible",
+            "bioimageio.core_0.8.0-compatible"
         ],
         "training_data": {
             "id": "ilastik/stradist_dsb_training_data"
@@ -70,37 +73,38 @@
         "id": "emotional-cricket",
         "license": "MIT",
         "links": [
+            "biapy/biapy",
             "imjoy/BioImageIO-Packager",
-            "ilastik/ilastik",
-            "biapy/biapy"
+            "ilastik/ilastik"
         ],
         "name": "3D UNet Arabidopsis Apical Stem Cells",
         "nickname_icon": "\ud83e\udd97",
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/emotional-cricket/1.1/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/emotional-cricket/1.1/files",
         "tags": [
+            "biapy_3.5.5-compatible",
+            "confocal-microscopy",
+            "biapy_3.5.11-compatible",
+            "biapy-compatible",
             "biapy_3.5.12-compatible",
             "biapy_3.5.7-compatible",
-            "biapy_3.5.3-compatible",
-            "biapy_3.5.5-compatible",
+            "nuclei-segmentation",
             "plantseg",
             "semantic-segmentation",
-            "biapy_3.5.10-compatible",
-            "plant",
+            "biapy_3.5.13-compatible",
+            "biapy_3.5.9-compatible",
             "unet",
             "biapy_3.5.6-compatible",
-            "biapy_3.5.4-compatible",
-            "ovules",
-            "arabidopsis",
-            "ilastik",
-            "biapy_3.5.11-compatible",
-            "confocal-microscopy",
-            "pytorch",
-            "nuclei-segmentation",
+            "plant",
+            "biapy_3.5.3-compatible",
             "biapy_3.5.8-compatible",
+            "ovules",
+            "biapy_3.5.4-compatible",
+            "biapy_3.5.10-compatible",
             "3d",
-            "biapy-compatible",
-            "biapy_3.5.9-compatible"
+            "ilastik",
+            "pytorch",
+            "arabidopsis"
         ],
         "type": "model"
     },
@@ -135,26 +139,27 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/ambitious-sloth/1.2/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/ambitious-sloth/1.2/files",
         "tags": [
-            "biapy_3.5.12-compatible",
-            "nuclei",
-            "biapy_3.5.7-compatible",
-            "biapy_3.5.3-compatible",
-            "biapy_3.5.5-compatible",
-            "bioimageio.core_0.7.0-compatible",
-            "biapy_3.5.10-compatible",
-            "light-field-microscopy",
-            "biapy_3.5.6-compatible",
-            "biapy_3.5.4-compatible",
-            "bioimageio.core_0.6.9-compatible",
-            "hylfm",
-            "biapy_3.5.11-compatible",
-            "bioimageio.core-compatible",
-            "pytorch",
-            "image-reconstruction",
             "fluorescence-light-microscopy",
-            "biapy_3.5.8-compatible",
+            "biapy_3.5.5-compatible",
+            "biapy_3.5.11-compatible",
+            "bioimageio.core_0.7.0-compatible",
             "biapy-compatible",
-            "biapy_3.5.9-compatible"
+            "light-field-microscopy",
+            "biapy_3.5.7-compatible",
+            "biapy_3.5.12-compatible",
+            "bioimageio.core_0.6.9-compatible",
+            "biapy_3.5.13-compatible",
+            "nuclei",
+            "biapy_3.5.9-compatible",
+            "biapy_3.5.6-compatible",
+            "hylfm",
+            "biapy_3.5.3-compatible",
+            "biapy_3.5.8-compatible",
+            "biapy_3.5.4-compatible",
+            "biapy_3.5.10-compatible",
+            "image-reconstruction",
+            "pytorch",
+            "bioimageio.core-compatible"
         ],
         "training_data": {
             "id": "10.5281/zenodo.7612115"
@@ -184,23 +189,26 @@
         "license": "BSD-3-Clause",
         "links": [
             "https://careamics.github.io/latest/",
-            "https://github.com/CAREamics/careamics"
+            "https://github.com/CAREamics/careamics",
+            "biapy/biapy"
         ],
         "name": "SEM_N2V2",
         "nickname_icon": "\ud83e\udd8f",
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/wild-rhino/0.1.1/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/wild-rhino/0.1.1/files",
         "tags": [
-            "denoising",
-            "Noise2Void",
-            "bioimageio.core-compatible",
-            "bioimageio.core_0.7.0-compatible",
-            "pytorch",
-            "2D",
-            "UNet",
             "restoration",
             "CAREamics",
-            "N2V2"
+            "2D",
+            "biapy_3.5.13-compatible",
+            "Noise2Void",
+            "bioimageio.core_0.7.0-compatible",
+            "biapy-compatible",
+            "pytorch",
+            "denoising",
+            "N2V2",
+            "UNet",
+            "bioimageio.core-compatible"
         ],
         "type": "model"
     },
@@ -232,18 +240,19 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/happy-honeybee/0.1.0/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/happy-honeybee/0.1.0/files",
         "tags": [
-            "biapy_3.5.12-compatible",
-            "biapy_3.5.11-compatible",
-            "bioimageio.core-compatible",
-            "instance-segmentation",
             "biapy_3.5.10-compatible",
             "fluorescence",
-            "pytorch",
-            "unet",
-            "bioimageio.core_0.7.0-compatible",
+            "biapy_3.5.13-compatible",
             "3d",
+            "instance-segmentation",
+            "biapy_3.5.11-compatible",
+            "bioimageio.core_0.7.0-compatible",
+            "unet",
             "biapy-compatible",
+            "pytorch",
             "biapy",
+            "biapy_3.5.12-compatible",
+            "bioimageio.core-compatible",
             "cyst"
         ],
         "training_data": {
@@ -279,18 +288,19 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/idealistic-turtle/0.1.0/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/idealistic-turtle/0.1.0/files",
         "tags": [
-            "biapy_3.5.12-compatible",
-            "biapy_3.5.11-compatible",
-            "bioimageio.core-compatible",
-            "instance-segmentation",
             "biapy_3.5.10-compatible",
             "fluorescence",
-            "pytorch",
-            "bioimageio.core_0.7.0-compatible",
-            "seunet",
+            "biapy_3.5.13-compatible",
             "3d",
+            "instance-segmentation",
+            "biapy_3.5.11-compatible",
+            "bioimageio.core_0.7.0-compatible",
             "biapy-compatible",
+            "pytorch",
+            "seunet",
             "biapy",
+            "biapy_3.5.12-compatible",
+            "bioimageio.core-compatible",
             "cyst"
         ],
         "training_data": {
@@ -326,18 +336,19 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/intelligent-lion/0.1.0/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/intelligent-lion/0.1.0/files",
         "tags": [
-            "biapy_3.5.12-compatible",
-            "biapy_3.5.11-compatible",
-            "resunet++",
-            "bioimageio.core-compatible",
-            "instance-segmentation",
             "biapy_3.5.10-compatible",
             "fluorescence",
-            "pytorch",
-            "bioimageio.core_0.7.0-compatible",
+            "biapy_3.5.13-compatible",
             "3d",
+            "instance-segmentation",
+            "biapy_3.5.11-compatible",
+            "bioimageio.core_0.7.0-compatible",
             "biapy-compatible",
+            "pytorch",
+            "resunet++",
             "biapy",
+            "biapy_3.5.12-compatible",
+            "bioimageio.core-compatible",
             "cyst"
         ],
         "training_data": {
@@ -373,18 +384,19 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/merry-water-buffalo/0.1.0/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/merry-water-buffalo/0.1.0/files",
         "tags": [
-            "biapy_3.5.12-compatible",
-            "biapy_3.5.11-compatible",
-            "bioimageio.core-compatible",
-            "instance-segmentation",
             "biapy_3.5.10-compatible",
             "fluorescence",
-            "pytorch",
-            "bioimageio.core_0.7.0-compatible",
-            "resunet",
+            "biapy_3.5.13-compatible",
             "3d",
+            "instance-segmentation",
+            "resunet",
+            "biapy_3.5.11-compatible",
+            "bioimageio.core_0.7.0-compatible",
             "biapy-compatible",
+            "pytorch",
             "biapy",
+            "biapy_3.5.12-compatible",
+            "bioimageio.core-compatible",
             "cyst"
         ],
         "training_data": {
@@ -420,20 +432,21 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/venomous-swan/0.1.0/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/venomous-swan/0.1.0/files",
         "tags": [
-            "biapy_3.5.12-compatible",
-            "biapy_3.5.11-compatible",
-            "bioimageio.core-compatible",
-            "instance-segmentation",
             "biapy_3.5.10-compatible",
             "fluorescence",
-            "pytorch",
-            "bioimageio.core_0.7.0-compatible",
-            "seunet",
+            "biapy_3.5.13-compatible",
             "3d",
+            "instance-segmentation",
+            "biapy_3.5.11-compatible",
+            "biapy_3.5.12-compatible",
+            "bioimageio.core_0.7.0-compatible",
             "biapy-compatible",
+            "pytorch",
+            "seunet",
             "biapy",
-            "cyst",
-            "resunet-se"
+            "resunet-se",
+            "bioimageio.core-compatible",
+            "cyst"
         ],
         "training_data": {
             "id": "divine-melon"
@@ -468,18 +481,19 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/heroic-otter/0.1.0/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/heroic-otter/0.1.0/files",
         "tags": [
-            "biapy_3.5.12-compatible",
-            "biapy_3.5.11-compatible",
-            "bioimageio.core-compatible",
-            "attention-unet",
-            "instance-segmentation",
             "biapy_3.5.10-compatible",
             "fluorescence",
-            "pytorch",
-            "bioimageio.core_0.7.0-compatible",
+            "biapy_3.5.13-compatible",
             "3d",
+            "instance-segmentation",
+            "biapy_3.5.11-compatible",
+            "bioimageio.core_0.7.0-compatible",
             "biapy-compatible",
+            "pytorch",
+            "attention-unet",
             "biapy",
+            "biapy_3.5.12-compatible",
+            "bioimageio.core-compatible",
             "cyst"
         ],
         "training_data": {
@@ -513,23 +527,23 @@
         "id": "charismatic-whale",
         "license": "CC-BY-SA-4.0",
         "links": [
-            "ilastik/ilastik",
-            "deepimagej/deepimagej"
+            "deepimagej/deepimagej",
+            "ilastik/ilastik"
         ],
         "name": "DeepBacs Segmentation Boundary Model",
         "nickname_icon": "\ud83d\udc33",
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/charismatic-whale/1.0.2/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/charismatic-whale/1.0.2/files",
         "tags": [
-            "bioimageio.core-compatible",
-            "bioimageio.core_0.7.0-compatible",
-            "pytorch",
-            "dl4miceverywhere",
+            "deepbacs",
             "zerocostdl4mic",
-            "unet",
             "2d",
             "instance-segmentation",
-            "deepbacs"
+            "bioimageio.core_0.7.0-compatible",
+            "unet",
+            "dl4miceverywhere",
+            "pytorch",
+            "bioimageio.core-compatible"
         ],
         "training_data": {
             "id": "zero/dataset_u-net_2d_multilabel_deepbacs"
@@ -564,8 +578,8 @@
         "id": "stupendous-sheep",
         "license": "BSD-3-Clause",
         "links": [
-            "imjoy/BioImageIO-Packager",
-            "deepimagej/deepimagej"
+            "deepimagej/deepimagej",
+            "imjoy/BioImageIO-Packager"
         ],
         "name": "(Empanada) 2D Instance Mitochondrial Segmentation in EM Images - 2D MitoNet",
         "nickname_icon": "\ud83d\udc11",
@@ -574,15 +588,15 @@
         "tags": [
             "segmentation",
             "mitochondria",
+            "deepimagej",
             "resnet",
-            "electron-microscopy",
-            "pytorch",
-            "empanada",
+            "2d",
+            "instance-segmentation",
             "mitochondrial-segmentation",
             "torchscript",
-            "deepimagej",
-            "2d",
-            "instance-segmentation"
+            "empanada",
+            "pytorch",
+            "electron-microscopy"
         ],
         "type": "model"
     },
@@ -616,9 +630,9 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/idealistic-rat/1.1/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/idealistic-rat/1.1/files",
         "tags": [
+            "instance-segmentation",
             "bioimageio.core_0.7.0-compatible",
             "segment-anything",
-            "instance-segmentation",
             "bioimageio.core-compatible"
         ],
         "type": "model"
@@ -653,9 +667,9 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/diplomatic-bug/1.1/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/diplomatic-bug/1.1/files",
         "tags": [
+            "instance-segmentation",
             "bioimageio.core_0.7.0-compatible",
             "segment-anything",
-            "instance-segmentation",
             "bioimageio.core-compatible"
         ],
         "type": "model"
@@ -703,11 +717,11 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/resourceful-lizard/0.1.1/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/resourceful-lizard/0.1.1/files",
         "tags": [
-            "bioimageio.core-compatible",
+            "SAM",
+            "feature extraction",
             "bioimageio.core_0.7.0-compatible",
             "mobile-sam",
-            "SAM",
-            "feature extraction"
+            "bioimageio.core-compatible"
         ],
         "type": "model"
     },
@@ -742,14 +756,14 @@
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/self-disciplined-blowfish/1/files",
         "tags": [
             "Gel Quantitation",
-            "bioimageio.core-compatible",
-            "bioimageio.core_0.7.0-compatible",
-            "DeepImageJ",
-            "Pytorch",
-            "Gel Electrophoresis",
-            "Image Segmentation",
             "QuPath",
-            "Machine Learning"
+            "bioimageio.core_0.7.0-compatible",
+            "Pytorch",
+            "Machine Learning",
+            "DeepImageJ",
+            "Gel Electrophoresis",
+            "bioimageio.core-compatible",
+            "Image Segmentation"
         ],
         "type": "model"
     },
@@ -784,14 +798,14 @@
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/trustworthy-llama/0.1.0/files",
         "tags": [
             "Gel Quantitation",
-            "bioimageio.core-compatible",
-            "bioimageio.core_0.7.0-compatible",
-            "DeepImageJ",
-            "Pytorch",
-            "Gel Electrophoresis",
-            "Image Segmentation",
             "QuPath",
-            "Machine Learning"
+            "bioimageio.core_0.7.0-compatible",
+            "Pytorch",
+            "Machine Learning",
+            "DeepImageJ",
+            "Gel Electrophoresis",
+            "bioimageio.core-compatible",
+            "Image Segmentation"
         ],
         "type": "model"
     },
@@ -826,24 +840,25 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/dazzling-spider/0.1.0/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/dazzling-spider/0.1.0/files",
         "tags": [
-            "biapy_3.5.12-compatible",
-            "biapy_3.5.11-compatible",
-            "denoising",
-            "Noise2Void",
-            "biapy_3.5.7-compatible",
-            "bioimageio.core-compatible",
-            "bioimageio.core_0.6.9-compatible",
-            "biapy_3.5.10-compatible",
-            "pytorch",
-            "2D",
-            "UNet",
-            "biapy_3.5.8-compatible",
-            "biapy-compatible",
             "biapy_3.5.5-compatible",
+            "biapy_3.5.11-compatible",
+            "biapy-compatible",
+            "UNet",
+            "2D",
+            "biapy_3.5.7-compatible",
+            "biapy_3.5.12-compatible",
             "restoration",
+            "bioimageio.core_0.6.9-compatible",
+            "biapy_3.5.13-compatible",
+            "Noise2Void",
             "biapy_3.5.9-compatible",
+            "biapy_3.5.6-compatible",
+            "denoising",
+            "biapy_3.5.8-compatible",
+            "biapy_3.5.10-compatible",
             "CAREamics",
-            "biapy_3.5.6-compatible"
+            "pytorch",
+            "bioimageio.core-compatible"
         ],
         "type": "model"
     },
@@ -878,24 +893,25 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/humorous-fox/0.1.0/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/humorous-fox/0.1.0/files",
         "tags": [
-            "biapy_3.5.12-compatible",
-            "biapy_3.5.11-compatible",
-            "denoising",
-            "Noise2Void",
-            "biapy_3.5.7-compatible",
-            "bioimageio.core-compatible",
-            "bioimageio.core_0.6.9-compatible",
-            "biapy_3.5.10-compatible",
-            "pytorch",
-            "2D",
-            "UNet",
-            "biapy_3.5.8-compatible",
-            "biapy-compatible",
             "biapy_3.5.5-compatible",
+            "biapy_3.5.11-compatible",
+            "biapy-compatible",
+            "UNet",
+            "2D",
+            "biapy_3.5.7-compatible",
+            "biapy_3.5.12-compatible",
             "restoration",
+            "bioimageio.core_0.6.9-compatible",
+            "biapy_3.5.13-compatible",
+            "Noise2Void",
             "biapy_3.5.9-compatible",
+            "biapy_3.5.6-compatible",
+            "denoising",
+            "biapy_3.5.8-compatible",
+            "biapy_3.5.10-compatible",
             "CAREamics",
-            "biapy_3.5.6-compatible"
+            "pytorch",
+            "bioimageio.core-compatible"
         ],
         "type": "model"
     },
@@ -970,12 +986,12 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/happy-elephant/0.1.0/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/happy-elephant/0.1.0/files",
         "tags": [
+            "2D",
             "epithelial cells",
             "fluorescence microscopy",
             "nuclei segmentation",
-            "cellpose",
             "cell-segmentation",
-            "2D"
+            "cellpose"
         ],
         "type": "model"
     },
@@ -1021,8 +1037,8 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/affectionate-cow/0.1.0/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/affectionate-cow/0.1.0/files",
         "tags": [
-            "Superimposed Image",
-            "Splitting"
+            "Splitting",
+            "Superimposed Image"
         ],
         "type": "model"
     },
@@ -1056,12 +1072,12 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/philosophical-panda/0.0.11/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/philosophical-panda/0.0.11/files",
         "tags": [
+            "2d",
+            "3d",
+            "nuclei",
             "bioimageio.core_0.6.8-compatible",
             "bioimageio.core-compatible",
-            "cellpose",
-            "3d",
-            "2d",
-            "nuclei"
+            "cellpose"
         ],
         "type": "model"
     },
@@ -1095,11 +1111,11 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/faithful-chicken/1.1/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/faithful-chicken/1.1/files",
         "tags": [
-            "bioimageio.core-compatible",
+            "instance-segmentation",
             "bioimageio.core_0.7.0-compatible",
             "segment-anything",
             "bioimageio.core_0.6.10-compatible",
-            "instance-segmentation"
+            "bioimageio.core-compatible"
         ],
         "type": "model"
     },
@@ -1133,8 +1149,8 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/humorous-crab/1/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/humorous-crab/1/files",
         "tags": [
-            "segment-anything",
-            "instance-segmentation"
+            "instance-segmentation",
+            "segment-anything"
         ],
         "type": "model"
     },
@@ -1168,8 +1184,8 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/noisy-ox/1/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/noisy-ox/1/files",
         "tags": [
-            "segment-anything",
-            "instance-segmentation"
+            "instance-segmentation",
+            "segment-anything"
         ],
         "type": "model"
     },
@@ -1203,8 +1219,8 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/greedy-whale/1/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/greedy-whale/1/files",
         "tags": [
-            "segment-anything",
-            "instance-segmentation"
+            "instance-segmentation",
+            "segment-anything"
         ],
         "type": "model"
     }
