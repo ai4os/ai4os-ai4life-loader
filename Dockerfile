@@ -82,6 +82,7 @@ RUN git clone -b $branch --depth 1 https://github.com/ai4os/ai4os-ai4life-loader
 RUN if [ "$MODEL_NAME" = "affectionate-cow" ]; then \
     pip3 install git+https://github.com/m-team-kit/uSplit.git@main \
     ; fi
+RUN pip uninstall -y marshmallow && pip install marshmallow==3.19.0  
 EXPOSE 5000 6006 8888 80
 RUN chmod +x ai4os-ai4life-loader/UI/entrypoint.sh
 # Launch deepaas
