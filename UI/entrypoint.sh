@@ -4,7 +4,7 @@ deepaas-run --listen-ip 0.0.0.0 --listen-port 5000 &
 
  
  
-sleep 20
+sleep 30
 # Get the absolute script directory
 SCRIPT_DIR=$(dirname "$0")
 echo "Script directory is: $SCRIPT_DIR"
