@@ -20,7 +20,7 @@ GRADIO_SERVER = "0.0.0.0"
     default="http://0.0.0.0:5000/",
     help="URL of the DEEPaaS API",
 )
-@click.option("--ui_port", default=80, help="URL of the deployed UI")
+@click.option("--ui_port", default=8080, help="URL of the deployed UI")
 def main(api_url, ui_port):
     """
     This module contains several functions that make calls to the deep API.
