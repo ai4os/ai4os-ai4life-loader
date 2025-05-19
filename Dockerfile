@@ -20,7 +20,7 @@ LABEL version='0.0.1'
 # Support for inference of the AI4LIFE model on the marketplace.
 
 # What user branch to clone [!]
-ARG branch=dev
+ARG branch=main
 
 # Install Ubuntu packages
 # - gcc is needed in Pytorch images because deepaas installation might break otherwise (see docs)
