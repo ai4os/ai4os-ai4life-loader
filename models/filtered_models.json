@@ -21,11 +21,11 @@
         "id": "10.5281/zenodo.5764892",
         "license": "CC-BY-4.0",
         "links": [
-            "imjoy/BioImageIO-Packager",
+            "deepimagej/deepimagej",
+            "ilastik/stardist_dsb_training_data",
             "biapy/biapy",
             "ilastik/ilastik",
-            "ilastik/stardist_dsb_training_data",
-            "deepimagej/deepimagej"
+            "imjoy/BioImageIO-Packager"
         ],
         "name": "NucleiSegmentationBoundaryModel",
         "nickname_icon": "\ud83e\udd88",
@@ -33,14 +33,14 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/affable-shark/1.2/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/affable-shark/1.2/files",
         "tags": [
-            "nuclei",
-            "2d",
-            "biapy_3.5.13-compatible",
-            "bioimageio.core-compatible",
-            "biapy-compatible",
-            "fluorescence-light-microscopy",
-            "unet",
             "bioimageio.core_0.8.0-compatible",
+            "unet",
+            "biapy_3.5.13-compatible",
+            "biapy-compatible",
+            "bioimageio.core-compatible",
+            "nuclei",
+            "fluorescence-light-microscopy",
+            "2d",
             "instance-segmentation"
         ],
         "training_data": {
@@ -82,21 +82,21 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/emotional-cricket/1.2/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/emotional-cricket/1.2/files",
         "tags": [
-            "pytorch",
-            "arabidopsis",
-            "ilastik",
-            "biapy_3.5.13-compatible",
-            "bioimageio.core-compatible",
-            "biapy-compatible",
-            "semantic-segmentation",
-            "ovules",
+            "3d",
+            "bioimageio.core_0.8.0-compatible",
             "plantseg",
             "unet",
-            "plant",
-            "bioimageio.core_0.8.0-compatible",
+            "arabidopsis",
             "confocal-microscopy",
+            "pytorch",
+            "biapy_3.5.13-compatible",
+            "semantic-segmentation",
+            "ilastik",
+            "biapy-compatible",
+            "bioimageio.core-compatible",
+            "ovules",
             "nuclei-segmentation",
-            "3d"
+            "plant"
         ],
         "type": "model"
     },
@@ -131,30 +131,1799 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/ambitious-sloth/1.2/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/ambitious-sloth/1.2/files",
         "tags": [
-            "bioimageio.core_0.7.0-compatible",
-            "biapy_3.5.5-compatible",
+            "biapy_3.5.9-compatible",
             "biapy_3.5.7-compatible",
-            "bioimageio.core_0.6.9-compatible",
-            "biapy_3.5.11-compatible",
             "pytorch",
-            "bioimageio.core-compatible",
             "biapy-compatible",
-            "fluorescence-light-microscopy",
+            "bioimageio.core-compatible",
+            "bioimageio.core_0.7.0-compatible",
             "light-field-microscopy",
-            "biapy_3.5.4-compatible",
-            "hylfm",
-            "biapy_3.5.6-compatible",
             "image-reconstruction",
+            "biapy_3.5.5-compatible",
             "biapy_3.5.10-compatible",
-            "biapy_3.5.8-compatible",
-            "biapy_3.5.3-compatible",
+            "hylfm",
+            "bioimageio.core_0.6.9-compatible",
             "nuclei",
+            "biapy_3.5.8-compatible",
+            "fluorescence-light-microscopy",
+            "biapy_3.5.11-compatible",
+            "biapy_3.5.6-compatible",
             "biapy_3.5.13-compatible",
             "biapy_3.5.12-compatible",
-            "biapy_3.5.9-compatible"
+            "biapy_3.5.4-compatible",
+            "biapy_3.5.3-compatible"
         ],
         "training_data": {
             "id": "10.5281/zenodo.7612115"
+        },
+        "type": "model"
+    },
+    "good-butterfly \ud83e\udd8b": {
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
+        "uploader": {
+            "name": "Daniel Franco-Barranco",
+            "email": "daniel.franco@dipc.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691405",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/good-butterfly/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T16:33:30.883228",
+        "description": "Mitochondria segmentation for electron microscopy images.",
+        "download_count": "?",
+        "id": "good-butterfly",
+        "license": "CC-BY-4.0",
+        "links": [
+            "biapy/biapy"
+        ],
+        "name": "3D Attention U-Net for mitochondria segmentation in EM",
+        "nickname_icon": "\ud83e\udd8b",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/good-butterfly/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/good-butterfly/0.1.0/files",
+        "tags": [
+            "mitochondria",
+            "biapy",
+            "3d",
+            "attention-unet",
+            "bioimageio.core_0.8.0-compatible",
+            "pytorch",
+            "biapy_3.5.13-compatible",
+            "biapy-compatible",
+            "bioimageio.core-compatible",
+            "instance-segmentation",
+            "electron-microscopy"
+        ],
+        "training_data": {
+            "id": "buttery-sandwich"
+        },
+        "type": "model"
+    },
+    "zealous-snail \ud83d\udc0c": {
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
+        "uploader": {
+            "name": "Daniel Franco-Barranco",
+            "email": "daniel.franco@dipc.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691324",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/zealous-snail/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T16:32:26.086884",
+        "description": "Circuit reconstruction for electron microscopy images.",
+        "download_count": "?",
+        "id": "zealous-snail",
+        "license": "CC-BY-4.0",
+        "links": [
+            "biapy/biapy"
+        ],
+        "name": "3D Attention U-Net for neuron segmentation in EM",
+        "nickname_icon": "\ud83d\udc0c",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/zealous-snail/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/zealous-snail/0.1.0/files",
+        "tags": [
+            "3d",
+            "connectomics",
+            "affinity-prediction",
+            "biapy",
+            "attention-unet",
+            "pytorch",
+            "biapy_3.5.13-compatible",
+            "biapy-compatible",
+            "instance-segmentation",
+            "neurons",
+            "electron-microscopy"
+        ],
+        "training_data": {
+            "id": "crunchy-cookie"
+        },
+        "type": "model"
+    },
+    "exuberant-parrot \ud83e\udd9c": {
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
+        "uploader": {
+            "name": "Daniel Franco-Barranco",
+            "email": "daniel.franco@dipc.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691425",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/exuberant-parrot/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T16:29:37.139054",
+        "description": "Circuit reconstruction for electron microscopy images.",
+        "download_count": "?",
+        "id": "exuberant-parrot",
+        "license": "CC-BY-4.0",
+        "links": [
+            "biapy/biapy"
+        ],
+        "name": "3D ResUNetpp for neuron segmentation in EM",
+        "nickname_icon": "\ud83e\udd9c",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/exuberant-parrot/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/exuberant-parrot/0.1.0/files",
+        "tags": [
+            "3d",
+            "connectomics",
+            "affinity-prediction",
+            "biapy",
+            "pytorch",
+            "biapy_3.5.13-compatible",
+            "biapy-compatible",
+            "instance-segmentation",
+            "resunet++",
+            "neurons",
+            "electron-microscopy"
+        ],
+        "training_data": {
+            "id": "crunchy-cookie"
+        },
+        "type": "model"
+    },
+    "willing-whale \ud83d\udc33": {
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
+        "uploader": {
+            "name": "Daniel Franco-Barranco",
+            "email": "daniel.franco@dipc.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691335",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/willing-whale/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T16:20:54.219296",
+        "description": "Circuit reconstruction for electron microscopy images.",
+        "download_count": "?",
+        "id": "willing-whale",
+        "license": "CC-BY-4.0",
+        "links": [
+            "biapy/biapy"
+        ],
+        "name": "3D Residual U-Net for neuron segmentation in EM",
+        "nickname_icon": "\ud83d\udc33",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/willing-whale/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/willing-whale/0.1.0/files",
+        "tags": [
+            "3d",
+            "connectomics",
+            "affinity-prediction",
+            "biapy",
+            "pytorch",
+            "biapy_3.5.13-compatible",
+            "biapy-compatible",
+            "resunet",
+            "instance-segmentation",
+            "neurons",
+            "electron-microscopy"
+        ],
+        "training_data": {
+            "id": "crunchy-cookie"
+        },
+        "type": "model"
+    },
+    "plucky-koala \ud83d\udc28": {
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
+        "uploader": {
+            "name": "Daniel Franco-Barranco",
+            "email": "daniel.franco@dipc.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691363",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/plucky-koala/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T16:09:38.513802",
+        "description": "Cell painting (mitochondria): image to image reconstruction from bright-field to fluorescence.",
+        "download_count": "?",
+        "id": "plucky-koala",
+        "license": "CC-BY-4.0",
+        "links": [
+            "biapy/biapy"
+        ],
+        "name": "2D UNETR for mitochondria painting from bright-field to fluorescence",
+        "nickname_icon": "\ud83d\udc28",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/plucky-koala/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/plucky-koala/0.1.0/files",
+        "tags": [
+            "mitochondria",
+            "biapy",
+            "bioimageio.core_0.8.0-compatible",
+            "image-to-image",
+            "pytorch",
+            "biapy_3.5.13-compatible",
+            "biapy-compatible",
+            "bioimageio.core-compatible",
+            "2d",
+            "unetr",
+            "fluorescence",
+            "bright-field"
+        ],
+        "training_data": {
+            "id": "flavorful-sweet-potato"
+        },
+        "type": "model"
+    },
+    "jolly-ox \ud83d\udc02": {
+        "authors": [
+            {
+                "name": "CAREamics authors",
+                "affiliation": "Human Technopole"
+            }
+        ],
+        "uploader": {
+            "name": "Mehdi Seifi",
+            "email": "mehdi.seifi@fht.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691587",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/jolly-ox/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T15:15:07.987637",
+        "description": "This model is a UNet trained with the Noise2Void algorithm to denoise images. The training data consists of images of non-uniformly clustered nuclei in the mouse skull. The notebook used to train this model is available on the CAREamics documentation website at the following link: https://careamics.github.io/0.1/applications/Noise2Void/Mouse_Nuclei/.",
+        "download_count": "?",
+        "id": "jolly-ox",
+        "license": "BSD-3-Clause",
+        "links": [
+            "https://careamics.github.io/latest/",
+            "https://github.com/CAREamics/careamics",
+            "biapy/biapy"
+        ],
+        "name": "MouseNuclei_N2V",
+        "nickname_icon": "\ud83d\udc02",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/jolly-ox/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/jolly-ox/0.1.0/files",
+        "tags": [
+            "2D",
+            "pytorch",
+            "biapy_3.5.13-compatible",
+            "Noise2Void",
+            "biapy-compatible",
+            "bioimageio.core-compatible",
+            "bioimageio.core_0.7.0-compatible",
+            "restoration",
+            "denoising",
+            "CAREamics",
+            "UNet"
+        ],
+        "type": "model"
+    },
+    "shy-lobster \ud83e\udd9e": {
+        "authors": [
+            {
+                "name": "CAREamics authors",
+                "affiliation": "Human Technopole"
+            }
+        ],
+        "uploader": {
+            "name": "Mehdi Seifi",
+            "email": "mehdi.seifi@fht.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691571",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/shy-lobster/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T15:14:36.376475",
+        "description": "This model is a UNet trained using the StructN2V algorithm to denoise images. StructN2V is a variant of Noise2Void that can remove 1D structured noise, the main failure case of the original N2V. The training data consists of a single image of convallaria (*c. majalis*). The notebook used to train this model is available on the CAREamics documentation website at the following link: https://careamics.github.io/0.1/applications/structN2V/Convallaria/.",
+        "download_count": "?",
+        "id": "shy-lobster",
+        "license": "BSD-3-Clause",
+        "links": [
+            "https://careamics.github.io/latest/",
+            "https://github.com/CAREamics/careamics",
+            "biapy/biapy"
+        ],
+        "name": "Convallaria_StructN2V",
+        "nickname_icon": "\ud83e\udd9e",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/shy-lobster/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/shy-lobster/0.1.0/files",
+        "tags": [
+            "2D",
+            "pytorch",
+            "biapy_3.5.13-compatible",
+            "Noise2Void",
+            "biapy-compatible",
+            "bioimageio.core-compatible",
+            "bioimageio.core_0.7.0-compatible",
+            "StructN2V",
+            "restoration",
+            "denoising",
+            "CAREamics",
+            "UNet"
+        ],
+        "type": "model"
+    },
+    "famous-fish \ud83d\udc1f": {
+        "authors": [
+            {
+                "name": "Mehdi Seifi",
+                "affiliation": "Human Technopole",
+                "email": "mehdi.seifi@fht.org"
+            }
+        ],
+        "uploader": {
+            "name": "Mehdi Seifi",
+            "email": "mehdi.seifi@fht.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.13858803",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/famous-fish/0.2.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T15:13:33.443211",
+        "description": "CellPose 'cyto3' model",
+        "download_count": "?",
+        "id": "famous-fish",
+        "license": "BSD-3-Clause",
+        "links": [
+            "https://github.com/mouseland/cellpose"
+        ],
+        "name": "CellPose(cyto3)",
+        "nickname_icon": "\ud83d\udc1f",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/famous-fish/0.2.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/famous-fish/0.2.0/files",
+        "tags": [
+            "bioimageio.core_0.8.0-compatible",
+            "Cellpose",
+            "bioimageio.core-compatible",
+            "Segmentation",
+            "Cell Segmentation"
+        ],
+        "type": "model"
+    },
+    "thoughtful-chipmunk \ud83d\udc3f": {
+        "authors": [
+            {
+                "name": "Vera Galinova",
+                "affiliation": "Human Technopole",
+                "email": "vera.galinova@fht.org"
+            },
+            {
+                "name": "Mehdi Seifi",
+                "affiliation": "Human Technopole",
+                "email": "mehdi.seifi@fht.org"
+            },
+            {
+                "name": "Emiliana Giacomello",
+                "affiliation": "University of Trieste",
+                "email": "egiacomello@units.it"
+            }
+        ],
+        "uploader": {
+            "name": "Vera Galinova",
+            "email": "veegalinova@gmail.com"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691567",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/thoughtful-chipmunk/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T15:13:26.024076",
+        "description": "Skeletal muscle fiber segmentation",
+        "download_count": "?",
+        "id": "thoughtful-chipmunk",
+        "license": "BSD-3-Clause",
+        "links": [
+            "https://github.com/mouseland/cellpose"
+        ],
+        "name": "OC1 Project 6 Cellpose",
+        "nickname_icon": "\ud83d\udc3f",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/thoughtful-chipmunk/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/thoughtful-chipmunk/0.1.0/files",
+        "tags": [
+            "Skeletal Muscle",
+            "2D",
+            "Cellpose",
+            "Bright Field",
+            "Myosin Heavy Chain",
+            "Cell Segmentation"
+        ],
+        "type": "model"
+    },
+    "merry-gorilla \ud83e\udd8d": {
+        "authors": [
+            {
+                "name": "Damian Dalle Nogare",
+                "affiliation": "Human Technopole",
+                "email": "damian.dalle@fht.org"
+            },
+            {
+                "name": "Mehdi Seifi",
+                "affiliation": "Human Technopole",
+                "email": "mehdi.seifi@fht.org"
+            }
+        ],
+        "uploader": {
+            "name": "Mehdi Seifi",
+            "email": "mehdi.seifi@fht.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691580",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/merry-gorilla/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T15:12:46.803136",
+        "description": "Segmentation of nuclei in cultured cells overexpressing motor proteins of the kif family.",
+        "download_count": "?",
+        "id": "merry-gorilla",
+        "license": "BSD-3-Clause",
+        "links": [
+            "https://github.com/mouseland/cellpose"
+        ],
+        "name": "OC1 Project 66 Cellpose",
+        "nickname_icon": "\ud83e\udd8d",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/merry-gorilla/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/merry-gorilla/0.1.0/files",
+        "tags": [
+            "2D",
+            "Cellpose",
+            "Cilia Analysis",
+            "Nuclei Segmentation",
+            "Fluorescence Microscopy"
+        ],
+        "type": "model"
+    },
+    "dazzling-spider \ud83d\udd77": {
+        "authors": [
+            {
+                "name": "CAREamics authors",
+                "affiliation": "Human Technopole"
+            }
+        ],
+        "uploader": {
+            "name": "Mehdi Seifi",
+            "email": "mehdi.seifi@fht.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.13963592",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/dazzling-spider/0.1.1/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T15:10:00.054822",
+        "description": "This model is a UNet trained with the Noise2Void algorithm to denoise images. The training data consists of laser scanning confocal microscopy images of actin in bovine pulmonary artery endothelial cells. The notebook used to train this model is available on the CAREamics documentation website at the following link: https://careamics.github.io/0.1/applications/Noise2Void/Hagen/.",
+        "download_count": "?",
+        "id": "dazzling-spider",
+        "license": "BSD-3-Clause",
+        "links": [
+            "https://careamics.github.io/latest/",
+            "https://github.com/CAREamics/careamics",
+            "biapy/biapy"
+        ],
+        "name": "Hagen_N2V",
+        "nickname_icon": "\ud83d\udd77",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/dazzling-spider/0.1.1/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/dazzling-spider/0.1.1/files",
+        "tags": [
+            "2D",
+            "pytorch",
+            "biapy_3.5.13-compatible",
+            "Noise2Void",
+            "biapy-compatible",
+            "bioimageio.core-compatible",
+            "bioimageio.core_0.7.0-compatible",
+            "restoration",
+            "denoising",
+            "CAREamics",
+            "UNet"
+        ],
+        "type": "model"
+    },
+    "humorous-fox \ud83e\udd8a": {
+        "authors": [
+            {
+                "name": "CAREamics authors",
+                "affiliation": "Human Technopole"
+            }
+        ],
+        "uploader": {
+            "name": "Mehdi Seifi",
+            "email": "mehdi.seifi@fht.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.13963590",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/humorous-fox/0.1.1/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T15:09:47.748193",
+        "description": "This model is a UNet trained using the Noise2Void algorithm to denoise images. The training data consists of crops from an SEM dataset (T.-O. Buchholz et al., Methods Cell Biol, 2020). The notebook used to train this model is available on the CAREamics documentation website; find it at the following link: https://careamics.github.io/0.1/applications/Noise2Void/SEM/.",
+        "download_count": "?",
+        "id": "humorous-fox",
+        "license": "BSD-3-Clause",
+        "links": [
+            "https://careamics.github.io/latest/",
+            "https://github.com/CAREamics/careamics",
+            "biapy/biapy"
+        ],
+        "name": "SEM_N2V",
+        "nickname_icon": "\ud83e\udd8a",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/humorous-fox/0.1.1/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/humorous-fox/0.1.1/files",
+        "tags": [
+            "2D",
+            "pytorch",
+            "biapy_3.5.13-compatible",
+            "Noise2Void",
+            "biapy-compatible",
+            "bioimageio.core-compatible",
+            "bioimageio.core_0.7.0-compatible",
+            "restoration",
+            "denoising",
+            "CAREamics",
+            "UNet"
+        ],
+        "type": "model"
+    },
+    "resourceful-otter \ud83e\udda6": {
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
+        "uploader": {
+            "name": "Daniel Franco-Barranco",
+            "email": "daniel.franco@dipc.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691575",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/resourceful-otter/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T15:09:37.305891",
+        "description": "Nucleus segmentation for fluorescence microscopy",
+        "download_count": "?",
+        "id": "resourceful-otter",
+        "license": "CC-BY-4.0",
+        "links": [
+            "biapy/biapy"
+        ],
+        "name": "2D Attention U-Net for nucleus segmentation",
+        "nickname_icon": "\ud83e\udda6",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/resourceful-otter/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/resourceful-otter/0.1.0/files",
+        "tags": [
+            "attention-unet",
+            "biapy",
+            "pytorch",
+            "biapy_3.5.13-compatible",
+            "biapy-compatible",
+            "dsb-challenge",
+            "nuclei",
+            "fluorescence-light-microscopy",
+            "2d",
+            "instance-segmentation"
+        ],
+        "training_data": {
+            "id": "spicy-cucumber"
+        },
+        "type": "model"
+    },
+    "gorgeous-whale \ud83d\udc33": {
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
+        "uploader": {
+            "name": "Daniel Franco-Barranco",
+            "email": "daniel.franco@dipc.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691590",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/gorgeous-whale/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T15:09:16.045717",
+        "description": "Nucleus segmentation for fluorescence microscopy",
+        "download_count": "?",
+        "id": "gorgeous-whale",
+        "license": "CC-BY-4.0",
+        "links": [
+            "biapy/biapy"
+        ],
+        "name": "2D Residual Squeeze-and-Excitation U-Net for nucleus segmentation",
+        "nickname_icon": "\ud83d\udc33",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/gorgeous-whale/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/gorgeous-whale/0.1.0/files",
+        "tags": [
+            "biapy",
+            "pytorch",
+            "seunet",
+            "biapy_3.5.13-compatible",
+            "biapy-compatible",
+            "dsb-challenge",
+            "nuclei",
+            "fluorescence-light-microscopy",
+            "2d",
+            "instance-segmentation"
+        ],
+        "training_data": {
+            "id": "spicy-cucumber"
+        },
+        "type": "model"
+    },
+    "stupendous-blowfish \ud83d\udc21": {
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
+        "uploader": {
+            "name": "Daniel Franco-Barranco",
+            "email": "daniel.franco@dipc.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691500",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/stupendous-blowfish/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T15:08:17.206329",
+        "description": "Nucleus segmentation for fluorescence microscopy",
+        "download_count": "?",
+        "id": "stupendous-blowfish",
+        "license": "CC-BY-4.0",
+        "links": [
+            "biapy/biapy"
+        ],
+        "name": "2D Residual U-Net for nucleus segmentation",
+        "nickname_icon": "\ud83d\udc21",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/stupendous-blowfish/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/stupendous-blowfish/0.1.0/files",
+        "tags": [
+            "biapy",
+            "pytorch",
+            "biapy_3.5.13-compatible",
+            "biapy-compatible",
+            "dsb-challenge",
+            "resunet",
+            "nuclei",
+            "fluorescence-light-microscopy",
+            "2d",
+            "instance-segmentation"
+        ],
+        "training_data": {
+            "id": "spicy-cucumber"
+        },
+        "type": "model"
+    },
+    "self-disciplined-honeybee \ud83d\udc1d": {
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
+        "uploader": {
+            "name": "Daniel Franco-Barranco",
+            "email": "daniel.franco@dipc.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691507",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/self-disciplined-honeybee/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T15:07:40.828592",
+        "description": "Nucleus segmentation for fluorescence microscopy",
+        "download_count": "?",
+        "id": "self-disciplined-honeybee",
+        "license": "CC-BY-4.0",
+        "links": [
+            "biapy/biapy"
+        ],
+        "name": "2D ResUNetpp for nucleus segmentation",
+        "nickname_icon": "\ud83d\udc1d",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/self-disciplined-honeybee/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/self-disciplined-honeybee/0.1.0/files",
+        "tags": [
+            "biapy",
+            "pytorch",
+            "biapy_3.5.13-compatible",
+            "biapy-compatible",
+            "dsb-challenge",
+            "nuclei",
+            "fluorescence-light-microscopy",
+            "2d",
+            "instance-segmentation",
+            "resunet++"
+        ],
+        "training_data": {
+            "id": "spicy-cucumber"
+        },
+        "type": "model"
+    },
+    "wild-pig \ud83d\udc16": {
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
+        "uploader": {
+            "name": "Daniel Franco-Barranco",
+            "email": "daniel.franco@dipc.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691493",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/wild-pig/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T15:07:27.499690",
+        "description": "Nucleus segmentation for fluorescence microscopy",
+        "download_count": "?",
+        "id": "wild-pig",
+        "license": "CC-BY-4.0",
+        "links": [
+            "biapy/biapy"
+        ],
+        "name": "2D Squeeze-and-Excitation U-Net for nucleus segmentation",
+        "nickname_icon": "\ud83d\udc16",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/wild-pig/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/wild-pig/0.1.0/files",
+        "tags": [
+            "biapy",
+            "pytorch",
+            "seunet",
+            "biapy_3.5.13-compatible",
+            "biapy-compatible",
+            "dsb-challenge",
+            "nuclei",
+            "fluorescence-light-microscopy",
+            "2d",
+            "instance-segmentation"
+        ],
+        "training_data": {
+            "id": "spicy-cucumber"
+        },
+        "type": "model"
+    },
+    "frank-boar \ud83d\udc17": {
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
+        "uploader": {
+            "name": "Daniel Franco-Barranco",
+            "email": "daniel.franco@dipc.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691516",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/frank-boar/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T15:07:04.481226",
+        "description": "Nucleus segmentation for fluorescence microscopy",
+        "download_count": "?",
+        "id": "frank-boar",
+        "license": "CC-BY-4.0",
+        "links": [
+            "biapy/biapy"
+        ],
+        "name": "2D U-NeXt V1 for nucleus segmentation",
+        "nickname_icon": "\ud83d\udc17",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/frank-boar/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/frank-boar/0.1.0/files",
+        "tags": [
+            "biapy",
+            "unext-v1",
+            "pytorch",
+            "biapy_3.5.13-compatible",
+            "biapy-compatible",
+            "dsb-challenge",
+            "nuclei",
+            "fluorescence-light-microscopy",
+            "2d",
+            "instance-segmentation"
+        ],
+        "training_data": {
+            "id": "spicy-cucumber"
+        },
+        "type": "model"
+    },
+    "serious-lobster \ud83e\udd9e": {
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
+        "uploader": {
+            "name": "Daniel Franco-Barranco",
+            "email": "daniel.franco@dipc.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691505",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/serious-lobster/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T15:06:52.989766",
+        "description": "Nucleus segmentation for fluorescence microscopy",
+        "download_count": "?",
+        "id": "serious-lobster",
+        "license": "CC-BY-4.0",
+        "links": [
+            "biapy/biapy"
+        ],
+        "name": "2D U-NeXt V2 for nucleus segmentation",
+        "nickname_icon": "\ud83e\udd9e",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/serious-lobster/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/serious-lobster/0.1.0/files",
+        "tags": [
+            "biapy",
+            "pytorch",
+            "biapy_3.5.13-compatible",
+            "biapy-compatible",
+            "dsb-challenge",
+            "nuclei",
+            "fluorescence-light-microscopy",
+            "2d",
+            "instance-segmentation",
+            "unext-v2"
+        ],
+        "training_data": {
+            "id": "spicy-cucumber"
+        },
+        "type": "model"
+    },
+    "educated-goat \ud83d\udc10": {
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
+        "uploader": {
+            "name": "Daniel Franco-Barranco",
+            "email": "daniel.franco@dipc.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691522",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/educated-goat/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T15:06:40.528906",
+        "description": "Live cell (E. coli) segmentation for fluorescence widefield images.",
+        "download_count": "?",
+        "id": "educated-goat",
+        "license": "CC-BY-4.0",
+        "links": [
+            "biapy/biapy"
+        ],
+        "name": "2D U-NeXt V1 for cell segmentation in fluorescence",
+        "nickname_icon": "\ud83d\udc10",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/educated-goat/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/educated-goat/0.1.0/files",
+        "tags": [
+            "biapy",
+            "bacillus-subtilis",
+            "unext-v1",
+            "pytorch",
+            "microbiology",
+            "biapy_3.5.13-compatible",
+            "biapy-compatible",
+            "widefield",
+            "bacteria",
+            "2d",
+            "instance-segmentation",
+            "fluorescence"
+        ],
+        "training_data": {
+            "id": "delectable-eggplant"
+        },
+        "type": "model"
+    },
+    "artistic-eagle \ud83e\udd85": {
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
+        "uploader": {
+            "name": "Daniel Franco-Barranco",
+            "email": "daniel.franco@dipc.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691527",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/artistic-eagle/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T15:02:53.083731",
+        "description": "Nucleus segmentation for fluorescence microscopy",
+        "download_count": "?",
+        "id": "artistic-eagle",
+        "license": "CC-BY-4.0",
+        "links": [
+            "biapy/biapy"
+        ],
+        "name": "2D UNETR for nucleus segmentation",
+        "nickname_icon": "\ud83e\udd85",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/artistic-eagle/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/artistic-eagle/0.1.0/files",
+        "tags": [
+            "biapy",
+            "pytorch",
+            "biapy_3.5.13-compatible",
+            "biapy-compatible",
+            "dsb-challenge",
+            "nuclei",
+            "fluorescence-light-microscopy",
+            "2d",
+            "instance-segmentation",
+            "unetr"
+        ],
+        "training_data": {
+            "id": "spicy-cucumber"
+        },
+        "type": "model"
+    },
+    "modest-cow \ud83d\udc04": {
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
+        "uploader": {
+            "name": "Daniel Franco-Barranco",
+            "email": "daniel.franco@dipc.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691511",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/modest-cow/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T15:01:58.077229",
+        "description": "Nucleus segmentation for fluorescence microscopy",
+        "download_count": "?",
+        "id": "modest-cow",
+        "license": "CC-BY-4.0",
+        "links": [
+            "biapy/biapy"
+        ],
+        "name": "2D MultiResUNet for nucleus segmentation",
+        "nickname_icon": "\ud83d\udc04",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/modest-cow/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/modest-cow/0.1.0/files",
+        "tags": [
+            "biapy",
+            "multiresunet",
+            "pytorch",
+            "biapy_3.5.13-compatible",
+            "biapy-compatible",
+            "dsb-challenge",
+            "nuclei",
+            "fluorescence-light-microscopy",
+            "2d",
+            "instance-segmentation"
+        ],
+        "training_data": {
+            "id": "spicy-cucumber"
+        },
+        "type": "model"
+    },
+    "educated-water-buffalo \ud83d\udc03": {
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
+        "uploader": {
+            "name": "Daniel Franco-Barranco",
+            "email": "daniel.franco@dipc.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691520",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/educated-water-buffalo/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T14:54:56.930831",
+        "description": "Live cell (E. coli) segmentation for fluorescence widefield images.",
+        "download_count": "?",
+        "id": "educated-water-buffalo",
+        "license": "CC-BY-4.0",
+        "links": [
+            "biapy/biapy"
+        ],
+        "name": "2D Attention U-Net for cell segmentation in fluorescence",
+        "nickname_icon": "\ud83d\udc03",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/educated-water-buffalo/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/educated-water-buffalo/0.1.0/files",
+        "tags": [
+            "attention-unet",
+            "biapy",
+            "bacillus-subtilis",
+            "pytorch",
+            "microbiology",
+            "biapy_3.5.13-compatible",
+            "biapy-compatible",
+            "widefield",
+            "bacteria",
+            "2d",
+            "instance-segmentation",
+            "fluorescence"
+        ],
+        "training_data": {
+            "id": "delectable-eggplant"
+        },
+        "type": "model"
+    },
+    "committed-octopus \ud83d\udc19": {
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
+        "uploader": {
+            "name": "Daniel Franco-Barranco",
+            "email": "daniel.franco@dipc.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691440",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/committed-octopus/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T14:48:16.804309",
+        "description": "Live cell (E. coli) segmentation for fluorescence widefield images.",
+        "download_count": "?",
+        "id": "committed-octopus",
+        "license": "CC-BY-4.0",
+        "links": [
+            "biapy/biapy"
+        ],
+        "name": "2D Residual Squeeze-and-Excitation U-Net for cell segmentation in fluorescence",
+        "nickname_icon": "\ud83d\udc19",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/committed-octopus/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/committed-octopus/0.1.0/files",
+        "tags": [
+            "biapy",
+            "bacillus-subtilis",
+            "pytorch",
+            "microbiology",
+            "biapy_3.5.13-compatible",
+            "biapy-compatible",
+            "resunet-se",
+            "widefield",
+            "bacteria",
+            "2d",
+            "instance-segmentation",
+            "fluorescence"
+        ],
+        "training_data": {
+            "id": "delectable-eggplant"
+        },
+        "type": "model"
+    },
+    "idealistic-water-buffalo \ud83d\udc03": {
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
+        "uploader": {
+            "name": "Daniel Franco-Barranco",
+            "email": "daniel.franco@dipc.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691387",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/idealistic-water-buffalo/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T14:47:56.189943",
+        "description": "Live cell (E. coli) segmentation for fluorescence widefield images.",
+        "download_count": "?",
+        "id": "idealistic-water-buffalo",
+        "license": "CC-BY-4.0",
+        "links": [
+            "biapy/biapy"
+        ],
+        "name": "2D Residual U-Net for cell segmentation in fluorescence",
+        "nickname_icon": "\ud83d\udc03",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/idealistic-water-buffalo/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/idealistic-water-buffalo/0.1.0/files",
+        "tags": [
+            "biapy",
+            "bacillus-subtilis",
+            "pytorch",
+            "microbiology",
+            "biapy_3.5.13-compatible",
+            "biapy-compatible",
+            "resunet",
+            "widefield",
+            "bacteria",
+            "2d",
+            "instance-segmentation",
+            "fluorescence"
+        ],
+        "training_data": {
+            "id": "delectable-eggplant"
+        },
+        "type": "model"
+    },
+    "chatty-cat \ud83d\udc08": {
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
+        "uploader": {
+            "name": "Daniel Franco-Barranco",
+            "email": "daniel.franco@dipc.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691445",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/chatty-cat/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T14:47:24.946501",
+        "description": "Live cell (E. coli) segmentation for fluorescence widefield images.",
+        "download_count": "?",
+        "id": "chatty-cat",
+        "license": "CC-BY-4.0",
+        "links": [
+            "biapy/biapy"
+        ],
+        "name": "2D ResUNetpp for cell segmentation in fluorescence",
+        "nickname_icon": "\ud83d\udc08",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/chatty-cat/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/chatty-cat/0.1.0/files",
+        "tags": [
+            "biapy",
+            "bacillus-subtilis",
+            "pytorch",
+            "microbiology",
+            "biapy_3.5.13-compatible",
+            "biapy-compatible",
+            "widefield",
+            "bacteria",
+            "2d",
+            "instance-segmentation",
+            "resunet++",
+            "fluorescence"
+        ],
+        "training_data": {
+            "id": "delectable-eggplant"
+        },
+        "type": "model"
+    },
+    "youthful-eagle \ud83e\udd85": {
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
+        "uploader": {
+            "name": "Daniel Franco-Barranco",
+            "email": "daniel.franco@dipc.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691333",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/youthful-eagle/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T14:47:10.482014",
+        "description": "Live cell (E. coli) segmentation for fluorescence widefield images.",
+        "download_count": "?",
+        "id": "youthful-eagle",
+        "license": "CC-BY-4.0",
+        "links": [
+            "biapy/biapy"
+        ],
+        "name": "2D Squeeze-and-Excitation U-Net for cell segmentation in fluorescence",
+        "nickname_icon": "\ud83e\udd85",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/youthful-eagle/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/youthful-eagle/0.1.0/files",
+        "tags": [
+            "biapy",
+            "bacillus-subtilis",
+            "pytorch",
+            "microbiology",
+            "seunet",
+            "biapy_3.5.13-compatible",
+            "biapy-compatible",
+            "widefield",
+            "bacteria",
+            "2d",
+            "instance-segmentation",
+            "fluorescence"
+        ],
+        "training_data": {
+            "id": "delectable-eggplant"
+        },
+        "type": "model"
+    },
+    "calm-otter \ud83e\udda6": {
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
+        "uploader": {
+            "name": "Daniel Franco-Barranco",
+            "email": "daniel.franco@dipc.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691450",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/calm-otter/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T14:45:46.045822",
+        "description": "Live cell (E. coli) segmentation for fluorescence widefield images.",
+        "download_count": "?",
+        "id": "calm-otter",
+        "license": "CC-BY-4.0",
+        "links": [
+            "biapy/biapy"
+        ],
+        "name": "2D U-NeXt V2 for cell segmentation in fluorescence",
+        "nickname_icon": "\ud83e\udda6",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/calm-otter/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/calm-otter/0.1.0/files",
+        "tags": [
+            "biapy",
+            "bacillus-subtilis",
+            "pytorch",
+            "microbiology",
+            "biapy_3.5.13-compatible",
+            "biapy-compatible",
+            "widefield",
+            "bacteria",
+            "2d",
+            "instance-segmentation",
+            "unext-v2",
+            "fluorescence"
+        ],
+        "training_data": {
+            "id": "delectable-eggplant"
+        },
+        "type": "model"
+    },
+    "ambitious-kangaroo \ud83e\udd98": {
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
+        "uploader": {
+            "name": "Daniel Franco-Barranco",
+            "email": "daniel.franco@dipc.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691455",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/ambitious-kangaroo/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T14:45:21.658482",
+        "description": "Live cell (E. coli) segmentation for fluorescence widefield images.",
+        "download_count": "?",
+        "id": "ambitious-kangaroo",
+        "license": "CC-BY-4.0",
+        "links": [
+            "biapy/biapy"
+        ],
+        "name": "2D UNETR for cell segmentation in fluorescence",
+        "nickname_icon": "\ud83e\udd98",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/ambitious-kangaroo/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/ambitious-kangaroo/0.1.0/files",
+        "tags": [
+            "biapy",
+            "bacillus-subtilis",
+            "pytorch",
+            "microbiology",
+            "biapy_3.5.13-compatible",
+            "biapy-compatible",
+            "widefield",
+            "bacteria",
+            "2d",
+            "instance-segmentation",
+            "unetr",
+            "fluorescence"
+        ],
+        "training_data": {
+            "id": "delectable-eggplant"
+        },
+        "type": "model"
+    },
+    "unassuming-shark \ud83e\udd88": {
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
+        "uploader": {
+            "name": "Daniel Franco-Barranco",
+            "email": "daniel.franco@dipc.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691338",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/unassuming-shark/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T14:41:47.472532",
+        "description": "Live cell (E. coli) segmentation for fluorescence widefield images.",
+        "download_count": "?",
+        "id": "unassuming-shark",
+        "license": "CC-BY-4.0",
+        "links": [
+            "biapy/biapy"
+        ],
+        "name": "2D MultiResUNet for cell segmentation in fluorescence",
+        "nickname_icon": "\ud83e\udd88",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/unassuming-shark/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/unassuming-shark/0.1.0/files",
+        "tags": [
+            "biapy",
+            "bacillus-subtilis",
+            "multiresunet",
+            "pytorch",
+            "microbiology",
+            "biapy_3.5.13-compatible",
+            "biapy-compatible",
+            "widefield",
+            "bacteria",
+            "2d",
+            "instance-segmentation",
+            "fluorescence"
+        ],
+        "training_data": {
+            "id": "delectable-eggplant"
+        },
+        "type": "model"
+    },
+    "poisonous-spider \ud83d\udd77": {
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
+        "uploader": {
+            "name": "Daniel Franco-Barranco",
+            "email": "daniel.franco@dipc.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691360",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/poisonous-spider/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T14:41:31.132822",
+        "description": "Mitochondria segmentation for electron microscopy",
+        "download_count": "?",
+        "id": "poisonous-spider",
+        "license": "CC-BY-4.0",
+        "links": [
+            "biapy/biapy"
+        ],
+        "name": "2D Attention U-Net for mitochondria segmentation in EM",
+        "nickname_icon": "\ud83d\udd77",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/poisonous-spider/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/poisonous-spider/0.1.0/files",
+        "tags": [
+            "mitochondria",
+            "biapy",
+            "attention-unet",
+            "pytorch",
+            "biapy_3.5.13-compatible",
+            "semantic-segmentation",
+            "biapy-compatible",
+            "2d",
+            "electron-microscopy"
+        ],
+        "training_data": {
+            "id": "sublime-pizza"
+        },
+        "type": "model"
+    },
+    "jolly-duck \ud83e\udd86": {
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
+        "uploader": {
+            "name": "Daniel Franco-Barranco",
+            "email": "daniel.franco@dipc.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691385",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/jolly-duck/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T14:40:45.975835",
+        "description": "Mitochondria segmentation for electron microscopy",
+        "download_count": "?",
+        "id": "jolly-duck",
+        "license": "CC-BY-4.0",
+        "links": [],
+        "name": "2D U-NeXt V1 for mitochondria segmentation in EM",
+        "nickname_icon": "\ud83e\udd86",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/jolly-duck/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/jolly-duck/0.1.0/files",
+        "tags": [
+            "mitochondria",
+            "biapy",
+            "unext-v1",
+            "pytorch",
+            "semantic-segmentation",
+            "2d",
+            "electron-microscopy"
+        ],
+        "training_data": {
+            "id": "sublime-pizza"
+        },
+        "type": "model"
+    },
+    "demanding-dromedary \ud83d\udc2a": {
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
+        "uploader": {
+            "name": "Daniel Franco-Barranco",
+            "email": "daniel.franco@dipc.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691434",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/demanding-dromedary/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T14:40:09.302235",
+        "description": "Mitochondria segmentation for electron microscopy",
+        "download_count": "?",
+        "id": "demanding-dromedary",
+        "license": "CC-BY-4.0",
+        "links": [
+            "biapy/biapy"
+        ],
+        "name": "2D Residual Squeeze-and-Excitation U-Net for mitochondria segmentation in EM",
+        "nickname_icon": "\ud83d\udc2a",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/demanding-dromedary/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/demanding-dromedary/0.1.0/files",
+        "tags": [
+            "mitochondria",
+            "biapy",
+            "pytorch",
+            "biapy_3.5.13-compatible",
+            "semantic-segmentation",
+            "biapy-compatible",
+            "resunet-se",
+            "2d",
+            "electron-microscopy"
+        ],
+        "training_data": {
+            "id": "sublime-pizza"
+        },
+        "type": "model"
+    },
+    "gleeful-skunk \ud83e\udda8": {
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
+        "uploader": {
+            "name": "Daniel Franco-Barranco",
+            "email": "daniel.franco@dipc.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691409",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/gleeful-skunk/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T14:39:54.277870",
+        "description": "Mitochondria segmentation for electron microscopy",
+        "download_count": "?",
+        "id": "gleeful-skunk",
+        "license": "CC-BY-4.0",
+        "links": [
+            "biapy/biapy"
+        ],
+        "name": "2D Residual U-Net for mitochondria segmentation in EM",
+        "nickname_icon": "\ud83e\udda8",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/gleeful-skunk/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/gleeful-skunk/0.1.0/files",
+        "tags": [
+            "mitochondria",
+            "biapy",
+            "pytorch",
+            "biapy_3.5.13-compatible",
+            "semantic-segmentation",
+            "biapy-compatible",
+            "resunet",
+            "2d",
+            "electron-microscopy"
+        ],
+        "training_data": {
+            "id": "sublime-pizza"
+        },
+        "type": "model"
+    },
+    "zealous-spider \ud83d\udd77": {
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
+        "uploader": {
+            "name": "Daniel Franco-Barranco",
+            "email": "daniel.franco@dipc.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691319",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/zealous-spider/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T14:39:31.425137",
+        "description": "Mitochondria segmentation for electron microscopy",
+        "download_count": "?",
+        "id": "zealous-spider",
+        "license": "CC-BY-4.0",
+        "links": [
+            "biapy/biapy"
+        ],
+        "name": "2D ResUNetpp for mitochondria segmentation in EM",
+        "nickname_icon": "\ud83d\udd77",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/zealous-spider/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/zealous-spider/0.1.0/files",
+        "tags": [
+            "mitochondria",
+            "biapy",
+            "pytorch",
+            "biapy_3.5.13-compatible",
+            "semantic-segmentation",
+            "biapy-compatible",
+            "2d",
+            "resunet++",
+            "electron-microscopy"
+        ],
+        "training_data": {
+            "id": "sublime-pizza"
+        },
+        "type": "model"
+    },
+    "rebellious-mouse \ud83d\udc01": {
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
+        "uploader": {
+            "name": "Daniel Franco-Barranco",
+            "email": "daniel.franco@dipc.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691356",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/rebellious-mouse/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T14:37:52.990113",
+        "description": "Mitochondria segmentation for electron microscopy",
+        "download_count": "?",
+        "id": "rebellious-mouse",
+        "license": "CC-BY-4.0",
+        "links": [
+            "biapy/biapy"
+        ],
+        "name": "2D Squeeze-and-Excitation U-Net for mitochondria segmentation in EM",
+        "nickname_icon": "\ud83d\udc01",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/rebellious-mouse/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/rebellious-mouse/0.1.0/files",
+        "tags": [
+            "mitochondria",
+            "biapy",
+            "pytorch",
+            "seunet",
+            "semantic-segmentation",
+            "biapy_3.5.13-compatible",
+            "biapy-compatible",
+            "2d",
+            "electron-microscopy"
+        ],
+        "training_data": {
+            "id": "sublime-pizza"
+        },
+        "type": "model"
+    },
+    "sensible-cat \ud83d\udc08": {
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
+        "uploader": {
+            "name": "Daniel Franco-Barranco",
+            "email": "daniel.franco@dipc.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691350",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/sensible-cat/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T14:37:35.914311",
+        "description": "Mitochondria segmentation for electron microscopy",
+        "download_count": "?",
+        "id": "sensible-cat",
+        "license": "CC-BY-4.0",
+        "links": [],
+        "name": "2D U-NeXt V2 for mitochondria segmentation in EM",
+        "nickname_icon": "\ud83d\udc08",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/sensible-cat/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/sensible-cat/0.1.0/files",
+        "tags": [
+            "mitochondria",
+            "biapy",
+            "pytorch",
+            "semantic-segmentation",
+            "2d",
+            "unext-v2",
+            "electron-microscopy"
+        ],
+        "training_data": {
+            "id": "sublime-pizza"
+        },
+        "type": "model"
+    },
+    "good-microbe \ud83e\udda0": {
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
+        "uploader": {
+            "name": "Daniel Franco-Barranco",
+            "email": "daniel.franco@dipc.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691395",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/good-microbe/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T14:37:19.080673",
+        "description": "Mitochondria segmentation for electron microscopy",
+        "download_count": "?",
+        "id": "good-microbe",
+        "license": "CC-BY-4.0",
+        "links": [
+            "biapy/biapy"
+        ],
+        "name": "2D UNETR for mitochondria segmentation in EM",
+        "nickname_icon": "\ud83e\udda0",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/good-microbe/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/good-microbe/0.1.0/files",
+        "tags": [
+            "mitochondria",
+            "biapy",
+            "pytorch",
+            "biapy_3.5.13-compatible",
+            "semantic-segmentation",
+            "biapy-compatible",
+            "2d",
+            "unetr",
+            "electron-microscopy"
+        ],
+        "training_data": {
+            "id": "sublime-pizza"
+        },
+        "type": "model"
+    },
+    "fearless-deer \ud83e\udd8c": {
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
+        "uploader": {
+            "name": "Daniel Franco-Barranco",
+            "email": "daniel.franco@dipc.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691415",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/fearless-deer/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T14:36:38.383495",
+        "description": "Mitochondria segmentation for electron microscopy",
+        "download_count": "?",
+        "id": "fearless-deer",
+        "license": "CC-BY-4.0",
+        "links": [
+            "biapy/biapy"
+        ],
+        "name": "2D MultiResUNet for mitochondria segmentation in EM",
+        "nickname_icon": "\ud83e\udd8c",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/fearless-deer/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/fearless-deer/0.1.0/files",
+        "tags": [
+            "mitochondria",
+            "biapy",
+            "multiresunet",
+            "pytorch",
+            "biapy_3.5.13-compatible",
+            "semantic-segmentation",
+            "biapy-compatible",
+            "2d",
+            "electron-microscopy"
+        ],
+        "training_data": {
+            "id": "sublime-pizza"
+        },
+        "type": "model"
+    },
+    "territorial-cricket \ud83e\udd97": {
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
+        "uploader": {
+            "name": "Daniel Franco-Barranco",
+            "email": "daniel.franco@dipc.org"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.15691344",
+        "covers": [
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/territorial-cricket/0.1.0/files/cover.thumbnail.png"
+        ],
+        "created": "2025-06-18T14:36:05.497403",
+        "description": "Mitochondria segmentation for electron microscopy",
+        "download_count": "?",
+        "id": "territorial-cricket",
+        "license": "CC-BY-4.0",
+        "links": [
+            "biapy/biapy"
+        ],
+        "name": "2D U-Net for mitochondria segmentation in EM",
+        "nickname_icon": "\ud83e\udd97",
+        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/territorial-cricket/0.1.0/files/rdf.yaml",
+        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/territorial-cricket/0.1.0/files",
+        "tags": [
+            "mitochondria",
+            "biapy",
+            "unet",
+            "pytorch",
+            "biapy_3.5.13-compatible",
+            "semantic-segmentation",
+            "biapy-compatible",
+            "2d",
+            "electron-microscopy"
+        ],
+        "training_data": {
+            "id": "sublime-pizza"
         },
         "type": "model"
     },
@@ -191,10 +1960,10 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/noisy-ox/1.2/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/noisy-ox/1.2/files",
         "tags": [
-            "instance-segmentation",
-            "segment-anything",
             "bioimageio.core_0.8.0-compatible",
-            "bioimageio.core-compatible"
+            "segment-anything",
+            "bioimageio.core-compatible",
+            "instance-segmentation"
         ],
         "type": "model"
     },
@@ -228,10 +1997,10 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/faithful-chicken/1.2/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/faithful-chicken/1.2/files",
         "tags": [
-            "instance-segmentation",
-            "segment-anything",
             "bioimageio.core_0.8.0-compatible",
-            "bioimageio.core-compatible"
+            "segment-anything",
+            "bioimageio.core-compatible",
+            "instance-segmentation"
         ],
         "type": "model"
     },
@@ -268,10 +2037,10 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/greedy-whale/1.2/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/greedy-whale/1.2/files",
         "tags": [
-            "instance-segmentation",
-            "segment-anything",
             "bioimageio.core_0.8.0-compatible",
-            "bioimageio.core-compatible"
+            "segment-anything",
+            "bioimageio.core-compatible",
+            "instance-segmentation"
         ],
         "type": "model"
     },
@@ -305,10 +2074,10 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/idealistic-rat/1.2/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/idealistic-rat/1.2/files",
         "tags": [
-            "instance-segmentation",
-            "segment-anything",
             "bioimageio.core_0.8.0-compatible",
-            "bioimageio.core-compatible"
+            "segment-anything",
+            "bioimageio.core-compatible",
+            "instance-segmentation"
         ],
         "type": "model"
     },
@@ -345,10 +2114,10 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/humorous-crab/1.2/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/humorous-crab/1.2/files",
         "tags": [
-            "instance-segmentation",
-            "segment-anything",
             "bioimageio.core_0.8.0-compatible",
-            "bioimageio.core-compatible"
+            "segment-anything",
+            "bioimageio.core-compatible",
+            "instance-segmentation"
         ],
         "type": "model"
     },
@@ -382,10 +2151,10 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/diplomatic-bug/1.2/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/diplomatic-bug/1.2/files",
         "tags": [
-            "instance-segmentation",
-            "segment-anything",
             "bioimageio.core_0.8.0-compatible",
-            "bioimageio.core-compatible"
+            "segment-anything",
+            "bioimageio.core-compatible",
+            "instance-segmentation"
         ],
         "type": "model"
     },
@@ -417,17 +2186,17 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/conscientious-dromedary/0.1.0/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/conscientious-dromedary/0.1.0/files",
         "tags": [
+            "mitochondria",
+            "biapy",
+            "3d",
+            "bioimageio.core_0.8.0-compatible",
             "pytorch",
             "biapy_3.5.13-compatible",
-            "bioimageio.core-compatible",
-            "electron-microscopy",
-            "biapy",
             "biapy-compatible",
+            "bioimageio.core-compatible",
             "resunet",
-            "bioimageio.core_0.8.0-compatible",
             "instance-segmentation",
-            "mitochondria",
-            "3d"
+            "electron-microscopy"
         ],
         "training_data": {
             "id": "buttery-sandwich"
@@ -462,18 +2231,18 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/serious-turtle/0.1.0/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/serious-turtle/0.1.0/files",
         "tags": [
-            "pytorch",
-            "2d",
-            "image-to-image",
-            "bright-field",
-            "fluorescence",
+            "bioimageio.core_0.8.0-compatible",
             "biapy",
+            "image-to-image",
+            "pytorch",
+            "nucleus",
             "biapy_3.5.13-compatible",
             "biapy-compatible",
             "bioimageio.core-compatible",
-            "bioimageio.core_0.8.0-compatible",
-            "nucleus",
-            "unetr"
+            "2d",
+            "unetr",
+            "fluorescence",
+            "bright-field"
         ],
         "training_data": {
             "id": "flavorful-sweet-potato"
@@ -508,18 +2277,18 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/clean-squid/0.1.0/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/clean-squid/0.1.0/files",
         "tags": [
-            "pytorch",
-            "2d",
-            "image-to-image",
-            "bright-field",
-            "fluorescence",
+            "bioimageio.core_0.8.0-compatible",
             "biapy",
-            "tubulin",
+            "image-to-image",
+            "pytorch",
             "biapy_3.5.13-compatible",
             "biapy-compatible",
             "bioimageio.core-compatible",
-            "bioimageio.core_0.8.0-compatible",
-            "unetr"
+            "2d",
+            "unetr",
+            "fluorescence",
+            "tubulin",
+            "bright-field"
         ],
         "training_data": {
             "id": "flavorful-sweet-potato"
@@ -554,18 +2323,18 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/vengeful-zebra/0.1.0/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/vengeful-zebra/0.1.0/files",
         "tags": [
-            "pytorch",
-            "2d",
-            "image-to-image",
-            "bright-field",
-            "fluorescence",
+            "bioimageio.core_0.8.0-compatible",
             "biapy",
+            "image-to-image",
+            "pytorch",
             "biapy_3.5.13-compatible",
             "biapy-compatible",
-            "actin",
             "bioimageio.core-compatible",
-            "bioimageio.core_0.8.0-compatible",
-            "unetr"
+            "2d",
+            "actin",
+            "unetr",
+            "fluorescence",
+            "bright-field"
         ],
         "training_data": {
             "id": "flavorful-sweet-potato"
@@ -594,27 +2363,27 @@
         "id": "wild-rhino",
         "license": "BSD-3-Clause",
         "links": [
-            "biapy/biapy",
+            "https://careamics.github.io/latest/",
             "https://github.com/CAREamics/careamics",
-            "https://careamics.github.io/latest/"
+            "biapy/biapy"
         ],
         "name": "SEM_N2V2",
         "nickname_icon": "\ud83e\udd8f",
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/wild-rhino/0.1.1/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/wild-rhino/0.1.1/files",
         "tags": [
+            "2D",
             "pytorch",
+            "biapy_3.5.13-compatible",
+            "Noise2Void",
+            "biapy-compatible",
+            "bioimageio.core-compatible",
+            "bioimageio.core_0.7.0-compatible",
             "N2V2",
             "restoration",
-            "biapy_3.5.13-compatible",
             "denoising",
-            "biapy-compatible",
-            "bioimageio.core_0.7.0-compatible",
-            "bioimageio.core-compatible",
-            "2D",
-            "UNet",
-            "Noise2Void",
-            "CAREamics"
+            "CAREamics",
+            "UNet"
         ],
         "type": "model"
     },
@@ -646,20 +2415,20 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/happy-honeybee/0.1.0/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/happy-honeybee/0.1.0/files",
         "tags": [
-            "pytorch",
-            "bioimageio.core_0.7.0-compatible",
-            "biapy_3.5.13-compatible",
-            "fluorescence",
+            "3d",
             "biapy",
-            "biapy-compatible",
-            "bioimageio.core-compatible",
-            "biapy_3.5.10-compatible",
             "unet",
-            "instance-segmentation",
-            "biapy_3.5.11-compatible",
-            "cyst",
+            "biapy_3.5.10-compatible",
+            "pytorch",
+            "biapy-compatible",
+            "biapy_3.5.13-compatible",
+            "bioimageio.core-compatible",
             "biapy_3.5.12-compatible",
-            "3d"
+            "cyst",
+            "bioimageio.core_0.7.0-compatible",
+            "instance-segmentation",
+            "fluorescence",
+            "biapy_3.5.11-compatible"
         ],
         "training_data": {
             "id": "divine-melon"
@@ -694,20 +2463,20 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/idealistic-turtle/0.1.0/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/idealistic-turtle/0.1.0/files",
         "tags": [
-            "pytorch",
-            "bioimageio.core_0.7.0-compatible",
-            "biapy_3.5.13-compatible",
-            "fluorescence",
+            "3d",
             "biapy",
-            "biapy-compatible",
-            "bioimageio.core-compatible",
             "biapy_3.5.10-compatible",
+            "pytorch",
             "seunet",
-            "instance-segmentation",
-            "biapy_3.5.11-compatible",
-            "cyst",
+            "biapy-compatible",
+            "biapy_3.5.13-compatible",
+            "bioimageio.core-compatible",
             "biapy_3.5.12-compatible",
-            "3d"
+            "cyst",
+            "bioimageio.core_0.7.0-compatible",
+            "instance-segmentation",
+            "fluorescence",
+            "biapy_3.5.11-compatible"
         ],
         "training_data": {
             "id": "divine-melon"
@@ -742,20 +2511,20 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/intelligent-lion/0.1.0/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/intelligent-lion/0.1.0/files",
         "tags": [
-            "pytorch",
-            "bioimageio.core_0.7.0-compatible",
-            "biapy_3.5.13-compatible",
-            "fluorescence",
+            "3d",
             "biapy",
-            "biapy-compatible",
-            "bioimageio.core-compatible",
             "biapy_3.5.10-compatible",
+            "pytorch",
+            "biapy-compatible",
+            "biapy_3.5.13-compatible",
+            "bioimageio.core-compatible",
             "biapy_3.5.12-compatible",
-            "instance-segmentation",
-            "biapy_3.5.11-compatible",
             "cyst",
+            "bioimageio.core_0.7.0-compatible",
+            "instance-segmentation",
             "resunet++",
-            "3d"
+            "fluorescence",
+            "biapy_3.5.11-compatible"
         ],
         "training_data": {
             "id": "divine-melon"
@@ -790,20 +2559,20 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/merry-water-buffalo/0.1.0/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/merry-water-buffalo/0.1.0/files",
         "tags": [
-            "pytorch",
-            "bioimageio.core_0.7.0-compatible",
-            "biapy_3.5.13-compatible",
-            "fluorescence",
+            "3d",
             "biapy",
-            "biapy-compatible",
-            "bioimageio.core-compatible",
             "biapy_3.5.10-compatible",
+            "pytorch",
+            "biapy-compatible",
+            "biapy_3.5.13-compatible",
+            "bioimageio.core-compatible",
             "resunet",
-            "instance-segmentation",
-            "biapy_3.5.11-compatible",
-            "cyst",
             "biapy_3.5.12-compatible",
-            "3d"
+            "cyst",
+            "bioimageio.core_0.7.0-compatible",
+            "instance-segmentation",
+            "fluorescence",
+            "biapy_3.5.11-compatible"
         ],
         "training_data": {
             "id": "divine-melon"
@@ -838,21 +2607,21 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/venomous-swan/0.1.0/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/venomous-swan/0.1.0/files",
         "tags": [
-            "pytorch",
-            "bioimageio.core_0.7.0-compatible",
-            "resunet-se",
-            "fluorescence",
+            "3d",
             "biapy",
+            "biapy_3.5.10-compatible",
+            "pytorch",
+            "seunet",
             "biapy-compatible",
             "biapy_3.5.13-compatible",
-            "biapy_3.5.10-compatible",
-            "bioimageio.core-compatible",
-            "seunet",
-            "instance-segmentation",
-            "biapy_3.5.11-compatible",
-            "cyst",
+            "resunet-se",
             "biapy_3.5.12-compatible",
-            "3d"
+            "cyst",
+            "bioimageio.core_0.7.0-compatible",
+            "bioimageio.core-compatible",
+            "instance-segmentation",
+            "fluorescence",
+            "biapy_3.5.11-compatible"
         ],
         "training_data": {
             "id": "divine-melon"
@@ -887,20 +2656,20 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/heroic-otter/0.1.0/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/heroic-otter/0.1.0/files",
         "tags": [
-            "pytorch",
-            "bioimageio.core_0.7.0-compatible",
-            "biapy_3.5.13-compatible",
-            "fluorescence",
+            "3d",
             "biapy",
             "attention-unet",
-            "biapy-compatible",
             "biapy_3.5.10-compatible",
+            "pytorch",
+            "biapy-compatible",
+            "biapy_3.5.13-compatible",
             "bioimageio.core-compatible",
-            "instance-segmentation",
-            "biapy_3.5.11-compatible",
-            "cyst",
             "biapy_3.5.12-compatible",
-            "3d"
+            "cyst",
+            "bioimageio.core_0.7.0-compatible",
+            "instance-segmentation",
+            "fluorescence",
+            "biapy_3.5.11-compatible"
         ],
         "training_data": {
             "id": "divine-melon"
@@ -941,15 +2710,15 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/charismatic-whale/1.0.2/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/charismatic-whale/1.0.2/files",
         "tags": [
-            "pytorch",
-            "2d",
-            "bioimageio.core_0.7.0-compatible",
-            "zerocostdl4mic",
-            "bioimageio.core-compatible",
-            "dl4miceverywhere",
-            "deepbacs",
             "unet",
-            "instance-segmentation"
+            "deepbacs",
+            "pytorch",
+            "bioimageio.core-compatible",
+            "bioimageio.core_0.7.0-compatible",
+            "2d",
+            "instance-segmentation",
+            "dl4miceverywhere",
+            "zerocostdl4mic"
         ],
         "training_data": {
             "id": "zero/dataset_u-net_2d_multilabel_deepbacs"
@@ -984,25 +2753,25 @@
         "id": "stupendous-sheep",
         "license": "BSD-3-Clause",
         "links": [
-            "deepimagej/deepimagej",
-            "imjoy/BioImageIO-Packager"
+            "imjoy/BioImageIO-Packager",
+            "deepimagej/deepimagej"
         ],
         "name": "(Empanada) 2D Instance Mitochondrial Segmentation in EM Images - 2D MitoNet",
         "nickname_icon": "\ud83d\udc11",
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/stupendous-sheep/1.1/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/stupendous-sheep/1.1/files",
         "tags": [
-            "pytorch",
-            "2d",
             "mitochondria",
-            "electron-microscopy",
+            "resnet",
+            "mitochondrial-segmentation",
+            "deepimagej",
+            "pytorch",
+            "torchscript",
+            "2d",
             "segmentation",
             "empanada",
-            "deepimagej",
-            "resnet",
             "instance-segmentation",
-            "torchscript",
-            "mitochondrial-segmentation"
+            "electron-microscopy"
         ],
         "type": "model"
     },
@@ -1049,11 +2818,11 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/resourceful-lizard/0.1.1/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/resourceful-lizard/0.1.1/files",
         "tags": [
-            "bioimageio.core_0.7.0-compatible",
             "bioimageio.core-compatible",
-            "SAM",
+            "bioimageio.core_0.7.0-compatible",
+            "mobile-sam",
             "feature extraction",
-            "mobile-sam"
+            "SAM"
         ],
         "type": "model"
     },
@@ -1087,15 +2856,15 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/self-disciplined-blowfish/1/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/self-disciplined-blowfish/1/files",
         "tags": [
-            "Gel Quantitation",
-            "Image Segmentation",
-            "bioimageio.core_0.7.0-compatible",
-            "bioimageio.core-compatible",
-            "Pytorch",
-            "QuPath",
-            "Gel Electrophoresis",
             "DeepImageJ",
-            "Machine Learning"
+            "Pytorch",
+            "Gel Quantitation",
+            "QuPath",
+            "bioimageio.core-compatible",
+            "bioimageio.core_0.7.0-compatible",
+            "Image Segmentation",
+            "Machine Learning",
+            "Gel Electrophoresis"
         ],
         "type": "model"
     },
@@ -1129,157 +2898,15 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/trustworthy-llama/0.1.0/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/trustworthy-llama/0.1.0/files",
         "tags": [
-            "Gel Quantitation",
-            "Image Segmentation",
-            "bioimageio.core_0.7.0-compatible",
-            "bioimageio.core-compatible",
-            "Pytorch",
-            "QuPath",
-            "Gel Electrophoresis",
             "DeepImageJ",
-            "Machine Learning"
-        ],
-        "type": "model"
-    },
-    "dazzling-spider \ud83d\udd77": {
-        "authors": [
-            {
-                "name": "CAREamics authors",
-                "affiliation": "Human Technopole"
-            }
-        ],
-        "uploader": {
-            "name": "Mehdi Seifi",
-            "email": "mehdi.seifi@fht.org"
-        },
-        "badges": [],
-        "concept_doi": "10.5281/zenodo.13963592",
-        "covers": [
-            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/dazzling-spider/0.1.0/files/cover.png"
-        ],
-        "created": "2024-10-21T13:30:07.299368",
-        "description": "This model is the output of an example notebook available on the CAREamics documentation website. It can be found under \"Applications\" in the side bar. ([Link](https://careamics.github.io/latest/applications/Noise2Void/Hagen/).)",
-        "download_count": "?",
-        "id": "dazzling-spider",
-        "license": "BSD-3-Clause",
-        "links": [
-            "biapy/biapy",
-            "https://github.com/CAREamics/careamics",
-            "https://careamics.github.io/latest/"
-        ],
-        "name": "Hagen_N2V",
-        "nickname_icon": "\ud83d\udd77",
-        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/dazzling-spider/0.1.0/files/rdf.yaml",
-        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/dazzling-spider/0.1.0/files",
-        "tags": [
-            "biapy_3.5.5-compatible",
-            "denoising",
-            "biapy_3.5.7-compatible",
-            "Noise2Void",
-            "bioimageio.core_0.6.9-compatible",
-            "biapy_3.5.11-compatible",
-            "pytorch",
-            "restoration",
+            "Pytorch",
+            "Gel Quantitation",
+            "QuPath",
             "bioimageio.core-compatible",
-            "biapy-compatible",
-            "biapy_3.5.6-compatible",
-            "biapy_3.5.10-compatible",
-            "UNet",
-            "CAREamics",
-            "biapy_3.5.8-compatible",
-            "biapy_3.5.13-compatible",
-            "2D",
-            "biapy_3.5.12-compatible",
-            "biapy_3.5.9-compatible"
-        ],
-        "type": "model"
-    },
-    "humorous-fox \ud83e\udd8a": {
-        "authors": [
-            {
-                "name": "CAREamics authors",
-                "affiliation": "Human Technopole"
-            }
-        ],
-        "uploader": {
-            "name": "Mehdi Seifi",
-            "email": "mehdi.seifi@fht.org"
-        },
-        "badges": [],
-        "concept_doi": "10.5281/zenodo.13963590",
-        "covers": [
-            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/humorous-fox/0.1.0/files/cover.png"
-        ],
-        "created": "2024-10-21T13:28:21.391492",
-        "description": "This model is the output of an example notebook available on the CAREamics documentation website. It can be found under \"Applications\" in the side bar. ([Link](https://careamics.github.io/latest/applications/Noise2Void/SEM/).)",
-        "download_count": "?",
-        "id": "humorous-fox",
-        "license": "BSD-3-Clause",
-        "links": [
-            "biapy/biapy",
-            "https://github.com/CAREamics/careamics",
-            "https://careamics.github.io/latest/"
-        ],
-        "name": "SEM_N2V",
-        "nickname_icon": "\ud83e\udd8a",
-        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/humorous-fox/0.1.0/files/rdf.yaml",
-        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/humorous-fox/0.1.0/files",
-        "tags": [
-            "biapy_3.5.5-compatible",
-            "denoising",
-            "biapy_3.5.7-compatible",
-            "Noise2Void",
-            "bioimageio.core_0.6.9-compatible",
-            "biapy_3.5.11-compatible",
-            "pytorch",
-            "restoration",
-            "bioimageio.core-compatible",
-            "biapy-compatible",
-            "biapy_3.5.6-compatible",
-            "biapy_3.5.10-compatible",
-            "UNet",
-            "CAREamics",
-            "biapy_3.5.8-compatible",
-            "biapy_3.5.13-compatible",
-            "2D",
-            "biapy_3.5.12-compatible",
-            "biapy_3.5.9-compatible"
-        ],
-        "type": "model"
-    },
-    "famous-fish \ud83d\udc1f": {
-        "authors": [
-            {
-                "name": "Mehdi Seifi",
-                "affiliation": "Human Technopole",
-                "email": "mehdi.seifi@fht.org"
-            }
-        ],
-        "uploader": {
-            "name": "Mehdi Seifi",
-            "email": "mehdi.seifi@fht.org"
-        },
-        "badges": [],
-        "concept_doi": "10.5281/zenodo.13858803",
-        "covers": [
-            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/famous-fish/0.1.0/files/cover.thumbnail.png"
-        ],
-        "created": "2024-09-23T10:33:27.839039",
-        "description": "CellPose 'cyto3' model",
-        "download_count": "?",
-        "id": "famous-fish",
-        "license": "BSD-3-Clause",
-        "links": [
-            "https://github.com/mouseland/cellpose"
-        ],
-        "name": "CellPose(cyto3)",
-        "nickname_icon": "\ud83d\udc1f",
-        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/famous-fish/0.1.0/files/rdf.yaml",
-        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/famous-fish/0.1.0/files",
-        "tags": [
-            "Segmentation",
-            "Cell Segmentation",
-            "Cellpose"
+            "bioimageio.core_0.7.0-compatible",
+            "Image Segmentation",
+            "Machine Learning",
+            "Gel Electrophoresis"
         ],
         "type": "model"
     },
@@ -1318,12 +2945,12 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/happy-elephant/0.1.0/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/happy-elephant/0.1.0/files",
         "tags": [
-            "epithelial cells",
-            "fluorescence microscopy",
-            "cell-segmentation",
             "2D",
             "nuclei segmentation",
-            "cellpose"
+            "fluorescence microscopy",
+            "cellpose",
+            "cell-segmentation",
+            "epithelial cells"
         ],
         "type": "model"
     },
@@ -1404,12 +3031,12 @@
         "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/philosophical-panda/0.0.11/files/rdf.yaml",
         "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/philosophical-panda/0.0.11/files",
         "tags": [
+            "3d",
+            "bioimageio.core_0.6.8-compatible",
+            "bioimageio.core-compatible",
             "nuclei",
             "2d",
-            "bioimageio.core-compatible",
-            "bioimageio.core_0.6.8-compatible",
-            "cellpose",
-            "3d"
+            "cellpose"
         ],
         "type": "model"
     }
