@@ -1,0 +1,15 @@
+# Avoid marking Github Workflows as disabled due to 60-day repo inactivity
+
+name: Keepalive Workflows
+on:
+  schedule:
+    - cron: "0 0 * * 0"
+jobs:
+  keepalive-job:
+    name: Keepalive Workflow
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: gautamkrishnar/keepalive-workflow@v2
