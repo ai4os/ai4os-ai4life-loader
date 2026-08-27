@@ -74,11 +74,7 @@ def filter_and_load_models(
                             or model_entry["id"]
                         )
 
-<<<<<<< HEAD
-                        key = model_entry["id"] + " " + model_nickname
-=======
                         key = model_identifier + " " + model_nickname_icon
->>>>>>> main
                         models_v0_5[key] = model_entry
                         print(
                             f"The model named {key} from AI4Life is supported"
