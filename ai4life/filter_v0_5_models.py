@@ -27,6 +27,7 @@ def filter_and_load_models(
     ]
 
     models_v0_5 = {}
+    failed_models = []
 
     for model_entry in models:
         model_id = None
@@ -41,9 +42,16 @@ def filter_and_load_models(
 
         if model_id:
 
-            model = load_description(
-                model_id, perform_io_checks=perform_io_checks
-            )
+            try:
+                model = load_description(
+                    model_id, perform_io_checks=perform_io_checks
+                )
+            except Exception as e:
+                failed_models.append((model_entry.get("id"), str(e)))
+                print(
+                    f"Failed to load model '{model_entry.get('id')}': {e}"
+                )
+                continue
 
             if isinstance(model, v0_5.ModelDescr):
                 # Store model information in a dictionary
@@ -58,14 +66,29 @@ def filter_and_load_models(
                         or weight_format == "pytorch_state_dict"
                     ) and weight_info is not None:
 
-                        model_nickname = model_entry["nickname_icon"]
+                        model_nickname_icon = model_entry.get(
+                            "nickname_icon", ""
+                        )
+                        model_identifier = (
+                            model_entry.get("nickname")
+                            or model_entry["id"]
+                        )
 
+<<<<<<< HEAD
                         key = model_entry["id"] + " " + model_nickname
+=======
+                        key = model_identifier + " " + model_nickname_icon
+>>>>>>> main
                         models_v0_5[key] = model_entry
                         print(
                             f"The model named {key} from AI4Life is supported"
                             " on the AI4EOSC platform."
                         )
+
+    if failed_models:
+        print(f"\n{len(failed_models)} model(s) failed to load:")
+        for model_id, error in failed_models:
+            print(f"  - {model_id}: {error}")
 
     # Write all model info to a JSON file
     with open(output_json, "w") as names_file:

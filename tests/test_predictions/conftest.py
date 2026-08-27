@@ -47,20 +47,30 @@ from deepaas.model.v2.wrapper import UploadedFile
 # import api
 from bioimageio.core import load_description
 from bioimageio.spec._internal.io import download
+from bioimageio.spec.model import v0_5
 
 import api
 from . import selected_models
 
+import ai4life as aimodel
+import json 
 
 model_names = selected_models.main()
-
+#with open(os.path.join(aimodel.config.MODELS_PATH, "filtered_models.json")) as f:
+#    models = json.load(f)
+#model_names =list(models.keys())
 
 # @pytest.fixture(scope="module")
 def input_files(model_name):
     """Fixture to provide options dictionary for the model."""
     # Load the model
-    model_name, icon = model_name.split(" ", 1)
-    model = load_description(model_name, perform_io_checks=False)
+    name, icon = model_name.split(" ", 1) if " " in model_name else (model_name, "")
+    model = load_description(name, perform_io_checks=False)
+    if not isinstance(model, v0_5.ModelDescr):
+        entry = models.get(model_name, {})
+        concept_doi = entry.get("concept_doi")
+        if concept_doi:
+            model = load_description(concept_doi, perform_io_checks=False)
 
     # Initialize inputs
     inputs = [d.test_tensor for d in model.inputs]

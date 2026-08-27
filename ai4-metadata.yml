@@ -22,7 +22,7 @@ description: |-
 
   **References**:
   - BioImage.Io github repository: https://github.com/bioimage-io/core-bioimage-io-python
-  - Documentation: https://bioimage-io.github.io/core-bioimage-io-python/bioimageio/core
+  - Documentation: https://bioimage-io.github.io/core-bioimage-io-python
 dates:
   created: '2024-11-11'
   updated: '2024-11-11'
