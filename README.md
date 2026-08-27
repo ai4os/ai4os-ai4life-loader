@@ -1,5 +1,5 @@
 # ai4life
-[![Build Status](https://jenkins.services.ai4os.eu/buildStatus/icon?job=AI4OS%2Fai4os-ai4life-loader%2Fmain)](https://jenkins.services.ai4os.eu/job/AI4OS/job/ai4os-ai4life-loader/job/main/)
+[![Build Status](https://jenkins.services.ai4os.eu/buildStatus/icon?job=AI4OS%2Fai4os-ai4life-loader%2Fmain)](https://jenkins.services.ai4os.eu/job/AI4OS/job/ai4os-ai4life-loader/job/dev/)
 
 The [BioImage Model Zoo](https://bioimage.io/#/) is a community-driven platform that 
   provides standardized deep learning models for bioimage analysis.
