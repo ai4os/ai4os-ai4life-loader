@@ -235,7 +235,7 @@ def check_channel_position(input_info):
     )
 
     if not has_channels:
-        return False, "No channels dimension found"
+        return False, None, 0
 
     # Find position of channels
     for idx, axis in enumerate(axes):
