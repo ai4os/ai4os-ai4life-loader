@@ -141,7 +141,7 @@ def get_models_name():
             (
                 model["nickname_icon"]
                 for model in models_list
-                if model["name"] == model_name
+                if model["id"] == model_name
             ),
             None,
         )
@@ -152,31 +152,6 @@ def get_models_name():
     except (KeyError, TypeError, ValueError) as e:
         print(f"Error processing models_data: {e}")
         return [model_name]
-
-
-def get_model_id_by_name(display_name):
-    models_data = ls_dirs(
-        os.path.join(config.MODELS_PATH, "collection.json")
-    )
-    models_list = [
-        entry
-        for entry in models_data["collection"]
-        if entry["type"] == "model"
-    ]
-
-    # Extract the base name without the icon
-    base_name = (
-        display_name.split(" ")[0]
-        if " " in display_name
-        else display_name
-    )
-
-    # Find the model ID that matches the name
-    for model in models_list:
-        if model["name"] == base_name:
-            return model["id"]
-
-    return None
 
 
 def hide_input():

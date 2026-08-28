@@ -55,10 +55,10 @@ from . import selected_models
 import ai4life as aimodel
 import json 
 
-model_names = selected_models.main()
-#with open(os.path.join(aimodel.config.MODELS_PATH, "filtered_models.json")) as f:
-#    models = json.load(f)
-#model_names =list(models.keys())
+#model_names = selected_models.main()
+with open(os.path.join(aimodel.config.MODELS_PATH, "filtered_models.json")) as f:
+    models = json.load(f)
+model_names =list(models.keys())
 
 # @pytest.fixture(scope="module")
 def input_files(model_name):
