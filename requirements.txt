@@ -5,7 +5,7 @@ flaat~=1.1.1
 
 #Module requirements
 bioimageio.core[pytorch]==0.8.0
-biapy>3.6.5 <3.7.0
+biapy>3.6.5,<3.7.0
 careamics==0.0.15
 marshmallow<4
 pydantic<2.11
@@ -33,7 +33,7 @@ uSplit @ git+https://github.com/m-team-kit/uSplit.git@main
 #UI requirements
 click>=7.1.2
 requests>=2.25.1
-gradio>= 3.23.0
+gradio>=3.23.0
 pathlib
 gradio_image_prompter
 

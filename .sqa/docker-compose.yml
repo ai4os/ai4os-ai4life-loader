@@ -9,7 +9,7 @@ services:
     build:
       context: ./.sqa
       args:
-        branch: ${GIT_BRANCH}
+        branch: ${GIT_BRANCH:-dev}
     volumes:
       - type: bind
         source: ./
