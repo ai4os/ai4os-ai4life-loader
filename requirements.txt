@@ -9,7 +9,7 @@ biapy>3.6.5,<3.7.0
 careamics
 marshmallow<4
 pydantic<=2.12
-xarray<2024.10
+xarray
 numpy<2
 setuptools<81
 matplotlib~=3.9.0
