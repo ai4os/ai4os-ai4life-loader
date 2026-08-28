@@ -1,0 +1,118 @@
+name: Test New Models
+
+on:
+  workflow_run:
+    workflows: ["Filter v0_5 Models Workflow"]
+    types:
+      - completed
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  test-new-models:
+    runs-on: ubuntu-latest
+    # Only run if the upstream filter workflow succeeded
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Full history needed to diff previous filtered_models.json
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip setuptools "setuptools<81" wheel
+        pip install "marshmallow<4" "numpy<2" "pydantic<2.11" "xarray<2024.10"
+        pip install -r requirements.txt -r requirements-test.txt
+        pip install -e .
+
+    # ── Step 1: Detect new models ──
+    - name: Detect new models
+      id: detect
+      run: |
+        python scripts/detect_new_models.py
+
+    - name: Check if new models exist
+      id: check
+      run: |
+        if [ -s scripts/new_models.txt ]; then
+          echo "has_new_models=true" >> $GITHUB_OUTPUT
+          echo "New models found:"
+          cat scripts/new_models.txt
+        else
+          echo "has_new_models=false" >> $GITHUB_OUTPUT
+          echo "No new models found, skipping tests."
+        fi
+
+    # ── Step 2: Test prediction for new models ──
+    - name: Test new models
+      id: test
+      if: steps.check.outputs.has_new_models == 'true'
+      run: |
+        python scripts/test_new_models.py scripts/new_models.txt
+      continue-on-error: true
+      timeout-minutes: 30
+
+    - name: Read test results
+      id: results
+      if: steps.check.outputs.has_new_models == 'true'
+      run: |
+        if [ -f scripts/test_results.json ]; then
+          echo "Test results:"
+          cat scripts/test_results.json
+          FAILED_COUNT=$(python -c "import json; d=json.load(open('scripts/test_results.json')); print(len(d['failed']))")
+          echo "failed_count=$FAILED_COUNT" >> $GITHUB_OUTPUT
+        else
+          echo "failed_count=0" >> $GITHUB_OUTPUT
+        fi
+
+    # ── Step 3: Remove failed models from filtered_models.json ──
+    - name: Remove failed models
+      id: remove
+      if: steps.check.outputs.has_new_models == 'true' && steps.results.outputs.failed_count != '0'
+      run: |
+        python scripts/remove_failed_models.py scripts/test_results.json
+
+    - name: Commit cleaned filtered_models.json
+      if: steps.check.outputs.has_new_models == 'true' && steps.results.outputs.failed_count != '0'
+      run: |
+        git config user.name 'github-actions[bot]'
+        git config user.email 'github-actions[bot]@users.noreply.github.com'
+        git add models/filtered_models.json
+        git commit -m "Remove failed models from filtered_models.json"
+        git push
+
+    # ── Step 4: Create GitHub issue for failures ──
+    - name: Generate issue body
+      if: steps.check.outputs.has_new_models == 'true' && steps.results.outputs.failed_count != '0'
+      run: |
+        python scripts/generate_issue.py scripts/test_results.json
+
+    - name: Create GitHub issue
+      if: steps.check.outputs.has_new_models == 'true' && steps.results.outputs.failed_count != '0'
+      uses: peter-evans/create-issue-from-file@v5
+      with:
+        title: "[AI4Life] New models failed prediction test"
+        content-filepath: scripts/issue_body.md
+        labels: |
+          bug
+          automated
+        assignees: ${{ github.repository_owner }}
+
+    # ── Upload artifacts for debugging ──
+    - name: Upload test artifacts
+      if: steps.check.outputs.has_new_models == 'true'
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-results
+        path: |
+          scripts/new_models.txt
+          scripts/test_results.json
