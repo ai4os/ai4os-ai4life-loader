@@ -20,9 +20,14 @@ def filter_and_load_models(
 
     # Filter entries where "type" is "model"
 
+    excluded_ids = {"stupendous-sheep"}
     models = [
-        entry for entry in data["collection"] if entry["type"] == "model"
+        entry for entry in data["collection"]
+        if entry["type"] == "model"
+        and entry.get("nickname") not in excluded_ids
+        and entry.get("id") not in excluded_ids
     ]
+
 
     models_v0_5 = {}
     failed_models = []
@@ -44,6 +49,12 @@ def filter_and_load_models(
                 model = load_description(
                     model_id, perform_io_checks=perform_io_checks
                 )
+                declared_version = model_entry.get("format_version") or getattr(model, "format_version", None)
+
+                if declared_version and not declared_version.startswith("0.5"):
+                    print(f"Skipping {model_entry.get('id')}: format_version {declared_version} is not native v0.5")
+                    continue
+                
             except Exception as e:
                 failed_models.append((model_entry.get("id"), str(e)))
                 print(f"Failed to load model '{model_entry.get('id')}': {e}")
