@@ -40,7 +40,9 @@ class BoxPromptField(fields.Field):
     def _validate(self, value):
         # Check that the input is a list with one batch dimension
         if not isinstance(value, list) or len(value) != 1:
-            raise ValidationError("The input must be a list with one batch dimension.")
+            raise ValidationError(
+                "The input must be a list with one batch dimension."
+            )
 
         # Validate the inner list of boxes
         boxes = value[0]
@@ -55,7 +57,9 @@ class BoxPromptField(fields.Field):
                 )
             for coordinate in box:
                 if not isinstance(coordinate, int):
-                    raise ValidationError("Each coordinate must be an integer.")
+                    raise ValidationError(
+                        "Each coordinate must be an integer."
+                    )
 
 
 class PointPromptsField(fields.Field):
@@ -77,11 +81,15 @@ class PointPromptsField(fields.Field):
         for batch in value:
             # Check each batch dimension entry is a list
             if not isinstance(batch, list):
-                raise ValidationError("Each item in `point_prompts` must be a list.")
+                raise ValidationError(
+                    "Each item in `point_prompts` must be a list."
+                )
             for obj in batch:
                 # Check each object entry in batch is a list
                 if not isinstance(obj, list):
-                    raise ValidationError("Each object entry must be a list of points.")
+                    raise ValidationError(
+                        "Each object entry must be a list of points."
+                    )
                 for point in obj:
                     # Check each point entry in object is a list
                     #  with exactly 2 coordinates
@@ -93,7 +101,9 @@ class PointPromptsField(fields.Field):
                     # Check each coordinate is an integer
                     for coord in point:
                         if not isinstance(coord, int):
-                            raise ValidationError("Each coordinate must be an integer.")
+                            raise ValidationError(
+                                "Each coordinate must be an integer."
+                            )
 
 
 class PointLabelsField(fields.Field):
@@ -106,7 +116,8 @@ class PointLabelsField(fields.Field):
         return {
             "type": "int64",
             "shape": [1, 1, None],  # Allow variable number of points
-            "description": "Point labels with [batch, object, point]" " dimensions",
+            "description": "Point labels with [batch, object, point]"
+            " dimensions",
             "data_description": {
                 "range": [None, None],
                 "unit": "arbitrary unit",
@@ -121,12 +132,15 @@ class PointLabelsField(fields.Field):
             try:
                 value = json.loads(value)  # Convert from string to list
             except json.JSONDecodeError:
-                raise ValidationError("Point labels must be a valid JSON list.")
+                raise ValidationError(
+                    "Point labels must be a valid JSON list."
+                )
 
         # Step 2: Ensure it's a list
         if not isinstance(value, list):
             raise ValidationError(
-                "Point labels must be a list with [batch, object, point]" " dimensions."
+                "Point labels must be a list with [batch, object, point]"
+                " dimensions."
             )
 
         # Step 3: Validate shape [1, num_box, Num_points]
@@ -136,7 +150,9 @@ class PointLabelsField(fields.Field):
                 raise ValidationError("Each batch must be a list of objects.")
             for obj in batch:
                 if not isinstance(obj, list):
-                    raise ValidationError("Each object must be a list of points.")
+                    raise ValidationError(
+                        "Each object must be a list of points."
+                    )
                 for point in obj:
                     if not isinstance(point, (int, float)):
                         raise ValidationError(
@@ -262,7 +278,8 @@ class PredArgsSchema(marshmallow.Schema):
     # fields.List(fields.List(fields.List(fields.Int())))
     point_labels = PointLabelsField(
         metadata={
-            "description": "Point labels input with shape [1, 1, 1]" " and int64 type.",
+            "description": "Point labels input with shape [1, 1, 1]"
+            " and int64 type.",
         },
         required=False,
         dump_only=hide_input,

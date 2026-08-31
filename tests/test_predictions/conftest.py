@@ -58,7 +58,9 @@ import ai4life as aimodel
 import json
 
 model_names = selected_models.main()
-with open(os.path.join(aimodel.config.MODELS_PATH, "filtered_models.json")) as f:
+with open(
+    os.path.join(aimodel.config.MODELS_PATH, "filtered_models.json")
+) as f:
     models = json.load(f)
 
 
@@ -83,7 +85,9 @@ def _downloaded_path(input_item):
 def input_files(model_name):
     """Fixture to provide options dictionary for the model."""
     # Load the model
-    name, icon = model_name.split(" ", 1) if " " in model_name else (model_name, "")
+    name, icon = (
+        model_name.split(" ", 1) if " " in model_name else (model_name, "")
+    )
     model = load_description(name, perform_io_checks=False)
     if not isinstance(model, v0_5.ModelDescr):
         entry = models.get(model_name, {})

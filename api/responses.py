@@ -48,7 +48,9 @@ def json_response(result, output_ids, input_data, **options):
                 # print(f'the output_array is {output_array}')
                 if isinstance(output_array, xr.DataArray):
                     # print('the output is xr array')
-                    output_array = output_array.values  # Add directly if not numpy type
+                    output_array = (
+                        output_array.values
+                    )  # Add directly if not numpy type
                 print(f"the size of the output array is {output_array.shape}")
                 output_[id] = np.squeeze(output_array).tolist()
 

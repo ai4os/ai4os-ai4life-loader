@@ -35,10 +35,14 @@ logger.setLevel(config.LOG_LEVEL)
 
 def _load_v0_5_model(model_name):
     """Load a model and ensure it is v0.5, falling back to concept_doi."""
-    name, icon = model_name.split(" ", 1) if " " in model_name else (model_name, "")
+    name, icon = (
+        model_name.split(" ", 1) if " " in model_name else (model_name, "")
+    )
     model = load_description(name)
     if not isinstance(model, v0_5.ModelDescr):
-        filtered_path = os.path.join(config.MODELS_PATH, "filtered_models.json")
+        filtered_path = os.path.join(
+            config.MODELS_PATH, "filtered_models.json"
+        )
         if os.path.exists(filtered_path):
             with open(filtered_path, "r") as f:
                 models = json.load(f)
@@ -77,9 +81,12 @@ def predict(model_name, **options):
             print(f"the target_tensor is {input_block_shape}")
             if "z" in missing_axes:
                 raise ValueError(
-                    "This model needs a 3D image as input, but " "a 2D image is given."
+                    "This model needs a 3D image as input, but "
+                    "a 2D image is given."
                 )
-            input_tensor = Tensor.from_numpy(input_data[id], dims=model.inputs[0].axes)
+            input_tensor = Tensor.from_numpy(
+                input_data[id], dims=model.inputs[0].axes
+            )
             print(f"the input_tensor is {input_tensor.shape_tuple}")
 
             padded_input = input_tensor.pad_to(input_block_shape[id])
@@ -127,9 +134,14 @@ def predict(model_name, **options):
                     input_data[id] = np.array(options[option])
                     print(f"the shape of array {id} is {input_data[id].shape}")
 
-                if "box_prompts" in input_data and "mask_prompts" in input_data:
+                if (
+                    "box_prompts" in input_data
+                    and "mask_prompts" in input_data
+                ):
                     # Example input shapes
-                    box_prompts = input_data["box_prompts"]  # Shape: (1, num_boxes, 4)
+                    box_prompts = input_data[
+                        "box_prompts"
+                    ]  # Shape: (1, num_boxes, 4)
                     mask_prompts = input_data[
                         "mask_prompts"
                     ]  # Shape: (1, num_masks, height, width)
@@ -155,7 +167,9 @@ def predict(model_name, **options):
                         print("the pading shape is ", padding.shape)
                         # Concatenate the zero array to mask_prompts
                         print("the mask shape is ", mask_prompts.shape)
-                        mask_prompts = np.concatenate((mask_prompts, padding), axis=1)
+                        mask_prompts = np.concatenate(
+                            (mask_prompts, padding), axis=1
+                        )
 
                     # Update the input data
                     input_data["mask_prompts"] = mask_prompts

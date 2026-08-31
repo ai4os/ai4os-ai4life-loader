@@ -72,7 +72,9 @@ def load_models(models_name, path, perform_io_checks=False):
             )
 
             # Directly return JSON string with proper formatting
-            names_output_json = os.path.join(config.MODELS_PATH, "model_meta.json")
+            names_output_json = os.path.join(
+                config.MODELS_PATH, "model_meta.json"
+            )
             with open(names_output_json, "w") as names_file:
                 json.dump(
                     combined_entry,
@@ -97,7 +99,11 @@ def _process_v0_5_input(input_descr) -> Tuple[List[int], List[int]]:
     """
     min_shape, step = [], []
 
-    axes = input_descr["axes"] if isinstance(input_descr, dict) else input_descr.axes
+    axes = (
+        input_descr["axes"]
+        if isinstance(input_descr, dict)
+        else input_descr.axes
+    )
 
     for axis in axes:
         axis_size = axis["size"] if isinstance(axis, dict) else axis.size
@@ -107,7 +113,9 @@ def _process_v0_5_input(input_descr) -> Tuple[List[int], List[int]]:
                 min_shape.append(axis_size["min"])
                 step.append(axis_size["step"])
             else:
-                raise NotImplementedError(f"Can't handle axes like '{axis}' yet")
+                raise NotImplementedError(
+                    f"Can't handle axes like '{axis}' yet"
+                )
         elif isinstance(axis_size, v0_5.ParameterizedSize):
             min_shape.append(axis_size.min)
             step.append(axis_size.step)
@@ -161,7 +169,8 @@ def get_model_io_info(model):
             ),
             "postprocessing": (
                 [p for p in out.postprocessing]
-                if getattr(out, "postprocessing", None) and len(out.postprocessing) > 1
+                if getattr(out, "postprocessing", None)
+                and len(out.postprocessing) > 1
                 else None
             ),
         }
@@ -187,7 +196,9 @@ def _copy_file_to_tmpdir(file, tmpdir, input_output_info):
     axes_ids = (axis.id for axis in axes_dim)
     missing_axes = tuple(a for a in axes_ids if a not in array_dim)
     print(f"the missing axes are {missing_axes}")
-    info, position, num_ch = check_channel_position(input_output_info["inputs"])
+    info, position, num_ch = check_channel_position(
+        input_output_info["inputs"]
+    )
     if image_type:
 
         if num_ch == 1:
@@ -250,7 +261,8 @@ def _interprete_array_wo_known_axes(array):
         current_axes = (
             v0_5.ChannelAxis(
                 channel_names=[
-                    v0_5.Identifier(f"channel{i}") for i in range(array.shape[0])
+                    v0_5.Identifier(f"channel{i}")
+                    for i in range(array.shape[0])
                 ]
             ),
             v0_5.SpaceInputAxis(id=AxisId("y"), size=array.shape[1]),
@@ -266,7 +278,8 @@ def _interprete_array_wo_known_axes(array):
         current_axes = (
             v0_5.ChannelAxis(
                 channel_names=[
-                    v0_5.Identifier(f"channel{i}") for i in range(array.shape[0])
+                    v0_5.Identifier(f"channel{i}")
+                    for i in range(array.shape[0])
                 ]
             ),
             v0_5.SpaceInputAxis(id=AxisId("z"), size=array.shape[1]),
@@ -278,7 +291,8 @@ def _interprete_array_wo_known_axes(array):
             v0_5.BatchAxis(),
             v0_5.ChannelAxis(
                 channel_names=[
-                    v0_5.Identifier(f"channel{i}") for i in range(array.shape[1])
+                    v0_5.Identifier(f"channel{i}")
+                    for i in range(array.shape[1])
                 ]
             ),
             v0_5.SpaceInputAxis(id=AxisId("z"), size=array.shape[2]),
