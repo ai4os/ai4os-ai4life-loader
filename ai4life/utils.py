@@ -94,39 +94,48 @@ def load_models(models_name, path, perform_io_checks=False):
 
             return len(model_io_info["inputs"]) == 1
 
-
 def _process_v0_5_input(input_descr) -> Tuple[List[int], List[int]]:
     """
     Process v0.5 input descriptor to extract shape information.
 
     Args:
-        input_descr: Input descriptor object
+        input_descr: Input descriptor object or dict
 
     Returns:
         Tuple of (min_shape, step) lists
     """
     min_shape, step = [], []
 
-    for axis in input_descr.axes:
-        if isinstance(axis.size, v0_5.ParameterizedSize):
-            min_shape.append(axis.size.min)
-            step.append(axis.size.step)
-        elif isinstance(axis.size, int):
-            min_shape.append(axis.size)
+    axes = input_descr["axes"] if isinstance(input_descr, dict) else input_descr.axes
+
+    for axis in axes:
+        axis_size = axis["size"] if isinstance(axis, dict) else axis.size
+
+        if isinstance(axis_size, dict):
+            if "min" in axis_size and "step" in axis_size:
+                min_shape.append(axis_size["min"])
+                step.append(axis_size["step"])
+            else:
+                raise NotImplementedError(
+                    f"Can't handle axes like '{axis}' yet"
+                )
+        elif isinstance(axis_size, v0_5.ParameterizedSize):
+            min_shape.append(axis_size.min)
+            step.append(axis_size.step)
+        elif isinstance(axis_size, int):
+            min_shape.append(axis_size)
             step.append(0)
-        elif axis.size is None:
-            axis.size = 1
-            min_shape.append(axis.size)
+        elif axis_size is None:
+            min_shape.append(1)
             step.append(0)
-        elif isinstance(axis.size, v0_5.SizeReference):
+        elif isinstance(axis_size, v0_5.SizeReference):
             raise NotImplementedError(
                 f"Can't handle axes like '{axis}' yet"
             )
         else:
-            assert_never(axis.size)
+            assert_never(axis_size)
 
     return min_shape, step
-
 
 def get_model_io_info(model):
     model_info = {

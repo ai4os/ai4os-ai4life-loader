@@ -1,6 +1,7 @@
 import json
 import subprocess
 import tempfile
+import uuid
 import gradio as gr
 import numpy as np
 import os
@@ -57,6 +58,23 @@ def load_npy_image(file_path):
         raise ValueError("Provided file is not a .npy file.")
 
 
+def _downloaded_path(input_item):
+    """Local file path for a model test tensor."""
+    dl = download(input_item)
+    path = getattr(dl, "path", None)
+    if path is not None:
+        return path
+    name = os.path.basename(getattr(dl, "original_file_name", None) or "input")
+    suffix = getattr(dl, "suffix", None)
+    if suffix and not os.path.splitext(name)[1]:
+        name += suffix
+    prefix = getattr(dl, "sha256", None) or uuid.uuid4().hex
+    target = os.path.join(tempfile.gettempdir(), f"{prefix}-{name}")
+    with open(target, "wb") as tmp:
+        tmp.write(dl.read())
+    return target
+
+
 def input_files(model_name):
     """Fixture to provide options dictionary for the model."""
     model_name, icon = model_name.split(" ", 1)
@@ -66,7 +84,7 @@ def input_files(model_name):
     options = {}
 
     for input_item in inputs:
-        path = download(input_item).path
+        path = _downloaded_path(input_item)
         filename = os.path.basename(path).split("-")[-1]
 
         if input_item == inputs[0]:
