@@ -55,11 +55,12 @@ import api
 from . import selected_models
 
 import ai4life as aimodel
-import json 
+import json
 
 model_names = selected_models.main()
 with open(os.path.join(aimodel.config.MODELS_PATH, "filtered_models.json")) as f:
     models = json.load(f)
+
 
 # @pytest.fixture(scope="module")
 def _downloaded_path(input_item):

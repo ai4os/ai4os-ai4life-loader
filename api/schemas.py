@@ -13,7 +13,6 @@ import json
 
 from . import config, responses, utils
 
-
 hide_input = utils.hide_input()
 
 
@@ -31,9 +30,7 @@ class BoxPromptField(fields.Field):
     def _deserialize(self, value, attr, data, **kwargs):
         try:
             # Convert JSON string to a Python list
-            value = (
-                json.loads(value) if isinstance(value, str) else value
-            )
+            value = json.loads(value) if isinstance(value, str) else value
         except json.JSONDecodeError as err:
             raise ValidationError(f"Invalid JSON: `{err}`")
 
@@ -43,16 +40,12 @@ class BoxPromptField(fields.Field):
     def _validate(self, value):
         # Check that the input is a list with one batch dimension
         if not isinstance(value, list) or len(value) != 1:
-            raise ValidationError(
-                "The input must be a list with one batch dimension."
-            )
+            raise ValidationError("The input must be a list with one batch dimension.")
 
         # Validate the inner list of boxes
         boxes = value[0]
         if not isinstance(boxes, list):
-            raise ValidationError(
-                "The inner element must be a list of boxes."
-            )
+            raise ValidationError("The inner element must be a list of boxes.")
 
         for box in boxes:
             if not isinstance(box, list) or len(box) != 4:
@@ -62,9 +55,7 @@ class BoxPromptField(fields.Field):
                 )
             for coordinate in box:
                 if not isinstance(coordinate, int):
-                    raise ValidationError(
-                        "Each coordinate must be an integer."
-                    )
+                    raise ValidationError("Each coordinate must be an integer.")
 
 
 class PointPromptsField(fields.Field):
@@ -81,22 +72,16 @@ class PointPromptsField(fields.Field):
     def _validate(self, value):
         # Ensure value is a list
         if not isinstance(value, list):
-            raise ValidationError(
-                "`point_prompts` must be a list of lists."
-            )
+            raise ValidationError("`point_prompts` must be a list of lists.")
 
         for batch in value:
             # Check each batch dimension entry is a list
             if not isinstance(batch, list):
-                raise ValidationError(
-                    "Each item in `point_prompts` must be a list."
-                )
+                raise ValidationError("Each item in `point_prompts` must be a list.")
             for obj in batch:
                 # Check each object entry in batch is a list
                 if not isinstance(obj, list):
-                    raise ValidationError(
-                        "Each object entry must be a list of points."
-                    )
+                    raise ValidationError("Each object entry must be a list of points.")
                 for point in obj:
                     # Check each point entry in object is a list
                     #  with exactly 2 coordinates
@@ -108,9 +93,7 @@ class PointPromptsField(fields.Field):
                     # Check each coordinate is an integer
                     for coord in point:
                         if not isinstance(coord, int):
-                            raise ValidationError(
-                                "Each coordinate must be an integer."
-                            )
+                            raise ValidationError("Each coordinate must be an integer.")
 
 
 class PointLabelsField(fields.Field):
@@ -123,8 +106,7 @@ class PointLabelsField(fields.Field):
         return {
             "type": "int64",
             "shape": [1, 1, None],  # Allow variable number of points
-            "description": "Point labels with [batch, object, point]"
-            " dimensions",
+            "description": "Point labels with [batch, object, point]" " dimensions",
             "data_description": {
                 "range": [None, None],
                 "unit": "arbitrary unit",
@@ -137,33 +119,24 @@ class PointLabelsField(fields.Field):
         # Step 1: Convert string input to a list if needed
         if isinstance(value, str):
             try:
-                value = json.loads(
-                    value
-                )  # Convert from string to list
+                value = json.loads(value)  # Convert from string to list
             except json.JSONDecodeError:
-                raise ValidationError(
-                    "Point labels must be a valid JSON list."
-                )
+                raise ValidationError("Point labels must be a valid JSON list.")
 
         # Step 2: Ensure it's a list
         if not isinstance(value, list):
             raise ValidationError(
-                "Point labels must be a list with [batch, object, point]"
-                " dimensions."
+                "Point labels must be a list with [batch, object, point]" " dimensions."
             )
 
         # Step 3: Validate shape [1, num_box, Num_points]
         # Step 3: Validate each batch, object, and point
         for batch in value:
             if not isinstance(batch, list):
-                raise ValidationError(
-                    "Each batch must be a list of objects."
-                )
+                raise ValidationError("Each batch must be a list of objects.")
             for obj in batch:
                 if not isinstance(obj, list):
-                    raise ValidationError(
-                        "Each object must be a list of points."
-                    )
+                    raise ValidationError("Each object must be a list of points.")
                 for point in obj:
                     if not isinstance(point, (int, float)):
                         raise ValidationError(
@@ -289,8 +262,7 @@ class PredArgsSchema(marshmallow.Schema):
     # fields.List(fields.List(fields.List(fields.Int())))
     point_labels = PointLabelsField(
         metadata={
-            "description": "Point labels input with shape [1, 1, 1]"
-            " and int64 type.",
+            "description": "Point labels input with shape [1, 1, 1]" " and int64 type.",
         },
         required=False,
         dump_only=hide_input,

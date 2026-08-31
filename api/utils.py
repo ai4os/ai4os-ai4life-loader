@@ -124,14 +124,10 @@ def output_png(sample, output_):
 
 
 def get_models_name():
-    models_data = ls_dirs(
-        os.path.join(config.MODELS_PATH, "collection.json")
-    )
+    models_data = ls_dirs(os.path.join(config.MODELS_PATH, "collection.json"))
     # Filter models from collection
     models_list = [
-        entry
-        for entry in models_data["collection"]
-        if entry["type"] == "model"
+        entry for entry in models_data["collection"] if entry["type"] == "model"
     ]
     model_name = aimodel.config.MODEL_NAME
 
@@ -157,6 +153,4 @@ def get_models_name():
 def hide_input():
     path = os.path.join(config.MODELS_PATH, "collection.json")
     model_name = aimodel.config.MODEL_NAME
-    return aimodel.utils.load_models(
-        model_name, path, perform_io_checks=False
-    )
+    return aimodel.utils.load_models(model_name, path, perform_io_checks=False)

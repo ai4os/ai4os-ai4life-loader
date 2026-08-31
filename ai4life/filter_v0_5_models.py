@@ -20,11 +20,7 @@ def filter_and_load_models(
 
     # Filter entries where "type" is "model"
 
-    models = [
-        entry
-        for entry in data["collection"]
-        if entry["type"] == "model"
-    ]
+    models = [entry for entry in data["collection"] if entry["type"] == "model"]
 
     models_v0_5 = {}
     failed_models = []
@@ -43,14 +39,10 @@ def filter_and_load_models(
         if model_id:
 
             try:
-                model = load_description(
-                    model_id, perform_io_checks=perform_io_checks
-                )
+                model = load_description(model_id, perform_io_checks=perform_io_checks)
             except Exception as e:
                 failed_models.append((model_entry.get("id"), str(e)))
-                print(
-                    f"Failed to load model '{model_entry.get('id')}': {e}"
-                )
+                print(f"Failed to load model '{model_entry.get('id')}': {e}")
                 continue
 
             if isinstance(model, v0_5.ModelDescr):
@@ -66,12 +58,9 @@ def filter_and_load_models(
                         or weight_format == "pytorch_state_dict"
                     ) and weight_info is not None:
 
-                        model_nickname_icon = model_entry.get(
-                            "nickname_icon", ""
-                        )
+                        model_nickname_icon = model_entry.get("nickname_icon", "")
                         model_identifier = (
-                            model_entry.get("nickname")
-                            or model_entry["id"]
+                            model_entry.get("nickname") or model_entry["id"]
                         )
 
                         key = model_identifier + " " + model_nickname_icon
@@ -88,9 +77,7 @@ def filter_and_load_models(
 
     # Write all model info to a JSON file
     with open(output_json, "w") as names_file:
-        json.dump(
-            models_v0_5, names_file, indent=4, cls=CustomEncoder
-        )
+        json.dump(models_v0_5, names_file, indent=4, cls=CustomEncoder)
     return models_v0_5
 
 

@@ -56,9 +56,7 @@ def select_models(data):
 
 
 def main():
-    path = os.path.join(
-        aimodel.config.MODELS_PATH, "filtered_models.json"
-    )
+    path = os.path.join(aimodel.config.MODELS_PATH, "filtered_models.json")
     with open(path, "r") as file:
         models_data = json.load(file)
 

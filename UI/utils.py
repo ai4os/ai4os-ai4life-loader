@@ -18,9 +18,7 @@ def load_npy_image(file_path):
     if file_path.endswith(".npy"):
         # Load the .npy file
         img_array = np.load(file_path)
-        img_array = np.squeeze(
-            img_array, axis=0
-        )  # Remove batch size if present
+        img_array = np.squeeze(img_array, axis=0)  # Remove batch size if present
 
         # Transpose if shape is (channels, height, width)
         if len(img_array.shape) == 3 and img_array.shape[0] in [
@@ -36,24 +34,18 @@ def load_npy_image(file_path):
         # Convert to uint8 if not already
         if img_array.dtype != np.uint8:
             img_array = (
-                255
-                * (img_array - img_array.min())
-                / (img_array.ptp() + 1e-5)
+                255 * (img_array - img_array.min()) / (img_array.ptp() + 1e-5)
             ).astype(np.uint8)
 
         # Convert to a PIL image
         img = Image.fromarray(img_array)
 
         # Save the image to a temporary directory
-        with tempfile.NamedTemporaryFile(
-            delete=False, suffix=".png"
-        ) as temp_file:
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".png") as temp_file:
             temp_path = temp_file.name
             img.save(temp_path)
 
-        return {
-            "image": temp_path
-        }  # Return the path to the saved image
+        return {"image": temp_path}  # Return the path to the saved image
     else:
         raise ValueError("Provided file is not a .npy file.")
 
@@ -141,17 +133,11 @@ def api2gr_inputs(api_inp):
                     )
                 )
             else:
-                gr_inp.append(
-                    gr.Number(value=v.get("default", None), label=k)
-                )
+                gr_inp.append(gr.Number(value=v.get("default", None), label=k))
         elif v["type"] in ["boolean"]:
-            gr_inp.append(
-                gr.Checkbox(value=v.get("default", None), label=k)
-            )
+            gr_inp.append(gr.Checkbox(value=v.get("default", None), label=k))
         elif v["type"] in ["string"]:
-            gr_inp.append(
-                gr.Textbox(value=v.get("default", None), label=k)
-            )
+            gr_inp.append(gr.Textbox(value=v.get("default", None), label=k))
 
         elif v["type"] in ["file"]:
             gr_inp.append(
@@ -221,9 +207,7 @@ def gr2api_input(params, inp_types):
     return params, files
 
 
-def visualize_prompts(
-    image_path, point_prompts, point_labels, box_prompts
-):
+def visualize_prompts(image_path, point_prompts, point_labels, box_prompts):
     # Load image
     image = Image.open(image_path)
     draw = ImageDraw.Draw(image)
@@ -240,9 +224,7 @@ def visualize_prompts(
     for box in box_prompts[0]:
         x1, y1, x2, y2 = box
         draw.rectangle([x1, y1, x2, y2], outline="blue", width=2)
-    with tempfile.NamedTemporaryFile(
-        delete=False, suffix=".png"
-    ) as temp_file:
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".png") as temp_file:
         temp_path = temp_file.name
         image.save(temp_path)
     return temp_path
@@ -250,11 +232,7 @@ def visualize_prompts(
 
 def get_parameter_default(param_name, api_inp):
     param_value = next(
-        (
-            param["default"]
-            for param in api_inp
-            if param["name"] == param_name
-        ),
+        (param["default"] for param in api_inp if param["name"] == param_name),
         None,
     )
     return param_value
@@ -273,21 +251,9 @@ def get_examples(model_name, api_inp):
         input_file = str(options["input_file"])
         examples.append(input_file)
         # examples.append(load_npy_image(input_file))
-        box_prompts = (
-            options["box_prompts"]
-            if "box_prompts" in options
-            else None
-        )
-        point_prompts = (
-            options["point_prompts"]
-            if "point_prompts" in options
-            else None
-        )
-        point_labels = (
-            options["point_labels"]
-            if "point_labels" in options
-            else None
-        )
+        box_prompts = options["box_prompts"] if "box_prompts" in options else None
+        point_prompts = options["point_prompts"] if "point_prompts" in options else None
+        point_labels = options["point_labels"] if "point_labels" in options else None
         image_data = load_npy_image(input_file)
 
         result_image = visualize_prompts(
@@ -298,16 +264,10 @@ def get_examples(model_name, api_inp):
         )
         examples.append({"image": result_image})
         mask_prompts = (
-            str(options["mask_prompts"])
-            if "mask_prompts" in options
-            else None
+            str(options["mask_prompts"]) if "mask_prompts" in options else None
         )
         examples.append(mask_prompts)
-        embeddings = (
-            str(options["embeddings"])
-            if "embeddings" in options
-            else None
-        )
+        embeddings = str(options["embeddings"]) if "embeddings" in options else None
         examples.append(embeddings)
 
     return examples
@@ -357,16 +317,12 @@ def process_prompts(prompts):
                 outlier_labels.append(label)
 
     # Determine the maximum number of points across all boxes
-    max_points_per_box = max(
-        [len(p) for p in points_by_box] + [len(outlier_points)]
-    )
+    max_points_per_box = max([len(p) for p in points_by_box] + [len(outlier_points)])
 
     # Pad points and labels inside each box to ensure uniform shape
     for i in range(len(points_by_box)):
         while len(points_by_box[i]) < max_points_per_box:
-            points_by_box[i].append(
-                [int(0), int(0)]
-            )  # Pad with dummy point
+            points_by_box[i].append([int(0), int(0)])  # Pad with dummy point
             labels_by_box[i].append(int(0))  # Pad with dummy label
 
     # Handle outlier points
@@ -376,16 +332,12 @@ def process_prompts(prompts):
             outlier_labels.append(int(0))
         points_by_box.append(outlier_points)
         labels_by_box.append(outlier_labels)
-        boxes.append(
-            [int(0), int(0), int(0), int(0)]
-        )  # Add a dummy box for outliers
+        boxes.append([int(0), int(0), int(0), int(0)])  # Add a dummy box for outliers
 
     return image, [points_by_box], [labels_by_box], [boxes]
 
 
-def reverse_process_prompts(
-    image, points_by_box, labels_by_box, boxes
-):
+def reverse_process_prompts(image, points_by_box, labels_by_box, boxes):
     """
     Converts box prompts and point labels back to the original prompt format
 
@@ -403,9 +355,7 @@ def reverse_process_prompts(
     # Add box prompts
     for box in boxes[0]:
         x1, y1, x2, y2 = box
-        prompts["points"].append(
-            [x1, y1, 2, x2, y2, 3]
-        )  # Box type marker
+        prompts["points"].append([x1, y1, 2, x2, y2, 3])  # Box type marker
 
     # Add point prompts
     for box_points, box_labels, box in zip(
@@ -414,9 +364,7 @@ def reverse_process_prompts(
         for point, label in zip(box_points, box_labels):
             #  if point != [0, 0]:  # Skip dummy points
             x, y = point
-            prompts["points"].append(
-                [x, y, label, 0, 0, 4]
-            )  # Point type marker
+            prompts["points"].append([x, y, label, 0, 0, 4])  # Point type marker
 
     return prompts
 
@@ -442,14 +390,10 @@ def generate_footer(metadata):
         text=True,
         cwd=main_path,
     ).stdout.strip()
-    git_branch = git_branch.split("/")[
-        -1
-    ]  # remove the "origin/" part
+    git_branch = git_branch.split("/")[-1]  # remove the "origin/" part
 
     version_text = f"deepaas_ui/{git_branch}@{git_commit[:5]}"
-    version_link = (
-        f"https://github.com/ai4os/deepaas_ui/tree/{git_commit}"
-    )
+    version_link = f"https://github.com/ai4os/deepaas_ui/tree/{git_commit}"
 
     # Get module description
     description = metadata.get("description", "")
@@ -458,11 +402,13 @@ def generate_footer(metadata):
         description = metadata.get("summary", "")
 
     # Get the appropriate logo (default is "ai4eosc")
-    namespace = os.getenv('NOMAD_NAMESPACE', 'ai4eosc')
-    namespace = namespace if namespace in ['imagine'] else 'ai4eosc'  # other namespace don't have logo
+    namespace = os.getenv("NOMAD_NAMESPACE", "ai4eosc")
+    namespace = (
+        namespace if namespace in ["imagine"] else "ai4eosc"
+    )  # other namespace don't have logo
     homepages = {
-        'ai4eosc': 'https://ai4eosc.eu/',
-        'imagine': 'https://www.imagine-ai.eu/',
+        "ai4eosc": "https://ai4eosc.eu/",
+        "imagine": "https://www.imagine-ai.eu/",
     }
     logo = f"""
         <a href="{homepages[namespace]}">
@@ -475,9 +421,7 @@ def generate_footer(metadata):
     # Generate the footer
     author = metadata.get("author", "") + [
         author.get("name", "")
-        for author in metadata.get("model_info", {}).get(
-            "authors", []
-        )
+        for author in metadata.get("model_info", {}).get("authors", [])
     ]
     if isinstance(author, list):
         author = ", ".join(author)
@@ -499,6 +443,4 @@ if __name__ == "__main__":
     box_prompts = np.array([[[0, 31, 18, 55], [0, 89, 16, 114]]])
     point_labels = np.array([[[1, 0, 0], [1, 0, 0]]])
     box_prompts = np.array([[[0, 31, 18, 55], [0, 89, 16, 114]]])
-    reverse_process_prompts(
-        image, box_prompts, point_labels, box_prompts
-    )
+    reverse_process_prompts(image, box_prompts, point_labels, box_prompts)

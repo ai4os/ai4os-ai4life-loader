@@ -9,7 +9,6 @@ import utils
 from io import BytesIO
 import gradio_image_prompter as gr_ext
 
-
 gr.close_all()
 GRADIO_SERVER = "0.0.0.0"
 
@@ -34,9 +33,7 @@ def main(api_url, ui_port):
     r = sess.get(urljoin(api_url, "swagger.json"))
     specs = r.json()
 
-    pred_paths = [
-        p for p in specs["paths"].keys() if p.endswith("predict/")
-    ]
+    pred_paths = [p for p in specs["paths"].keys() if p.endswith("predict/")]
 
     p = next(
         (p for p in pred_paths if "ai4life" in p), None
@@ -57,16 +54,13 @@ def main(api_url, ui_port):
                 else ast.literal_eval(inp["default"])[0]
             )
             for inp in api_inp
-            if inp.get("name") == "model_name"
-            and ("enum" in inp or "default" in inp)
+            if inp.get("name") == "model_name" and ("enum" in inp or "default" in inp)
         ),
         None,
     )
 
     r = sess.get(urljoin(api_url, f"{Path(p).parent}"))
-    print(
-        f"the path to the get metadata is {api_url}/{Path(p).parent}/"
-    )
+    print(f"the path to the get metadata is {api_url}/{Path(p).parent}/")
     _, inp_names, inp_types = utils.api2gr_inputs(api_inp)
     meta = r.json()
 
@@ -88,9 +82,7 @@ def main(api_url, ui_port):
 
             params, files = utils.gr2api_input(params, inp_types)
         else:
-            image, point_coords, point_labels, boxes = (
-                utils.process_prompts(params[1])
-            )
+            image, point_coords, point_labels, boxes = utils.process_prompts(params[1])
 
             params = (
                 image,
@@ -143,9 +135,7 @@ def main(api_url, ui_port):
         with gr.Blocks() as interface:
             gr_inp = []
             if len(api_inp) == 3:
-                gr_inp.append(
-                    gr.File(type="filepath", label="Input an Image")
-                )
+                gr_inp.append(gr.File(type="filepath", label="Input an Image"))
             else:
                 npy_upload = gr.File(
                     type="filepath",
@@ -206,20 +196,14 @@ def main(api_url, ui_port):
                 output = gr.JSON()
             elif mime.startswith("image/"):
                 # gr_out = gr.Image(type='filepath')
-                output = gr.Image(
-                    type="filepath", label="Image with segmentation"
-                )
+                output = gr.Image(type="filepath", label="Image with segmentation")
             examples = utils.get_examples(model_name, api_inp)
 
-            project_description = meta.get("model_info", {}).get(
-                "description"
-            )
+            project_description = meta.get("model_info", {}).get("description")
 
             # Define the Gradio interface
             gr.Interface(
-                fn=lambda *args, mime=mime: api_call(
-                    *args, mime=mime
-                ),
+                fn=lambda *args, mime=mime: api_call(*args, mime=mime),
                 inputs=gr_inp,
                 outputs=output,
                 title=model_name,
