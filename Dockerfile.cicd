@@ -9,7 +9,7 @@
 # Be Aware! For the Jenkins CI/CD pipeline, 
 # input args are defined inside the JenkinsConstants.groovy, not here!
 
-ARG tag=2.3.1-cuda11.8-cudnn8-runtime
+ARG tag=2.7.1-cuda11.8-cudnn8-runtime
 
 # Base image, e.g. tensorflow/tensorflow:2.x.x-gpu
 FROM pytorch/pytorch:${tag}
@@ -46,8 +46,8 @@ ENV DISABLE_AUTHENTICATION_AND_ASSUME_AUTHENTICATED_USER=yes
 ENV SHELL=/bin/bash
 
 # Install user app dependencies for testing
-RUN curl -O https://raw.githubusercontent.com/ai4os/ai4os-ai4life-loader/refs/heads/main/requirements.txt && \
-    curl -O https://raw.githubusercontent.com/ai4os/ai4os-ai4life-loader/refs/heads/main/requirements-test.txt && \
+RUN curl -O https://raw.githubusercontent.com/ai4os/ai4os-ai4life-loader/refs/heads/dev/requirements.txt && \
+    curl -O https://raw.githubusercontent.com/ai4os/ai4os-ai4life-loader/refs/heads/dev/requirements-test.txt && \
     pip3 install --no-cache-dir -r requirements.txt && \
     pip3 install --no-cache-dir -r requirements-test.txt
 
