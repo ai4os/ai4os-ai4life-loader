@@ -10,6 +10,7 @@ services:
       context: ./.sqa
       args:
         branch: ${BUILD_BRANCH:-dev}
+        CACHEBUST: ${BUILD_NUMBER:-1}
     volumes:
       - type: bind
         source: ./
