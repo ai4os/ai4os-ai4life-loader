@@ -55,7 +55,9 @@ def filter_and_load_models(
 
                 if declared_version and not declared_version.startswith("0.5"):
                     print(
-                        f"Skipping {model_entry.get('id')}: format_version {declared_version} is not native v0.5"
+                        f"Skipping {model_entry.get('id')}: "
+                        f"format_version {declared_version} "
+                        "is not native v0.5"
                     )
                     continue
 
