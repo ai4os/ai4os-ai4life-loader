@@ -41,11 +41,11 @@ pipeline {
                     if (env.CHANGE_BRANCH && !env.CHANGE_FORK) {
                         env.BUILD_BRANCH = env.CHANGE_BRANCH
                     } else if (env.CHANGE_FORK) {
-                        env.BUILD_BRANCH = "dev"
+                        env.BUILD_BRANCH = "main"
                     } else if (env.BRANCH_NAME && !env.BRANCH_NAME.startsWith("PR-")) {
                         env.BUILD_BRANCH = env.BRANCH_NAME
                     } else {
-                        env.BUILD_BRANCH = "dev"
+                        env.BUILD_BRANCH = "main"
                     }
                     println ("[DEBUG] Build branch for CI testing: $env.BUILD_BRANCH")
 
