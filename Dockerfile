@@ -11,7 +11,6 @@
 # input args are defined inside the JenkinsConstants.groovy, not here!
 
 ARG tag=2.7.1-cuda12.6-cudnn9-runtime
-FROM pytorch/pytorch:${tag}
 
 # Base image, e.g. tensorflow/tensorflow:2.x.x-gpu
 FROM pytorch/pytorch:${tag}
