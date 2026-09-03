@@ -40,6 +40,8 @@ number of tests generated can grow exponentially.
 
 # pylint: disable=redefined-outer-name
 import os
+import tempfile
+import uuid
 import numpy as np
 import pytest
 from deepaas.model.v2.wrapper import UploadedFile
@@ -47,27 +49,58 @@ from deepaas.model.v2.wrapper import UploadedFile
 # import api
 from bioimageio.core import load_description
 from bioimageio.spec._internal.io import download
+from bioimageio.spec.model import v0_5
 
 import api
 from . import selected_models
 
+import ai4life as aimodel
+import json
 
 model_names = selected_models.main()
+with open(
+    os.path.join(aimodel.config.MODELS_PATH, "filtered_models.json")
+) as f:
+    models = json.load(f)
 
 
 # @pytest.fixture(scope="module")
+def _downloaded_path(input_item):
+    """Local file path for a model test tensor."""
+    dl = download(input_item)
+    path = getattr(dl, "path", None)
+    if path is not None:
+        return path
+    name = os.path.basename(getattr(dl, "original_file_name", None) or "input")
+    suffix = getattr(dl, "suffix", None)
+    if suffix and not os.path.splitext(name)[1]:
+        name += suffix
+    prefix = getattr(dl, "sha256", None) or uuid.uuid4().hex
+    target = os.path.join(tempfile.gettempdir(), f"{prefix}-{name}")
+    with open(target, "wb") as tmp:
+        tmp.write(dl.read())
+    return target
+
+
 def input_files(model_name):
     """Fixture to provide options dictionary for the model."""
     # Load the model
-    model_name, icon = model_name.split(" ", 1)
-    model = load_description(model_name, perform_io_checks=False)
+    name, icon = (
+        model_name.split(" ", 1) if " " in model_name else (model_name, "")
+    )
+    model = load_description(name, perform_io_checks=False)
+    if not isinstance(model, v0_5.ModelDescr):
+        entry = models.get(model_name, {})
+        concept_doi = entry.get("concept_doi")
+        if concept_doi:
+            model = load_description(concept_doi, perform_io_checks=False)
 
     # Initialize inputs
     inputs = [d.test_tensor for d in model.inputs]
     options = {}
 
     for input_item in inputs:
-        path = download(input_item).path
+        path = _downloaded_path(input_item)
         content_type = "application/octet-stream"
         file_extension = os.path.splitext(path)[1]
         filename = os.path.basename(path).split("-")[-1]

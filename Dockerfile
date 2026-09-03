@@ -10,7 +10,7 @@
 # Be Aware! For the Jenkins CI/CD pipeline, 
 # input args are defined inside the JenkinsConstants.groovy, not here!
 
-ARG tag=2.3.1-cuda11.8-cudnn8-runtime
+ARG tag=2.7.1-cuda11.8-cudnn8-runtime
 
 # Base image, e.g. tensorflow/tensorflow:2.x.x-gpu
 FROM pytorch/pytorch:${tag}
@@ -82,7 +82,7 @@ RUN git clone -b $branch --depth 1 https://github.com/ai4os/ai4os-ai4life-loader
 RUN if [ "$MODEL_NAME" = "affectionate-cow" ]; then \
     pip3 install git+https://github.com/m-team-kit/uSplit.git@main \
     ; fi
-RUN pip uninstall -y marshmallow && pip install marshmallow==3.19.0  
+RUN pip uninstall -y marshmallow && pip install marshmallow==3.19.0
 EXPOSE 5000 6006 8888 80
 RUN chmod +x ai4os-ai4life-loader/UI/entrypoint.sh
 # Launch deepaas

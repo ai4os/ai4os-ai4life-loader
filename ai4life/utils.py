@@ -22,7 +22,6 @@ from bioimageio.core.io import load_image
 from bioimageio.core.axis import AxisId
 from imageio.v3 import imread
 
-
 logger = logging.getLogger(__name__)
 logger.setLevel(config.LOG_LEVEL)
 
@@ -41,8 +40,7 @@ def load_models(models_name, path, perform_io_checks=False):
         (
             entry
             for entry in models_data.get("collection", [])
-            if entry.get("type") == "model"
-            and entry.get("id") == models_name
+            if entry.get("type") == "model" and entry.get("id") == models_name
         ),
         None,
     )
@@ -57,19 +55,13 @@ def load_models(models_name, path, perform_io_checks=False):
     )
 
     if model_id:
-        model = load_description(
-            model_id, perform_io_checks=perform_io_checks
-        )
+        model = load_description(model_id, perform_io_checks=perform_io_checks)
         if isinstance(model, v0_5.ModelDescr):
             model_io_info = get_model_io_info(model)
 
             # Convert non-serializable fields to serializable format
             serializable_io_info = {
-                key: (
-                    value.__dict__
-                    if hasattr(value, "__dict__")
-                    else value
-                )
+                key: (value.__dict__ if hasattr(value, "__dict__") else value)
                 for key, value in model_io_info.items()
             }
 
@@ -100,30 +92,43 @@ def _process_v0_5_input(input_descr) -> Tuple[List[int], List[int]]:
     Process v0.5 input descriptor to extract shape information.
 
     Args:
-        input_descr: Input descriptor object
+        input_descr: Input descriptor object or dict
 
     Returns:
         Tuple of (min_shape, step) lists
     """
     min_shape, step = [], []
 
-    for axis in input_descr.axes:
-        if isinstance(axis.size, v0_5.ParameterizedSize):
-            min_shape.append(axis.size.min)
-            step.append(axis.size.step)
-        elif isinstance(axis.size, int):
-            min_shape.append(axis.size)
+    axes = (
+        input_descr["axes"]
+        if isinstance(input_descr, dict)
+        else input_descr.axes
+    )
+
+    for axis in axes:
+        axis_size = axis["size"] if isinstance(axis, dict) else axis.size
+
+        if isinstance(axis_size, dict):
+            if "min" in axis_size and "step" in axis_size:
+                min_shape.append(axis_size["min"])
+                step.append(axis_size["step"])
+            else:
+                raise NotImplementedError(
+                    f"Can't handle axes like '{axis}' yet"
+                )
+        elif isinstance(axis_size, v0_5.ParameterizedSize):
+            min_shape.append(axis_size.min)
+            step.append(axis_size.step)
+        elif isinstance(axis_size, int):
+            min_shape.append(axis_size)
             step.append(0)
-        elif axis.size is None:
-            axis.size = 1
-            min_shape.append(axis.size)
+        elif axis_size is None:
+            min_shape.append(1)
             step.append(0)
-        elif isinstance(axis.size, v0_5.SizeReference):
-            raise NotImplementedError(
-                f"Can't handle axes like '{axis}' yet"
-            )
+        elif isinstance(axis_size, v0_5.SizeReference):
+            raise NotImplementedError(f"Can't handle axes like '{axis}' yet")
         else:
-            assert_never(axis.size)
+            assert_never(axis_size)
 
     return min_shape, step
 
@@ -138,8 +143,7 @@ def get_model_io_info(model):
     for ipt in model.inputs:
         min_shape, step = _process_v0_5_input(ipt)
         input_info = {
-            "id": getattr(ipt, "id", None)
-            or getattr(ipt, "name", None),
+            "id": getattr(ipt, "id", None) or getattr(ipt, "name", None),
             "axis": ipt.axes,
             "shape": "The input shape for the model requires a minimum "
             f"size of {min_shape} and can increase by {step}",
@@ -155,8 +159,7 @@ def get_model_io_info(model):
     # Collect output information
     for out in model.outputs:
         output_info = {
-            "id": getattr(out, "id", None)
-            or getattr(out, "name", None),
+            "id": getattr(out, "id", None) or getattr(out, "name", None),
             "axes": out.axes,
             "data_description": getattr(out, "data", None),
             "test_tensor": (
@@ -230,12 +233,10 @@ def check_channel_position(input_info):
     axes = input_info[0]["axis"]
 
     # Check if any axis has 'channels' name
-    has_channels = any(
-        "channel" in str(axis).lower() for axis in axes
-    )
+    has_channels = any("channel" in str(axis).lower() for axis in axes)
 
     if not has_channels:
-        return False, "No channels dimension found"
+        return False, None, 0
 
     # Find position of channels
     for idx, axis in enumerate(axes):
@@ -299,9 +300,7 @@ def _interprete_array_wo_known_axes(array):
             v0_5.SpaceInputAxis(id=AxisId("x"), size=array.shape[4]),
         )
     else:
-        raise ValueError(
-            f"Could not guess an axis mapping for {array.shape}"
-        )
+        raise ValueError(f"Could not guess an axis mapping for {array.shape}")
 
     return tuple(a.id for a in current_axes)
 

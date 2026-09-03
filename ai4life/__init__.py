@@ -14,6 +14,7 @@ from your_module import your_function as training
 import logging
 import numpy as np
 import os
+import json
 
 from bioimageio.core import predict as predict_
 from bioimageio.core import load_description
@@ -32,6 +33,26 @@ logger = logging.getLogger(__name__)
 logger.setLevel(config.LOG_LEVEL)
 
 
+def _load_v0_5_model(model_name):
+    """Load a model and ensure it is v0.5, falling back to concept_doi."""
+    name, icon = (
+        model_name.split(" ", 1) if " " in model_name else (model_name, "")
+    )
+    model = load_description(name)
+    if not isinstance(model, v0_5.ModelDescr):
+        filtered_path = os.path.join(
+            config.MODELS_PATH, "filtered_models.json"
+        )
+        if os.path.exists(filtered_path):
+            with open(filtered_path, "r") as f:
+                models = json.load(f)
+            entry = models.get(model_name, {})
+            concept_doi = entry.get("concept_doi")
+            if concept_doi:
+                model = load_description(concept_doi)
+    return model
+
+
 def warm(**kwargs):
     """Main/public method to start up the model"""
     path = os.path.join(config.MODELS_PATH, "collection.json")
@@ -41,8 +62,7 @@ def warm(**kwargs):
 
 def predict(model_name, **options):
     """Main/public method to perform prediction"""
-    model_name, icon = model_name.split(" ", 1)
-    model = load_description(model_name)
+    model = _load_v0_5_model(model_name)
     input_output_info = utils.get_model_io_info(model)
     input_ids = list(get_member_ids(model.inputs))
     output_ids = set(get_member_ids(model.outputs))
@@ -112,9 +132,7 @@ def predict(model_name, **options):
 
                 elif options.get(option) is not None:
                     input_data[id] = np.array(options[option])
-                    print(
-                        f"the shape of array {id} is {input_data[id].shape}"
-                    )
+                    print(f"the shape of array {id} is {input_data[id].shape}")
 
                 if (
                     "box_prompts" in input_data
@@ -148,9 +166,7 @@ def predict(model_name, **options):
                         )
                         print("the pading shape is ", padding.shape)
                         # Concatenate the zero array to mask_prompts
-                        print(
-                            "the mask shape is ", mask_prompts.shape
-                        )
+                        print("the mask shape is ", mask_prompts.shape)
                         mask_prompts = np.concatenate(
                             (mask_prompts, padding), axis=1
                         )

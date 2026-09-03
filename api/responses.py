@@ -51,9 +51,7 @@ def json_response(result, output_ids, input_data, **options):
                     output_array = (
                         output_array.values
                     )  # Add directly if not numpy type
-                print(
-                    f"the size of the output array is {output_array.shape}"
-                )
+                print(f"the size of the output array is {output_array.shape}")
                 output_[id] = np.squeeze(output_array).tolist()
 
         # print(f'Final output_: {output_.keys()}')
