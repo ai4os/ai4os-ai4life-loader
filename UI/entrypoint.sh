@@ -12,4 +12,4 @@ echo "Script directory is: $SCRIPT_DIR"
 # Start Gradio UI, pointing to DeepAAS endpoint
 python3  "${SCRIPT_DIR}/launch.py" \
     --api_url "http://0.0.0.0:5000/" \
-    --ui_port 80
+    --ui_port 8000

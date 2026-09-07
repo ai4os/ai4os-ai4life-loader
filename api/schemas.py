@@ -13,7 +13,6 @@ import json
 
 from . import config, responses, utils
 
-
 hide_input = utils.hide_input()
 
 
@@ -31,9 +30,7 @@ class BoxPromptField(fields.Field):
     def _deserialize(self, value, attr, data, **kwargs):
         try:
             # Convert JSON string to a Python list
-            value = (
-                json.loads(value) if isinstance(value, str) else value
-            )
+            value = json.loads(value) if isinstance(value, str) else value
         except json.JSONDecodeError as err:
             raise ValidationError(f"Invalid JSON: `{err}`")
 
@@ -50,9 +47,7 @@ class BoxPromptField(fields.Field):
         # Validate the inner list of boxes
         boxes = value[0]
         if not isinstance(boxes, list):
-            raise ValidationError(
-                "The inner element must be a list of boxes."
-            )
+            raise ValidationError("The inner element must be a list of boxes.")
 
         for box in boxes:
             if not isinstance(box, list) or len(box) != 4:
@@ -81,9 +76,7 @@ class PointPromptsField(fields.Field):
     def _validate(self, value):
         # Ensure value is a list
         if not isinstance(value, list):
-            raise ValidationError(
-                "`point_prompts` must be a list of lists."
-            )
+            raise ValidationError("`point_prompts` must be a list of lists.")
 
         for batch in value:
             # Check each batch dimension entry is a list
@@ -137,9 +130,7 @@ class PointLabelsField(fields.Field):
         # Step 1: Convert string input to a list if needed
         if isinstance(value, str):
             try:
-                value = json.loads(
-                    value
-                )  # Convert from string to list
+                value = json.loads(value)  # Convert from string to list
             except json.JSONDecodeError:
                 raise ValidationError(
                     "Point labels must be a valid JSON list."
@@ -156,9 +147,7 @@ class PointLabelsField(fields.Field):
         # Step 3: Validate each batch, object, and point
         for batch in value:
             if not isinstance(batch, list):
-                raise ValidationError(
-                    "Each batch must be a list of objects."
-                )
+                raise ValidationError("Each batch must be a list of objects.")
             for obj in batch:
                 if not isinstance(obj, list):
                     raise ValidationError(

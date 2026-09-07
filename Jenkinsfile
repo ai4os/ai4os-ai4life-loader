@@ -38,6 +38,17 @@ pipeline {
                         env.DOCKER_REGISTRY_ORG = env.AI4OS_REGISTRY_REPOSITORY
                         env.DOCKER_REGISTRY_CREDENTIALS = env.AI4OS_REGISTRY_CREDENTIALS
                     }
+                    if (env.CHANGE_BRANCH && !env.CHANGE_FORK) {
+                        env.BUILD_BRANCH = env.CHANGE_BRANCH
+                    } else if (env.CHANGE_FORK) {
+                        env.BUILD_BRANCH = "main"
+                    } else if (env.BRANCH_NAME && !env.BRANCH_NAME.startsWith("PR-")) {
+                        env.BUILD_BRANCH = env.BRANCH_NAME
+                    } else {
+                        env.BUILD_BRANCH = "main"
+                    }
+                    println ("[DEBUG] Build branch for CI testing: $env.BUILD_BRANCH")
+
                     // define tag based on branch
                     image_tag = "${env.BRANCH_NAME == 'main' ? 'latest' : env.BRANCH_NAME}"
                     // use REPO_NAME as Docker image name 

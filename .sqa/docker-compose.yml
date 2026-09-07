@@ -9,7 +9,8 @@ services:
     build:
       context: ./.sqa
       args:
-        branch: ${GIT_BRANCH}
+        branch: ${BUILD_BRANCH:-main}
+        CACHEBUST: ${BUILD_NUMBER:-1}
     volumes:
       - type: bind
         source: ./
