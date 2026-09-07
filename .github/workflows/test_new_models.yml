@@ -5,6 +5,8 @@ on:
     workflows: ["Filter v0_5 Models Workflow"]
     types:
       - completed
+    branches:
+      - test  
   workflow_dispatch:
 
 permissions:
@@ -20,6 +22,7 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v4
       with:
+        ref: test
         fetch-depth: 0  # Full history needed to diff previous filtered_models.json
 
     - name: Set up Python

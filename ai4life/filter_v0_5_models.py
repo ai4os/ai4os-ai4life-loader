@@ -20,7 +20,7 @@ def filter_and_load_models(
 
     # Filter entries where "type" is "model"
 
-    excluded_ids = {"stupendous-sheep"}
+    excluded_ids = {}
     models = [
         entry
         for entry in data["collection"]
