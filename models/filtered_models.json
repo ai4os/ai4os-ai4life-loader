@@ -2725,56 +2725,6 @@
         },
         "type": "model"
     },
-    "stupendous-sheep \ud83d\udc11": {
-        "authors": [
-            {
-                "name": "Abhishek Bhardwaj",
-                "affiliation": "Frederick National Lab, National Cancer Institute, NIH",
-                "email": "abhishek.bhardwaj@nih.gov"
-            },
-            {
-                "name": "Kedar Narayan",
-                "affiliation": "Frederick National Lab, National Cancer Institute, NIH",
-                "email": "narayank@mail.nih.gov"
-            }
-        ],
-        "uploader": {
-            "email": "bioimageiobot@gmail.com"
-        },
-        "badges": [],
-        "concept_doi": "10.5281/zenodo.13219912",
-        "covers": [
-            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/stupendous-sheep/1.1/files/em.thumbnail.png",
-            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/stupendous-sheep/1.1/files/seg.thumbnail.png"
-        ],
-        "created": "2025-03-04T10:17:31.472613",
-        "description": "MitoNet [2D]: A generalist mitochondrial 2D instance segmentation model trained [using empanada] for EM images",
-        "download_count": "?",
-        "id": "stupendous-sheep",
-        "license": "BSD-3-Clause",
-        "links": [
-            "imjoy/BioImageIO-Packager",
-            "deepimagej/deepimagej"
-        ],
-        "name": "(Empanada) 2D Instance Mitochondrial Segmentation in EM Images - 2D MitoNet",
-        "nickname_icon": "\ud83d\udc11",
-        "rdf_source": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/stupendous-sheep/1.1/files/rdf.yaml",
-        "root_url": "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/stupendous-sheep/1.1/files",
-        "tags": [
-            "deepimagej",
-            "mitochondria",
-            "mitochondrial-segmentation",
-            "empanada",
-            "pytorch",
-            "resnet",
-            "electron-microscopy",
-            "segmentation",
-            "torchscript",
-            "instance-segmentation",
-            "2d"
-        ],
-        "type": "model"
-    },
     "resourceful-lizard \ud83e\udd8e": {
         "authors": [
             {
