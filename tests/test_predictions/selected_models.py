@@ -106,6 +106,10 @@ def main():
     with open(path, "r") as file:
         models_data = json.load(file)
 
+    # Test every model instead of one per architecture family
+    if os.environ.get("AI4LIFE_TEST_ALL_MODELS") == "1":
+        return list(models_data.keys())
+
     selected = select_models(models_data)
     return selected
 
