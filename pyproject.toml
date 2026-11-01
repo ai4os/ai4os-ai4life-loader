@@ -9,7 +9,7 @@ authors = [
 ]
 description = "Support for inference of the AI4LIFE model on the marketplace."
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.11"
 license = { text = "MIT" }
 classifiers = [
     "Intended Audience :: Information Technology",
