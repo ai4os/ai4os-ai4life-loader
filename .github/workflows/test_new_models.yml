@@ -5,7 +5,7 @@ on:
     workflows: ["Filter v0_5 Models Workflow"]
     types:
       - completed
- 
+
   workflow_dispatch:
 
 permissions:
@@ -22,17 +22,16 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v4
       with:
-    
         fetch-depth: 0  # Full history needed to diff previous filtered_models.json
 
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
-        python-version: "3.10"
+        python-version: "3.11"
 
     - name: Install Dependencies
       run: |
-        python -m pip install --upgrade pip setuptools "setuptools<81" wheel
+        python -m pip install --upgrade pip "setuptools<81" wheel
         pip install "marshmallow<4" "numpy<2" "pydantic<2.11" "xarray<2024.10"
         pip install -r requirements.txt -r requirements-test.txt
         pip install -e .
@@ -93,22 +92,36 @@ jobs:
         git commit -m "Remove failed models from filtered_models.json"
         git push
 
-    # ── Step 4: Create GitHub issue for failures ──
+    # ── Step 4: Open one GitHub issue per failed model (skip if already open) ──
     - name: Generate issue body
       if: steps.check.outputs.has_new_models == 'true' && steps.results.outputs.failed_count != '0'
       run: |
         python scripts/generate_issue.py scripts/test_results.json
 
-    - name: Create GitHub issue
+    - name: Create GitHub issue (skip if already open)
       if: steps.check.outputs.has_new_models == 'true' && steps.results.outputs.failed_count != '0'
-      uses: peter-evans/create-issue-from-file@v5
-      with:
-        title: "[AI4Life] New models failed prediction test"
-        content-filepath: scripts/issue_body.md
-        labels: |
-          bug
-          automated
-       # assignees: ${{ github.repository_owner }}
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        # Titles of automated issues that are already open
+        gh issue list --state open --label automated --limit 500 \
+          --json title --jq '.[].title' > open_titles.txt
+
+        # One line per failed model
+        python -c "import json; [print(f['model']) for f in json.load(open('scripts/test_results.json'))['failed']]" > failed_models.txt
+
+        while IFS= read -r model; do
+          [ -z "$model" ] && continue
+          title="[AI4Life] Prediction test failed: $model"
+          if grep -Fxq "$title" open_titles.txt; then
+            echo "Issue already open for $model, not creating another."
+          else
+            echo "Opening issue for $model"
+            gh issue create --title "$title" \
+              --label bug --label automated \
+              --body-file scripts/issue_body.md
+          fi
+        done < failed_models.txt
 
     # ── Upload artifacts for debugging ──
     - name: Upload test artifacts
