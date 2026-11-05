@@ -1,68 +1,99 @@
-"""Run pytest for new models and collect pass/fail results.
+"""Run the prediction test for each new model and collect the results.
 
 Usage:
     python scripts/test_new_models.py scripts/new_models.txt
 
-Runs the existing tests/test_predictions/ suite with -k to select
-only the new models, then parses the pytest output to identify
-which models passed and which failed.
+Each model is tested in its own pytest run (tests/test_predictions/ with
+``-k <nickname>``) with its own time limit, so one slow or crashing model
+only fails itself and never loses the results of the others.
 
-Results are written to scripts/test_results.json:
+Results are written to scripts/test_results.json after every model:
     {
         "passed": ["model1", "model2"],
         "failed": [{"model": "model3", "error": "..."}]
     }
+
+Environment variables:
+    MODEL_TEST_TIMEOUT  time limit per model in seconds (default 1200)
 
 Exit code 0 if all passed, 1 if any failed.
 """
 
 import json
 import os
-import re
 import subprocess
 import sys
-
+import time
 
 RESULTS_FILE = "scripts/test_results.json"
+DEFAULT_TIMEOUT = 1200  # seconds per model
+
+# pytest exit code when no test matched the -k filter
+NO_TESTS_COLLECTED = 5
 
 
-def build_k_filter(model_keys):
-    """Build a pytest -k expression from model keys.
+def nickname_of(key):
+    """'affable-shark 🦈' -> 'affable-shark'."""
+    return key.split(" ", 1)[0]
 
-    Uses just the nickname part (before the emoji) since that's
-    unique enough for -k substring matching.
+
+def extract_error(output):
+    """Return the most useful one-line error from a pytest output."""
+    lines = output.splitlines()
+    # pytest's short test summary: "ERROR tests/...[model ...] - reason"
+    for line in lines:
+        if line.startswith(("ERROR tests", "FAILED tests")) and " - " in line:
+            return line.split(" - ", 1)[1].strip()[:200]
+    # otherwise the last "E   ..." line of a traceback
+    for line in reversed(lines):
+        if line.startswith("E "):
+            return line[1:].strip()[:200]
+    for line in lines:
+        if line.startswith(("ERROR tests", "FAILED tests")):
+            return line.strip()[:200]
+    return "test failed (see workflow log)"
+
+
+def test_model(nickname, timeout):
+    """Run the prediction test for one model.
+
+    Returns ``(passed, error_message)``.
     """
-    nicknames = []
-    for key in model_keys:
-        nickname = key.split(" ")[0] if " " in key else key
-        nicknames.append(nickname)
-    return " or ".join(nicknames)
+    command = [
+        sys.executable, "-m", "pytest",
+        "tests/test_predictions/",
+        "-v",
+        "-k", nickname,
+        "--tb=short",
+        "-W", "ignore",
+    ]
+    try:
+        result = subprocess.run(
+            command, capture_output=True, text=True, timeout=timeout
+        )
+    except subprocess.TimeoutExpired as e:
+        output = e.stdout or ""
+        if isinstance(output, bytes):
+            output = output.decode(errors="replace")
+        print(output[-5000:])
+        return False, f"timed out after {timeout // 60} min"
+
+    output = result.stdout + (result.stderr or "")
+    print(output if result.returncode else output[-2000:])
+
+    if result.returncode == 0:
+        return True, None
+    if result.returncode == NO_TESTS_COLLECTED:
+        return False, "no test collected for this model"
+    if result.returncode < 0:
+        # killed by a signal, e.g. -9 when it ran out of memory
+        return False, f"test process killed by signal {-result.returncode}"
+    return False, extract_error(output)
 
 
-def parse_pytest_output(output):
-    """Parse pytest -v output to extract pass/fail per model."""
-    passed = []
-    failed = []
-
-    # Lines look like:
-    # ...::test_predictions_type[affable-shark \U0001f988-application/json] PASSED
-    # ...::test_predictions_type[affable-shark \U0001f988-application/json] ERROR
-    # ...::test_predictions_type[affable-shark \U0001f988-application/json] FAILED
-    pattern = re.compile(
-        r"test_predictions_type\[(.+?)\s+\\U[0-9a-f]+\S*-application/json\]\s+(PASSED|FAILED|ERROR)"
-    )
-
-    for line in output.splitlines():
-        match = pattern.search(line)
-        if match:
-            model_name = match.group(1)
-            status = match.group(2)
-            if status == "PASSED":
-                passed.append(model_name)
-            else:
-                failed.append({"model": model_name, "error": status})
-
-    return passed, failed
+def write_results(passed, failed):
+    with open(RESULTS_FILE, "w") as f:
+        json.dump({"passed": passed, "failed": failed}, f, indent=2)
 
 
 def main():
@@ -78,55 +109,32 @@ def main():
     with open(input_file) as f:
         model_keys = [line.strip() for line in f if line.strip()]
 
+    passed, failed = [], []
+    write_results(passed, failed)
+
     if not model_keys:
         print("No new models to test.")
-        with open(RESULTS_FILE, "w") as f:
-            json.dump({"passed": [], "failed": []}, f, indent=2)
         sys.exit(0)
 
-    k_filter = build_k_filter(model_keys)
-    print(f"Running pytest with -k \"{k_filter}\"")
+    timeout = int(os.environ.get("MODEL_TEST_TIMEOUT", DEFAULT_TIMEOUT))
+    print(f"Testing {len(model_keys)} model(s), {timeout // 60} min each max")
 
-    result = subprocess.run(
-        [
-            sys.executable, "-m", "pytest",
-            "tests/test_predictions/",
-            "-v",
-            f"-k", k_filter,
-            "--tb=short",
-            "-W", "ignore",
-        ],
-        capture_output=True,
-        text=True,
-        timeout=1800,
-    )
+    for i, key in enumerate(model_keys, 1):
+        nickname = nickname_of(key)
+        print(f"\n{'=' * 60}\n[{i}/{len(model_keys)}] {nickname}\n{'=' * 60}")
+        start = time.time()
+        ok, error = test_model(nickname, timeout)
+        duration = int(time.time() - start)
+        if ok:
+            passed.append(nickname)
+            print(f"--> {nickname}: PASSED ({duration}s)")
+        else:
+            failed.append({"model": nickname, "error": error})
+            print(f"--> {nickname}: FAILED ({duration}s): {error}")
+        # save after every model, so finished results are never lost
+        write_results(passed, failed)
 
-    print(result.stdout)
-    if result.stderr:
-        print(result.stderr)
-
-    passed, failed = parse_pytest_output(result.stdout)
-
-    # For failed models, try to extract the error from the output
-    if failed:
-        # Split output into sections per failed test
-        error_pattern = re.compile(
-            r"_( ERROR at setup of | FAILED )test_predictions_type\[(.+?)\s+\\U[0-9a-f]+\S*-application/json\]_"
-        )
-        # Build a simple error map from the short traceback
-        for item in failed:
-            model = item["model"]
-            # Look for the error line near the model name
-            for line in result.stdout.splitlines():
-                if model in line and ("Error" in line or "error" in line):
-                    item["error"] = line.strip()[:200]
-                    break
-
-    results = {"passed": passed, "failed": failed}
-    with open(RESULTS_FILE, "w") as f:
-        json.dump(results, f, indent=2)
-
-    print(f"\n{'='*60}")
+    print(f"\n{'=' * 60}")
     print(f"Results: {len(passed)} passed, {len(failed)} failed")
     for item in failed:
         print(f"  FAILED: {item['model']}: {item['error']}")
