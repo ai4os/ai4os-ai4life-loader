@@ -26,7 +26,17 @@ INDEX_URL = (
 SUPPORTED_WEIGHT_FORMATS = ("torchscript", "pytorch_state_dict")
 
 # Models to skip, by nickname (e.g. {"stupendous-sheep"}).
-EXCLUDED_IDS = set()
+EXCLUDED_IDS = {
+    "efficient-raccoon",
+    "patient-swan",
+    "talkative-mouse",
+    "impartial-shrimp",
+    "confused-cow",
+    "content-fish",
+    "knowledgeable-mouse",
+    "joyful-deer",
+    "loyal-ant",
+}
 
 
 class CustomEncoder(json.JSONEncoder):
