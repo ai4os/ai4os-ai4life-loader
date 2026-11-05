@@ -47,9 +47,7 @@ import pytest
 from deepaas.model.v2.wrapper import UploadedFile
 
 # import api
-from bioimageio.core import load_description
 from bioimageio.spec._internal.io import download
-from bioimageio.spec.model import v0_5
 
 import api
 from . import selected_models
@@ -85,15 +83,7 @@ def _downloaded_path(input_item):
 def input_files(model_name):
     """Fixture to provide options dictionary for the model."""
     # Load the model
-    name, icon = (
-        model_name.split(" ", 1) if " " in model_name else (model_name, "")
-    )
-    model = load_description(name, perform_io_checks=False)
-    if not isinstance(model, v0_5.ModelDescr):
-        entry = models.get(model_name, {})
-        concept_doi = entry.get("concept_doi")
-        if concept_doi:
-            model = load_description(concept_doi, perform_io_checks=False)
+    model = aimodel.utils.load_model_description(model_name, models=models)
 
     # Initialize inputs
     inputs = [d.test_tensor for d in model.inputs]

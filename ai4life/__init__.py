@@ -14,10 +14,8 @@ from your_module import your_function as training
 import logging
 import numpy as np
 import os
-import json
 
 from bioimageio.core import predict as predict_
-from bioimageio.core import load_description
 import tempfile
 from bioimageio.core import Tensor
 from ai4life import utils
@@ -34,30 +32,13 @@ logger.setLevel(config.LOG_LEVEL)
 
 
 def _load_v0_5_model(model_name):
-    """Load a model and ensure it is v0.5, falling back to concept_doi."""
-    name, icon = (
-        model_name.split(" ", 1) if " " in model_name else (model_name, "")
-    )
-    model = load_description(name)
-    if not isinstance(model, v0_5.ModelDescr):
-        filtered_path = os.path.join(
-            config.MODELS_PATH, "filtered_models.json"
-        )
-        if os.path.exists(filtered_path):
-            with open(filtered_path, "r") as f:
-                models = json.load(f)
-            entry = models.get(model_name, {})
-            concept_doi = entry.get("concept_doi")
-            if concept_doi:
-                model = load_description(concept_doi)
-    return model
+    """Load a supported model from the source in filtered_models.json."""
+    return utils.load_model_description(model_name)
 
 
 def warm(**kwargs):
     """Main/public method to start up the model"""
-    path = os.path.join(config.MODELS_PATH, "collection.json")
-    model_name = config.MODEL_NAME
-    utils.load_models(model_name, path, perform_io_checks=True)
+    utils.load_models(config.MODEL_NAME, perform_io_checks=True)
 
 
 def predict(model_name, **options):
@@ -74,7 +55,10 @@ def predict(model_name, **options):
             input_data[id], missing_axes = utils._copy_file_to_tmpdir(
                 options["input_file"], tmpdir, input_output_info
             )
-            blocksize_parameter = 10
+            # 3D models grow in z, y and x at once, so a large block size
+            # quickly needs tens of GB of memory. Use small blocks for them.
+            has_z = any(str(a.id) == "z" for a in model.inputs[0].axes)
+            blocksize_parameter = 1 if has_z else 10
             input_block_shape = model.get_tensor_sizes(
                 get_ns(blocksize_parameter, model), batch_size=1
             ).inputs

@@ -31,6 +31,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     gcc \
     git \
     curl \
+    libfontconfig1 \
     && rm -rf /var/lib/apt/lists/*
 
 # Update python packages
@@ -74,9 +75,9 @@ ENV MODEL_NAME="affectionate-cow"
 # Install user app #--no-cache-dir
 RUN git clone -b $branch --depth 1 https://github.com/ai4os/ai4os-ai4life-loader.git && \
     cd ai4os-ai4life-loader && \
-    pip3 install --no-cache-dir  -e . && \
+    pip3 install --no-cache-dir uv && uv pip install --system --no-cache -e . && \
    #curl -o ./models/all_versions.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/all_versions.json && \
-    curl -o ./models/collection.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/collection.json  
+    curl -fsSL -o ./models/index.json https://raw.githubusercontent.com/bioimage-io/collection/refs/heads/gh-pages/index.json
 
     # Conditional cloning using shell commands
 RUN if [ "$MODEL_NAME" = "affectionate-cow" ]; then \
