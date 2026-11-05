@@ -7,6 +7,11 @@ on:
       - completed
 
   workflow_dispatch:
+    inputs:
+      base_ref:
+        description: "Compare filtered_models.json against this branch (empty = previous commit)"
+        required: false
+        default: ""
 
 permissions:
   contents: write
@@ -22,6 +27,9 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v4
       with:
+        # workflow_run always starts on the default branch, so check out the
+        # branch the filter workflow ran on (or the one chosen manually)
+        ref: ${{ github.event.workflow_run.head_branch || github.ref_name }}
         fetch-depth: 0  # Full history needed to diff previous filtered_models.json
 
     - name: Set up Python
@@ -39,6 +47,8 @@ jobs:
     # ── Step 1: Detect new models ──
     - name: Detect new models
       id: detect
+      env:
+        BASE_REF: ${{ github.event.inputs.base_ref }}
       run: |
         python scripts/detect_new_models.py
 
@@ -58,6 +68,9 @@ jobs:
     - name: Test new models
       id: test
       if: steps.check.outputs.has_new_models == 'true'
+      env:
+        # Collect every model, not only one per architecture family
+        AI4LIFE_TEST_ALL_MODELS: "1"
       run: |
         python scripts/test_new_models.py scripts/new_models.txt
       continue-on-error: true
@@ -90,7 +103,7 @@ jobs:
         git config user.email 'github-actions[bot]@users.noreply.github.com'
         git add models/filtered_models.json
         git commit -m "Remove failed models from filtered_models.json"
-        git push
+        git push origin HEAD:${{ github.event.workflow_run.head_branch || github.ref_name }}
 
     # ── Step 4: Open one GitHub issue per failed model (skip if already open) ──
     - name: Generate issue body
