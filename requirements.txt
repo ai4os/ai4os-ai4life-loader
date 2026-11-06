@@ -4,7 +4,7 @@ webargs~=5.5.2
 flaat~=1.1.1
 
 #Module requirements
-bioimageio.core[pytorch]==0.9.0
+bioimageio.core[pytorch]==0.11.0
 biapy>=3.1
 careamics>=0.1.0
 marshmallow<4
@@ -17,7 +17,7 @@ segment-anything
 Mobile-SAM @ git+https://github.com/ChaoningZhang/MobileSAM.git
 micro-sam
 torchvision
-cellpose~=3.1
+cellpose~=4.2
 timm
 albumentations~=1.4.8
 ml-collections~=0.1.1
@@ -32,6 +32,16 @@ uSplit @ git+https://github.com/m-team-kit/uSplit.git@main
 cellacdc
 spotmax
 pytorch3dunet-spotmax
+torchcfm==1.0.7
+POT==0.9.7.post1
+
+# NOTE: empanada-dl (for stupendous-sheep) is pre-installed in the Docker/CI image
+# and deliberately not listed here (it pins numpy==1.22).
+# NOTE: sam3 (for naked-rabbit) is also not listed: it needs numpy<2 while
+# micro-sam/python-elf in this env requires numpy>=2.0 — it needs its own env.
+
+#Model requirements for cellpose-vit / CellposeDINO models
+dinov3 @ git+https://github.com/facebookresearch/dinov3@6876159a11b4df116f30f667f8c9888617df0751
 
 #UI requirements
 click>=7.1.2

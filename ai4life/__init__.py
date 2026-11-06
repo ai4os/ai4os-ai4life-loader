@@ -13,6 +13,10 @@ from your_module import your_function as training
 # TODO: add your imports here
 import logging
 import numpy as np
+
+# Registers torchvision's operators (e.g. torchvision::nms) so that
+# TorchScript models using them can be loaded.
+import torchvision  # noqa: F401
 import os
 
 from bioimageio.core import predict as predict_
@@ -81,15 +85,25 @@ def predict(model_name, **options):
                 model, inputs=input_data_pad, sample_id="sample_"
             )
 
-            return (
-                predict_(
-                    model=model,
-                    inputs=sample,
-                    blocksize_parameter=blocksize_parameter,
-                ),
-                output_ids,
-                input_data[id],
+            result = predict_(
+                model=model,
+                inputs=sample,
+                blocksize_parameter=blocksize_parameter,
             )
+            if not result.members:
+                # bioimageio.core 0.11 can return an empty result for the
+                # blocked prediction of some models (e.g. Cellpose models).
+                # Predict the whole image at once instead. A new sample is
+                # needed: preprocessing changes the sample in place.
+                logger.warning(
+                    "Blocked prediction returned no outputs, "
+                    "predicting without blocking."
+                )
+                sample = create_sample_for_model(
+                    model, inputs=input_data_pad, sample_id="sample_"
+                )
+                result = predict_(model=model, inputs=sample)
+            return (result, output_ids, input_data[id])
     else:
 
         options_input = [
