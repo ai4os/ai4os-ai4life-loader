@@ -60,9 +60,12 @@ def predict(model_name, **options):
                 options["input_file"], tmpdir, input_output_info
             )
             # 3D models grow in z, y and x at once, so a large block size
-            # quickly needs tens of GB of memory. Use small blocks for them.
+            # quickly needs tens of GB of memory. Use the largest block that
+            # stays under a size limit for them.
             has_z = any(str(a.id) == "z" for a in model.inputs[0].axes)
-            blocksize_parameter = 1 if has_z else 10
+            blocksize_parameter = (
+                _choose_3d_blocksize(model) if has_z else 10
+            )
             input_block_shape = model.get_tensor_sizes(
                 get_ns(blocksize_parameter, model), batch_size=1
             ).inputs
@@ -85,16 +88,25 @@ def predict(model_name, **options):
                 model, inputs=input_data_pad, sample_id="sample_"
             )
 
-            result = predict_(
-                model=model,
-                inputs=sample,
-                blocksize_parameter=blocksize_parameter,
-            )
-            if not result.members:
-                # bioimageio.core 0.11 can return an empty result for the
-                # blocked prediction of some models (e.g. Cellpose models).
-                # Predict the whole image at once instead. A new sample is
-                # needed: preprocessing changes the sample in place.
+            # bioimageio.core 0.11 can produce empty blocks for the blocked
+            # prediction of some models (e.g. Cellpose, empanada): with one
+            # block the result is empty, with several blocks it raises
+            # "block with members [] does not overlap with sample members".
+            # In both cases, predict the whole image at once instead.
+            try:
+                result = predict_(
+                    model=model,
+                    inputs=sample,
+                    blocksize_parameter=blocksize_parameter,
+                )
+                blocked_ok = bool(result.members)
+            except ValueError as err:
+                if "does not overlap" not in str(err):
+                    raise
+                blocked_ok = False
+            if not blocked_ok:
+                # A new sample is needed: preprocessing changes the sample
+                # in place.
                 logger.warning(
                     "Blocked prediction returned no outputs, "
                     "predicting without blocking."
@@ -200,6 +212,25 @@ def get_ns(n: int, model):
         for a in t.axes
         if isinstance(a.size, v0_5.ParameterizedSize)
     }
+
+
+def _choose_3d_blocksize(model, max_voxels=2_500_000, max_n=10):
+    """Largest block size whose input block stays under ``max_voxels``.
+
+    Very small blocks are slow for models with a large halo (most of each
+    block is border that is thrown away), very large blocks need too much
+    memory. E.g. impartial-shrimp gets 1, loyal-ant gets 3.
+    """
+    input_id = model.inputs[0].id
+    for n in range(max_n, 0, -1):
+        sizes = model.get_tensor_sizes(get_ns(n, model), batch_size=1).inputs
+        voxels = 1
+        for axis_id, size in sizes[input_id].items():
+            if str(axis_id) in ("z", "y", "x"):
+                voxels *= size
+        if voxels <= max_voxels:
+            return n
+    return 1
 
 
 if __name__ == "__main__":
