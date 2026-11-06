@@ -39,20 +39,32 @@ logger.setLevel(config.LOG_LEVEL)
 
 
 class _Cellpose3Compat(importlib.abc.MetaPathFinder):
-    """Provide ``cellpose.resnet_torch`` for Cellpose 3 models.
+    """Provide Cellpose modules missing from the installed Cellpose version.
 
-    Cellpose 4 removed that module, but Cellpose 3 bioimage.io models
-    (e.g. famous-fish) import ``CPnet`` from it. This finder is added at the
-    end of ``sys.meta_path``, so it is only used when the installed Cellpose
-    does not have the module itself.
+    - ``cellpose.vit`` (Cellpose 4 only): Cellpose-SAM/-DINO models (e.g.
+      idealistic-eagle) import ``CPSAM``/``CPDINO`` from it.
+    - ``cellpose.resnet_torch`` (Cellpose 3 only): Cellpose 3 models (e.g.
+      famous-fish) import ``CPnet`` from it.
+
+    The environment uses Cellpose 3; the vendored copies make the models of
+    the other version work too. This finder is added at the end of
+    ``sys.meta_path``, so it is only used when the installed Cellpose does
+    not have the module itself.
     """
 
-    _path = os.path.join(os.path.dirname(__file__), "cellpose_resnet_torch.py")
+    _here = os.path.dirname(__file__)
+    _modules = {
+        "cellpose.vit": os.path.join(_here, "cellpose4_vit.py"),
+        "cellpose.resnet_torch": os.path.join(
+            _here, "cellpose_resnet_torch.py"
+        ),
+    }
 
     def find_spec(self, fullname, path=None, target=None):
-        if fullname != "cellpose.resnet_torch":
+        vendored = self._modules.get(fullname)
+        if vendored is None:
             return None
-        return importlib.util.spec_from_file_location(fullname, self._path)
+        return importlib.util.spec_from_file_location(fullname, vendored)
 
 
 if not any(isinstance(f, _Cellpose3Compat) for f in sys.meta_path):

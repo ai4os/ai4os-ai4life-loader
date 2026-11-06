@@ -17,7 +17,9 @@ segment-anything
 Mobile-SAM @ git+https://github.com/ChaoningZhang/MobileSAM.git
 micro-sam
 torchvision
-cellpose~=4.2
+# Cellpose 3 for the Cellpose 3 models; Cellpose 4 models get cellpose.vit
+# from ai4life/cellpose4_vit.py (see ai4life/__init__.py)
+cellpose>=3,<4
 timm
 albumentations~=1.4.8
 ml-collections~=0.1.1
