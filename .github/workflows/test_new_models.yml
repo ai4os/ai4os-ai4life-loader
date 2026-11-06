@@ -37,6 +37,12 @@ jobs:
       with:
         python-version: "3.11"
 
+    - name: Install system libraries for Qt (needed by spotmax/cellacdc)
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y --no-install-recommends \
+          libegl1 libgl1 libxkbcommon0 libdbus-1-3 libfontconfig1
+
     - name: Install Dependencies
       run: |
         # uv resolves like the laptop .venv and the Jenkins Docker builds;
@@ -77,6 +83,8 @@ jobs:
       env:
         # Collect every model, not only one per architecture family
         AI4LIFE_TEST_ALL_MODELS: "1"
+        # Qt (imported by spotmax/cellacdc) has no screen on the runner
+        QT_QPA_PLATFORM: "offscreen"
       run: |
         python scripts/test_new_models.py scripts/new_models.txt
       continue-on-error: true

@@ -32,7 +32,15 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     git \
     curl \
     libfontconfig1 \
+    libegl1 \
+    libgl1 \
+    libglib2.0-0 \
+    libxkbcommon0 \
+    libdbus-1-3 \
     && rm -rf /var/lib/apt/lists/*
+
+# Qt (imported by spotmax/cellacdc) has no screen in the container
+ENV QT_QPA_PLATFORM=offscreen
 
 # Update python packages
 # [!] Remember: DEEP API V2 only works with python>=3.6

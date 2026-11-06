@@ -11,7 +11,10 @@ from your_module import your_function as training
 """
 
 # TODO: add your imports here
+import importlib.abc
+import importlib.util
 import logging
+import sys
 import numpy as np
 
 # Registers torchvision's operators (e.g. torchvision::nms) so that
@@ -33,6 +36,27 @@ from ai4life import config
 
 logger = logging.getLogger(__name__)
 logger.setLevel(config.LOG_LEVEL)
+
+
+class _Cellpose3Compat(importlib.abc.MetaPathFinder):
+    """Provide ``cellpose.resnet_torch`` for Cellpose 3 models.
+
+    Cellpose 4 removed that module, but Cellpose 3 bioimage.io models
+    (e.g. famous-fish) import ``CPnet`` from it. This finder is added at the
+    end of ``sys.meta_path``, so it is only used when the installed Cellpose
+    does not have the module itself.
+    """
+
+    _path = os.path.join(os.path.dirname(__file__), "cellpose_resnet_torch.py")
+
+    def find_spec(self, fullname, path=None, target=None):
+        if fullname != "cellpose.resnet_torch":
+            return None
+        return importlib.util.spec_from_file_location(fullname, self._path)
+
+
+if not any(isinstance(f, _Cellpose3Compat) for f in sys.meta_path):
+    sys.meta_path.append(_Cellpose3Compat())
 
 
 def _load_v0_5_model(model_name):
