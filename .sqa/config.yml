@@ -20,7 +20,9 @@ sqa_criteria:
         container: testing
         commands:
         - mkdir -p ./bandit
-        - bandit -r ai4life api -x tests -f html -o ./bandit/index.html
+        # cellpose4_vit.py / cellpose_resnet_torch.py are vendored Cellpose code
+        # (kept identical to upstream), so they are not scanned
+        - bandit -r ai4life api -x tests,*/cellpose4_vit.py,*/cellpose_resnet_torch.py -f html -o ./bandit/index.html
 
 environment:
   GIT_COMMITTER_NAME: "Fahimeh Alibabaei "

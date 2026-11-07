@@ -8,7 +8,6 @@ need to modify them for your needs.
 """
 
 import logging
-import os
 import sys
 import json
 import matplotlib.pyplot as plt
@@ -124,35 +123,16 @@ def output_png(sample, output_):
 
 
 def get_models_name():
-    models_data = ls_dirs(os.path.join(config.MODELS_PATH, "collection.json"))
-    # Filter models from collection
-    models_list = [
-        entry
-        for entry in models_data["collection"]
-        if entry["type"] == "model"
-    ]
+    """Return the configured model as "<nickname> <emoji>"."""
     model_name = aimodel.config.MODEL_NAME
-
     try:
-        # Use next() with the filtered list directly
-        model_nickname = next(
-            (
-                model["nickname_icon"]
-                for model in models_list
-                if model["id"] == model_name
-            ),
-            None,
-        )
-        if model_nickname:
-            model_name = f"{model_name} {model_nickname}"
-
-        return [model_name]
-    except (KeyError, TypeError, ValueError) as e:
-        print(f"Error processing models_data: {e}")
+        key, _ = aimodel.utils.get_model_entry(model_name)
+        return [key or model_name]
+    except (OSError, KeyError, TypeError, ValueError) as e:
+        print(f"Error reading filtered_models.json: {e}")
         return [model_name]
 
 
 def hide_input():
-    path = os.path.join(config.MODELS_PATH, "collection.json")
     model_name = aimodel.config.MODEL_NAME
-    return aimodel.utils.load_models(model_name, path, perform_io_checks=False)
+    return aimodel.utils.load_models(model_name, perform_io_checks=False)

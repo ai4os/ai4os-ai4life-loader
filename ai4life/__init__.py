@@ -11,13 +11,18 @@ from your_module import your_function as training
 """
 
 # TODO: add your imports here
+import importlib.abc
+import importlib.util
 import logging
+import sys
 import numpy as np
+
+# Registers torchvision's operators (e.g. torchvision::nms) so that
+# TorchScript models using them can be loaded.
+import torchvision  # noqa: F401
 import os
-import json
 
 from bioimageio.core import predict as predict_
-from bioimageio.core import load_description
 import tempfile
 from bioimageio.core import Tensor
 from ai4life import utils
@@ -33,31 +38,47 @@ logger = logging.getLogger(__name__)
 logger.setLevel(config.LOG_LEVEL)
 
 
+class _Cellpose3Compat(importlib.abc.MetaPathFinder):
+    """Provide Cellpose modules missing from the installed Cellpose version.
+
+    - ``cellpose.vit`` (Cellpose 4 only): Cellpose-SAM/-DINO models (e.g.
+      idealistic-eagle) import ``CPSAM``/``CPDINO`` from it.
+    - ``cellpose.resnet_torch`` (Cellpose 3 only): Cellpose 3 models (e.g.
+      famous-fish) import ``CPnet`` from it.
+
+    The environment uses Cellpose 3; the vendored copies make the models of
+    the other version work too. This finder is added at the end of
+    ``sys.meta_path``, so it is only used when the installed Cellpose does
+    not have the module itself.
+    """
+
+    _here = os.path.dirname(__file__)
+    _modules = {
+        "cellpose.vit": os.path.join(_here, "cellpose4_vit.py"),
+        "cellpose.resnet_torch": os.path.join(
+            _here, "cellpose_resnet_torch.py"
+        ),
+    }
+
+    def find_spec(self, fullname, path=None, target=None):
+        vendored = self._modules.get(fullname)
+        if vendored is None:
+            return None
+        return importlib.util.spec_from_file_location(fullname, vendored)
+
+
+if not any(isinstance(f, _Cellpose3Compat) for f in sys.meta_path):
+    sys.meta_path.append(_Cellpose3Compat())
+
+
 def _load_v0_5_model(model_name):
-    """Load a model and ensure it is v0.5, falling back to concept_doi."""
-    name, icon = (
-        model_name.split(" ", 1) if " " in model_name else (model_name, "")
-    )
-    model = load_description(name)
-    if not isinstance(model, v0_5.ModelDescr):
-        filtered_path = os.path.join(
-            config.MODELS_PATH, "filtered_models.json"
-        )
-        if os.path.exists(filtered_path):
-            with open(filtered_path, "r") as f:
-                models = json.load(f)
-            entry = models.get(model_name, {})
-            concept_doi = entry.get("concept_doi")
-            if concept_doi:
-                model = load_description(concept_doi)
-    return model
+    """Load a supported model from the source in filtered_models.json."""
+    return utils.load_model_description(model_name)
 
 
 def warm(**kwargs):
     """Main/public method to start up the model"""
-    path = os.path.join(config.MODELS_PATH, "collection.json")
-    model_name = config.MODEL_NAME
-    utils.load_models(model_name, path, perform_io_checks=True)
+    utils.load_models(config.MODEL_NAME, perform_io_checks=True)
 
 
 def predict(model_name, **options):
@@ -74,7 +95,13 @@ def predict(model_name, **options):
             input_data[id], missing_axes = utils._copy_file_to_tmpdir(
                 options["input_file"], tmpdir, input_output_info
             )
-            blocksize_parameter = 10
+            # 3D models grow in z, y and x at once, so a large block size
+            # quickly needs tens of GB of memory. Use the largest block that
+            # stays under a size limit for them.
+            has_z = any(str(a.id) == "z" for a in model.inputs[0].axes)
+            blocksize_parameter = (
+                _choose_3d_blocksize(model) if has_z else 10
+            )
             input_block_shape = model.get_tensor_sizes(
                 get_ns(blocksize_parameter, model), batch_size=1
             ).inputs
@@ -97,15 +124,34 @@ def predict(model_name, **options):
                 model, inputs=input_data_pad, sample_id="sample_"
             )
 
-            return (
-                predict_(
+            # bioimageio.core 0.11 can produce empty blocks for the blocked
+            # prediction of some models (e.g. Cellpose, empanada): with one
+            # block the result is empty, with several blocks it raises
+            # "block with members [] does not overlap with sample members".
+            # In both cases, predict the whole image at once instead.
+            try:
+                result = predict_(
                     model=model,
                     inputs=sample,
                     blocksize_parameter=blocksize_parameter,
-                ),
-                output_ids,
-                input_data[id],
-            )
+                )
+                blocked_ok = bool(result.members)
+            except ValueError as err:
+                if "does not overlap" not in str(err):
+                    raise
+                blocked_ok = False
+            if not blocked_ok:
+                # A new sample is needed: preprocessing changes the sample
+                # in place.
+                logger.warning(
+                    "Blocked prediction returned no outputs, "
+                    "predicting without blocking."
+                )
+                sample = create_sample_for_model(
+                    model, inputs=input_data_pad, sample_id="sample_"
+                )
+                result = predict_(model=model, inputs=sample)
+            return (result, output_ids, input_data[id])
     else:
 
         options_input = [
@@ -202,6 +248,25 @@ def get_ns(n: int, model):
         for a in t.axes
         if isinstance(a.size, v0_5.ParameterizedSize)
     }
+
+
+def _choose_3d_blocksize(model, max_voxels=2_500_000, max_n=10):
+    """Largest block size whose input block stays under ``max_voxels``.
+
+    Very small blocks are slow for models with a large halo (most of each
+    block is border that is thrown away), very large blocks need too much
+    memory. E.g. impartial-shrimp gets 1, loyal-ant gets 3.
+    """
+    input_id = model.inputs[0].id
+    for n in range(max_n, 0, -1):
+        sizes = model.get_tensor_sizes(get_ns(n, model), batch_size=1).inputs
+        voxels = 1
+        for axis_id, size in sizes[input_id].items():
+            if str(axis_id) in ("z", "y", "x"):
+                voxels *= size
+        if voxels <= max_voxels:
+            return n
+    return 1
 
 
 if __name__ == "__main__":

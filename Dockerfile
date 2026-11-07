@@ -31,7 +31,16 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     gcc \
     git \
     curl \
+    libfontconfig1 \
+    libegl1 \
+    libgl1 \
+    libglib2.0-0 \
+    libxkbcommon0 \
+    libdbus-1-3 \
     && rm -rf /var/lib/apt/lists/*
+
+# Qt (imported by spotmax/cellacdc) has no screen in the container
+ENV QT_QPA_PLATFORM=offscreen
 
 # Update python packages
 # [!] Remember: DEEP API V2 only works with python>=3.6
@@ -72,11 +81,14 @@ ENV RCLONE_CONFIG=/srv/.rclone/rclone.conf
 ENV MODEL_NAME="affectionate-cow"
  
 # Install user app #--no-cache-dir
+# empanada-dl pins numpy==1.22 (conflicts with numpy 2.x), so it is installed
+# without its dependencies; stupendous-sheep runs fine with numpy 2.0
 RUN git clone -b $branch --depth 1 https://github.com/ai4os/ai4os-ai4life-loader.git && \
     cd ai4os-ai4life-loader && \
-    pip3 install --no-cache-dir  -e . && \
+    pip3 install --no-cache-dir uv && uv pip install --system --no-cache -e . && \
+    uv pip install --system --no-cache --no-deps "empanada-dl==0.1.7" && \
    #curl -o ./models/all_versions.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/all_versions.json && \
-    curl -o ./models/collection.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/collection.json  
+    curl -fsSL -o ./models/index.json https://raw.githubusercontent.com/bioimage-io/collection/refs/heads/gh-pages/index.json
 
     # Conditional cloning using shell commands
 RUN if [ "$MODEL_NAME" = "affectionate-cow" ]; then \

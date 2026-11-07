@@ -9,6 +9,7 @@ scripts/new_models.txt (one per line). If no new models, the file is empty.
 """
 
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -19,7 +20,28 @@ OUTPUT_FILE = "scripts/new_models.txt"
 
 
 def get_git_previous_version(filepath):
-    """Get the previous version of a file from git history."""
+    """Get the previous version of a file from git history.
+
+    If the BASE_REF environment variable is set (e.g. "main"), the file is
+    compared with that branch instead of with its previous commit.
+    """
+    base_ref = os.environ.get("BASE_REF", "").strip()
+    if base_ref:
+        try:
+            subprocess.run(
+                ["git", "fetch", "origin", base_ref],
+                capture_output=True, text=True, check=True,
+            )
+            result = subprocess.run(
+                ["git", "show", f"origin/{base_ref}:{filepath}"],
+                capture_output=True, text=True, check=True,
+            )
+            print(f"Comparing {filepath} with origin/{base_ref}")
+            return json.loads(result.stdout)
+        except (subprocess.CalledProcessError, json.JSONDecodeError) as e:
+            print(f"ERROR: could not read {filepath} from {base_ref}: {e}")
+            sys.exit(1)
+
     try:
         result = subprocess.run(
             [

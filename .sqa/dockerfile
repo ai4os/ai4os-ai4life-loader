@@ -6,10 +6,15 @@ FROM pytorch/pytorch:2.7.1-cuda12.6-cudnn9-runtime
 ARG branch=main
 # install user app as python package
 ARG CACHEBUST=1
-RUN apt-get update && apt-get install -y --no-install-recommends git libgl1 libglib2.0-0  libfontconfig1\
+# Qt (imported by spotmax/cellacdc) needs libegl1, libxkbcommon0 and
+# libdbus-1-3, and has no screen in the container
+ENV QT_QPA_PLATFORM=offscreen
+RUN apt-get update && apt-get install -y --no-install-recommends git libgl1 libglib2.0-0 libfontconfig1 \
+    libegl1 libxkbcommon0 libdbus-1-3 \
     && rm -rf /var/lib/apt/lists/*
 RUN git clone -b $branch --depth 1 https://github.com/ai4os/ai4os-ai4life-loader.git app/ && \
     cd app/ && pip3 install --no-cache-dir uv && \
     uv pip install --system --no-cache -e . -r requirements-test.txt && \
+    uv pip install --system --no-cache --no-deps "empanada-dl==0.1.7" && \
     cd ..
 CMD ["sleep", "infinity"]

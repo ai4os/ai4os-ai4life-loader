@@ -32,59 +32,98 @@ class CustomEncoder(json.JSONEncoder):
         return str(obj)
 
 
-def load_models(models_name, path, perform_io_checks=False):
+FILTERED_MODELS_FILE = "filtered_models.json"
 
+
+def read_filtered_models(path=None):
+    """Return the supported models stored in filtered_models.json."""
+    if path is None:
+        path = os.path.join(config.MODELS_PATH, FILTERED_MODELS_FILE)
     with open(path, "r") as file:
-        models_data = json.load(file)
-    model_entry = next(
-        (
-            entry
-            for entry in models_data.get("collection", [])
-            if entry.get("type") == "model" and entry.get("id") == models_name
-        ),
-        None,
+        return json.load(file)
+
+
+def get_model_entry(model_name, models=None):
+    """Find a model in filtered_models.json.
+
+    ``model_name`` can be the full key (``"affable-shark 🦈"``) or only the
+    nickname (``"affable-shark"``). Returns ``(key, entry)``, or
+    ``(None, None)`` if the model is not listed.
+    """
+    if models is None:
+        models = read_filtered_models()
+    if model_name in models:
+        return model_name, models[model_name]
+    nickname = model_name.split(" ", 1)[0]
+    for key, entry in models.items():
+        if nickname in (
+            key.split(" ", 1)[0],
+            entry.get("nickname"),
+            entry.get("id"),
+        ):
+            return key, entry
+    return None, None
+
+
+def load_model_description(model_name, perform_io_checks=False, models=None):
+    """Load the v0.5 description of a supported model.
+
+    The model is loaded from the ``source`` URL stored in
+    filtered_models.json. If the model is not listed there (or has no
+    ``source``), it is loaded by its nickname instead.
+    """
+    _, entry = get_model_entry(model_name, models)
+    source = (entry or {}).get("source") or model_name.split(" ", 1)[0]
+    model = load_description(source, perform_io_checks=perform_io_checks)
+    if not isinstance(model, v0_5.ModelDescr):
+        logger.error(
+            "Validation summary for %s:\n%s",
+            model_name,
+            getattr(model, "validation_summary", ""),
+        )
+        raise ValueError(
+            f"Model '{model_name}' could not be loaded as a valid v0.5 "
+            f"model from {source} (got {type(model).__name__})."
+        )
+    return model
+
+
+def load_models(models_name, path=None, perform_io_checks=False):
+    """Load a model and store its metadata in model_meta.json.
+
+    ``path`` is the filtered_models.json to look the model up in
+    (default: the one in ``config.MODELS_PATH``).
+    Returns True if the model has a single input.
+    """
+    models = read_filtered_models(path)
+    _, model_entry = get_model_entry(models_name, models)
+    if model_entry is None:
+        model_entry = {"id": models_name.split(" ", 1)[0]}
+
+    model = load_model_description(
+        models_name, perform_io_checks=perform_io_checks, models=models
     )
+    model_io_info = get_model_io_info(model)
 
-    model_id = next(
-        (
-            model_entry.get(key)
-            for key in ["concept", "concept_doi", "source"]
-            if model_entry.get(key)
-        ),
-        None,
-    )
+    # Convert non-serializable fields to serializable format
+    serializable_io_info = {
+        key: (value.__dict__ if hasattr(value, "__dict__") else value)
+        for key, value in model_io_info.items()
+    }
 
-    if model_id:
-        model = load_description(model_id, perform_io_checks=perform_io_checks)
-        if isinstance(model, v0_5.ModelDescr):
-            model_io_info = get_model_io_info(model)
+    combined_entry = {**model_entry, **serializable_io_info}
+    print(f"The model '{model.name}' has been correctly loaded.")
 
-            # Convert non-serializable fields to serializable format
-            serializable_io_info = {
-                key: (value.__dict__ if hasattr(value, "__dict__") else value)
-                for key, value in model_io_info.items()
-            }
+    names_output_json = os.path.join(config.MODELS_PATH, "model_meta.json")
+    with open(names_output_json, "w") as names_file:
+        json.dump(
+            combined_entry,
+            names_file,
+            indent=4,
+            cls=CustomEncoder,
+        )
 
-            combined_entry = {**model_entry, **serializable_io_info}
-            print(
-                f"The model '{model.name}' with ID '{model_id}' "
-                "has been correctly loaded."
-            )
-
-            # Directly return JSON string with proper formatting
-            names_output_json = os.path.join(
-                config.MODELS_PATH, "model_meta.json"
-            )
-            with open(names_output_json, "w") as names_file:
-                json.dump(
-                    combined_entry,
-                    names_file,
-                    indent=4,
-                    cls=CustomEncoder,
-                )
-            # get the length of the input_model:
-
-            return len(model_io_info["inputs"]) == 1
+    return len(model_io_info["inputs"]) == 1
 
 
 def _process_v0_5_input(input_descr) -> Tuple[List[int], List[int]]:

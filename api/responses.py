@@ -20,6 +20,27 @@ logger.setLevel(config.LOG_LEVEL)
 
 # EXAMPLE of json_response parser function
 # = HAVE TO MODIFY FOR YOUR NEEDS =
+def _get_member(result, member_id):
+    """Return the output tensor ``member_id`` from a prediction result.
+
+    Newer bioimageio.core versions do not always key the result by the
+    output id from the model description (e.g. Cellpose models). Fall back
+    to matching by name, or to the only output if there is just one.
+    """
+    members = result.members
+    if member_id in members:
+        return members[member_id]
+    by_name = {str(key): value for key, value in members.items()}
+    if str(member_id) in by_name:
+        return by_name[str(member_id)]
+    if len(members) == 1:
+        return next(iter(members.values()))
+    raise KeyError(
+        f"Output '{member_id}' not in prediction result, "
+        f"available outputs: {list(by_name)}"
+    )
+
+
 def json_response(result, output_ids, input_data, **options):
     """Converts the prediction results into json return format.
 
@@ -44,7 +65,7 @@ def json_response(result, output_ids, input_data, **options):
             if id == "embeddings":
                 pass
             else:
-                output_array = result.members[id].data
+                output_array = _get_member(result, id).data
                 # print(f'the output_array is {output_array}')
                 if isinstance(output_array, xr.DataArray):
                     # print('the output is xr array')

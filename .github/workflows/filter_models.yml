@@ -23,17 +23,20 @@ jobs:
 
     - name: Install Dependencies
       run: |
-        python -m pip install --upgrade pip "setuptools<81" wheel
-        pip install "marshmallow<4" "numpy>=2.0,<2.1" "pydantic<=2.12" "xarray<2024.10"
-        pip install -r requirements.txt
+        # uv resolves like the laptop .venv and the Jenkins Docker builds;
+        # --system installs into the Python from actions/setup-python
+        python -m pip install --upgrade pip uv
+        uv pip install --system "setuptools<81" wheel
+        uv pip install --system "marshmallow<4" "numpy>=2.0,<2.1" "pydantic<=2.12" "xarray<2024.10"
+        uv pip install --system -r requirements.txt
 
-    - name: Download collection.json
+    - name: Download index.json
       run: |
-        curl -o models/collection.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/collection.json
+        curl -fsSL -o models/index.json https://raw.githubusercontent.com/bioimage-io/collection/refs/heads/gh-pages/index.json
 
     - name: Run Filter Script
       run: |
-        python ai4life/filter_v0_5_models.py --input models/collection.json --output models/filtered_models.json
+        python ai4life/filter_v0_5_models.py --input models/index.json --output models/filtered_models.json
       
 
     - name: Configure Git
@@ -43,8 +46,8 @@ jobs:
 
     - name: Commit Changes
       run: |
-         git add -f models/filtered_models.json models/collection.json
-         git commit -m "Update filtered_models.json models/collection.json" || echo "No changes to commit"
+         git add -f models/filtered_models.json models/index.json
+         git commit -m "Update filtered_models.json models/index.json" || echo "No changes to commit"
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
