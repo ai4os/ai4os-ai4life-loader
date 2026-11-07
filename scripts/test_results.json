@@ -2,8 +2,8 @@
   "passed": [],
   "failed": [
     {
-      "model": "stupendous-sheep",
-      "error": "2026-11-01 12:54:10.523 | WARNING  | bioimageio.spec._internal.io_utils:open_bioimageio_yaml:153 - Failed to get bioimageio.yaml from https://hypha.aicell.io/bioimage-io/artifacts/stupendous-sheep/fil"
+      "model": "famous-fish",
+      "error": "RuntimeError: Unsupported response type"
     }
   ]
 }

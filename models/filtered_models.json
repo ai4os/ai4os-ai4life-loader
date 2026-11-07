@@ -2154,6 +2154,43 @@
             "source=RelativePath('cover.png') sha256=None"
         ]
     },
+    "efficient-raccoon \ud83e\udd9d": {
+        "id": "efficient-raccoon",
+        "nickname": "efficient-raccoon",
+        "nickname_icon": "\ud83e\udd9d",
+        "type": "model",
+        "name": "2D Attention U-Net for nucleus segmentation",
+        "description": "Nucleus segmentation for fluorescence microscopy",
+        "format_version": "0.5.12",
+        "collection_id": "bioimage-io/efficient-raccoon",
+        "version": "v0",
+        "created": "2025-07-01T22:41:47Z",
+        "sha256": "43da59420fff8c7b0dc394a70663bf2801a0db9a16a4a7a653b9c522f81629a1",
+        "source": "https://hypha.aicell.io/bioimage-io/artifacts/efficient-raccoon/files/rdf.yaml?version=v0",
+        "rdf_source": "https://hypha.aicell.io/bioimage-io/artifacts/efficient-raccoon/files/rdf.yaml?version=v0",
+        "tags": [
+            "fluorescence-light-microscopy",
+            "nuclei",
+            "dsb-challenge",
+            "2d",
+            "pytorch",
+            "biapy",
+            "instance-segmentation",
+            "unet",
+            "instance-segmentation",
+            "resunet",
+            "instance-segmentation",
+            "resunet++",
+            "instance-segmentation",
+            "attention-unet"
+        ],
+        "weight_formats": [
+            "pytorch_state_dict"
+        ],
+        "covers": [
+            "source=RelativePath('cover.png') sha256=None"
+        ]
+    },
     "zestful-bug \ud83d\udc1b": {
         "id": "zestful-bug",
         "nickname": "zestful-bug",
