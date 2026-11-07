@@ -11,8 +11,10 @@ from your_module import your_function as training
 """
 
 # TODO: add your imports here
+import functools
 import importlib.abc
 import importlib.util
+import inspect
 import logging
 import sys
 import numpy as np
@@ -69,6 +71,78 @@ class _Cellpose3Compat(importlib.abc.MetaPathFinder):
 
 if not any(isinstance(f, _Cellpose3Compat) for f in sys.meta_path):
     sys.meta_path.append(_Cellpose3Compat())
+
+
+def _patch_biapy_upblock(blocks):
+    """Let BiaPy >= 3.7 ``UpBlock`` accept calls written for BiaPy <= 3.6.
+
+    BiaPy 3.7 inserted ``yx_down`` after ``k_size`` in ``UpBlock.__init__``.
+    Models built with older BiaPy (e.g. efficient-raccoon) pass ``act`` as
+    the 9th positional argument, which then lands in ``yx_down``. Such
+    old-style calls get the default ``yx_down=2`` inserted; the layers (and
+    so the weights) are the same in both versions.
+    """
+    up_block = getattr(blocks, "UpBlock", None)
+    if up_block is None or getattr(up_block, "_ai4os_compat", False):
+        return
+    if "yx_down" not in inspect.signature(up_block.__init__).parameters:
+        return  # old BiaPy, nothing to adapt
+    original_init = up_block.__init__
+
+    @functools.wraps(original_init)
+    def __init__(self, *args, **kwargs):
+        # args[8] is yx_down (int or 2 ints) in new-style calls, but the
+        # activation (str or None) in old-style calls
+        if (
+            len(args) > 8
+            and "yx_down" not in kwargs
+            and not isinstance(args[8], (int, tuple, list))
+        ):
+            args = args[:8] + (2,) + args[8:]
+        original_init(self, *args, **kwargs)
+
+    up_block.__init__ = __init__
+    up_block._ai4os_compat = True
+
+
+class _PatchingLoader(importlib.abc.Loader):
+    """Run the real loader, then apply a compatibility patch."""
+
+    def __init__(self, loader, patch):
+        self._loader = loader
+        self._patch = patch
+
+    def create_module(self, spec):
+        return self._loader.create_module(spec)
+
+    def exec_module(self, module):
+        self._loader.exec_module(module)
+        self._patch(module)
+
+
+class _PostImportPatcher(importlib.abc.MetaPathFinder):
+    """Patch library modules right after they are imported."""
+
+    _patches = {"biapy.models.blocks": _patch_biapy_upblock}
+
+    def find_spec(self, fullname, path=None, target=None):
+        patch = self._patches.get(fullname)
+        if patch is None:
+            return None
+        for finder in sys.meta_path:
+            if finder is self or not hasattr(finder, "find_spec"):
+                continue
+            spec = finder.find_spec(fullname, path, target)
+            if spec is not None and spec.loader is not None:
+                spec.loader = _PatchingLoader(spec.loader, patch)
+                return spec
+        return None
+
+
+if not any(isinstance(f, _PostImportPatcher) for f in sys.meta_path):
+    sys.meta_path.insert(0, _PostImportPatcher())
+if "biapy.models.blocks" in sys.modules:  # imported before ai4life
+    _patch_biapy_upblock(sys.modules["biapy.models.blocks"])
 
 
 def _load_v0_5_model(model_name):
