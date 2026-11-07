@@ -2124,6 +2124,34 @@
             "source=RelativePath('cover.png') sha256=None"
         ]
     },
+    "patient-swan \ud83e\udda2": {
+        "id": "patient-swan",
+        "nickname": "patient-swan",
+        "nickname_icon": "\ud83e\udda2",
+        "type": "model",
+        "name": "SpotMAX-AI",
+        "description": "U-Net 2D trained on images containing diffraction-limited fluorescent spots. The model is trained to return a boolean mask of spot areas.",
+        "format_version": "0.5.12",
+        "collection_id": "bioimage-io/patient-swan",
+        "version": "v0",
+        "created": "2025-07-01T22:41:48Z",
+        "sha256": "b7842a5ece717b2e236c215916f948e049df6f14a5c64dd1a9ebd4c0876b3405",
+        "source": "https://hypha.aicell.io/bioimage-io/artifacts/patient-swan/files/rdf.yaml?version=v0",
+        "rdf_source": "https://hypha.aicell.io/bioimage-io/artifacts/patient-swan/files/rdf.yaml?version=v0",
+        "tags": [
+            "spot-detection",
+            "diffraction-limited-spots",
+            "pytorch",
+            "fluorescence-light-microscopy",
+            "spotmax"
+        ],
+        "weight_formats": [
+            "pytorch_state_dict"
+        ],
+        "covers": [
+            "source=RelativePath('cover.png') sha256=None"
+        ]
+    },
     "loving-monkey \ud83d\udc12": {
         "id": "loving-monkey",
         "nickname": "loving-monkey",
@@ -2147,48 +2175,101 @@
             "instance-segmentation",
             "resunet"
         ],
-        "training_data": {
-            "id": "zero/dataset_u-net_2d_multilabel_deepbacs"
-        },
-        "type": "model"
-    },
-    "resourceful-lizard \ud83e\udd8e": {
-        "authors": [
-            {
-                "name": "Dongshen Han"
-            },
-            {
-                "name": "Yu Qiao"
-            },
-            {
-                "name": "Jung Uk Kim"
-            },
-            {
-                "name": "Sung-Ho Bae"
-            },
-            {
-                "name": "Seungkyu Lee"
-            },
-            {
-                "name": "Choong Seon Hong"
-            }
+        "weight_formats": [
+            "pytorch_state_dict"
         ],
-        "uploader": {
-            "name": "Mehdi",
-            "email": "mehdiseifi@gmail.com"
-        },
-        "badges": [],
-        "concept_doi": "10.5281/zenodo.13626228",
         "covers": [
-            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/resourceful-lizard/0.1.1/files/cover.thumbnail.png"
+            "source=RelativePath('cover.png') sha256=None"
+        ]
+    },
+    "efficient-raccoon \ud83e\udd9d": {
+        "id": "efficient-raccoon",
+        "nickname": "efficient-raccoon",
+        "nickname_icon": "\ud83e\udd9d",
+        "type": "model",
+        "name": "2D Attention U-Net for nucleus segmentation",
+        "description": "Nucleus segmentation for fluorescence microscopy",
+        "format_version": "0.5.12",
+        "collection_id": "bioimage-io/efficient-raccoon",
+        "version": "v0",
+        "created": "2025-07-01T22:41:47Z",
+        "sha256": "43da59420fff8c7b0dc394a70663bf2801a0db9a16a4a7a653b9c522f81629a1",
+        "source": "https://hypha.aicell.io/bioimage-io/artifacts/efficient-raccoon/files/rdf.yaml?version=v0",
+        "rdf_source": "https://hypha.aicell.io/bioimage-io/artifacts/efficient-raccoon/files/rdf.yaml?version=v0",
+        "tags": [
+            "fluorescence-light-microscopy",
+            "nuclei",
+            "dsb-challenge",
+            "2d",
+            "pytorch",
+            "biapy",
+            "instance-segmentation",
+            "unet",
+            "instance-segmentation",
+            "resunet",
+            "instance-segmentation",
+            "resunet++",
+            "instance-segmentation",
+            "attention-unet"
         ],
-        "created": "2025-01-22T15:12:04.653334",
-        "description": "Pre-trained mobile-sam encoder for feature extraction",
-        "download_count": "?",
-        "id": "resourceful-lizard",
-        "license": "Apache-2.0",
-        "links": [
-            "https://github.com/ChaoningZhang/MobileSAM"
+        "weight_formats": [
+            "pytorch_state_dict"
+        ],
+        "covers": [
+            "source=RelativePath('cover.png') sha256=None"
+        ]
+    },
+    "zestful-bug \ud83d\udc1b": {
+        "id": "zestful-bug",
+        "nickname": "zestful-bug",
+        "nickname_icon": "\ud83d\udc1b",
+        "type": "model",
+        "name": "2D UNETR for mitochondria painting from bright-field to fluorescence",
+        "description": "Cell painting (mitochondria): image to image reconstruction from bright-field to fluorescence.",
+        "format_version": "0.5.12",
+        "collection_id": "bioimage-io/zestful-bug",
+        "version": "v0",
+        "created": "2025-07-01T22:41:47Z",
+        "sha256": "437d8a01185773b9aef0e38ce59ea0dcdb7692f135ec3eeed56c63f31e6c1a3e",
+        "source": "https://hypha.aicell.io/bioimage-io/artifacts/zestful-bug/files/rdf.yaml?version=v0",
+        "rdf_source": "https://hypha.aicell.io/bioimage-io/artifacts/zestful-bug/files/rdf.yaml?version=v0",
+        "tags": [
+            "bright-field",
+            "fluorescence",
+            "mitochondria",
+            "2d",
+            "pytorch",
+            "biapy",
+            "image-to-image",
+            "unetr"
+        ],
+        "weight_formats": [
+            "pytorch_state_dict"
+        ],
+        "covers": [
+            "source=RelativePath('cover.png') sha256=None"
+        ]
+    },
+    "thoughtful-bug \ud83d\udc1b": {
+        "id": "thoughtful-bug",
+        "nickname": "thoughtful-bug",
+        "nickname_icon": "\ud83d\udc1b",
+        "type": "model",
+        "name": "OC1 Project 74 Leaf segmentation with detectron2",
+        "description": "Leaf plant segmentation",
+        "format_version": "0.5.12",
+        "collection_id": "bioimage-io/thoughtful-bug",
+        "version": "v0",
+        "created": "2026-07-18T23:18:08Z",
+        "sha256": "9bde50bd9549fe95f3fd41281f32ca3fdb1d33df7b8b7a2e026c355d0d2da645",
+        "source": "https://hypha.aicell.io/bioimage-io/artifacts/thoughtful-bug/files/rdf.yaml?version=v0",
+        "rdf_source": "https://hypha.aicell.io/bioimage-io/artifacts/thoughtful-bug/files/rdf.yaml?version=v0",
+        "tags": [
+            "Instance segmentation",
+            "Plants",
+            "2D",
+            "RGB",
+            "Detectron2"
         ],
         "weight_formats": [
             "torchscript"
@@ -2420,6 +2501,31 @@
             "biapy",
             "semantic-segmentation",
             "hrnet"
+        ],
+        "weight_formats": [
+            "pytorch_state_dict"
+        ],
+        "covers": [
+            "source=RelativePath('cover.png') sha256=None"
+        ]
+    },
+    "talkative-mouse \ud83d\udc01": {
+        "id": "talkative-mouse",
+        "nickname": "talkative-mouse",
+        "nickname_icon": "\ud83d\udc01",
+        "type": "model",
+        "name": "2D ResUNet++ for Filamentous Actin Segmentation",
+        "description": "FAST Unet++ actin segmentation model",
+        "format_version": "0.5.12",
+        "collection_id": "bioimage-io/talkative-mouse",
+        "version": "v0",
+        "created": "2026-03-03T16:00:18Z",
+        "sha256": "5ab84b2ef227e13004e3dbb1b11c0b1b4fcd5e2c01ea7e91e0dc4502a95219b0",
+        "source": "https://hypha.aicell.io/bioimage-io/artifacts/talkative-mouse/files/rdf.yaml?version=v0",
+        "rdf_source": "https://hypha.aicell.io/bioimage-io/artifacts/talkative-mouse/files/rdf.yaml?version=v0",
+        "tags": [
+            "fluorescence-light-microscopy",
+            "actin-segmentation"
         ],
         "weight_formats": [
             "pytorch_state_dict"
@@ -2920,6 +3026,43 @@
             "source=RelativePath('cover.png') sha256=None"
         ]
     },
+    "naked-rabbit ": {
+        "id": "naked-rabbit",
+        "nickname": "naked-rabbit",
+        "nickname_icon": "",
+        "type": "model",
+        "name": "U2OS concept LoRA-MoE (SAM 3)",
+        "description": "Concept-selectable instance segmentation of U2OS cells in brightfield microscopy. One shared SAM 3 backbone plus five LoRA experts \u2014 cells, adherent cells, non-viable cells, cytoplasm, nuclei \u2014 chosen by a single optional integer selector; returns one integer instance-label map. Research use.",
+        "format_version": "0.5.12",
+        "collection_id": "bioimage-io/naked-rabbit",
+        "version": "v0",
+        "created": "2026-09-04T18:41:14Z",
+        "sha256": "440a718df91ff243a3e581a42535e5cb3c676746c3569fcbb54c59a1faf56604",
+        "source": "https://hypha.aicell.io/bioimage-io/artifacts/naked-rabbit/files/rdf.yaml?version=v0",
+        "rdf_source": "https://hypha.aicell.io/bioimage-io/artifacts/naked-rabbit/files/rdf.yaml?version=v0",
+        "tags": [
+            "instance-segmentation",
+            "segmentation",
+            "sam",
+            "sam3",
+            "lora",
+            "mixture-of-experts",
+            "brightfield",
+            "light-microscopy",
+            "u2os",
+            "cells",
+            "nuclei",
+            "cytoplasm",
+            "2d",
+            "pytorch"
+        ],
+        "weight_formats": [
+            "pytorch_state_dict"
+        ],
+        "covers": [
+            "source=RelativePath('cover.png') sha256='b43f441a39de62fe2592ddde78d7dc8971fb0f0c985f1ea6cffcfc39b80e6821'"
+        ]
+    },
     "sneaky-panda \ud83d\udc3c": {
         "id": "sneaky-panda",
         "nickname": "sneaky-panda",
@@ -2951,6 +3094,41 @@
         ],
         "covers": [
             "source=RelativePath('meiotic_nuclei_segmentation_model_v1.png') sha256='356bde59a41a610959ee7d4fff328bf3d7f45f9617d10cf68d59b90ce818b9b3'"
+        ]
+    },
+    "playful-boar \ud83d\udc17": {
+        "id": "playful-boar",
+        "nickname": "playful-boar",
+        "nickname_icon": "\ud83d\udc17",
+        "type": "model",
+        "name": "OC2-23 HDN digital expansion microscopy (3D)",
+        "description": "3D Hierarchical DivNoising (HDN) model that restores in-vivo two-photon image stacks so that they resemble 4x expansion microscopy. Trained supervised on synthetic low-resolution inputs simulated from expansion microscopy ground truth. Returns the MMSE over 15 posterior samples and the pixel-wise standard deviation as an uncertainty map.",
+        "format_version": "0.5.12",
+        "collection_id": "bioimage-io/playful-boar",
+        "version": "v0",
+        "created": "2026-10-09T15:59:15Z",
+        "sha256": "a13fc241b1a46de1769bcc6dbe6b4f561e7bab747c008bc324e60c5b1ae31fa2",
+        "source": "https://hypha.aicell.io/bioimage-io/artifacts/playful-boar/files/bioimageio.yaml?version=v0",
+        "rdf_source": "https://hypha.aicell.io/bioimage-io/artifacts/playful-boar/files/bioimageio.yaml?version=v0",
+        "tags": [
+            "3d",
+            "fluorescence-light-microscopy",
+            "image-restoration",
+            "super-resolution",
+            "expansion-microscopy",
+            "hdn",
+            "vae",
+            "uncertainty",
+            "careamics",
+            "pytorch",
+            "ai4life"
+        ],
+        "weight_formats": [
+            "pytorch_state_dict"
+        ],
+        "covers": [
+            "source=RelativePath('cover_mmse.png') sha256='e619e11bd72415266bb97e9994f77b6befb10647442b8e26b3b18dbe37f24b12'",
+            "source=RelativePath('cover_uncertainty.png') sha256='0c9d116e88f8298e7ef370b777918e9835d5efaed68198b720ec35fcc309add9'"
         ]
     },
     "elegant-leopard \ud83d\udc06": {
