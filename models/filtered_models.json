@@ -2147,64 +2147,48 @@
             "instance-segmentation",
             "resunet"
         ],
-        "weight_formats": [
-            "pytorch_state_dict"
-        ],
-        "covers": [
-            "source=RelativePath('cover.png') sha256=None"
-        ]
+        "training_data": {
+            "id": "zero/dataset_u-net_2d_multilabel_deepbacs"
+        },
+        "type": "model"
     },
-    "zestful-bug \ud83d\udc1b": {
-        "id": "zestful-bug",
-        "nickname": "zestful-bug",
-        "nickname_icon": "\ud83d\udc1b",
-        "type": "model",
-        "name": "2D UNETR for mitochondria painting from bright-field to fluorescence",
-        "description": "Cell painting (mitochondria): image to image reconstruction from bright-field to fluorescence.",
-        "format_version": "0.5.12",
-        "collection_id": "bioimage-io/zestful-bug",
-        "version": "v0",
-        "created": "2025-07-01T22:41:47Z",
-        "sha256": "437d8a01185773b9aef0e38ce59ea0dcdb7692f135ec3eeed56c63f31e6c1a3e",
-        "source": "https://hypha.aicell.io/bioimage-io/artifacts/zestful-bug/files/rdf.yaml?version=v0",
-        "rdf_source": "https://hypha.aicell.io/bioimage-io/artifacts/zestful-bug/files/rdf.yaml?version=v0",
-        "tags": [
-            "bright-field",
-            "fluorescence",
-            "mitochondria",
-            "2d",
-            "pytorch",
-            "biapy",
-            "image-to-image",
-            "unetr"
+    "resourceful-lizard \ud83e\udd8e": {
+        "authors": [
+            {
+                "name": "Dongshen Han"
+            },
+            {
+                "name": "Yu Qiao"
+            },
+            {
+                "name": "Jung Uk Kim"
+            },
+            {
+                "name": "Sung-Ho Bae"
+            },
+            {
+                "name": "Seungkyu Lee"
+            },
+            {
+                "name": "Choong Seon Hong"
+            }
         ],
-        "weight_formats": [
-            "pytorch_state_dict"
-        ],
+        "uploader": {
+            "name": "Mehdi",
+            "email": "mehdiseifi@gmail.com"
+        },
+        "badges": [],
+        "concept_doi": "10.5281/zenodo.13626228",
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
-        ]
-    },
-    "thoughtful-bug \ud83d\udc1b": {
-        "id": "thoughtful-bug",
-        "nickname": "thoughtful-bug",
-        "nickname_icon": "\ud83d\udc1b",
-        "type": "model",
-        "name": "OC1 Project 74 Leaf segmentation with detectron2",
-        "description": "Leaf plant segmentation",
-        "format_version": "0.5.12",
-        "collection_id": "bioimage-io/thoughtful-bug",
-        "version": "v0",
-        "created": "2026-07-18T23:18:08Z",
-        "sha256": "9bde50bd9549fe95f3fd41281f32ca3fdb1d33df7b8b7a2e026c355d0d2da645",
-        "source": "https://hypha.aicell.io/bioimage-io/artifacts/thoughtful-bug/files/rdf.yaml?version=v0",
-        "rdf_source": "https://hypha.aicell.io/bioimage-io/artifacts/thoughtful-bug/files/rdf.yaml?version=v0",
-        "tags": [
-            "Instance segmentation",
-            "Plants",
-            "2D",
-            "RGB",
-            "Detectron2"
+            "https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/resourceful-lizard/0.1.1/files/cover.thumbnail.png"
+        ],
+        "created": "2025-01-22T15:12:04.653334",
+        "description": "Pre-trained mobile-sam encoder for feature extraction",
+        "download_count": "?",
+        "id": "resourceful-lizard",
+        "license": "Apache-2.0",
+        "links": [
+            "https://github.com/ChaoningZhang/MobileSAM"
         ],
         "weight_formats": [
             "torchscript"
