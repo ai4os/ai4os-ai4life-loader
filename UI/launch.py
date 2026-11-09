@@ -4,10 +4,25 @@ from PIL import Image
 from urllib.parse import urljoin
 import click
 import gradio as gr
+import gradio_client.utils as _gc_utils
 import requests
 import utils
 from io import BytesIO
 import gradio_image_prompter as gr_ext
+
+# gradio 4.44 + pydantic >= 2.11: API JSON schemas can contain booleans
+# (e.g. "additionalProperties": true), which gradio_client 1.3 cannot parse
+# ("argument of type 'bool' is not iterable"). Treat them as "Any".
+_orig_json_schema_to_python_type = _gc_utils._json_schema_to_python_type
+
+
+def _json_schema_to_python_type(schema, defs=None):
+    if isinstance(schema, bool):
+        return "Any"
+    return _orig_json_schema_to_python_type(schema, defs)
+
+
+_gc_utils._json_schema_to_python_type = _json_schema_to_python_type
 
 gr.close_all()
 GRADIO_SERVER = "0.0.0.0"

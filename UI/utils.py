@@ -8,7 +8,7 @@ import os
 from PIL import Image, ImageDraw  #
 import inspect
 from pathlib import Path
-from bioimageio.core import load_description
+from ai4life.utils import load_model_description
 from bioimageio.spec._internal.io import download
 
 main_path = Path(__file__).parent.absolute()
@@ -69,8 +69,10 @@ def _downloaded_path(input_item):
 
 def input_files(model_name):
     """Fixture to provide options dictionary for the model."""
-    model_name, icon = model_name.split(" ", 1)
-    model = load_description(model_name, perform_io_checks=False)
+    # Load the model from the same source as the API (the "source" URL in
+    # filtered_models.json), not by its nickname: a nickname lookup can
+    # return an old version or fail on Hypha/EBI lookups.
+    model = load_model_description(model_name)
 
     inputs = [d.test_tensor for d in model.inputs]
     options = {}

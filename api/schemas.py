@@ -13,7 +13,19 @@ import json
 
 from . import config, responses, utils
 
-hide_input = utils.hide_input()
+# hide_input() loads the configured model at import time to inspect its IO
+# metadata, which requires fetching the model description over the network.
+# A transient network failure must not break the import (it would crash the
+# API server at startup and make every pytest subprocess that imports the
+# conftest error out), so degrade gracefully: assume the model accepts prompt
+# inputs. The prediction path loads the model per request anyway, so only the
+# generated form metadata is affected.
+try:
+    hide_input = utils.hide_input()
+except Exception as err:
+    print(f"WARNING: could not determine hidden inputs at import time: {err}")
+    print("WARNING: defaulting to accepting prompt inputs (hide_input=False)")
+    hide_input = False
 
 
 class BoxPromptField(fields.Field):

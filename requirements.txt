@@ -48,7 +48,13 @@ dinov3 @ git+https://github.com/facebookresearch/dinov3@6876159a11b4df116f30f667
 #UI requirements
 click>=7.1.2
 requests>=2.25.1
-gradio>=3.23.0
+# gradio_image_prompter (SAM prompt widget) is built for Gradio 4
+gradio>=4.44,<5
+# gradio 4.x imports HfFolder, which was removed in huggingface_hub 1.0
+# (ImportError: cannot import name 'HfFolder' from 'huggingface_hub')
+huggingface_hub<1.0
+# gradio 4.x uses the old TemplateResponse(name, context) call removed in starlette 1.0
+starlette<1.0
 pathlib
 gradio_image_prompter
 
