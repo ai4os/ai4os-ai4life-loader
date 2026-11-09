@@ -13,6 +13,7 @@ The index is published by bioimage.io at ``INDEX_URL``.
 """
 
 import json
+from urllib.parse import urljoin
 
 from bioimageio.core import load_description
 from bioimageio.spec.model import v0_5
@@ -66,6 +67,14 @@ def _weight_formats(model):
     return [name for name, weights in model.weights if weights is not None]
 
 
+def _cover_url(cover, source):
+    """Return a cover image as a URL (relative paths resolved to source)."""
+    path = str(getattr(cover, "source", cover))
+    if path.startswith(("http://", "https://")):
+        return path
+    return urljoin(source, path)
+
+
 def _make_entry(item, version, model, nickname, emoji, source):
     """Build the filtered_models.json entry for a supported model."""
     return {
@@ -84,7 +93,8 @@ def _make_entry(item, version, model, nickname, emoji, source):
         "rdf_source": source,
         "tags": list(model.tags),
         "weight_formats": _weight_formats(model),
-        "covers": [str(cover) for cover in model.covers],
+        "authors": [{"name": author.name} for author in model.authors],
+        "covers": [_cover_url(cover, source) for cover in model.covers],
     }
 
 
