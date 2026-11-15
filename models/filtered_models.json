@@ -24,8 +24,13 @@
             "pytorch_state_dict",
             "torchscript"
         ],
+        "authors": [
+            {
+                "name": "Constantin Pape"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/affable-shark/files/cover.png"
         ]
     },
     "impartial-shrimp \ud83e\udd90": {
@@ -56,8 +61,13 @@
             "pytorch_state_dict",
             "torchscript"
         ],
+        "authors": [
+            {
+                "name": "Constantin Pape"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/impartial-shrimp/files/cover.png"
         ]
     },
     "joyful-deer \ud83e\udd8c": {
@@ -93,8 +103,16 @@
             "pytorch_state_dict",
             "torchscript"
         ],
+        "authors": [
+            {
+                "name": "Julian Hennies"
+            },
+            {
+                "name": "Seth Frazer"
+            }
+        ],
         "covers": [
-            "source=RelativePath('coverimage.jpg') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/joyful-deer/files/coverimage.jpg"
         ]
     },
     "emotional-cricket \ud83e\udd97": {
@@ -128,9 +146,17 @@
             "pytorch_state_dict",
             "torchscript"
         ],
+        "authors": [
+            {
+                "name": "Lorenzo Cerrone"
+            },
+            {
+                "name": "Adrian Wolny"
+            }
+        ],
         "covers": [
-            "source=RelativePath('raw.png') sha256=None",
-            "source=RelativePath('pred.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/emotional-cricket/files/raw.png",
+            "https://hypha.aicell.io/bioimage-io/artifacts/emotional-cricket/files/pred.png"
         ]
     },
     "ambitious-sloth \ud83e\udda5": {
@@ -160,8 +186,13 @@
             "pytorch_state_dict",
             "torchscript"
         ],
+        "authors": [
+            {
+                "name": "Fynn Beuttenmueller"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/ambitious-sloth/files/cover.png"
         ]
     },
     "charismatic-whale \ud83d\udc33": {
@@ -189,8 +220,13 @@
         "weight_formats": [
             "torchscript"
         ],
+        "authors": [
+            {
+                "name": "Iv\u00e1n Hidalgo-Cenalmor"
+            }
+        ],
         "covers": [
-            "source=RelativePath('010bfd64-09df-4422-bd3c-1ec577824ff4_cover_image.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/charismatic-whale/files/010bfd64-09df-4422-bd3c-1ec577824ff4_cover_image.png"
         ]
     },
     "wild-rhino ": {
@@ -220,8 +256,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "CAREamics authors"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/wild-rhino/files/cover.png"
         ]
     },
     "dazzling-spider ": {
@@ -250,8 +291,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "CAREamics authors"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/dazzling-spider/files/cover.png"
         ]
     },
     "humorous-fox ": {
@@ -280,8 +326,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "CAREamics authors"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/humorous-fox/files/cover.png"
         ]
     },
     "famous-fish \ud83d\udc1f": {
@@ -306,8 +357,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Mehdi Seifi"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/famous-fish/files/cover.png"
         ]
     },
     "happy-elephant \ud83d\udc18": {
@@ -335,8 +391,19 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Vera Galinova"
+            },
+            {
+                "name": "Madeline Lovejoy"
+            },
+            {
+                "name": "Rafael Garcia-Mata"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/happy-elephant/files/cover.png"
         ]
     },
     "resourceful-lizard \ud83e\udd8e": {
@@ -361,8 +428,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Mehdi Seifi"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/resourceful-lizard/files/cover.png"
         ]
     },
     "affectionate-cow \ud83d\udc04": {
@@ -386,8 +458,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Mehdi Seifi"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/affectionate-cow/files/cover.png"
         ]
     },
     "idealistic-rat \ud83d\udc00": {
@@ -411,8 +488,16 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Anwai Archit"
+            },
+            {
+                "name": "Constantin Pape"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover_lm.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/idealistic-rat/files/cover_lm.png"
         ]
     },
     "faithful-chicken \ud83d\udc14": {
@@ -436,8 +521,16 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Anwai Archit"
+            },
+            {
+                "name": "Constantin Pape"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover_lm.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/faithful-chicken/files/cover_lm.png"
         ]
     },
     "humorous-crab \ud83e\udd80": {
@@ -461,8 +554,16 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Anwai Archit"
+            },
+            {
+                "name": "Constantin Pape"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover_em.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/humorous-crab/files/cover_em.png"
         ]
     },
     "noisy-ox \ud83d\udc02": {
@@ -486,8 +587,16 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Anwai Archit"
+            },
+            {
+                "name": "Constantin Pape"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover_em.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/noisy-ox/files/cover_em.png"
         ]
     },
     "greedy-whale \ud83d\udc33": {
@@ -511,8 +620,16 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Anwai Archit"
+            },
+            {
+                "name": "Constantin Pape"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover_em.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/greedy-whale/files/cover_em.png"
         ]
     },
     "diplomatic-bug \ud83d\udc1b": {
@@ -536,8 +653,16 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Anwai Archit"
+            },
+            {
+                "name": "Constantin Pape"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover_lm.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/diplomatic-bug/files/cover_lm.png"
         ]
     },
     "stupendous-sheep \ud83d\udc11": {
@@ -570,9 +695,17 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Abhishek Bhardwaj"
+            },
+            {
+                "name": "Kedar Narayan"
+            }
+        ],
         "covers": [
-            "source=RelativePath('em.png') sha256='4e4b862f32036b451002a4486a4e6ebd695292e944a2e322a2b3c16480d592af'",
-            "source=RelativePath('seg.png') sha256='689045983dd665a29cf9dc646cd1bf4cb14e3f613cf50af3a404ed454b88bf7f'"
+            "https://hypha.aicell.io/bioimage-io/artifacts/stupendous-sheep/files/em.png",
+            "https://hypha.aicell.io/bioimage-io/artifacts/stupendous-sheep/files/seg.png"
         ]
     },
     "philosophical-panda \ud83d\udc3c": {
@@ -599,10 +732,15 @@
             "pytorch_state_dict",
             "torchscript"
         ],
+        "authors": [
+            {
+                "name": "Qin Yu"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cellpose_raw_and_segmentation.jpg') sha256=None",
-            "source=RelativePath('cellpose_raw_and_probability.jpg') sha256=None",
-            "source=RelativePath('cellpose_raw.jpg') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/philosophical-panda/files/cellpose_raw_and_segmentation.jpg",
+            "https://hypha.aicell.io/bioimage-io/artifacts/philosophical-panda/files/cellpose_raw_and_probability.jpg",
+            "https://hypha.aicell.io/bioimage-io/artifacts/philosophical-panda/files/cellpose_raw.jpg"
         ]
     },
     "self-disciplined-blowfish \ud83d\udc21": {
@@ -631,10 +769,15 @@
         "weight_formats": [
             "torchscript"
         ],
+        "authors": [
+            {
+                "name": "Matthew Aquilina"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover_1.png') sha256=None",
-            "source=RelativePath('cover_2.png') sha256=None",
-            "source=RelativePath('cover_3.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/self-disciplined-blowfish/files/cover_1.png",
+            "https://hypha.aicell.io/bioimage-io/artifacts/self-disciplined-blowfish/files/cover_2.png",
+            "https://hypha.aicell.io/bioimage-io/artifacts/self-disciplined-blowfish/files/cover_3.png"
         ]
     },
     "trustworthy-llama \ud83e\udd99": {
@@ -663,10 +806,15 @@
         "weight_formats": [
             "torchscript"
         ],
+        "authors": [
+            {
+                "name": "Matthew Aquilina"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover_1.png') sha256=None",
-            "source=RelativePath('cover_2.png') sha256=None",
-            "source=RelativePath('cover_3.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/trustworthy-llama/files/cover_1.png",
+            "https://hypha.aicell.io/bioimage-io/artifacts/trustworthy-llama/files/cover_2.png",
+            "https://hypha.aicell.io/bioimage-io/artifacts/trustworthy-llama/files/cover_3.png"
         ]
     },
     "good-butterfly \ud83e\udd8b": {
@@ -695,8 +843,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/good-butterfly/files/cover.png"
         ]
     },
     "zealous-snail \ud83d\udc0c": {
@@ -727,8 +880,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/zealous-snail/files/cover.png"
         ]
     },
     "exuberant-parrot \ud83e\udd9c": {
@@ -759,8 +917,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/exuberant-parrot/files/cover.png"
         ]
     },
     "resourceful-otter \ud83e\udda6": {
@@ -790,8 +953,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/resourceful-otter/files/cover.png"
         ]
     },
     "merry-gorilla \ud83e\udd8d": {
@@ -818,8 +986,16 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Damian Dalle Nogare"
+            },
+            {
+                "name": "Mehdi Seifi"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/merry-gorilla/files/cover.png"
         ]
     },
     "stupendous-blowfish \ud83d\udc21": {
@@ -849,8 +1025,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/stupendous-blowfish/files/cover.png"
         ]
     },
     "gorgeous-whale \ud83d\udc33": {
@@ -880,8 +1061,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/gorgeous-whale/files/cover.png"
         ]
     },
     "thoughtful-chipmunk \ud83d\udc3f": {
@@ -909,8 +1095,16 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Vera Galinova"
+            },
+            {
+                "name": "Mehdi Seifi"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/thoughtful-chipmunk/files/cover.png"
         ]
     },
     "self-disciplined-honeybee \ud83d\udc1d": {
@@ -940,8 +1134,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/self-disciplined-honeybee/files/cover.png"
         ]
     },
     "wild-pig \ud83d\udc16": {
@@ -971,8 +1170,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/wild-pig/files/cover.png"
         ]
     },
     "frank-boar \ud83d\udc17": {
@@ -1002,8 +1206,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/frank-boar/files/cover.png"
         ]
     },
     "serious-lobster \ud83e\udd9e": {
@@ -1033,8 +1242,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/serious-lobster/files/cover.png"
         ]
     },
     "artistic-eagle \ud83e\udd85": {
@@ -1064,8 +1278,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/artistic-eagle/files/cover.png"
         ]
     },
     "modest-cow \ud83d\udc04": {
@@ -1095,8 +1314,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/modest-cow/files/cover.png"
         ]
     },
     "educated-water-buffalo \ud83d\udc03": {
@@ -1128,8 +1352,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/educated-water-buffalo/files/cover.png"
         ]
     },
     "committed-octopus \ud83d\udc19": {
@@ -1161,8 +1390,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/committed-octopus/files/cover.png"
         ]
     },
     "idealistic-water-buffalo \ud83d\udc03": {
@@ -1194,8 +1428,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/idealistic-water-buffalo/files/cover.png"
         ]
     },
     "chatty-cat \ud83d\udc08": {
@@ -1227,8 +1466,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/chatty-cat/files/cover.png"
         ]
     },
     "youthful-eagle \ud83e\udd85": {
@@ -1260,8 +1504,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/youthful-eagle/files/cover.png"
         ]
     },
     "calm-otter \ud83e\udda6": {
@@ -1293,8 +1542,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/calm-otter/files/cover.png"
         ]
     },
     "ambitious-kangaroo \ud83e\udd98": {
@@ -1326,8 +1580,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/ambitious-kangaroo/files/cover.png"
         ]
     },
     "unassuming-shark \ud83e\udd88": {
@@ -1359,8 +1618,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/unassuming-shark/files/cover.png"
         ]
     },
     "poisonous-spider \ud83d\udd77": {
@@ -1389,8 +1653,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/poisonous-spider/files/cover.png"
         ]
     },
     "jolly-duck \ud83e\udd86": {
@@ -1419,8 +1688,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/jolly-duck/files/cover.png"
         ]
     },
     "demanding-dromedary \ud83d\udc2a": {
@@ -1449,8 +1723,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/demanding-dromedary/files/cover.png"
         ]
     },
     "gleeful-skunk \ud83e\udda8": {
@@ -1479,8 +1758,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/gleeful-skunk/files/cover.png"
         ]
     },
     "rebellious-mouse \ud83d\udc01": {
@@ -1509,8 +1793,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/rebellious-mouse/files/cover.png"
         ]
     },
     "zealous-spider \ud83d\udd77": {
@@ -1539,8 +1828,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/zealous-spider/files/cover.png"
         ]
     },
     "sensible-cat \ud83d\udc08": {
@@ -1569,8 +1863,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/sensible-cat/files/cover.png"
         ]
     },
     "fearless-deer \ud83e\udd8c": {
@@ -1599,8 +1898,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/fearless-deer/files/cover.png"
         ]
     },
     "good-microbe \ud83e\udda0": {
@@ -1629,8 +1933,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/good-microbe/files/cover.png"
         ]
     },
     "territorial-cricket \ud83e\udd97": {
@@ -1659,8 +1968,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/territorial-cricket/files/cover.png"
         ]
     },
     "conscientious-dromedary \ud83d\udc2a": {
@@ -1689,8 +2003,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/conscientious-dromedary/files/cover.png"
         ]
     },
     "serious-turtle \ud83d\udc22": {
@@ -1720,8 +2039,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/serious-turtle/files/cover.png"
         ]
     },
     "clean-squid \ud83e\udd91": {
@@ -1751,8 +2075,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/clean-squid/files/cover.png"
         ]
     },
     "vengeful-zebra \ud83e\udd93": {
@@ -1782,8 +2111,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/vengeful-zebra/files/cover.png"
         ]
     },
     "merry-water-buffalo \ud83d\udc03": {
@@ -1812,8 +2146,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/merry-water-buffalo/files/cover.png"
         ]
     },
     "venomous-swan \ud83e\udda2": {
@@ -1843,8 +2182,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/venomous-swan/files/cover.png"
         ]
     },
     "willing-whale \ud83d\udc33": {
@@ -1875,8 +2219,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/willing-whale/files/cover.png"
         ]
     },
     "plucky-koala \ud83d\udc28": {
@@ -1906,8 +2255,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/plucky-koala/files/cover.png"
         ]
     },
     "jolly-ox ": {
@@ -1936,8 +2290,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "CAREamics authors"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/jolly-ox/files/cover.png"
         ]
     },
     "shy-lobster ": {
@@ -1967,8 +2326,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "CAREamics authors"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/shy-lobster/files/cover.png"
         ]
     },
     "educated-goat \ud83d\udc10": {
@@ -2000,8 +2364,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/educated-goat/files/cover.png"
         ]
     },
     "happy-honeybee \ud83d\udc1d": {
@@ -2030,8 +2399,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/happy-honeybee/files/cover.png"
         ]
     },
     "intelligent-lion \ud83e\udd81": {
@@ -2060,8 +2434,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/intelligent-lion/files/cover.png"
         ]
     },
     "idealistic-turtle \ud83d\udc22": {
@@ -2090,8 +2469,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/idealistic-turtle/files/cover.png"
         ]
     },
     "heroic-otter \ud83e\udda6": {
@@ -2120,8 +2504,46 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/heroic-otter/files/cover.png"
+        ]
+    },
+    "patient-swan \ud83e\udda2": {
+        "id": "patient-swan",
+        "nickname": "patient-swan",
+        "nickname_icon": "\ud83e\udda2",
+        "type": "model",
+        "name": "SpotMAX-AI",
+        "description": "U-Net 2D trained on images containing diffraction-limited fluorescent spots. The model is trained to return a boolean mask of spot areas.",
+        "format_version": "0.5.12",
+        "collection_id": "bioimage-io/patient-swan",
+        "version": "v0",
+        "created": "2025-07-01T22:41:48Z",
+        "sha256": "b7842a5ece717b2e236c215916f948e049df6f14a5c64dd1a9ebd4c0876b3405",
+        "source": "https://hypha.aicell.io/bioimage-io/artifacts/patient-swan/files/rdf.yaml?version=v0",
+        "rdf_source": "https://hypha.aicell.io/bioimage-io/artifacts/patient-swan/files/rdf.yaml?version=v0",
+        "tags": [
+            "spot-detection",
+            "diffraction-limited-spots",
+            "pytorch",
+            "fluorescence-light-microscopy",
+            "spotmax"
+        ],
+        "weight_formats": [
+            "pytorch_state_dict"
+        ],
+        "authors": [
+            {
+                "name": "Francesco Padovani"
+            }
+        ],
+        "covers": [
+            "https://hypha.aicell.io/bioimage-io/artifacts/patient-swan/files/cover.png"
         ]
     },
     "loving-monkey \ud83d\udc12": {
@@ -2150,8 +2572,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/loving-monkey/files/cover.png"
         ]
     },
     "efficient-raccoon \ud83e\udd9d": {
@@ -2187,8 +2614,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/efficient-raccoon/files/cover.png"
         ]
     },
     "zestful-bug \ud83d\udc1b": {
@@ -2218,8 +2650,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/zestful-bug/files/cover.png"
         ]
     },
     "thoughtful-bug \ud83d\udc1b": {
@@ -2246,8 +2683,19 @@
         "weight_formats": [
             "torchscript"
         ],
+        "authors": [
+            {
+                "name": "Vera Galinova"
+            },
+            {
+                "name": "Mehdi Seifi"
+            },
+            {
+                "name": "Sofia Bengoa Luoni"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/thoughtful-bug/files/cover.png"
         ]
     },
     "dazzling-blowfish \ud83d\udc21": {
@@ -2277,8 +2725,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/dazzling-blowfish/files/cover.png"
         ]
     },
     "amiable-otter \ud83e\udda6": {
@@ -2303,8 +2756,16 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Mehdi Seifi"
+            },
+            {
+                "name": "Ashesh"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/amiable-otter/files/cover.png"
         ]
     },
     "faithful-swan \ud83e\udda2": {
@@ -2329,8 +2790,16 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Mehdi Seifi"
+            },
+            {
+                "name": "Ashesh"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/faithful-swan/files/cover.png"
         ]
     },
     "stupendous-swan \ud83e\udda2": {
@@ -2355,8 +2824,16 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Mehdi Seifi"
+            },
+            {
+                "name": "Ashesh"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/stupendous-swan/files/cover.png"
         ]
     },
     "kind-badger \ud83e\udda1": {
@@ -2381,8 +2858,16 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Mehdi Seifi"
+            },
+            {
+                "name": "Ashesh"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/kind-badger/files/cover.png"
         ]
     },
     "handsome-sloth \ud83e\udda5": {
@@ -2407,8 +2892,16 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Mehdi Seifi"
+            },
+            {
+                "name": "Ashesh"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/handsome-sloth/files/cover.png"
         ]
     },
     "proactive-snail \ud83d\udc0c": {
@@ -2442,8 +2935,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/proactive-snail/files/cover.png"
         ]
     },
     "greedy-deer \ud83e\udd8c": {
@@ -2477,8 +2975,46 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/greedy-deer/files/cover.png"
+        ]
+    },
+    "talkative-mouse \ud83d\udc01": {
+        "id": "talkative-mouse",
+        "nickname": "talkative-mouse",
+        "nickname_icon": "\ud83d\udc01",
+        "type": "model",
+        "name": "2D ResUNet++ for Filamentous Actin Segmentation",
+        "description": "FAST Unet++ actin segmentation model",
+        "format_version": "0.5.12",
+        "collection_id": "bioimage-io/talkative-mouse",
+        "version": "v0",
+        "created": "2026-03-03T16:00:18Z",
+        "sha256": "5ab84b2ef227e13004e3dbb1b11c0b1b4fcd5e2c01ea7e91e0dc4502a95219b0",
+        "source": "https://hypha.aicell.io/bioimage-io/artifacts/talkative-mouse/files/rdf.yaml?version=v0",
+        "rdf_source": "https://hypha.aicell.io/bioimage-io/artifacts/talkative-mouse/files/rdf.yaml?version=v0",
+        "tags": [
+            "fluorescence-light-microscopy",
+            "actin-segmentation"
+        ],
+        "weight_formats": [
+            "pytorch_state_dict"
+        ],
+        "authors": [
+            {
+                "name": "Vineeth Aljapur"
+            },
+            {
+                "name": "Andrew R. Harris"
+            }
+        ],
+        "covers": [
+            "https://hypha.aicell.io/bioimage-io/artifacts/talkative-mouse/files/cover.png"
         ]
     },
     "brave-monkey \ud83d\udc12": {
@@ -2501,8 +3037,16 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Vineeth Aljapur"
+            },
+            {
+                "name": "Andrew R. Harris"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/brave-monkey/files/cover.png"
         ]
     },
     "romantic-shark \ud83e\udd88": {
@@ -2530,8 +3074,13 @@
             "pytorch_state_dict",
             "torchscript"
         ],
+        "authors": [
+            {
+                "name": "Constantin Pape"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/romantic-shark/files/cover.png"
         ]
     },
     "reliable-waterbuffalo \ud83d\udc03": {
@@ -2557,8 +3106,16 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Vineeth Aljapur"
+            },
+            {
+                "name": "Andrew R. Harris"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/reliable-waterbuffalo/files/cover.png"
         ]
     },
     "tough-lion ": {
@@ -2590,8 +3147,13 @@
         "weight_formats": [
             "torchscript"
         ],
+        "authors": [
+            {
+                "name": "Kai Zhang"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/tough-lion/files/cover.png"
         ]
     },
     "plucky-leopard \ud83d\udc06": {
@@ -2622,9 +3184,14 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover1.png') sha256=None",
-            "source=RelativePath('cover2.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/plucky-leopard/files/cover1.png",
+            "https://hypha.aicell.io/bioimage-io/artifacts/plucky-leopard/files/cover2.png"
         ]
     },
     "fearless-badger \ud83e\udda1": {
@@ -2654,8 +3221,13 @@
         "weight_formats": [
             "torchscript"
         ],
+        "authors": [
+            {
+                "name": "Thusheera Kumarasekara"
+            }
+        ],
         "covers": [
-            "source=RelativePath('overlay_output.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/fearless-badger/files/overlay_output.png"
         ]
     },
     "placid-trex \ud83e\udd96": {
@@ -2685,8 +3257,19 @@
         "weight_formats": [
             "torchscript"
         ],
+        "authors": [
+            {
+                "name": "Thusheera Kumarasekara"
+            },
+            {
+                "name": "Luis Kuhn Cuellar"
+            },
+            {
+                "name": "Carolin Schwitalla"
+            }
+        ],
         "covers": [
-            "source=RelativePath('overlay_output.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/placid-trex/files/overlay_output.png"
         ]
     },
     "lucky-boar \ud83d\udc17": {
@@ -2722,8 +3305,19 @@
         "weight_formats": [
             "torchscript"
         ],
+        "authors": [
+            {
+                "name": "Guillermo Rey-Paniagua"
+            },
+            {
+                "name": "Dariusz Lachowski"
+            },
+            {
+                "name": "Arrate Mu\u00f1oz-Barrutia"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.jpg') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/lucky-boar/files/cover.jpg"
         ]
     },
     "resourceful-sheep \ud83d\udc11": {
@@ -2759,8 +3353,19 @@
         "weight_formats": [
             "torchscript"
         ],
+        "authors": [
+            {
+                "name": "Guillermo Rey-Paniagua"
+            },
+            {
+                "name": "Dariusz Lachowski"
+            },
+            {
+                "name": "Arrate Mu\u00f1oz-Barrutia"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.jpg') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/resourceful-sheep/files/cover.jpg"
         ]
     },
     "determined-cricket \ud83e\udd97": {
@@ -2798,8 +3403,19 @@
         "weight_formats": [
             "torchscript"
         ],
+        "authors": [
+            {
+                "name": "Guillermo Rey-Paniagua"
+            },
+            {
+                "name": "Dariusz Lachowski"
+            },
+            {
+                "name": "Arrate Mu\u00f1oz-Barrutia"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.jpg') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/determined-cricket/files/cover.jpg"
         ]
     },
     "diplomatic-orangutan \ud83e\udda7": {
@@ -2835,8 +3451,19 @@
         "weight_formats": [
             "torchscript"
         ],
+        "authors": [
+            {
+                "name": "Guillermo Rey-Paniagua"
+            },
+            {
+                "name": "Dariusz Lachowski"
+            },
+            {
+                "name": "Arrate Mu\u00f1oz-Barrutia"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.jpg') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/diplomatic-orangutan/files/cover.jpg"
         ]
     },
     "idealistic-eagle \ud83e\udd85": {
@@ -2863,10 +3490,15 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cellpose_cover1.png') sha256=None",
-            "source=RelativePath('cellpose_cover2.png') sha256=None",
-            "source=RelativePath('cellpose_cover3.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/idealistic-eagle/files/cellpose_cover1.png",
+            "https://hypha.aicell.io/bioimage-io/artifacts/idealistic-eagle/files/cellpose_cover2.png",
+            "https://hypha.aicell.io/bioimage-io/artifacts/idealistic-eagle/files/cellpose_cover3.png"
         ]
     },
     "famous-sheep ": {
@@ -2898,11 +3530,16 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Guillermo Rey-Paniagua"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.jpg') sha256=None",
-            "source=RelativePath('cover_input_output.jpg') sha256=None",
-            "source=RelativePath('cover_labels.jpg') sha256=None",
-            "source=RelativePath('cover_boundaries.jpg') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/famous-sheep/files/cover.jpg",
+            "https://hypha.aicell.io/bioimage-io/artifacts/famous-sheep/files/cover_input_output.jpg",
+            "https://hypha.aicell.io/bioimage-io/artifacts/famous-sheep/files/cover_labels.jpg",
+            "https://hypha.aicell.io/bioimage-io/artifacts/famous-sheep/files/cover_boundaries.jpg"
         ]
     },
     "passionate-bug ": {
@@ -2934,11 +3571,16 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Guillermo Rey-Paniagua"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.jpg') sha256=None",
-            "source=RelativePath('cover_input_output.jpg') sha256=None",
-            "source=RelativePath('cover_labels.jpg') sha256=None",
-            "source=RelativePath('cover_boundaries.jpg') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/passionate-bug/files/cover.jpg",
+            "https://hypha.aicell.io/bioimage-io/artifacts/passionate-bug/files/cover_input_output.jpg",
+            "https://hypha.aicell.io/bioimage-io/artifacts/passionate-bug/files/cover_labels.jpg",
+            "https://hypha.aicell.io/bioimage-io/artifacts/passionate-bug/files/cover_boundaries.jpg"
         ]
     },
     "vain-shark \ud83e\udd88": {
@@ -2969,8 +3611,64 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Florian Meyer"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/vain-shark/files/cover.png"
+        ]
+    },
+    "naked-rabbit ": {
+        "id": "naked-rabbit",
+        "nickname": "naked-rabbit",
+        "nickname_icon": "",
+        "type": "model",
+        "name": "U2OS concept LoRA-MoE (SAM 3)",
+        "description": "Concept-selectable instance segmentation of U2OS cells in brightfield microscopy. One shared SAM 3 backbone plus five LoRA experts \u2014 cells, adherent cells, non-viable cells, cytoplasm, nuclei \u2014 chosen by a single optional integer selector; returns one integer instance-label map. Research use.",
+        "format_version": "0.5.12",
+        "collection_id": "bioimage-io/naked-rabbit",
+        "version": "v0",
+        "created": "2026-09-04T18:41:14Z",
+        "sha256": "440a718df91ff243a3e581a42535e5cb3c676746c3569fcbb54c59a1faf56604",
+        "source": "https://hypha.aicell.io/bioimage-io/artifacts/naked-rabbit/files/rdf.yaml?version=v0",
+        "rdf_source": "https://hypha.aicell.io/bioimage-io/artifacts/naked-rabbit/files/rdf.yaml?version=v0",
+        "tags": [
+            "instance-segmentation",
+            "segmentation",
+            "sam",
+            "sam3",
+            "lora",
+            "mixture-of-experts",
+            "brightfield",
+            "light-microscopy",
+            "u2os",
+            "cells",
+            "nuclei",
+            "cytoplasm",
+            "2d",
+            "pytorch"
+        ],
+        "weight_formats": [
+            "pytorch_state_dict"
+        ],
+        "authors": [
+            {
+                "name": "Simon Britzelli"
+            },
+            {
+                "name": "Nils Mechtel"
+            },
+            {
+                "name": "Hanzhao Zhang"
+            },
+            {
+                "name": "Wei Ouyang"
+            }
+        ],
+        "covers": [
+            "https://hypha.aicell.io/bioimage-io/artifacts/naked-rabbit/files/cover.png"
         ]
     },
     "sneaky-panda \ud83d\udc3c": {
@@ -3002,8 +3700,62 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Carlos M. Rodriguez-Reza"
+            },
+            {
+                "name": "Peter M. Carlton"
+            },
+            {
+                "name": "Li Zhou"
+            }
+        ],
         "covers": [
-            "source=RelativePath('meiotic_nuclei_segmentation_model_v1.png') sha256='356bde59a41a610959ee7d4fff328bf3d7f45f9617d10cf68d59b90ce818b9b3'"
+            "https://hypha.aicell.io/bioimage-io/artifacts/sneaky-panda/files/meiotic_nuclei_segmentation_model_v1.png"
+        ]
+    },
+    "playful-boar \ud83d\udc17": {
+        "id": "playful-boar",
+        "nickname": "playful-boar",
+        "nickname_icon": "\ud83d\udc17",
+        "type": "model",
+        "name": "OC2-23 HDN digital expansion microscopy (3D)",
+        "description": "3D Hierarchical DivNoising (HDN) model that restores in-vivo two-photon image stacks so that they resemble 4x expansion microscopy. Trained supervised on synthetic low-resolution inputs simulated from expansion microscopy ground truth. Returns the MMSE over 15 posterior samples and the pixel-wise standard deviation as an uncertainty map.",
+        "format_version": "0.5.12",
+        "collection_id": "bioimage-io/playful-boar",
+        "version": "v0",
+        "created": "2026-10-09T15:59:15Z",
+        "sha256": "a13fc241b1a46de1769bcc6dbe6b4f561e7bab747c008bc324e60c5b1ae31fa2",
+        "source": "https://hypha.aicell.io/bioimage-io/artifacts/playful-boar/files/bioimageio.yaml?version=v0",
+        "rdf_source": "https://hypha.aicell.io/bioimage-io/artifacts/playful-boar/files/bioimageio.yaml?version=v0",
+        "tags": [
+            "3d",
+            "fluorescence-light-microscopy",
+            "image-restoration",
+            "super-resolution",
+            "expansion-microscopy",
+            "hdn",
+            "vae",
+            "uncertainty",
+            "careamics",
+            "pytorch",
+            "ai4life"
+        ],
+        "weight_formats": [
+            "pytorch_state_dict"
+        ],
+        "authors": [
+            {
+                "name": "Vera Galinova"
+            },
+            {
+                "name": "Ekin Reyhan"
+            }
+        ],
+        "covers": [
+            "https://hypha.aicell.io/bioimage-io/artifacts/playful-boar/files/cover_mmse.png",
+            "https://hypha.aicell.io/bioimage-io/artifacts/playful-boar/files/cover_uncertainty.png"
         ]
     },
     "elegant-leopard \ud83d\udc06": {
@@ -3035,9 +3787,20 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Vera Galinova"
+            },
+            {
+                "name": "Anirban Ray"
+            },
+            {
+                "name": "Ekin Reyhan"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover_mmse.png') sha256='2b83fda88ded9815ae2ef5a3d22adc34f43b5463e42feebd0934771704678bb1'",
-            "source=RelativePath('cover_uncertainty.png') sha256='c4a847cb004c7f3554e05496f475ef65f9739d5a69c4242c0ae9f084f9cf869e'"
+            "https://hypha.aicell.io/bioimage-io/artifacts/elegant-leopard/files/cover_mmse.png",
+            "https://hypha.aicell.io/bioimage-io/artifacts/elegant-leopard/files/cover_uncertainty.png"
         ]
     },
     "fast-ant \ud83d\udc1c": {
@@ -3065,8 +3828,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Mehdi Seifi"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256='11ad1c36d9349f6605d5c4db261f5b9492130bd32af0a94a8ae8f66057a43042'"
+            "https://hypha.aicell.io/bioimage-io/artifacts/fast-ant/files/cover.png"
         ]
     },
     "knowledgeable-mouse ": {
@@ -3101,8 +3869,43 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Lennart Roos"
+            },
+            {
+                "name": "Aleyna Mira\u00e7 Diniz"
+            },
+            {
+                "name": "Elisabeth Koert"
+            },
+            {
+                "name": "Martin Schilling"
+            },
+            {
+                "name": "Mara Uhl"
+            },
+            {
+                "name": "Anupriya Thirumalai"
+            },
+            {
+                "name": "Mostafa Aakhte"
+            },
+            {
+                "name": "Kathrin Kusch"
+            },
+            {
+                "name": "Jan Huisken"
+            },
+            {
+                "name": "Tobias Moser"
+            },
+            {
+                "name": "Constantin Pape"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/knowledgeable-mouse/files/cover.png"
         ]
     },
     "content-fish ": {
@@ -3138,8 +3941,43 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Lennart Roos"
+            },
+            {
+                "name": "Aleyna Mira\u00e7 Diniz"
+            },
+            {
+                "name": "Elisabeth Koert"
+            },
+            {
+                "name": "Martin Schilling"
+            },
+            {
+                "name": "Mara Uhl"
+            },
+            {
+                "name": "Anupriya Thirumalai"
+            },
+            {
+                "name": "Mostafa Aakhte"
+            },
+            {
+                "name": "Kathrin Kusch"
+            },
+            {
+                "name": "Jan Huisken"
+            },
+            {
+                "name": "Tobias Moser"
+            },
+            {
+                "name": "Constantin Pape"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/content-fish/files/cover.png"
         ]
     },
     "loyal-ant ": {
@@ -3172,8 +4010,43 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Lennart Roos"
+            },
+            {
+                "name": "Aleyna Mira\u00e7 Diniz"
+            },
+            {
+                "name": "Elisabeth Koert"
+            },
+            {
+                "name": "Martin Schilling"
+            },
+            {
+                "name": "Mara Uhl"
+            },
+            {
+                "name": "Anupriya Thirumalai"
+            },
+            {
+                "name": "Mostafa Aakhte"
+            },
+            {
+                "name": "Kathrin Kusch"
+            },
+            {
+                "name": "Jan Huisken"
+            },
+            {
+                "name": "Tobias Moser"
+            },
+            {
+                "name": "Constantin Pape"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/loyal-ant/files/cover.png"
         ]
     },
     "nervous-shark ": {
@@ -3209,8 +4082,43 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Lennart Roos"
+            },
+            {
+                "name": "Aleyna Mira\u00e7 Diniz"
+            },
+            {
+                "name": "Elisabeth Koert"
+            },
+            {
+                "name": "Martin Schilling"
+            },
+            {
+                "name": "Mara Uhl"
+            },
+            {
+                "name": "Anupriya Thirumalai"
+            },
+            {
+                "name": "Mostafa Aakhte"
+            },
+            {
+                "name": "Kathrin Kusch"
+            },
+            {
+                "name": "Jan Huisken"
+            },
+            {
+                "name": "Tobias Moser"
+            },
+            {
+                "name": "Constantin Pape"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/nervous-shark/files/cover.png"
         ]
     },
     "confused-cow ": {
@@ -3248,8 +4156,43 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Lennart Roos"
+            },
+            {
+                "name": "Aleyna Mira\u00e7 Diniz"
+            },
+            {
+                "name": "Elisabeth Koert"
+            },
+            {
+                "name": "Martin Schilling"
+            },
+            {
+                "name": "Mara Uhl"
+            },
+            {
+                "name": "Anupriya Thirumalai"
+            },
+            {
+                "name": "Mostafa Aakhte"
+            },
+            {
+                "name": "Kathrin Kusch"
+            },
+            {
+                "name": "Jan Huisken"
+            },
+            {
+                "name": "Tobias Moser"
+            },
+            {
+                "name": "Constantin Pape"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256=None"
+            "https://hypha.aicell.io/bioimage-io/artifacts/confused-cow/files/cover.png"
         ]
     },
     "nice-flamingo \ud83e\udda9": {
@@ -3283,8 +4226,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256='1ea95f4c2714806a9168f7ff165add4b4a5bd7044dc0245a23f86e4df98fa416'"
+            "https://hypha.aicell.io/bioimage-io/artifacts/nice-flamingo/files/cover.png"
         ]
     },
     "powerful-sloth \ud83e\udda5": {
@@ -3318,8 +4266,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256='7275007da45ca2376fc6535987ed6ff0d1740319fd967f2f43a78313f085b876'"
+            "https://hypha.aicell.io/bioimage-io/artifacts/powerful-sloth/files/cover.png"
         ]
     },
     "upbeat-angelfish \ud83d\udc20": {
@@ -3353,8 +4306,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256='1ea95f4c2714806a9168f7ff165add4b4a5bd7044dc0245a23f86e4df98fa416'"
+            "https://hypha.aicell.io/bioimage-io/artifacts/upbeat-angelfish/files/cover.png"
         ]
     },
     "forceful-squid \ud83e\udd91": {
@@ -3388,8 +4346,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256='7275007da45ca2376fc6535987ed6ff0d1740319fd967f2f43a78313f085b876'"
+            "https://hypha.aicell.io/bioimage-io/artifacts/forceful-squid/files/cover.png"
         ]
     },
     "passionate-rhino \ud83e\udd8f": {
@@ -3423,8 +4386,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256='5135c902e25975cde45f4954a6386d6677624534f09b4b003519182435f34251'"
+            "https://hypha.aicell.io/bioimage-io/artifacts/passionate-rhino/files/cover.png"
         ]
     },
     "playful-scorpion \ud83e\udd82": {
@@ -3458,8 +4426,13 @@
         "weight_formats": [
             "pytorch_state_dict"
         ],
+        "authors": [
+            {
+                "name": "Daniel Franco-Barranco"
+            }
+        ],
         "covers": [
-            "source=RelativePath('cover.png') sha256='5847e9b733ef91193ae303cac9c49b2fcf59950a8a134a4a7160cba8e4a063ae'"
+            "https://hypha.aicell.io/bioimage-io/artifacts/playful-scorpion/files/cover.png"
         ]
     }
 }
