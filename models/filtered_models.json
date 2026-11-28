@@ -2513,6 +2513,39 @@
             "https://hypha.aicell.io/bioimage-io/artifacts/heroic-otter/files/cover.png"
         ]
     },
+    "patient-swan \ud83e\udda2": {
+        "id": "patient-swan",
+        "nickname": "patient-swan",
+        "nickname_icon": "\ud83e\udda2",
+        "type": "model",
+        "name": "SpotMAX-AI",
+        "description": "U-Net 2D trained on images containing diffraction-limited fluorescent spots. The model is trained to return a boolean mask of spot areas.",
+        "format_version": "0.5.12",
+        "collection_id": "bioimage-io/patient-swan",
+        "version": "v0",
+        "created": "2025-07-01T22:41:48Z",
+        "sha256": "b7842a5ece717b2e236c215916f948e049df6f14a5c64dd1a9ebd4c0876b3405",
+        "source": "https://hypha.aicell.io/bioimage-io/artifacts/patient-swan/files/rdf.yaml?version=v0",
+        "rdf_source": "https://hypha.aicell.io/bioimage-io/artifacts/patient-swan/files/rdf.yaml?version=v0",
+        "tags": [
+            "spot-detection",
+            "diffraction-limited-spots",
+            "pytorch",
+            "fluorescence-light-microscopy",
+            "spotmax"
+        ],
+        "weight_formats": [
+            "pytorch_state_dict"
+        ],
+        "authors": [
+            {
+                "name": "Francesco Padovani"
+            }
+        ],
+        "covers": [
+            "https://hypha.aicell.io/bioimage-io/artifacts/patient-swan/files/cover.png"
+        ]
+    },
     "loving-monkey \ud83d\udc12": {
         "id": "loving-monkey",
         "nickname": "loving-monkey",
@@ -2951,6 +2984,39 @@
             "https://hypha.aicell.io/bioimage-io/artifacts/greedy-deer/files/cover.png"
         ]
     },
+    "talkative-mouse \ud83d\udc01": {
+        "id": "talkative-mouse",
+        "nickname": "talkative-mouse",
+        "nickname_icon": "\ud83d\udc01",
+        "type": "model",
+        "name": "2D ResUNet++ for Filamentous Actin Segmentation",
+        "description": "FAST Unet++ actin segmentation model",
+        "format_version": "0.5.12",
+        "collection_id": "bioimage-io/talkative-mouse",
+        "version": "v0",
+        "created": "2026-03-03T16:00:18Z",
+        "sha256": "5ab84b2ef227e13004e3dbb1b11c0b1b4fcd5e2c01ea7e91e0dc4502a95219b0",
+        "source": "https://hypha.aicell.io/bioimage-io/artifacts/talkative-mouse/files/rdf.yaml?version=v0",
+        "rdf_source": "https://hypha.aicell.io/bioimage-io/artifacts/talkative-mouse/files/rdf.yaml?version=v0",
+        "tags": [
+            "fluorescence-light-microscopy",
+            "actin-segmentation"
+        ],
+        "weight_formats": [
+            "pytorch_state_dict"
+        ],
+        "authors": [
+            {
+                "name": "Vineeth Aljapur"
+            },
+            {
+                "name": "Andrew R. Harris"
+            }
+        ],
+        "covers": [
+            "https://hypha.aicell.io/bioimage-io/artifacts/talkative-mouse/files/cover.png"
+        ]
+    },
     "brave-monkey \ud83d\udc12": {
         "id": "brave-monkey",
         "nickname": "brave-monkey",
@@ -2994,7 +3060,7 @@
         "collection_id": "bioimage-io/romantic-shark",
         "version": "v1",
         "created": "2026-02-26T06:05:35Z",
-        "sha256": "d60f18328ed247925bc9759abdff0ae083c86e98de662c95a5dd4f2b061502d1",
+        "sha256": "76d6fc0c58c89b2c18ae1553bdffb6eb23bc15376ca110ef22ad345c54d17f3d",
         "source": "https://hypha.aicell.io/bioimage-io/artifacts/romantic-shark/files/rdf.yaml?version=v1",
         "rdf_source": "https://hypha.aicell.io/bioimage-io/artifacts/romantic-shark/files/rdf.yaml?version=v1",
         "tags": [
@@ -3554,6 +3620,57 @@
             "https://hypha.aicell.io/bioimage-io/artifacts/vain-shark/files/cover.png"
         ]
     },
+    "naked-rabbit ": {
+        "id": "naked-rabbit",
+        "nickname": "naked-rabbit",
+        "nickname_icon": "",
+        "type": "model",
+        "name": "U2OS concept LoRA-MoE (SAM 3)",
+        "description": "Concept-selectable instance segmentation of U2OS cells in brightfield microscopy. One shared SAM 3 backbone plus five LoRA experts \u2014 cells, adherent cells, non-viable cells, cytoplasm, nuclei \u2014 chosen by a single optional integer selector; returns one integer instance-label map. Research use.",
+        "format_version": "0.5.12",
+        "collection_id": "bioimage-io/naked-rabbit",
+        "version": "v0",
+        "created": "2026-09-04T18:41:14Z",
+        "sha256": "440a718df91ff243a3e581a42535e5cb3c676746c3569fcbb54c59a1faf56604",
+        "source": "https://hypha.aicell.io/bioimage-io/artifacts/naked-rabbit/files/rdf.yaml?version=v0",
+        "rdf_source": "https://hypha.aicell.io/bioimage-io/artifacts/naked-rabbit/files/rdf.yaml?version=v0",
+        "tags": [
+            "instance-segmentation",
+            "segmentation",
+            "sam",
+            "sam3",
+            "lora",
+            "mixture-of-experts",
+            "brightfield",
+            "light-microscopy",
+            "u2os",
+            "cells",
+            "nuclei",
+            "cytoplasm",
+            "2d",
+            "pytorch"
+        ],
+        "weight_formats": [
+            "pytorch_state_dict"
+        ],
+        "authors": [
+            {
+                "name": "Simon Britzelli"
+            },
+            {
+                "name": "Nils Mechtel"
+            },
+            {
+                "name": "Hanzhao Zhang"
+            },
+            {
+                "name": "Wei Ouyang"
+            }
+        ],
+        "covers": [
+            "https://hypha.aicell.io/bioimage-io/artifacts/naked-rabbit/files/cover.png"
+        ]
+    },
     "sneaky-panda \ud83d\udc3c": {
         "id": "sneaky-panda",
         "nickname": "sneaky-panda",
@@ -3596,6 +3713,49 @@
         ],
         "covers": [
             "https://hypha.aicell.io/bioimage-io/artifacts/sneaky-panda/files/meiotic_nuclei_segmentation_model_v1.png"
+        ]
+    },
+    "playful-boar \ud83d\udc17": {
+        "id": "playful-boar",
+        "nickname": "playful-boar",
+        "nickname_icon": "\ud83d\udc17",
+        "type": "model",
+        "name": "OC2-23 HDN digital expansion microscopy (3D)",
+        "description": "3D Hierarchical DivNoising (HDN) model that restores in-vivo two-photon image stacks so that they resemble 4x expansion microscopy. Trained supervised on synthetic low-resolution inputs simulated from expansion microscopy ground truth. Returns the MMSE over 15 posterior samples and the pixel-wise standard deviation as an uncertainty map.",
+        "format_version": "0.5.12",
+        "collection_id": "bioimage-io/playful-boar",
+        "version": "v0",
+        "created": "2026-10-09T15:59:15Z",
+        "sha256": "a13fc241b1a46de1769bcc6dbe6b4f561e7bab747c008bc324e60c5b1ae31fa2",
+        "source": "https://hypha.aicell.io/bioimage-io/artifacts/playful-boar/files/bioimageio.yaml?version=v0",
+        "rdf_source": "https://hypha.aicell.io/bioimage-io/artifacts/playful-boar/files/bioimageio.yaml?version=v0",
+        "tags": [
+            "3d",
+            "fluorescence-light-microscopy",
+            "image-restoration",
+            "super-resolution",
+            "expansion-microscopy",
+            "hdn",
+            "vae",
+            "uncertainty",
+            "careamics",
+            "pytorch",
+            "ai4life"
+        ],
+        "weight_formats": [
+            "pytorch_state_dict"
+        ],
+        "authors": [
+            {
+                "name": "Vera Galinova"
+            },
+            {
+                "name": "Ekin Reyhan"
+            }
+        ],
+        "covers": [
+            "https://hypha.aicell.io/bioimage-io/artifacts/playful-boar/files/cover_mmse.png",
+            "https://hypha.aicell.io/bioimage-io/artifacts/playful-boar/files/cover_uncertainty.png"
         ]
     },
     "elegant-leopard \ud83d\udc06": {
@@ -4273,6 +4433,473 @@
         ],
         "covers": [
             "https://hypha.aicell.io/bioimage-io/artifacts/playful-scorpion/files/cover.png"
+        ]
+    },
+    "brave-hedgehog \ud83e\udd94": {
+        "id": "brave-hedgehog",
+        "nickname": "brave-hedgehog",
+        "nickname_icon": "\ud83e\udd94",
+        "type": "model",
+        "name": "SynapseNet Mitochondria - Electron Tomography",
+        "description": "3D U-Net from SynapseNet that predicts mitochondria foreground and boundary probabilities in electron tomograms at a voxel size of 2.87 nm.",
+        "format_version": "0.5.12",
+        "collection_id": "bioimage-io/brave-hedgehog",
+        "version": "v0",
+        "created": "2026-11-25T21:39:36Z",
+        "sha256": "dc3c3f2ddb069ca311930a499a4cea02842b09908fca9156d44616fd3c8ac06d",
+        "source": "https://hypha.aicell.io/bioimage-io/artifacts/brave-hedgehog/files/rdf.yaml?version=v0",
+        "rdf_source": "https://hypha.aicell.io/bioimage-io/artifacts/brave-hedgehog/files/rdf.yaml?version=v0",
+        "tags": [
+            "synapsenet",
+            "electron-microscopy",
+            "segmentation",
+            "unet",
+            "pytorch",
+            "3d",
+            "mitochondria",
+            "electron-tomography"
+        ],
+        "weight_formats": [
+            "pytorch_state_dict",
+            "torchscript"
+        ],
+        "authors": [
+            {
+                "name": "Luca Freckmann"
+            }
+        ],
+        "covers": [
+            "https://hypha.aicell.io/bioimage-io/artifacts/brave-hedgehog/files/cover.png"
+        ]
+    },
+    "gorgeous-eagle \ud83e\udd85": {
+        "id": "gorgeous-eagle",
+        "nickname": "gorgeous-eagle",
+        "nickname_icon": "\ud83e\udd85",
+        "type": "model",
+        "name": "SynapseNet Cristae - Electron Tomography",
+        "description": "3D U-Net from SynapseNet that predicts mitochondrial cristae foreground and boundary probabilities in electron tomograms at a voxel size of 1.74 nm, given the tomogram and a mitochondria mask.",
+        "format_version": "0.5.12",
+        "collection_id": "bioimage-io/gorgeous-eagle",
+        "version": "v0",
+        "created": "2026-11-26T13:46:56Z",
+        "sha256": "6cc575decf70011acfcec71fafc63e70fc4b72d86f72350a020e22ff8cb41f2c",
+        "source": "https://hypha.aicell.io/bioimage-io/artifacts/gorgeous-eagle/files/rdf.yaml?version=v0",
+        "rdf_source": "https://hypha.aicell.io/bioimage-io/artifacts/gorgeous-eagle/files/rdf.yaml?version=v0",
+        "tags": [
+            "synapsenet",
+            "electron-microscopy",
+            "segmentation",
+            "unet",
+            "pytorch",
+            "3d",
+            "mitochondria",
+            "electron-tomography",
+            "cristae"
+        ],
+        "weight_formats": [
+            "pytorch_state_dict",
+            "torchscript"
+        ],
+        "authors": [
+            {
+                "name": "Luca Freckmann"
+            }
+        ],
+        "covers": [
+            "https://hypha.aicell.io/bioimage-io/artifacts/gorgeous-eagle/files/cover.png"
+        ]
+    },
+    "affable-zebra \ud83e\udd93": {
+        "id": "affable-zebra",
+        "nickname": "affable-zebra",
+        "nickname_icon": "\ud83e\udd93",
+        "type": "model",
+        "name": "SynapseNet Mitochondria - FIB-SEM",
+        "description": "3D U-Net from SynapseNet that predicts mitochondria foreground and boundary probabilities in FIB-SEM volume EM at a voxel size of 25 nm in z and 5 nm in xy.",
+        "format_version": "0.5.12",
+        "collection_id": "bioimage-io/affable-zebra",
+        "version": "v0",
+        "created": "2026-11-26T13:59:17Z",
+        "sha256": "9f368e4097dbdf15aa372a490bdda2507e38387eb0c641e119d179d73524c941",
+        "source": "https://hypha.aicell.io/bioimage-io/artifacts/affable-zebra/files/rdf.yaml?version=v0",
+        "rdf_source": "https://hypha.aicell.io/bioimage-io/artifacts/affable-zebra/files/rdf.yaml?version=v0",
+        "tags": [
+            "synapsenet",
+            "electron-microscopy",
+            "segmentation",
+            "unet",
+            "pytorch",
+            "3d",
+            "mitochondria",
+            "fib-sem",
+            "volume-em"
+        ],
+        "weight_formats": [
+            "pytorch_state_dict",
+            "torchscript"
+        ],
+        "authors": [
+            {
+                "name": "Luca Freckmann"
+            }
+        ],
+        "covers": [
+            "https://hypha.aicell.io/bioimage-io/artifacts/affable-zebra/files/cover.png"
+        ]
+    },
+    "funny-bug \ud83d\udc1b": {
+        "id": "funny-bug",
+        "nickname": "funny-bug",
+        "nickname_icon": "\ud83d\udc1b",
+        "type": "model",
+        "name": "SynapseNet Vesicles - Electron Tomography",
+        "description": "3D U-Net from SynapseNet that segments synaptic vesicles in electron tomograms of synapses at a voxel size of 1.35 nm (isotropic).",
+        "format_version": "0.5.12",
+        "collection_id": "bioimage-io/funny-bug",
+        "version": "v0",
+        "created": "2026-11-26T14:04:33Z",
+        "sha256": "a0b7328cd12f779bb3dfb9993244cc3bd114c79f56fb03d964e756f63699b839",
+        "source": "https://hypha.aicell.io/bioimage-io/artifacts/funny-bug/files/rdf.yaml?version=v0",
+        "rdf_source": "https://hypha.aicell.io/bioimage-io/artifacts/funny-bug/files/rdf.yaml?version=v0",
+        "tags": [
+            "synapsenet",
+            "electron-microscopy",
+            "electron-tomography",
+            "synapse",
+            "segmentation",
+            "unet",
+            "pytorch",
+            "vesicles",
+            "3d"
+        ],
+        "weight_formats": [
+            "pytorch_state_dict",
+            "torchscript"
+        ],
+        "authors": [
+            {
+                "name": "Sarah Muth"
+            }
+        ],
+        "covers": [
+            "https://hypha.aicell.io/bioimage-io/artifacts/funny-bug/files/cover.png"
+        ]
+    },
+    "adaptable-microbe \ud83e\udda0": {
+        "id": "adaptable-microbe",
+        "nickname": "adaptable-microbe",
+        "nickname_icon": "\ud83e\udda0",
+        "type": "model",
+        "name": "SynapseNet Vesicles - 2D TEM",
+        "description": "2D U-Net from SynapseNet that segments synaptic vesicles in 2D transmission electron micrographs of synapses at a voxel size of 1.35 nm.",
+        "format_version": "0.5.12",
+        "collection_id": "bioimage-io/adaptable-microbe",
+        "version": "v0",
+        "created": "2026-11-26T14:05:00Z",
+        "sha256": "c9b4fe4d8d17a2e36b411b5ccdbed2cd888e237a0c9de18c9a3692a67bcad1d8",
+        "source": "https://hypha.aicell.io/bioimage-io/artifacts/adaptable-microbe/files/rdf.yaml?version=v0",
+        "rdf_source": "https://hypha.aicell.io/bioimage-io/artifacts/adaptable-microbe/files/rdf.yaml?version=v0",
+        "tags": [
+            "synapsenet",
+            "electron-microscopy",
+            "electron-microscopy-2d",
+            "synapse",
+            "segmentation",
+            "unet",
+            "pytorch",
+            "vesicles",
+            "2d",
+            "transmission-electron-microscopy"
+        ],
+        "weight_formats": [
+            "pytorch_state_dict",
+            "torchscript"
+        ],
+        "authors": [
+            {
+                "name": "Sarah Muth"
+            }
+        ],
+        "covers": [
+            "https://hypha.aicell.io/bioimage-io/artifacts/adaptable-microbe/files/cover.png"
+        ]
+    },
+    "loyal-butterfly \ud83e\udd8b": {
+        "id": "loyal-butterfly",
+        "nickname": "loyal-butterfly",
+        "nickname_icon": "\ud83e\udd8b",
+        "type": "model",
+        "name": "SynapseNet Active Zone - Electron Tomography",
+        "description": "3D U-Net from SynapseNet that segments the presynaptic active zone in electron tomograms of synapses at a voxel size of 1.38 nm (isotropic).",
+        "format_version": "0.5.12",
+        "collection_id": "bioimage-io/loyal-butterfly",
+        "version": "v0",
+        "created": "2026-11-26T14:05:27Z",
+        "sha256": "87cd19e4e45811c7c7d737e0248d5769b747652bae0bf1b4e9cefb2d13b16474",
+        "source": "https://hypha.aicell.io/bioimage-io/artifacts/loyal-butterfly/files/rdf.yaml?version=v0",
+        "rdf_source": "https://hypha.aicell.io/bioimage-io/artifacts/loyal-butterfly/files/rdf.yaml?version=v0",
+        "tags": [
+            "synapsenet",
+            "electron-microscopy",
+            "electron-tomography",
+            "synapse",
+            "segmentation",
+            "unet",
+            "pytorch",
+            "active-zone",
+            "3d"
+        ],
+        "weight_formats": [
+            "pytorch_state_dict",
+            "torchscript"
+        ],
+        "authors": [
+            {
+                "name": "Sarah Muth"
+            }
+        ],
+        "covers": [
+            "https://hypha.aicell.io/bioimage-io/artifacts/loyal-butterfly/files/cover.png"
+        ]
+    },
+    "quiet-lobster \ud83e\udd9e": {
+        "id": "quiet-lobster",
+        "nickname": "quiet-lobster",
+        "nickname_icon": "\ud83e\udd9e",
+        "type": "model",
+        "name": "SynapseNet Synaptic Compartments - Electron Tomography",
+        "description": "3D U-Net from SynapseNet that segments synaptic compartments (pre- and postsynaptic boutons) via their boundaries in electron tomograms at a voxel size of 3.47 nm (isotropic).",
+        "format_version": "0.5.12",
+        "collection_id": "bioimage-io/quiet-lobster",
+        "version": "v0",
+        "created": "2026-11-26T14:05:55Z",
+        "sha256": "d8569d87e1569acc2493c0db4932dd25cecbed69dd836e46d0a82172b8231ff9",
+        "source": "https://hypha.aicell.io/bioimage-io/artifacts/quiet-lobster/files/rdf.yaml?version=v0",
+        "rdf_source": "https://hypha.aicell.io/bioimage-io/artifacts/quiet-lobster/files/rdf.yaml?version=v0",
+        "tags": [
+            "synapsenet",
+            "electron-microscopy",
+            "electron-tomography",
+            "synapse",
+            "segmentation",
+            "unet",
+            "pytorch",
+            "synaptic-compartments",
+            "boundary-prediction",
+            "3d"
+        ],
+        "weight_formats": [
+            "pytorch_state_dict",
+            "torchscript"
+        ],
+        "authors": [
+            {
+                "name": "Sarah Muth"
+            }
+        ],
+        "covers": [
+            "https://hypha.aicell.io/bioimage-io/artifacts/quiet-lobster/files/cover.png"
+        ]
+    },
+    "angry-flamingo \ud83e\udda9": {
+        "id": "angry-flamingo",
+        "nickname": "angry-flamingo",
+        "nickname_icon": "\ud83e\udda9",
+        "type": "model",
+        "name": "SynapseNet Vesicles - Endbulb of Held Electron Tomography",
+        "description": "3D U-Net from SynapseNet that segments synaptic vesicles in electron tomograms of endbulb of Held synapses at a voxel size of 1.35 nm (isotropic).",
+        "format_version": "0.5.12",
+        "collection_id": "bioimage-io/angry-flamingo",
+        "version": "v0",
+        "created": "2026-11-26T14:07:25Z",
+        "sha256": "e762cad55975fb55dc16aedad52eacafa5715b13e8e4a0dc2c2abb8a3cfad966",
+        "source": "https://hypha.aicell.io/bioimage-io/artifacts/angry-flamingo/files/rdf.yaml?version=v0",
+        "rdf_source": "https://hypha.aicell.io/bioimage-io/artifacts/angry-flamingo/files/rdf.yaml?version=v0",
+        "tags": [
+            "synapsenet",
+            "electron-microscopy",
+            "electron-tomography",
+            "synapse",
+            "segmentation",
+            "unet",
+            "pytorch",
+            "vesicles",
+            "endbulb-of-held",
+            "3d",
+            "domain-adaptation"
+        ],
+        "weight_formats": [
+            "pytorch_state_dict",
+            "torchscript"
+        ],
+        "authors": [
+            {
+                "name": "Sarah Muth"
+            }
+        ],
+        "covers": [
+            "https://hypha.aicell.io/bioimage-io/artifacts/angry-flamingo/files/cover.png"
+        ]
+    },
+    "hardworking-parrot \ud83e\udd9c": {
+        "id": "hardworking-parrot",
+        "nickname": "hardworking-parrot",
+        "nickname_icon": "\ud83e\udd9c",
+        "type": "model",
+        "name": "SynapseNet Vesicles - 2D TEM (Mouse)",
+        "description": "2D U-Net from SynapseNet that segments synaptic vesicles in 2D transmission electron micrographs of mouse synapses at a voxel size of 1.35 nm.",
+        "format_version": "0.5.12",
+        "collection_id": "bioimage-io/hardworking-parrot",
+        "version": "v0",
+        "created": "2026-11-26T14:07:48Z",
+        "sha256": "f60662b8a8b4e8df4472f8ef998e6720f48cd8e5c47df26046614c7037fd21ad",
+        "source": "https://hypha.aicell.io/bioimage-io/artifacts/hardworking-parrot/files/rdf.yaml?version=v0",
+        "rdf_source": "https://hypha.aicell.io/bioimage-io/artifacts/hardworking-parrot/files/rdf.yaml?version=v0",
+        "tags": [
+            "synapsenet",
+            "electron-microscopy",
+            "electron-microscopy-2d",
+            "synapse",
+            "segmentation",
+            "unet",
+            "pytorch",
+            "vesicles",
+            "2d",
+            "transmission-electron-microscopy",
+            "domain-adaptation"
+        ],
+        "weight_formats": [
+            "pytorch_state_dict",
+            "torchscript"
+        ],
+        "authors": [
+            {
+                "name": "Sarah Muth"
+            }
+        ],
+        "covers": [
+            "https://hypha.aicell.io/bioimage-io/artifacts/hardworking-parrot/files/cover.png"
+        ]
+    },
+    "generous-lobster \ud83e\udd9e": {
+        "id": "generous-lobster",
+        "nickname": "generous-lobster",
+        "nickname_icon": "\ud83e\udd9e",
+        "type": "model",
+        "name": "SynapseNet Vesicles - Cryo-Electron Tomography",
+        "description": "3D U-Net from SynapseNet that segments synaptic vesicles in cryo-electron tomograms at a voxel size of 1.35 nm in y/x and 0.88 nm in z.",
+        "format_version": "0.5.12",
+        "collection_id": "bioimage-io/generous-lobster",
+        "version": "v0",
+        "created": "2026-11-26T14:08:10Z",
+        "sha256": "4e09a7df1487746e7fbf3ed3f83821861bcc76a359c60a4d0c78b93ded5e3b96",
+        "source": "https://hypha.aicell.io/bioimage-io/artifacts/generous-lobster/files/rdf.yaml?version=v0",
+        "rdf_source": "https://hypha.aicell.io/bioimage-io/artifacts/generous-lobster/files/rdf.yaml?version=v0",
+        "tags": [
+            "synapsenet",
+            "electron-microscopy",
+            "electron-tomography",
+            "synapse",
+            "segmentation",
+            "unet",
+            "pytorch",
+            "vesicles",
+            "3d",
+            "cryo-electron-tomography",
+            "domain-adaptation"
+        ],
+        "weight_formats": [
+            "pytorch_state_dict",
+            "torchscript"
+        ],
+        "authors": [
+            {
+                "name": "Sarah Muth"
+            }
+        ],
+        "covers": [
+            "https://hypha.aicell.io/bioimage-io/artifacts/generous-lobster/files/cover.png"
+        ]
+    },
+    "determined-bat \ud83e\udd87": {
+        "id": "determined-bat",
+        "nickname": "determined-bat",
+        "nickname_icon": "\ud83e\udd87",
+        "type": "model",
+        "name": "SynapseNet Ribbon Synapse Structures - Electron Tomography",
+        "description": "3D U-Net from SynapseNet that segments the synaptic ribbon, the presynaptic density and the presynaptic membrane in electron tomograms of inner-ear ribbon synapses at a voxel size of 1.188 nm (isotropic).",
+        "format_version": "0.5.12",
+        "collection_id": "bioimage-io/determined-bat",
+        "version": "v0",
+        "created": "2026-11-26T14:08:32Z",
+        "sha256": "2227ee47926dd3d255c7f6642bb51d386d43819050c82556a05baf9660539bec",
+        "source": "https://hypha.aicell.io/bioimage-io/artifacts/determined-bat/files/rdf.yaml?version=v0",
+        "rdf_source": "https://hypha.aicell.io/bioimage-io/artifacts/determined-bat/files/rdf.yaml?version=v0",
+        "tags": [
+            "synapsenet",
+            "electron-microscopy",
+            "electron-tomography",
+            "synapse",
+            "segmentation",
+            "unet",
+            "pytorch",
+            "ribbon-synapse",
+            "inner-ear",
+            "3d"
+        ],
+        "weight_formats": [
+            "pytorch_state_dict",
+            "torchscript"
+        ],
+        "authors": [
+            {
+                "name": "Sarah Muth"
+            }
+        ],
+        "covers": [
+            "https://hypha.aicell.io/bioimage-io/artifacts/determined-bat/files/cover.png"
+        ]
+    },
+    "discreet-angelfish \ud83d\udc20": {
+        "id": "discreet-angelfish",
+        "nickname": "discreet-angelfish",
+        "nickname_icon": "\ud83d\udc20",
+        "type": "model",
+        "name": "SynapseNet Vesicles - Inner Ear Electron Tomography",
+        "description": "3D U-Net from SynapseNet that segments synaptic vesicles in electron tomograms of inner-ear ribbon synapses at a voxel size of 1.35 nm (isotropic).",
+        "format_version": "0.5.12",
+        "collection_id": "bioimage-io/discreet-angelfish",
+        "version": "v0",
+        "created": "2026-11-26T14:08:57Z",
+        "sha256": "a3d2c9d023ed2f6bf995da2df8f1e5597a5c70599733b18ab7de3c49cc1745cb",
+        "source": "https://hypha.aicell.io/bioimage-io/artifacts/discreet-angelfish/files/rdf.yaml?version=v0",
+        "rdf_source": "https://hypha.aicell.io/bioimage-io/artifacts/discreet-angelfish/files/rdf.yaml?version=v0",
+        "tags": [
+            "synapsenet",
+            "electron-microscopy",
+            "electron-tomography",
+            "synapse",
+            "segmentation",
+            "unet",
+            "pytorch",
+            "vesicles",
+            "inner-ear",
+            "ribbon-synapse",
+            "3d",
+            "domain-adaptation"
+        ],
+        "weight_formats": [
+            "pytorch_state_dict",
+            "torchscript"
+        ],
+        "authors": [
+            {
+                "name": "Sarah Muth"
+            }
+        ],
+        "covers": [
+            "https://hypha.aicell.io/bioimage-io/artifacts/discreet-angelfish/files/cover.png"
         ]
     }
 }

@@ -9,6 +9,9 @@ The result is written to ``filtered_models.json``, keyed by
 the ``source`` URL of the model description, so the rest of the code loads
 models from there and never needs the raw index.
 
+Every model that is left out is written, with the reason, to
+``failed_models.json`` next to it (see ``ai4life/failure_report.py``).
+
 The index is published by bioimage.io at ``INDEX_URL``.
 """
 
@@ -17,6 +20,11 @@ from urllib.parse import urljoin
 
 from bioimageio.core import load_description
 from bioimageio.spec.model import v0_5
+
+try:
+    from ai4life import failure_report
+except ImportError:  # run as a script without the package installed
+    import failure_report
 
 INDEX_URL = (
     "https://raw.githubusercontent.com/bioimage-io/collection/"
@@ -98,12 +106,49 @@ def _make_entry(item, version, model, nickname, emoji, source):
     }
 
 
+def _left_out(report, nickname, status, reason, version=None, source=None):
+    """Record in ``report`` why a model is left out, and print it."""
+    report[nickname] = failure_report.make_entry(
+        status,
+        failure_report.FILTER,
+        reason,
+        version=(version or {}).get("version"),
+        source=source or (version or {}).get("source"),
+    )
+    print(f"Skipping {nickname} ({status}): {reason}")
+
+
+def _merge_reports(filter_report, previous_report, supported, in_index):
+    """Return the report to save.
+
+    The filter's own entries replace the previous ones. A previous
+    prediction-test failure is kept while the model is still offered by
+    the filter and still in the index: the test workflow removes it when
+    the model passes again.
+    """
+    report = dict(filter_report)
+    for nickname, entry in previous_report.items():
+        if (
+            entry.get("stage") == failure_report.PREDICTION_TEST
+            and nickname in supported
+            and nickname in in_index
+            and nickname not in report
+        ):
+            report[nickname] = entry
+    return report
+
+
 def filter_and_load_models(
     input_json="index.json",
     output_json="filtered_models.json",
     perform_io_checks=False,
+    report_json=None,
 ):
-    """Write all supported models from ``input_json`` to ``output_json``."""
+    """Write all supported models from ``input_json`` to ``output_json``.
+
+    The models that are left out, and why, are written to ``report_json``
+    (by default ``failed_models.json`` next to ``output_json``).
+    """
     with open(input_json, "r") as file:
         data = json.load(file)
 
@@ -113,35 +158,64 @@ def filter_and_load_models(
 
     models_v0_5 = {}
     failed_models = []
+    filter_report = {}
 
     for item in models:
         nickname = item["id"].split("/")[-1]
         if nickname in EXCLUDED_IDS:
-            print(f"Skipping {nickname}: excluded")
+            _left_out(
+                filter_report,
+                nickname,
+                failure_report.NOT_SUPPORTED,
+                "excluded by the AI4EOSC maintainers (EXCLUDED_IDS)",
+            )
             continue
 
         version = _latest_version(item)
         if not version or not version.get("source"):
-            print(f"Skipping {nickname}: no version with a source URL")
+            _left_out(
+                filter_report,
+                nickname,
+                failure_report.FAILED,
+                "no version with a source URL in the bioimage.io index",
+                version,
+            )
             continue
 
         try:
             model, source = _load(version["source"], perform_io_checks)
         except Exception as e:
             failed_models.append((nickname, str(e)))
-            print(f"Failed to load model '{nickname}': {e}")
+            _left_out(
+                filter_report,
+                nickname,
+                failure_report.FAILED,
+                f"model description could not be loaded: {e}",
+                version,
+            )
             continue
 
         if not isinstance(model, v0_5.ModelDescr):
             if type(model).__name__ == "InvalidDescr":
                 msg = "invalid model description"
                 failed_models.append((nickname, msg))
-                print(f"Failed to load model '{nickname}': {msg}")
+                _left_out(
+                    filter_report,
+                    nickname,
+                    failure_report.FAILED,
+                    msg,
+                    version,
+                    source,
+                )
             else:
-                print(
-                    f"Skipping {nickname}: format_version "
-                    f"{getattr(model, 'format_version', '?')} "
-                    "is not native v0.5"
+                _left_out(
+                    filter_report,
+                    nickname,
+                    failure_report.NOT_SUPPORTED,
+                    f"format version {getattr(model, 'format_version', '?')}"
+                    " (only native v0.5 descriptions are supported)",
+                    version,
+                    source,
                 )
             continue
 
@@ -149,7 +223,16 @@ def filter_and_load_models(
             getattr(model.weights, wf, None) is not None
             for wf in SUPPORTED_WEIGHT_FORMATS
         ):
-            print(f"Skipping {nickname}: no torchscript/pytorch weights")
+            formats = ", ".join(_weight_formats(model)) or "none"
+            _left_out(
+                filter_report,
+                nickname,
+                failure_report.NOT_SUPPORTED,
+                f"weight formats: {formats} "
+                f"(supported: {', '.join(SUPPORTED_WEIGHT_FORMATS)})",
+                version,
+                source,
+            )
             continue
 
         emoji = getattr(model, "id_emoji", None) or ""
@@ -177,6 +260,16 @@ def filter_and_load_models(
     print(f"\n{len(models_v0_5)} supported model(s) written to {output_json}")
     with open(output_json, "w") as names_file:
         json.dump(models_v0_5, names_file, indent=4, cls=CustomEncoder)
+
+    report_json = report_json or failure_report.report_path(output_json)
+    report = _merge_reports(
+        filter_report,
+        failure_report.load_report(report_json),
+        supported={entry["id"] for entry in models_v0_5.values()},
+        in_index={item["id"].split("/")[-1] for item in models},
+    )
+    failure_report.save_report(report_json, report)
+    print(f"{len(report)} model(s) left out, with the reason, in {report_json}")
     return models_v0_5
 
 
@@ -196,6 +289,12 @@ if __name__ == "__main__":
         required=True,
         help="Path to save the filtered_models.json",
     )
+    parser.add_argument(
+        "--report",
+        default=None,
+        help="Path to save the models left out and why "
+        "(default: failed_models.json next to --output)",
+    )
     args = parser.parse_args()
 
-    filter_and_load_models(args.input, args.output)
+    filter_and_load_models(args.input, args.output, report_json=args.report)

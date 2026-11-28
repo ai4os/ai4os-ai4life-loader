@@ -1,0 +1,524 @@
+{
+  "ambitious-ant": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/ambitious-ant/files/rdf.yaml?version=v0"
+  },
+  "amiable-crocodile": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/amiable-crocodile/files/rdf.yaml?version=v0"
+  },
+  "beautiful-sheep": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/beautiful-sheep/files/rdf.yaml?version=v0"
+  },
+  "chatty-frog": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/chatty-frog/files/rdf.yaml?version=v0"
+  },
+  "committed-turkey": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/committed-turkey/files/rdf.yaml?version=v0"
+  },
+  "conscientious-seashell": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/conscientious-seashell/files/rdf.yaml?version=v0"
+  },
+  "courteous-otter": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/courteous-otter/files/rdf.yaml?version=v0"
+  },
+  "creative-panda": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/creative-panda/files/rdf.yaml?version=v0"
+  },
+  "dazzling-crab": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/dazzling-crab/files/rdf.yaml?version=v0"
+  },
+  "decisive-panda": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/decisive-panda/files/rdf.yaml?version=v0"
+  },
+  "determined-chipmunk": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/determined-chipmunk/files/rdf.yaml?version=v0"
+  },
+  "determined-hedgehog": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/determined-hedgehog/files/rdf.yaml?version=v0"
+  },
+  "discreet-rooster": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/discreet-rooster/files/rdf.yaml?version=v0"
+  },
+  "dynamic-t-rex": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/dynamic-t-rex/files/rdf.yaml?version=v0"
+  },
+  "easy-going-sauropod": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/easy-going-sauropod/files/rdf.yaml?version=v0"
+  },
+  "efficient-chipmunk": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/efficient-chipmunk/files/rdf.yaml?version=v0"
+  },
+  "fearless-crab": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/fearless-crab/files/rdf.yaml?version=v0"
+  },
+  "frank-water-buffalo": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/frank-water-buffalo/files/rdf.yaml?version=v0"
+  },
+  "funny-butterfly": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/funny-butterfly/files/rdf.yaml?version=v0"
+  },
+  "greedy-shark": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/greedy-shark/files/rdf.yaml?version=v0"
+  },
+  "gregarious-seashell": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "weight formats: keras_hdf5, tensorflow_saved_model_bundle (supported: torchscript, pytorch_state_dict)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/gregarious-seashell/files/bioimageio.yaml?version=v0"
+  },
+  "hiding-blowfish": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/hiding-blowfish/files/rdf.yaml?version=v0"
+  },
+  "hiding-tiger": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/hiding-tiger/files/rdf.yaml?version=v0"
+  },
+  "humorous-owl": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/humorous-owl/files/rdf.yaml?version=v0"
+  },
+  "impartial-shark": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/impartial-shark/files/rdf.yaml?version=v0"
+  },
+  "independent-shrimp": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/independent-shrimp/files/rdf.yaml?version=v0"
+  },
+  "joyful-pig": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/joyful-pig/files/rdf.yaml?version=v0"
+  },
+  "kind-seashell": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/kind-seashell/files/rdf.yaml?version=v0"
+  },
+  "laid-back-lobster": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/laid-back-lobster/files/rdf.yaml?version=v0"
+  },
+  "lively-shark": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "weight formats: tensorflow_saved_model_bundle (supported: torchscript, pytorch_state_dict)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/lively-shark/files/rdf.yaml?version=v0"
+  },
+  "loyal-parrot": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/loyal-parrot/files/rdf.yaml?version=v0"
+  },
+  "loyal-squid": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/loyal-squid/files/rdf.yaml?version=v0"
+  },
+  "lucky-fox": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/lucky-fox/files/rdf.yaml?version=v0"
+  },
+  "modest-octopus": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/modest-octopus/files/rdf.yaml?version=v0"
+  },
+  "modest-spider": {
+    "status": "failed",
+    "stage": "filter",
+    "reason": "invalid model description",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/modest-spider/files/rdf.yaml?version=v0"
+  },
+  "naked-microbe": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/naked-microbe/files/rdf.yaml?version=v0"
+  },
+  "nice-peacock": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/nice-peacock/files/rdf.yaml?version=v0"
+  },
+  "noisy-fish": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/noisy-fish/files/rdf.yaml?version=v0"
+  },
+  "noisy-hedgehog": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/noisy-hedgehog/files/rdf.yaml?version=v0"
+  },
+  "non-judgemental-eagle": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/non-judgemental-eagle/files/rdf.yaml?version=v0"
+  },
+  "organized-badger": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/organized-badger/files/rdf.yaml?version=v0"
+  },
+  "organized-cricket": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/organized-cricket/files/rdf.yaml?version=v0"
+  },
+  "passionate-t-rex": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/passionate-t-rex/files/rdf.yaml?version=v0"
+  },
+  "persistent-ladybird": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/persistent-ladybird/files/rdf.yaml?version=v0"
+  },
+  "pioneering-goat": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/pioneering-goat/files/rdf.yaml?version=v0"
+  },
+  "pioneering-rhino": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/pioneering-rhino/files/rdf.yaml?version=v0"
+  },
+  "placid-llama": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/placid-llama/files/rdf.yaml?version=v0"
+  },
+  "polite-pig": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "weight formats: onnx (supported: torchscript, pytorch_state_dict)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/polite-pig/files/rdf.yaml?version=v0"
+  },
+  "powerful-chipmunk": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/powerful-chipmunk/files/rdf.yaml?version=v0"
+  },
+  "powerful-fish": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/powerful-fish/files/rdf.yaml?version=v0"
+  },
+  "shivering-raccoon": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/shivering-raccoon/files/rdf.yaml?version=v0"
+  },
+  "sincere-microbe": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/sincere-microbe/files/rdf.yaml?version=v0"
+  },
+  "straightforward-crocodile": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/straightforward-crocodile/files/rdf.yaml?version=v0"
+  },
+  "sympathetic-mosquito": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/sympathetic-mosquito/files/rdf.yaml?version=v0"
+  },
+  "thoughtful-turtle": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/thoughtful-turtle/files/rdf.yaml?version=v0"
+  },
+  "wild-whale": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/wild-whale/files/rdf.yaml?version=v0"
+  },
+  "willing-hedgehog": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "format version 0.4.10 (only native v0.5 descriptions are supported)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/willing-hedgehog/files/rdf.yaml?version=v0"
+  },
+  "witty-whale": {
+    "status": "not supported",
+    "stage": "filter",
+    "reason": "weight formats: onnx (supported: torchscript, pytorch_state_dict)",
+    "checked": "2026-11-28",
+    "loader_version": "0.0.1",
+    "version": "v0",
+    "source": "https://hypha.aicell.io/bioimage-io/artifacts/witty-whale/files/rdf.yaml?version=v0"
+  }
+}
