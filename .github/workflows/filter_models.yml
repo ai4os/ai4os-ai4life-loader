@@ -36,6 +36,7 @@ jobs:
 
     - name: Run Filter Script
       run: |
+        # also writes models/failed_models.json: the models left out, and why
         python ai4life/filter_v0_5_models.py --input models/index.json --output models/filtered_models.json
       
 
@@ -46,8 +47,8 @@ jobs:
 
     - name: Commit Changes
       run: |
-         git add -f models/filtered_models.json models/index.json
-         git commit -m "Update filtered_models.json models/index.json" || echo "No changes to commit"
+         git add -f models/filtered_models.json models/failed_models.json models/index.json
+         git commit -m "Update filtered_models.json failed_models.json models/index.json" || echo "No changes to commit"
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:

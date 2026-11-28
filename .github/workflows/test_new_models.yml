@@ -111,15 +111,6 @@ jobs:
       run: |
         python scripts/remove_failed_models.py scripts/test_results.json
 
-    - name: Commit cleaned filtered_models.json
-      if: steps.check.outputs.has_new_models == 'true' && steps.results.outputs.failed_count != '0'
-      run: |
-        git config user.name 'github-actions[bot]'
-        git config user.email 'github-actions[bot]@users.noreply.github.com'
-        git add models/filtered_models.json
-        git commit -m "Remove failed models from filtered_models.json"
-        git push origin HEAD:${{ github.event.workflow_run.head_branch || github.ref_name }}
-
     # ── Step 4: Open one GitHub issue per failed model (skip if already open) ──
     - name: Generate issue body
       if: steps.check.outputs.has_new_models == 'true' && steps.results.outputs.failed_count != '0'
@@ -150,6 +141,33 @@ jobs:
               --body-file scripts/issue_body.md
           fi
         done < failed_models.txt
+
+    # ── Step 5: Record the results in models/failed_models.json ──
+    # Failed models are added with their error and issue link; models that
+    # passed are removed. Runs whenever models were tested.
+    - name: Update failure report
+      # also after a failed issue step, so the results are never lost
+      if: ${{ !cancelled() && steps.check.outputs.has_new_models == 'true' }}
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        gh issue list --state open --label automated --limit 500 \
+          --json title,url > scripts/open_issues.json || echo "[]" > scripts/open_issues.json
+        python scripts/update_failed_models.py scripts/test_results.json scripts/open_issues.json
+
+    - name: Commit filtered_models.json and failed_models.json
+      # also after a failed issue step, so the results are never lost
+      if: ${{ !cancelled() && steps.check.outputs.has_new_models == 'true' }}
+      run: |
+        git config user.name 'github-actions[bot]'
+        git config user.email 'github-actions[bot]@users.noreply.github.com'
+        git add -f models/filtered_models.json models/failed_models.json
+        if git diff --cached --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "Update filtered_models.json and failed_models.json from model tests"
+          git push origin HEAD:${{ github.event.workflow_run.head_branch || github.ref_name }}
+        fi
 
     # ── Upload artifacts for debugging ──
     - name: Upload test artifacts
