@@ -38,3 +38,7 @@ PARAMETER_INT = int(os.getenv("AI4LIFE_PARAMETER_INT", default="10"))
 MODEL_NAME = os.getenv(
     "MODEL_NAME", default="diplomatic-bug"
 )  # diplomatic-bug
+
+# Python of the separate environment for TensorFlow models
+# (requirements-tf.txt; the Docker image installs it in /opt/tf-env).
+TF_PYTHON = os.getenv("AI4LIFE_TF_PYTHON", default="/opt/tf-env/bin/python")

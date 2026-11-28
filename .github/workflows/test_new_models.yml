@@ -76,6 +76,15 @@ jobs:
           echo "No new models found, skipping tests."
         fi
 
+    - name: Install the TensorFlow environment (for TensorFlow models)
+      if: steps.check.outputs.has_new_models == 'true'
+      run: |
+        # Same separate environment as in the Docker image (requirements-tf.txt)
+        python -m venv "$RUNNER_TEMP/tf-env"
+        "$RUNNER_TEMP/tf-env/bin/pip" install --upgrade pip
+        "$RUNNER_TEMP/tf-env/bin/pip" install -r requirements-tf.txt
+        echo "AI4LIFE_TF_PYTHON=$RUNNER_TEMP/tf-env/bin/python" >> "$GITHUB_ENV"
+
     # ── Step 2: Test prediction for new models ──
     - name: Test new models
       id: test

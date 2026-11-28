@@ -1,0 +1,15 @@
+# Separate Python environment for models with TensorFlow weights.
+#
+# TensorFlow 2.16 needs numpy 1.x, while the main environment needs numpy 2
+# (micro-sam), so TensorFlow models run in their own environment: the Docker
+# image installs this file into /opt/tf-env, and ai4life/tf_runner.py runs
+# the prediction there (see ai4life/__init__.py).
+#
+# The versions are those of BioEngine's model-runner, the environment
+# BioImage.IO tests and serves models in:
+# https://github.com/aicell-lab/bioengine/blob/main/apps/model-runner/requirements-runtime.txt
+bioimageio.core==0.11.0
+bioimageio.spec==0.5.12.0
+numpy==1.26.4
+tensorflow==2.16.1
+xarray==2025.1.2

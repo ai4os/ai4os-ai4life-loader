@@ -15,8 +15,11 @@ import functools
 import importlib.abc
 import importlib.util
 import inspect
+import json
 import logging
+import subprocess
 import sys
+import types
 import numpy as np
 
 # Registers torchvision's operators (e.g. torchvision::nms) so that
@@ -150,8 +153,114 @@ def _load_v0_5_model(model_name):
     return utils.load_model_description(model_name)
 
 
+_TF_RUNNER = os.path.join(os.path.dirname(__file__), "tf_runner.py")
+
+
+def _runtime_of(model_name):
+    """Return the runtime of a model in filtered_models.json.
+
+    ``"tf"`` models run in the separate TensorFlow environment; everything
+    else (``"torch"``, ``"onnx"``, or no runtime in older catalogues) runs
+    in this process.
+    """
+    _, entry = utils.get_model_entry(model_name)
+    return (entry or {}).get("runtime") or "torch"
+
+
+def _check_tf_environment():
+    if not os.path.exists(config.TF_PYTHON):
+        raise RuntimeError(
+            "This model needs the TensorFlow environment, but its Python "
+            f"was not found at {config.TF_PYTHON} (AI4LIFE_TF_PYTHON). "
+            "Install requirements-tf.txt in a separate virtual environment."
+        )
+
+
+def _predict_in_tf_environment(model_name, sample, blocksize_parameter):
+    """Run the prediction in the TensorFlow environment, in a child process.
+
+    Returns an object with ``members`` (output id -> Tensor), as the API
+    expects from ``bioimageio.core.predict``.
+    """
+    _check_tf_environment()
+    _, entry = utils.get_model_entry(model_name)
+    source = (entry or {}).get("source") or model_name.split(" ", 1)[0]
+
+    with tempfile.TemporaryDirectory() as work_dir:
+        members = {}
+        for i, (member_id, tensor) in enumerate(sample.members.items()):
+            file_name = f"input_{i}.npy"
+            data = tensor.data
+            np.save(
+                os.path.join(work_dir, file_name),
+                np.asarray(getattr(data, "values", data)),
+                allow_pickle=False,
+            )
+            members[str(member_id)] = {
+                "file": file_name,
+                "dims": [str(dim) for dim in tensor.dims],
+            }
+        with open(os.path.join(work_dir, "inputs.json"), "w") as f:
+            json.dump(
+                {
+                    "members": members,
+                    "blocksize_parameter": blocksize_parameter,
+                },
+                f,
+            )
+
+        env = dict(os.environ, TF_FORCE_GPU_ALLOW_GROWTH="true")
+        process = subprocess.run(
+            [config.TF_PYTHON, _TF_RUNNER, str(source), work_dir],
+            env=env,
+            capture_output=True,
+            text=True,
+        )
+        if process.returncode != 0:
+            logger.error("TensorFlow runner output:\n%s", process.stderr[-5000:])
+            error_file = os.path.join(work_dir, "error.json")
+            if os.path.exists(error_file):
+                with open(error_file) as f:
+                    error = json.load(f)
+                # ValueError keeps the blocked-prediction fallback in
+                # predict() working.
+                kind = ValueError if error["type"] == "ValueError" else RuntimeError
+                raise kind(f"{error['type']}: {error['message']}")
+            raise RuntimeError(
+                "The TensorFlow runner failed (exit code "
+                f"{process.returncode}): {process.stderr[-500:]}"
+            )
+
+        with open(os.path.join(work_dir, "outputs.json")) as f:
+            outputs = json.load(f)["members"]
+        return types.SimpleNamespace(
+            members={
+                member_id: Tensor.from_numpy(
+                    np.load(os.path.join(work_dir, spec["file"])),
+                    dims=spec["dims"],
+                )
+                for member_id, spec in outputs.items()
+            }
+        )
+
+
+def _run_prediction(model_name, model, sample, blocksize_parameter=None):
+    """Predict with ``bioimageio.core``, in the model's runtime."""
+    if _runtime_of(model_name) == "tf":
+        return _predict_in_tf_environment(
+            model_name, sample, blocksize_parameter
+        )
+    if blocksize_parameter is None:
+        return predict_(model=model, inputs=sample)
+    return predict_(
+        model=model, inputs=sample, blocksize_parameter=blocksize_parameter
+    )
+
+
 def warm(**kwargs):
     """Main/public method to start up the model"""
+    if _runtime_of(config.MODEL_NAME) == "tf":
+        _check_tf_environment()
     utils.load_models(config.MODEL_NAME, perform_io_checks=True)
 
 
@@ -204,9 +313,10 @@ def predict(model_name, **options):
             # "block with members [] does not overlap with sample members".
             # In both cases, predict the whole image at once instead.
             try:
-                result = predict_(
-                    model=model,
-                    inputs=sample,
+                result = _run_prediction(
+                    model_name,
+                    model,
+                    sample,
                     blocksize_parameter=blocksize_parameter,
                 )
                 blocked_ok = bool(result.members)
@@ -224,7 +334,7 @@ def predict(model_name, **options):
                 sample = create_sample_for_model(
                     model, inputs=input_data_pad, sample_id="sample_"
                 )
-                result = predict_(model=model, inputs=sample)
+                result = _run_prediction(model_name, model, sample)
             return (result, output_ids, input_data[id])
     else:
 
@@ -309,7 +419,7 @@ def predict(model_name, **options):
 
             # blocksize_parameter is not working with sam model
             return (
-                predict_(model=model, inputs=sample),
+                _run_prediction(model_name, model, sample),
                 output_ids,
                 input_data,
             )

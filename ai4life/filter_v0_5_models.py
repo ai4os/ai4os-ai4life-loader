@@ -16,6 +16,7 @@ The index is published by bioimage.io at ``INDEX_URL``.
 """
 
 import json
+import urllib.request
 from urllib.parse import urljoin
 
 from bioimageio.core import load_description
@@ -31,8 +32,29 @@ INDEX_URL = (
     "refs/heads/gh-pages/index.json"
 )
 
-# Weight formats that can run on the AI4EOSC platform (for now).
-SUPPORTED_WEIGHT_FORMATS = ("torchscript", "pytorch_state_dict")
+# Weight formats that can run on the AI4EOSC platform, by runtime:
+# - "torch" and "onnx" run in the loader's main environment;
+# - "tf" runs in the separate TensorFlow environment of the image
+#   (requirements-tf.txt), see ai4life/tf_runner.py.
+# A model gets the first runtime, in this order, that its weights allow.
+RUNTIME_WEIGHT_FORMATS = {
+    "torch": ("torchscript", "pytorch_state_dict"),
+    "onnx": ("onnx",),
+    "tf": ("tensorflow_saved_model_bundle", "keras_hdf5"),
+}
+SUPPORTED_WEIGHT_FORMATS = tuple(
+    wf for formats in RUNTIME_WEIGHT_FORMATS.values() for wf in formats
+)
+
+# BioImage.IO tests every model in BioEngine's standard environment, whose
+# TensorFlow, numpy and bioimageio.core versions requirements-tf.txt copies.
+# A TensorFlow model whose report shows a failed inference check there is
+# left out. Without a report (or in an unknown format) the model is kept:
+# the test workflow tests it in our own TensorFlow environment.
+TEST_REPORT_URL = (
+    "https://hypha.aicell.io/bioimage-io/artifacts/test-report-{id}"
+    "/files/published/test_report.json"
+)
 
 # Models to skip, by nickname (e.g. {"stupendous-sheep"}).
 EXCLUDED_IDS = set()
@@ -75,6 +97,30 @@ def _weight_formats(model):
     return [name for name, weights in model.weights if weights is not None]
 
 
+def _runtime(model):
+    """Return the runtime that can run ``model``, or None."""
+    formats = set(_weight_formats(model))
+    for runtime, runtime_formats in RUNTIME_WEIGHT_FORMATS.items():
+        if formats.intersection(runtime_formats):
+            return runtime
+    return None
+
+
+def _bioimageio_inference_status(nickname, timeout=30):
+    """Return the inference-check status of a model's BioImage.IO test
+    report (e.g. ``"passed"``), or None if it cannot be read."""
+    url = TEST_REPORT_URL.format(id=nickname)
+    try:
+        with urllib.request.urlopen(url, timeout=timeout) as response:
+            report = json.load(response)
+    except Exception as e:
+        print(f"No BioImage.IO test report for {nickname}: {e}")
+        return None
+    check = report.get("inference_check") if isinstance(report, dict) else None
+    status = check.get("status") if isinstance(check, dict) else None
+    return status if isinstance(status, str) else None
+
+
 def _cover_url(cover, source):
     """Return a cover image as a URL (relative paths resolved to source)."""
     path = str(getattr(cover, "source", cover))
@@ -101,6 +147,7 @@ def _make_entry(item, version, model, nickname, emoji, source):
         "rdf_source": source,
         "tags": list(model.tags),
         "weight_formats": _weight_formats(model),
+        "runtime": _runtime(model),
         "authors": [{"name": author.name} for author in model.authors],
         "covers": [_cover_url(cover, source) for cover in model.covers],
     }
@@ -219,10 +266,8 @@ def filter_and_load_models(
                 )
             continue
 
-        if not any(
-            getattr(model.weights, wf, None) is not None
-            for wf in SUPPORTED_WEIGHT_FORMATS
-        ):
+        runtime = _runtime(model)
+        if runtime is None:
             formats = ", ".join(_weight_formats(model)) or "none"
             _left_out(
                 filter_report,
@@ -234,6 +279,20 @@ def filter_and_load_models(
                 source,
             )
             continue
+
+        if runtime == "tf":
+            status = _bioimageio_inference_status(nickname)
+            if status is not None and status != "passed":
+                _left_out(
+                    filter_report,
+                    nickname,
+                    failure_report.NOT_SUPPORTED,
+                    "TensorFlow model whose BioImage.IO inference check "
+                    f"is '{status}' (see {TEST_REPORT_URL.format(id=nickname)})",
+                    version,
+                    source,
+                )
+                continue
 
         emoji = getattr(model, "id_emoji", None) or ""
         key = f"{nickname} {emoji}"

@@ -5,6 +5,9 @@ flaat~=1.1.1
 
 #Module requirements
 bioimageio.core[pytorch]==0.11.0
+# runs models with ONNX weights; TensorFlow models run in a separate
+# environment, see requirements-tf.txt
+onnxruntime>=1.20
 biapy>=3.7.2
 careamics>=0.1.0
 marshmallow<4

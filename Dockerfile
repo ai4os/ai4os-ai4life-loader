@@ -90,6 +90,16 @@ RUN git clone -b $branch --depth 1 https://github.com/ai4os/ai4os-ai4life-loader
    #curl -o ./models/all_versions.json https://uk1s3.embassy.ebi.ac.uk/public-datasets/bioimage.io/all_versions.json && \
     curl -fsSL -o ./models/index.json https://raw.githubusercontent.com/bioimage-io/collection/refs/heads/gh-pages/index.json
 
+# Separate Python environment for models with TensorFlow weights
+# (TensorFlow 2.16 needs numpy 1.x, the main environment needs numpy 2).
+# ai4life/tf_runner.py runs their predictions there; see requirements-tf.txt.
+# tensorflow[and-cuda] adds the CUDA libraries TensorFlow needs for GPUs.
+RUN python3 -m venv /opt/tf-env && \
+    /opt/tf-env/bin/pip install --no-cache-dir --upgrade pip && \
+    /opt/tf-env/bin/pip install --no-cache-dir \
+        -r ai4os-ai4life-loader/requirements-tf.txt "tensorflow[and-cuda]==2.16.1"
+ENV AI4LIFE_TF_PYTHON=/opt/tf-env/bin/python
+
     # Conditional cloning using shell commands
 RUN if [ "$MODEL_NAME" = "affectionate-cow" ]; then \
     pip3 install git+https://github.com/m-team-kit/uSplit.git@main \
